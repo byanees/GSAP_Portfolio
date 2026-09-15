@@ -1,5 +1,68 @@
 /* Custom overrides for Muhammad Anees Portfolio */
 
+/* Text wordmark (replaces the template logo images) */
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--at-ff-heading, inherit);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.site-logo__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.site-logo__name {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+}
+
+.site-logo--lg .site-logo__mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  font-size: 16px;
+}
+
+.site-logo--lg .site-logo__name {
+  font-size: 26px;
+}
+
+.site-logo--dark .site-logo__mark {
+  background: var(--at-neutral-900);
+  color: var(--at-neutral-0);
+}
+
+.site-logo--dark .site-logo__name {
+  color: var(--at-neutral-900);
+}
+
+.site-logo--light .site-logo__mark {
+  background: #fefefe;
+  color: #0f0f0f;
+}
+
+.site-logo--light .site-logo__name {
+  color: #fefefe;
+}
+
+@media (max-width: 575px) {
+  .site-logo__name {
+    font-size: 17px;
+  }
+}
+
 /* Refined hero tagline styling */
 .sec-1-home-4__tagline {
   background: linear-gradient(135deg, rgba(0, 102, 255, 0.15) 0%, rgba(0, 212, 170, 0.15) 100%) !important;

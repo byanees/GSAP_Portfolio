@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Logo from "@/shared/Logo";
 import MainMenu from "@/shared/MainMenu";
 
 interface Header2Props {
@@ -29,14 +30,8 @@ export default function Header2({ onToggleSidebar, onOpenHamburgerMenu }: Header
           <div className="row align-items-center">
             <div className="col-xl-2 col-6">
               <div className="at-header-logo">
-                <Link to="/" className="text-decoration-none d-inline-flex align-items-center">
-                  <img
-                    src="/assets/imgs/template/logo/logo-nav-light.png"
-                    alt="The AI Folks"
-                    height={36}
-                    style={{ width: "auto", height: "36px" }}
-                    loading="lazy"
-                  />
+                <Link to="/" className="text-decoration-none d-inline-flex align-items-center" aria-label="Muhammad Anees, home">
+                  <Logo />
                 </Link>
               </div>
             </div>

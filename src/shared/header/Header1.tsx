@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Logo from "@/shared/Logo";
 import MainMenu from "@/shared/MainMenu";
 import Topbar from "./Topbar";
 
@@ -14,14 +15,8 @@ export default function Header4() {
               <div className="row align-items-center">
                 <div className="col-xxl-3 col-lg-1 col-6">
                   <div className="at-header-logo">
-                    <Link to="">
-                      <img
-                        src="/assets/imgs/template/logo/logo-nav-light.png"
-                        alt="Muhammad Anees"
-                        height={36}
-                        style={{ width: "auto", height: "36px" }}
-                        loading="lazy"
-                      />
+                    <Link to="/" className="text-decoration-none" aria-label="Muhammad Anees, home">
+                      <Logo />
                     </Link>
                   </div>
                 </div>

@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import Logo from "@/shared/Logo";
+
 const ARROW_SVG = (
     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -69,15 +71,8 @@ export default function Section12() {
                         <div className="col-12">
                             <div className="d-flex justify-content-between pt-100">
                                 <div className="at-header-logo">
-                                    <Link to="/">
-                                        <img
-                                            data-width="30"
-                                            src="/assets/imgs/template/logo/favicon-dark.svg"
-                                            alt="Muhammad Anees"
-                                            width={30}
-                                            height={30}
-                                            style={{ width: "auto", height: "auto" }} loading="lazy" />
-                                        <h6 className="fw-700 fz-24 text-white mb-0">Muhammad Anees</h6>
+                                    <Link to="/" className="text-decoration-none" aria-label="Muhammad Anees, home">
+                                        <Logo tone="light" size="lg" />
                                     </Link>
                                 </div>
                                 <Link

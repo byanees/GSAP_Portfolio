@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
+import Logo from "@/shared/Logo";
 
 const ARROW_SVG = (
   <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -65,14 +66,9 @@ export default function Footer1() {
           <div className="row g-5">
             <div className="col-xxl-4 col-lg-6">
               <div className="d-flex flex-wrap align-items-start gap-4">
-                <img
-                  className="mt-5"
-                  src="/assets/imgs/template/logo/logo-footer-dark.png"
-                  alt="Muhammad Anees"
-                  height={50}
-                  style={{ width: "auto", height: "50px" }}
-                  loading="lazy"
-                />
+                <Link to="/" className="mt-5 text-decoration-none" aria-label="Muhammad Anees, home">
+                  <Logo tone="light" size="lg" />
+                </Link>
                 <div>
                   <h4 className="text-white reveal-text">
                     <RevealText>

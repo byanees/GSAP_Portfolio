@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
+import Logo from "@/shared/Logo";
 
 const ARROW_SVG = (
   <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -49,14 +50,8 @@ const Footer2 = forwardRef<HTMLElement, Record<string, never>>(function Footer2(
             <div className="col-lg-4">
               <div className="d-flex flex-wrap align-items-start gap-5">
                 <div className="at-header-logo">
-                  <Link to="/" className="text-decoration-none d-inline-flex align-items-center">
-                    <img
-                      src="/assets/imgs/template/logo/logo-footer-dark.png"
-                      alt="Muhammad Anees"
-                      height={40}
-                      style={{ width: "auto", height: "40px" }}
-                      loading="lazy"
-                    />
+                  <Link to="/" className="text-decoration-none d-inline-flex align-items-center" aria-label="Muhammad Anees, home">
+                    <Logo tone="light" />
                   </Link>
                 </div>
                 <div className="d-flex flex-column gap-3">

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Logo from "@/shared/Logo";
 import { OffcanvasMenuMount } from "@/shared/mobile-menu/MobileMenuCloneContext";
 import MenuClone from "@/shared/mobile-menu/MenuClone";
 
@@ -96,14 +97,8 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
         <div className={`at-offcanvas ${open ? "opened" : ""}`}>
           <div className="at-offcanvas-top d-flex align-items-center justify-content-between">
             <div className="at-offcanvas-logo">
-              <Link to="/" className="text-decoration-none d-inline-flex align-items-center">
-                <img
-                  src="/assets/imgs/template/logo/logo-nav-dark.png"
-                  alt="Muhammad Anees"
-                  height={36}
-                  style={{ width: "auto", height: "36px" }}
-                  loading="lazy"
-                />
+              <Link to="/" className="text-decoration-none d-inline-flex align-items-center" aria-label="Muhammad Anees, home">
+                <Logo />
               </Link>
             </div>
             <div className="at-offcanvas-close-btn">
@@ -169,14 +164,8 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
         <div className="at-offcanvas-2-wrapper offcanvas-menu sidebar-left">
           <div className="at-offcanvas-2-left">
             <div className="at-header-logo d-flex justify-content-between align-items-center mb-50">
-              <Link to="/" className="text-decoration-none d-inline-flex align-items-center">
-                <img
-                  src="/assets/imgs/template/logo/logo-nav-dark.png"
-                  alt="Muhammad Anees"
-                  height={36}
-                  style={{ width: "auto", height: "36px" }}
-                  loading="lazy"
-                />
+              <Link to="/" className="text-decoration-none d-inline-flex align-items-center" aria-label="Muhammad Anees, home">
+                <Logo />
               </Link>
               <span className="hamburger-close-btn close-sidebar" role="button" tabIndex={0} aria-label="Close" onClick={onClose}>
                 <CloseIconSvg />
