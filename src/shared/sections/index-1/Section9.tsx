@@ -58,13 +58,13 @@ export default function Section9() {
                                     data-fade-from="bottom"
                                     data-ease="bounce"
                                 >
-                                    <Link className="at-btn-circle" to="/contact-2">
+                                    <Link className="at-btn-circle" to="/contact">
                                         {BTN_CIRCLE_ARROW_SVG}
                                     </Link>
-                                    <Link className="at-btn z-index-1" to="/contact-2">
+                                    <Link className="at-btn z-index-1" to="/contact">
                                         Work With Me
                                     </Link>
-                                    <Link className="at-btn-circle" to="/contact-2">
+                                    <Link className="at-btn-circle" to="/contact">
                                         {BTN_CIRCLE_ARROW_SVG}
                                     </Link>
                                 </div>

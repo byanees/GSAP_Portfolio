@@ -48,7 +48,7 @@ export default function Section1() {
                 <div className="row align-items-center">
                     <div className="col-lg-8 mx-auto">
                         <div className="nav-menu d-flex align-items-center gap-2 pb-2">
-                            <Link to="/archive-4" className="nav-menu__item neutral-900">Blog</Link>
+                            <Link to="/blog" className="nav-menu__item neutral-900">Blog</Link>
                             <span className="nav-menu__item-separator">{CHEVRON_SVG}</span>
                             <span className="nav-menu__item neutral-500">{post.category}</span>
                         </div>
@@ -114,7 +114,7 @@ export default function Section1() {
                                 <div className="border-top-100 py-5">
                                     <div className="d-flex flex-wrap align-items-center justify-content-center gap-2">
                                         {post.tags.map((tag) => (
-                                            <Link key={tag} to="/archive-4" className="at-btn filter-btn btn-sm">{tag}</Link>
+                                            <Link key={tag} to="/blog" className="at-btn filter-btn btn-sm">{tag}</Link>
                                         ))}
                                     </div>
                                 </div>
@@ -124,23 +124,23 @@ export default function Section1() {
                             <div className="row">
                                 {post.prev_slug && (
                                     <div className="col-md-5 me-auto d-flex flex-column gap-2">
-                                        <Link to={`/blog-details/${post.prev_slug}`} aria-label="Previous">
+                                        <Link to={`/blog/${post.prev_slug}`} aria-label="Previous">
                                             {PREV_SVG}
                                             <span className="text-uppercase"> Prev</span>
                                         </Link>
                                         <h6 className="fw-600">
-                                            <Link to={`/blog-details/${post.prev_slug}`}>{post.prev_title}</Link>
+                                            <Link to={`/blog/${post.prev_slug}`}>{post.prev_title}</Link>
                                         </h6>
                                     </div>
                                 )}
                                 {post.next_slug && (
                                     <div className="col-md-5 ms-auto d-flex flex-column gap-2 text-end">
-                                        <Link to={`/blog-details/${post.next_slug}`} aria-label="Next">
+                                        <Link to={`/blog/${post.next_slug}`} aria-label="Next">
                                             <span className="text-uppercase">Next</span>
                                             {NEXT_SVG}
                                         </Link>
                                         <h6 className="fw-600">
-                                            <Link to={`/blog-details/${post.next_slug}`}>{post.next_title}</Link>
+                                            <Link to={`/blog/${post.next_slug}`}>{post.next_title}</Link>
                                         </h6>
                                     </div>
                                 )}

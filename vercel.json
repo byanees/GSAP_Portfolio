@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    { "source": "/index-16", "destination": "/", "permanent": true },
+    { "source": "/about-3", "destination": "/about", "permanent": true },
+    { "source": "/services-2", "destination": "/services", "permanent": true },
+    { "source": "/portfolio-3", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio-details-3", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio-details-3/:slug", "destination": "/portfolio/:slug", "permanent": true },
+    { "source": "/archive-4", "destination": "/blog", "permanent": true },
+    { "source": "/blog-details", "destination": "/blog", "permanent": true },
+    { "source": "/blog-details/:slug", "destination": "/blog/:slug", "permanent": true },
+    { "source": "/contact-2", "destination": "/contact", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

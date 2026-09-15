@@ -22,7 +22,7 @@ interface Tile { link: string; img: string; num: string; year: string; title: st
 const COL1: Tile[] = [
     { link: "/portfolio-details-1", img: "sec-4-tile-01.webp", num: "#001", year: "2025", title: "Crossing 18", sub: "Street · HCMC", category: "street", size: "h540" },
     { link: "/portfolio-details-2", img: "sec-4-tile-02.webp", num: "#002", year: "2025", title: "Lila", sub: "Portrait · Studio", category: "portrait studio", size: "h720" },
-    { link: "/portfolio-details-3", img: "sec-4-tile-03.webp", num: "#003", year: "2025", title: "Kept Daylight", sub: "Landscape · Lofoten", category: "landscape", size: "h420" },
+    { link: "/portfolio", img: "sec-4-tile-03.webp", num: "#003", year: "2025", title: "Kept Daylight", sub: "Landscape · Lofoten", category: "landscape", size: "h420" },
     { link: "/portfolio-details-4", img: "sec-4-tile-04.webp", num: "#004", year: "2025", title: "Backstage 14", sub: "Editorial · GQ", category: "editorial", size: "h480" },
 ];
 
@@ -34,7 +34,7 @@ const COL2: Tile[] = [
 ];
 
 const COL3: Tile[] = [
-    { link: "/portfolio-details-3", img: "sec-4-tile-09.webp", num: "#009", year: "2025", title: "Apnea", sub: "Underwater · Studio", category: "studio", size: "h440" },
+    { link: "/portfolio", img: "sec-4-tile-09.webp", num: "#009", year: "2025", title: "Apnea", sub: "Underwater · Studio", category: "studio", size: "h440" },
     { link: "/portfolio-details-4", img: "sec-4-tile-10.webp", num: "#010", year: "2025", title: "Northern Quiet", sub: "Landscape · Tromsø", category: "landscape", size: "h620" },
     { link: "/portfolio-details-5", img: "sec-4-tile-11.webp", num: "#011", year: "2025", title: "Cover Story", sub: "Editorial · Vogue", category: "editorial", size: "h520" },
     { link: "/portfolio-details-6", img: "sec-4-tile-12.webp", num: "#012", year: "2025", title: "Hands", sub: "Documentary · Studio", category: "studio", size: "h560" },

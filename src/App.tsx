@@ -15,18 +15,15 @@ export default function App() {
     <Routes>
       <Route element={<MainLayout headerStyle={1} footerStyle={1} />}>
         <Route path="/" element={<Home16Page />} />
-        <Route path="/index-16" element={<Home16Page />} />
       </Route>
       <Route element={<MainLayout headerStyle={2} footerStyle={2} />}>
-        <Route path="/about-3" element={<About3Page />} />
-        <Route path="/services-2" element={<Services2Page />} />
-        <Route path="/portfolio-3" element={<Portfolio3Page />} />
-        <Route path="/portfolio-details-3" element={<PortfolioDetails3Page />} />
-        <Route path="/portfolio-details-3/:slug" element={<PortfolioDetails3Page />} />
-        <Route path="/archive-4" element={<Archive4Page />} />
-        <Route path="/blog-details" element={<BlogDetailsPage />} />
-        <Route path="/blog-details/:slug" element={<BlogDetailsPage />} />
-        <Route path="/contact-2" element={<Contact2Page />} />
+        <Route path="/about" element={<About3Page />} />
+        <Route path="/services" element={<Services2Page />} />
+        <Route path="/portfolio" element={<Portfolio3Page />} />
+        <Route path="/portfolio/:slug" element={<PortfolioDetails3Page />} />
+        <Route path="/blog" element={<Archive4Page />} />
+        <Route path="/blog/:slug" element={<BlogDetailsPage />} />
+        <Route path="/contact" element={<Contact2Page />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

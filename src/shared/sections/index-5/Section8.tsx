@@ -90,7 +90,7 @@ export default function Section8() {
                         {/* Feature / hero post */}
                         <div className="col-lg-4 col-12">
                             <div className="alt-portfolio-item mb-30 at-hover-item">
-                                <Link to="/blog-details" className="alt-portfolio-thumb mb-15 p-relative fix d-block">
+                                <Link to="/blog" className="alt-portfolio-thumb mb-15 p-relative fix d-block">
                                     <img
                                         className="w-100 scale-img-from-to"
                                         data-value-1="1.5"
@@ -122,7 +122,7 @@ export default function Section8() {
                             <div key={i} className="col-lg-4 col-12">
                                 <div>
                                     <div className="blog-card__thumb rounded-4 hover-effect-1">
-                                        <Link to="/blog-details" className="blog-card__img-link">
+                                        <Link to="/blog" className="blog-card__img-link">
                                             <span className="anim-zoomin">
                                                 <img
                                                     src={post.img}
@@ -135,7 +135,7 @@ export default function Section8() {
                                     </div>
                                     <div className="blog-card__content mt-30">
                                         <h5 className="blog-card__title">
-                                            <Link to="/blog-details" className="blog-card__title-link">
+                                            <Link to="/blog" className="blog-card__title-link">
                                                 {post.title}
                                             </Link>
                                         </h5>

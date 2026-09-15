@@ -62,7 +62,7 @@ export default function Section1() {
                     <div className="col-lg-4 col-12">
                         <div className="alt-portfolio-item mb-30 at-hover-item">
                             <Link
-                                to="/blog-details"
+                                to="/blog"
                                 className="alt-portfolio-thumb mb-15 rounded-0 p-relative fix d-block"
                             >
                                 <img
@@ -94,7 +94,7 @@ export default function Section1() {
                     {BLOG_POSTS.map((post, i) => (
                         <div key={i} className="col-lg-4 col-12">
                             <ArticleCard1
-                                linkPost="/blog-details"
+                                linkPost="/blog"
                                 linkAuthor={post.authorHref}
                                 img={post.img}
                                 title={post.title}

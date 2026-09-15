@@ -22,7 +22,7 @@ const SOCIAL_LINKS = [
 
 const SERVICES = [
     { label: "Web Design", href: "/services-1" },
-    { label: "Motion Graphics", href: "/services-2", current: true },
+    { label: "Motion Graphics", href: "/services", current: true },
     { label: "Brand Strategy", href: "/services-3" },
     { label: "Product Design", href: "/services-details" },
 ];
@@ -38,7 +38,7 @@ export default function Footer15() {
                             <li><Link className="is-current" to="/about-1">About<span className="footer-15__nav-icon" aria-hidden="true">{SERVICE_ICON}</span></Link></li>
                             <li><Link to="/portfolio-1">Works</Link></li>
                             <li><Link to="/archive-1">Blog</Link></li>
-                            <li><Link to="/contact-2">Contact</Link></li>
+                            <li><Link to="/contact">Contact</Link></li>
                         </ul>
                         <ul className="footer-15__nav list-unstyled mb-0">
                             <li><a href="#">Jobs</a></li>

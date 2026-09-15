@@ -9,7 +9,7 @@ const ARROW = (
 
 const ITEMS = [
     { link: "/portfolio-details-2", img: "sec-3-card-1.webp", num: "NO. 02", title: "Wild Nordic", sub: "Documentary · 18 frames · Lofoten Islands, 2024" },
-    { link: "/portfolio-details-3", img: "sec-3-card-2.webp", num: "NO. 03", title: "Quiet Faces", sub: "Portrait series · 9 frames · Studio 04F, 2024" },
+    { link: "/portfolio", img: "sec-3-card-2.webp", num: "NO. 03", title: "Quiet Faces", sub: "Portrait series · 9 frames · Studio 04F, 2024" },
     { link: "/portfolio-details-4", img: "sec-3-card-3.webp", num: "NO. 04", title: "Studio Light", sub: "Commercial · 24 frames · Brand: Aperture Mag, 2023" },
     { link: "/portfolio-details-5", img: "sec-3-card-4.webp", num: "NO. 05", title: "Black Tie", sub: "Event · 30+ frames · The Grand Theatre, 2024" },
 ];

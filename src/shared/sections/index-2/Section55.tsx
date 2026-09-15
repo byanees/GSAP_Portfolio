@@ -220,7 +220,7 @@ export default function Section5() {
                             >
                                 <Link
                                     className="at-btn-circle"
-                                    to="/contact-2"
+                                    to="/contact"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         mainSwiperRef.current?.slidePrev();
@@ -229,12 +229,12 @@ export default function Section5() {
                                 >
                                     {ARROW_SVG}
                                 </Link>
-                                <Link className="at-btn z-index-1" to="/contact-2">
+                                <Link className="at-btn z-index-1" to="/contact">
                                     Get in touch
                                 </Link>
                                 <Link
                                     className="at-btn-circle"
-                                    to="/contact-2"
+                                    to="/contact"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         mainSwiperRef.current?.slideNext();

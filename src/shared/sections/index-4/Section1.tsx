@@ -32,10 +32,10 @@ const TAGS = [
     "Cloud & DevOps",
 ];
 const FOOTER_NAV = [
-    { label: "Backend Engineering", href: "/services-2" },
-    { label: "Frontend Development", href: "/services-2" },
-    { label: "Fintech & Payments", href: "/services-2" },
-    { label: "Cloud & DevOps", href: "/services-2" },
+    { label: "Backend Engineering", href: "/services" },
+    { label: "Frontend Development", href: "/services" },
+    { label: "Fintech & Payments", href: "/services" },
+    { label: "Cloud & DevOps", href: "/services" },
 ];
 
 function AtBtn({
@@ -96,11 +96,11 @@ export default function Section1() {
                                     From Payment Gateways to Microservices — I Ship Production-Ready Code.
                                 </h4>
                                 <div className="sec-1-home-4__btns d-flex flex-wrap gap-3">
-                                    <AtBtn href="/services-2">
+                                    <AtBtn href="/services">
                                         <span className="text-1">EXPLORE MY WORK</span>
                                         <span className="text-2">EXPLORE MY WORK</span>
                                     </AtBtn>
-                                    <AtBtn href="/portfolio-3">
+                                    <AtBtn href="/portfolio">
                                         <span className="text-1">VIEW PROJECTS</span>
                                         <span className="text-2">VIEW PROJECTS</span>
                                     </AtBtn>

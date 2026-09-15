@@ -14,7 +14,7 @@ const ARTICLES = [
     {
         classList: "blog-card-2-wrap scroll-move-up",
         categoryFilter: "",
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-50.webp",
         category: "3D ANIMATION",
@@ -27,7 +27,7 @@ const ARTICLES = [
     {
         classList: "blog-card-2-wrap scroll-move-up",
         categoryFilter: "",
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-51.webp",
         category: "UX Design",
@@ -40,7 +40,7 @@ const ARTICLES = [
     {
         classList: "blog-card-2-wrap scroll-move-up",
         categoryFilter: "",
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-52.webp",
         category: "Product Design",
@@ -53,7 +53,7 @@ const ARTICLES = [
     {
         classList: "blog-card-2-wrap scroll-move-up",
         categoryFilter: "",
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-53.webp",
         category: "BRANDING",

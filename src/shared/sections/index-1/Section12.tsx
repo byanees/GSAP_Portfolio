@@ -97,7 +97,7 @@ export default function Section12() {
                             <div className="d-flex gap-4 align-items-center pt-30">
                                 <Link
                                     className="at-btn at-btn-border-white common-white rounded-0"
-                                    to="/contact-2"
+                                    to="/contact"
                                 >
                                     <span>
                                         <span className="text-1">Book A Call Now</span>

@@ -53,7 +53,7 @@ export default function Section10() {
                     {/* First blog post - featured card */}
                     <div className="col-lg-4 col-12">
                         <div className="alt-portfolio-item mb-30 at-hover-item">
-                            <Link to="/blog-details" className="alt-portfolio-thumb rounded-0 mb-15 p-relative fix d-block">
+                            <Link to="/blog" className="alt-portfolio-thumb rounded-0 mb-15 p-relative fix d-block">
                                 <img className="w-100 scale-img-from-to" data-value-1="1.5" data-value-2="1" src="/assets/imgs/pages/home-8/sec-10-1.webp" alt="Muhammad Anees" width={600} height={450} loading="lazy" />
                                 <div className="alt-portfolio-btn start-0 end-0 mx-4">
                                     <div className="content">
@@ -69,7 +69,7 @@ export default function Section10() {
                     <div className="col-lg-4 col-12">
                         <div>
                             <div className="blog-card__thumb rounded-0 hover-effect-1">
-                                <Link to="/blog-details" className="blog-card__img-link">
+                                <Link to="/blog" className="blog-card__img-link">
                                     <span className="anim-zoomin">
                                         <img src="/assets/imgs/pages/home-8/sec-10-2.webp" className="blog-card__img" alt="Muhammad Anees" width={600} height={400} loading="lazy" />
                                     </span>
@@ -77,7 +77,7 @@ export default function Section10() {
                             </div>
                             <div className="blog-card__content mt-30">
                                 <h3 className="h5 blog-card__title">
-                                    <Link to="/blog-details" className="blog-card__title-link">The ROI of Empathy: Why User Research is Your Best Business Investment.</Link>
+                                    <Link to="/blog" className="blog-card__title-link">The ROI of Empathy: Why User Research is Your Best Business Investment.</Link>
                                 </h3>
                                 <p className="blog-card__meta">
                                     <span className="blog-card__meta-text">By </span>
@@ -91,7 +91,7 @@ export default function Section10() {
                     <div className="col-lg-4 col-12">
                         <div>
                             <div className="blog-card__thumb rounded-0 hover-effect-1">
-                                <Link to="/blog-details" className="blog-card__img-link">
+                                <Link to="/blog" className="blog-card__img-link">
                                     <span className="anim-zoomin">
                                         <img src="/assets/imgs/pages/home-8/sec-10-3.webp" className="blog-card__img" alt="Muhammad Anees" width={600} height={400} loading="lazy" />
                                     </span>
@@ -99,7 +99,7 @@ export default function Section10() {
                             </div>
                             <div className="blog-card__content mt-30">
                                 <h3 className="h5 blog-card__title">
-                                    <Link to="/blog-details" className="blog-card__title-link">The Secret Weapon for Scaling Global Digital Products.</Link>
+                                    <Link to="/blog" className="blog-card__title-link">The Secret Weapon for Scaling Global Digital Products.</Link>
                                 </h3>
                                 <p className="blog-card__meta">
                                     <span className="blog-card__meta-text">By </span>

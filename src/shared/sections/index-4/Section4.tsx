@@ -122,13 +122,13 @@ export default function Section4() {
                                 data-fade-from="bottom"
                                 data-ease="bounce"
                             >
-                                <Link className="at-btn-circle" to="/portfolio-3">
+                                <Link className="at-btn-circle" to="/portfolio">
                                     {ARROW_CIRCLE}
                                 </Link>
-                                <Link className="at-btn z-index-1" to="/portfolio-3">
+                                <Link className="at-btn z-index-1" to="/portfolio">
                                     View All Projects
                                 </Link>
-                                <Link className="at-btn-circle" to="/portfolio-3">
+                                <Link className="at-btn-circle" to="/portfolio">
                                     {ARROW_CIRCLE}
                                 </Link>
                             </div>

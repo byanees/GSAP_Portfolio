@@ -91,7 +91,7 @@ export default function Section3() {
                             <Link className="at-btn-circle" to="#">
                                 {ARROW_CIRCLE_SVG}
                             </Link>
-                            <Link className="at-btn z-index-1" to="/portfolio-3">
+                            <Link className="at-btn z-index-1" to="/portfolio">
                                 View All Awards
                             </Link>
                             <Link className="at-btn-circle" to="#">

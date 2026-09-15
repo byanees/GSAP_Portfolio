@@ -114,13 +114,13 @@ export default function Section3() {
                                 data-fade-from="bottom"
                                 data-ease="bounce"
                             >
-                                <Link className="at-btn-circle" to="/contact-2">
+                                <Link className="at-btn-circle" to="/contact">
                                     {ARROW_CIRCLE}
                                 </Link>
-                                <Link className="at-btn z-index-1" to="/contact-2">
+                                <Link className="at-btn z-index-1" to="/contact">
                                     Get in touch
                                 </Link>
-                                <Link className="at-btn-circle" to="/contact-2">
+                                <Link className="at-btn-circle" to="/contact">
                                     {ARROW_CIRCLE}
                                 </Link>
                             </div>

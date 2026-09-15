@@ -2,7 +2,7 @@ import ArticleCard3 from "@/shared/cards/ArticleCard3";
 
 const FLASH_NEWS = [
     {
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-23.webp",
         title: "Why Consistency Is the Key to Memorable Brand Experiences",
@@ -10,7 +10,7 @@ const FLASH_NEWS = [
         date: "July 3, 2026",
     },
     {
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-24.webp",
         title: "The Power of Simplicity in Modern Interface Design",
@@ -18,7 +18,7 @@ const FLASH_NEWS = [
         date: "July 8, 2026",
     },
     {
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-25.webp",
         title: "How Visual Language Influences Perception and Brand Identity",
@@ -26,7 +26,7 @@ const FLASH_NEWS = [
         date: "July 12, 2026",
     },
     {
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-192.webp",
         title: "Designing Products That Adapt and Evolve Over Time",
@@ -34,7 +34,7 @@ const FLASH_NEWS = [
         date: "July 17, 2026",
     },
     {
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-193.webp",
         title: "Crafting User Journeys That Feel Effortless and Human",

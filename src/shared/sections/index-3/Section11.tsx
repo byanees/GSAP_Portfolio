@@ -62,7 +62,7 @@ export default function Section11() {
                                                 <div className="blog-card-2__left flex-grow-1">
                                                     <span className="blog-card-2__category">{post.category}</span>
                                                     <h6 className="blog-card-2__title">
-                                                        <Link to="/blog-details" className="blog-card-2__title-link">
+                                                        <Link to="/blog" className="blog-card-2__title-link">
                                                             {post.title}
                                                         </Link>
                                                     </h6>
@@ -75,7 +75,7 @@ export default function Section11() {
                                                     </p>
                                                 </div>
                                                 <div className="blog-card-2__thumb hover-effect-1">
-                                                    <Link to="/blog-details" className="blog-card-2__img-link">
+                                                    <Link to="/blog" className="blog-card-2__img-link">
                                                         <img
                                                             src={post.img}
                                                             alt="Muhammad Anees"

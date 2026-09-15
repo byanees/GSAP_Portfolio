@@ -32,7 +32,7 @@ const BLOG_POSTS: Array<{
         {
             category: "photography",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-23.webp",
             title: "Designing Digital Experiences That Connect Brands and People",
@@ -42,7 +42,7 @@ const BLOG_POSTS: Array<{
         {
             category: "design",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-24.webp",
             title: "From Concept to Launch: Building Products That Truly Matter",
@@ -52,7 +52,7 @@ const BLOG_POSTS: Array<{
         {
             category: "marketing",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-25.webp",
             title: "Creating impactful interfaces through thoughtful design systems",
@@ -62,7 +62,7 @@ const BLOG_POSTS: Array<{
         {
             category: "design",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-192.webp",
             title: "Why strong visual identity is the foundation of modern brands",
@@ -72,7 +72,7 @@ const BLOG_POSTS: Array<{
         {
             category: "photography",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-193.webp",
             title: "Designing with purpose: turning strategy into meaningful experiences",
@@ -82,7 +82,7 @@ const BLOG_POSTS: Array<{
         {
             category: "design",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-194.webp",
             title: "The role of design in building trust in digital products",
@@ -92,7 +92,7 @@ const BLOG_POSTS: Array<{
         {
             category: "marketing",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-195.webp",
             title: "How thoughtful UX shapes long-term brand loyalty",
@@ -102,7 +102,7 @@ const BLOG_POSTS: Array<{
         {
             category: "marketing",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-196.webp",
             title: "Beyond aesthetics: designing interfaces that drive real value",
@@ -112,7 +112,7 @@ const BLOG_POSTS: Array<{
         {
             category: "photography",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-197.webp",
             title: "Building scalable design systems for growing brands",
@@ -122,7 +122,7 @@ const BLOG_POSTS: Array<{
         {
             category: "design",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-198.webp",
             title: "The intersection of design, technology, and business strategy",
@@ -132,7 +132,7 @@ const BLOG_POSTS: Array<{
         {
             category: "marketing",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-199.webp",
             title: "Crafting user journeys that feel effortless and human",
@@ -142,7 +142,7 @@ const BLOG_POSTS: Array<{
         {
             category: "photography",
             classList: "col-lg-6 col-md-6 col-12",
-            linkPost: "/blog-details",
+            linkPost: "/blog",
             linkAuthor: "/team-details",
             img: "/assets/imgs/pages/img-200.webp",
             title: "From idea to experience: translating vision into digital products",

@@ -100,7 +100,7 @@ export default function Section1() {
                                 key={post.slug}
                                 classList="blog-card-2-wrap scroll-move-up"
                                 categoryFilter={post.category_filter as CategoryFilter}
-                                linkPost={`/blog-details/${post.slug}`}
+                                linkPost={`/blog/${post.slug}`}
                                 linkAuthor="/team-details"
                                 img={post.cover_image}
                                 category={post.category}

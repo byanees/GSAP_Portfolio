@@ -81,18 +81,18 @@ export default function Section1() {
                                 data-fade-from="bottom"
                                 data-ease="bounce"
                             >
-                                <Link className="at-btn-circle" to="/portfolio-3">
+                                <Link className="at-btn-circle" to="/portfolio">
                                     {ARROW_CIRCLE_SVG}
                                 </Link>
-                                <Link className="at-btn z-index-1" to="/portfolio-3">
+                                <Link className="at-btn z-index-1" to="/portfolio">
                                     See my work
                                 </Link>
-                                <Link className="at-btn-circle" to="/portfolio-3">
+                                <Link className="at-btn-circle" to="/portfolio">
                                     {ARROW_CIRCLE_SVG}
                                 </Link>
                             </div>
                             <Link
-                                to="/contact-2"
+                                to="/contact"
                                 className="at-btn common-black border-bottom-900 text-uppercase bg-transparent rounded-0 p-0 pb-2"
                             >
                                 <span className="text-uppercase">

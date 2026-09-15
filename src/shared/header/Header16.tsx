@@ -21,27 +21,27 @@ function Home16Menu() {
   return (
     <MainMenuRootList>
       <li>
-        <NavLink to="/index-16" className={({ isActive }) => (isActive ? "active" : undefined)}>
+        <NavLink to="/" className={({ isActive }) => (isActive ? "active" : undefined)}>
           <LinkSwap label="Home" />
         </NavLink>
       </li>
       <li>
-        <NavLink to="/about-3" className={({ isActive }) => (isActive ? "active" : undefined)}>
+        <NavLink to="/about" className={({ isActive }) => (isActive ? "active" : undefined)}>
           <LinkSwap label="Page" />
         </NavLink>
       </li>
       <li>
-        <NavLink to="/portfolio-3" className={({ isActive }) => (isActive ? "active" : undefined)}>
+        <NavLink to="/portfolio" className={({ isActive }) => (isActive ? "active" : undefined)}>
           <LinkSwap label="Portfolio" />
         </NavLink>
       </li>
       <li>
-        <NavLink to="/archive-4" className={({ isActive }) => (isActive ? "active" : undefined)}>
+        <NavLink to="/blog" className={({ isActive }) => (isActive ? "active" : undefined)}>
           <LinkSwap label="Blogs" />
         </NavLink>
       </li>
       <li>
-        <NavLink to="/contact-2" className={({ isActive }) => (isActive ? "active" : undefined)}>
+        <NavLink to="/contact" className={({ isActive }) => (isActive ? "active" : undefined)}>
           <LinkSwap label="Contact" />
         </NavLink>
       </li>
@@ -70,7 +70,7 @@ export default function Header16({ onOpenSearch, onToggleSidebar, onOpenHamburge
           <div className="row align-items-center">
             <div className="col-xl-2 col-6">
               <div className="at-header-logo">
-                <Link to="/index-16" className="d-inline-flex align-items-center gap-2 text-decoration-none">
+                <Link to="/" className="d-inline-flex align-items-center gap-2 text-decoration-none">
                   <img
                     width={40}
                     height={40}

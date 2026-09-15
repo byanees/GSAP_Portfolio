@@ -14,7 +14,7 @@ const ARROW_SVG = (
 const BLOG_ITEMS = [
     {
         classList: "col-lg-3 col-md-6 col-12",
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-23.webp",
         title: "Designing Digital Experiences That Connect Brands and People",
@@ -23,7 +23,7 @@ const BLOG_ITEMS = [
     },
     {
         classList: "col-lg-3 col-md-6 col-12",
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-24.webp",
         title: "From Concept to Launch: Building Products That Truly Matter",
@@ -32,7 +32,7 @@ const BLOG_ITEMS = [
     },
     {
         classList: "col-lg-3 col-md-6 col-12",
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-25.webp",
         title: "Why Strong Visual Identity Is the Foundation of Modern Brands",
@@ -41,7 +41,7 @@ const BLOG_ITEMS = [
     },
     {
         classList: "col-lg-3 col-md-6 col-12",
-        linkPost: "/blog-details",
+        linkPost: "/blog",
         linkAuthor: "/team-details",
         img: "/assets/imgs/pages/img-26.webp",
         title: "Creating Impactful Interfaces Through Thoughtful Design Systems",
@@ -74,7 +74,7 @@ export default function Section13() {
                     </div>
                     <div className="col-xxl-2 col-lg-3 ms-auto text-xxl-end text-lg-end">
                         <div className="at-service-btn pt-30">
-                            <Link className="at-btn" to="/archive-4">
+                            <Link className="at-btn" to="/blog">
                                 <span>
                                     <span className="text-1">ALL ARTICLES</span>
                                     <span className="text-2">ALL ARTICLES</span>

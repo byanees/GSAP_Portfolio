@@ -34,11 +34,11 @@ const SOCIAL_LINKS = [
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about-3" },
-  { label: "Services", href: "/services-2" },
-  { label: "Portfolio", href: "/portfolio-3" },
-  { label: "Blog", href: "/archive-4" },
-  { label: "Contact", href: "/contact-2" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 

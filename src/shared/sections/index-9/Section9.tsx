@@ -63,7 +63,7 @@ export default function Section9() {
                         {blogPosts.map((post, i) => (
                             <div key={i} className="blog-card col-lg-3 col-md-6 col-12 mb-30" data-category="">
                                 <div className="blog-card__thumb hover-effect-1">
-                                    <Link to="/blog-details" className="blog-card__img-link">
+                                    <Link to="/blog" className="blog-card__img-link">
                                         <img
                                             src={post.img}
                                             className="blog-card__img22"
@@ -74,7 +74,7 @@ export default function Section9() {
                                 </div>
                                 <div className="blog-card__content">
                                     <h2 className="h6 blog-card__title">
-                                        <Link to="/blog-details" className="blog-card__title-link">{post.title}</Link>
+                                        <Link to="/blog" className="blog-card__title-link">{post.title}</Link>
                                     </h2>
                                     <p className="blog-card__meta">
                                         <span className="blog-card__meta-text">By </span>

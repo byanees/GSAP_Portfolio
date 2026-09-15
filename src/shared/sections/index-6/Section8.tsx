@@ -29,7 +29,7 @@ const blogPosts = [
     author: "Daniel",
     date: "July 8, 2026",
     img: "/assets/imgs/pages/home-6/image-24.webp",
-    link: "/blog-details",
+    link: "/blog",
     authorLink: "/team-details",
   },
   {
@@ -38,7 +38,7 @@ const blogPosts = [
     author: "Olivia",
     date: "July 3, 2026",
     img: "/assets/imgs/pages/home-6/image-25.webp",
-    link: "/blog-details",
+    link: "/blog",
     authorLink: "/team-details",
   },
   {
@@ -48,7 +48,7 @@ const blogPosts = [
     author: "Lucas",
     date: "July 17, 2026",
     img: "/assets/imgs/pages/home-6/image-26.webp",
-    link: "/blog-details",
+    link: "/blog",
     authorLink: "/team-details",
   },
 ];

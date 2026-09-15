@@ -129,7 +129,7 @@ export default function Section6() {
                             </SwiperDynamic>
                         </div>
                         <div className="col-12 text-center pt-50 z-index-1">
-                            <Link to="/contact-2" className="at-btn bg-transparent p-relative">
+                            <Link to="/contact" className="at-btn bg-transparent p-relative">
                                 <img
                                     className="badge-zoon-in"
                                     src="/assets/imgs/icons/badge-2.svg"

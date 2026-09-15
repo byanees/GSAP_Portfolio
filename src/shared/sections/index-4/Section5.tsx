@@ -91,13 +91,13 @@ export default function Section5() {
                                     data-fade-from="bottom"
                                     data-ease="bounce"
                                 >
-                                    <Link className="at-btn-circle" to="/portfolio-3">
+                                    <Link className="at-btn-circle" to="/portfolio">
                                         {ARROW_RIGHT}
                                     </Link>
-                                    <Link className="at-btn z-index-1" to="/portfolio-3">
+                                    <Link className="at-btn z-index-1" to="/portfolio">
                                         View All Awards
                                     </Link>
-                                    <Link className="at-btn-circle" to="/portfolio-3">
+                                    <Link className="at-btn-circle" to="/portfolio">
                                         {ARROW_RIGHT}
                                     </Link>
                                 </div>

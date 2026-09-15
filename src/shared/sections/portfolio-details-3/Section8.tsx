@@ -41,7 +41,7 @@ export default function Section8() {
                 <div className="row g-4 g-lg-5">
                     {related.slice(0, 2).map((r, i) => (
                         <div key={r.slug} className="col-md-6 at_fade_anim" data-fade-from="bottom" data-delay={i === 0 ? ".1" : ".25"}>
-                            <Link to={`/portfolio-details-3/${r.slug}`} className="sec-8-portfolio-details-3__card at-image-hover d-block">
+                            <Link to={`/portfolio/${r.slug}`} className="sec-8-portfolio-details-3__card at-image-hover d-block">
                                 <figure className="sec-8-portfolio-details-3__thumb">
                                     <img className="anim-zoomin" src={r.card_image} alt={r.title} loading="lazy" />
                                 </figure>
