@@ -6,7 +6,7 @@ import Section3 from "@/shared/sections/index-3/Section12";
 export default function Archive1Page() {
   return (
     <>
-      <PageMeta title="Klarus AI - Archive1" />
+      <PageMeta title="Muhammad Anees — Archive" />
                 <Section1 />
                 <Section2 />
                 <Section3 />

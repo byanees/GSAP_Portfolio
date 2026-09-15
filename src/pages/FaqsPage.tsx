@@ -7,7 +7,7 @@ import Section4 from "@/shared/sections/faqs/Section4";
 export default function FaqsPage() {
   return (
     <>
-      <PageMeta title="Klarus AI - Faqs" />
+      <PageMeta title="Muhammad Anees — FAQs" />
                 <Section1 />
                 <Section2 />
                 <Section3 />

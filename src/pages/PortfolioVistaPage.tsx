@@ -5,7 +5,7 @@ import { SLIDESHOW_PROJECTS } from "@/shared/slideshow/projects";
 export default function PortfolioVistaPage() {
   return (
     <>
-      <PageMeta title="Klarus AI - PortfolioVista" />
+      <PageMeta title="Muhammad Anees — Portfolio Vista" />
             <Slideshow variant="vista" projects={SLIDESHOW_PROJECTS} />
         
     </>

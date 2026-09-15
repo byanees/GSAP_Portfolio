@@ -13,7 +13,7 @@ import Section10 from "@/shared/sections/index-9/Section10";
 export default function Home9Page() {
   return (
     <>
-      <PageMeta title="Klarus AI - Home9" />
+      <PageMeta title="Muhammad Anees — Home" />
                 <Section1 />
                 <Section2 />
                 <Section3 />

@@ -4,7 +4,7 @@ import Section1 from "@/shared/sections/coming-soon/Section1";
 export default function ComingSoonPage() {
   return (
     <>
-      <PageMeta title="Klarus AI - ComingSoon" />
+      <PageMeta title="Muhammad Anees — Coming Soon" />
                 <Section1 />
             
     </>

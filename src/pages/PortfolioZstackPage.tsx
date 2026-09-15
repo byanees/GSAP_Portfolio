@@ -5,7 +5,7 @@ import { SLIDESHOW_PROJECTS } from "@/shared/slideshow/projects";
 export default function PortfolioZstackPage() {
   return (
     <>
-      <PageMeta title="Klarus AI - PortfolioZstack" />
+      <PageMeta title="Muhammad Anees — Portfolio Zstack" />
             <Slideshow variant="zstack" projects={SLIDESHOW_PROJECTS} />
         
     </>

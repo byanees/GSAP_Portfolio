@@ -12,7 +12,7 @@ import Section8 from "@/shared/sections/portfolio-details-3/Section8";
 export default function PortfolioDetails3Page() {
   return (
     <CaseStudyProvider>
-      <PageMeta title="Klarus AI - Case Study" />
+      <PageMeta title="Muhammad Anees — Case Study" />
       <Section1 />
       <Section2 />
       <Section3 />

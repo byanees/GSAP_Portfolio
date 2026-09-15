@@ -6,7 +6,7 @@ import Section2 from "@/shared/sections/blog-details/Section2";
 export default function BlogDetailsPage() {
   return (
     <BlogPostProvider>
-      <PageMeta title="Klarus AI - Blog" />
+      <PageMeta title="Muhammad Anees — Blog" />
       <Section1 />
       <Section2 />
     </BlogPostProvider>

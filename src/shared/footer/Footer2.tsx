@@ -19,7 +19,11 @@ const SOCIAL_ARROW = (
   </svg>
 );
 
-const FOOTER_SERVICES = ["Web Development", "Motion Graphics", "Brand Strategy", "Product Design"];
+const FOOTER_SERVICES = ["Backend Engineering", "Frontend Development", "Fintech & Payments", "Cloud & DevOps"];
+
+const SOCIAL_LINKS = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/ianees/" },
+] as const;
 
 function FooterServiceTag({ label }: { label: string }) {
   return (
@@ -48,7 +52,7 @@ const Footer2 = forwardRef<HTMLElement, Record<string, never>>(function Footer2(
                   <Link to="/" className="text-decoration-none d-inline-flex align-items-center">
                     <img
                       src="/assets/imgs/template/logo/logo-footer-dark.png"
-                      alt="The AI Folks"
+                      alt="Muhammad Anees"
                       height={40}
                       style={{ width: "auto", height: "40px" }}
                       loading="lazy"
@@ -56,16 +60,16 @@ const Footer2 = forwardRef<HTMLElement, Record<string, never>>(function Footer2(
                   </Link>
                 </div>
                 <div className="d-flex flex-column gap-3">
-                  <h6 className="text-white mb-2 fw-medium">+1 (212) 555-7398</h6>
+                  <h6 className="text-white mb-2 fw-medium">+923390004208</h6>
                   <h6 className="text-white mb-2">
-                    <a href="mailto:info@klarus.io" className="text-white text-decoration-none">
-                      info@klarus.io
+                    <a href="mailto:aneese421@gmail.com" className="text-white text-decoration-none">
+                      aneese421@gmail.com
                     </a>
                   </h6>
                   <h6 className="text-white mb-0">
-                    Toronto, Ontario,
+                    Islamabad,
                     <br />
-                    Canada
+                    Pakistan
                   </h6>
                 </div>
               </div>
@@ -92,47 +96,18 @@ const Footer2 = forwardRef<HTMLElement, Record<string, never>>(function Footer2(
                     </li>
                   </ul>
                 </div>
-                <div className="alt-footer-link-item col-6">
-                  <ul>
-                    <li className="mb-15">
-                      <Link to="/product-archive">Shop</Link>
-                    </li>
-                    <li className="mb-15">
-                      <Link to="/pricing">Pricing</Link>
-                    </li>
-                    <li className="mb-15">
-                      <Link to="/product-cart">Cart</Link>
-                    </li>
-                    <li className="mb-15">
-                      <Link to="/product-checkout">Checkout</Link>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
 
             <div className="col-lg-3 col-md-6 flex-column justify-content-lg-end d-none d-md-flex">
-              <p className="footer-2-follow-label text-white opacity-50 text-uppercase small mb-3">Follow Us</p>
+              <p className="footer-2-follow-label text-white opacity-50 text-uppercase small mb-3">Connect</p>
               <div className="at-footer-widget at-footer-link">
                 <div className="at-hero-social">
-                  <a href="#" onClick={(e) => e.preventDefault()}>
-                    Twitter {SOCIAL_ARROW}
-                  </a>
-                  <a href="#" onClick={(e) => e.preventDefault()}>
-                    Facebook {SOCIAL_ARROW}
-                  </a>
-                  <a href="#" onClick={(e) => e.preventDefault()}>
-                    Instagram {SOCIAL_ARROW}
-                  </a>
-                  <a href="#" onClick={(e) => e.preventDefault()}>
-                    Linkedin {SOCIAL_ARROW}
-                  </a>
-                  <a href="#" onClick={(e) => e.preventDefault()}>
-                    Behance {SOCIAL_ARROW}
-                  </a>
-                  <a href="#" onClick={(e) => e.preventDefault()}>
-                    Dribbble {SOCIAL_ARROW}
-                  </a>
+                  {SOCIAL_LINKS.map(({ label, href }) => (
+                    <a key={label} href={href} target="_blank" rel="noopener noreferrer">
+                      {label} {SOCIAL_ARROW}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
@@ -141,7 +116,7 @@ const Footer2 = forwardRef<HTMLElement, Record<string, never>>(function Footer2(
           <div className="footer-2-border pt-40 pb-40">
             <div className="row align-items-end g-4">
               <div className="col-lg-10 col-md-8">
-                <span className="at-footer-copyright">The AI Folks © 2026</span>
+                <span className="at-footer-copyright">Muhammad Anees © 2026</span>
                 <div className="at-title-anim overflow-hidden">
                   <h2 className="footer-2-connect-title text-white mb-0 at-title-text text-scale-anim">Let&apos;s Connect</h2>
                 </div>
@@ -149,8 +124,8 @@ const Footer2 = forwardRef<HTMLElement, Record<string, never>>(function Footer2(
               <div className="col-lg-2 col-md-4 text-end">
                 <div className="d-flex flex-wrap align-items-end gap-4 gap-md-5 mb-3">
                   <div className="footer-2-hours text-white">
-                    <span className="d-block fz-font-md opacity-50">Mo - Sa</span>
-                    <h5 className="fw-400 common-white">9am - 5pm</h5>
+                    <span className="d-block fz-font-md opacity-50">Since</span>
+                    <h5 className="fw-400 common-white">2023</h5>
                   </div>
                 </div>
               </div>

@@ -11,7 +11,7 @@ import Section8 from "@/shared/sections/about-1/Section5";
 export default function About1Page() {
   return (
     <>
-      <PageMeta title="Klarus AI - About1" />
+      <PageMeta title="Muhammad Anees — About" />
                 <Section1 />
                 <Section2 />
                 <Section3 />
