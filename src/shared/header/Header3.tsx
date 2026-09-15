@@ -30,7 +30,7 @@ export default function Header3({ onOpenSearch, onToggleSidebar, onOpenHamburger
             <div className="col-xl-1 col-6">
               <div className="at-header-logo">
                 <Link to="/" className="text-decoration-none d-inline-flex align-items-center gap-2">
-                  <img width={30} height={30} src="/assets/imgs/template/logo/favicon.svg" alt="Klarus AI" />
+                  <img width={30} height={30} src="/assets/imgs/template/logo/favicon.svg" alt="Muhammad Anees" />
                   <h6 className="fw-700 fz-24 mb-0">Klarus AI</h6>
                 </Link>
               </div>

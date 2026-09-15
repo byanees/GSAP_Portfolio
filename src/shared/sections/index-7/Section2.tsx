@@ -44,9 +44,9 @@ const STAT_DATA = [
 ];
 
 const IMG_DATA = [
-    { src: "/assets/imgs/pages/home-7/sec2-img-1.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/home-7/sec2-img-2.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/home-7/sec2-img-3.webp", alt: "Klarus AI" },
+    { src: "/assets/imgs/pages/home-7/sec2-img-1.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/home-7/sec2-img-2.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/home-7/sec2-img-3.webp", alt: "Muhammad Anees" },
 ];
 
 const EYEBROW_ARROW_SVG = (

@@ -10,7 +10,7 @@ export default function Header10() {
             <div className="header-10__inner d-flex align-items-center justify-content-between gap-3">
               <div className="at-header-logo flex-shrink-0">
                 <Link to="/" className="header-10__logo-link d-inline-flex align-items-center gap-1 text-decoration-none">
-                  <img width={27} height={30} className="header-10__mark invert-0" src="/assets/imgs/template/logo/header-10-mark.webp" alt="Klarus AI" loading="eager" decoding="async" />
+                  <img width={27} height={30} className="header-10__mark invert-0" src="/assets/imgs/template/logo/header-10-mark.webp" alt="Muhammad Anees" loading="eager" decoding="async" />
                   <span className="header-10__brand">Klarus AI</span>
                 </Link>
               </div>

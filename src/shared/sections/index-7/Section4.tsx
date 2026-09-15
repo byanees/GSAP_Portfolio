@@ -29,7 +29,7 @@ export default function Section4() {
                             <img
                                 className="sec-4-home-7__img fix anim-zoomin"
                                 src="/assets/imgs/pages/home-7/sec-4-helmet.webp"
-                                alt="Klarus AI"
+                                alt="Muhammad Anees"
                                 width={377}
                                 height={471}
                                 loading="lazy"
@@ -68,7 +68,7 @@ export default function Section4() {
                                             </p>
                                             <p className="mb-0">
                                                 Email:{" "}
-                                                <a href="mailto:info@klarus.io" className="sec-4-home-7__loc-strong">info@klarus.io</a>
+                                                <a href="mailto:aneese421@gmail.com" className="sec-4-home-7__loc-strong">aneese421@gmail.com</a>
                                             </p>
                                         </div>
                                     </div>
@@ -83,7 +83,7 @@ export default function Section4() {
                                     </p>
                                     <p className="mb-0">
                                         Email:{" "}
-                                        <a href="mailto:info@klarus.io" className="sec-4-home-7__loc-strong">info@klarus.io</a>
+                                        <a href="mailto:aneese421@gmail.com" className="sec-4-home-7__loc-strong">aneese421@gmail.com</a>
                                     </p>
                                 </div>
                             </div>

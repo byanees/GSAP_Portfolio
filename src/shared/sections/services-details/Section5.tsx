@@ -54,7 +54,7 @@ export default function Section5() {
                         <div className="col-lg-6">
                             <img
                                 src="/assets/imgs/pages/img-165.webp"
-                                alt="Klarus AI"
+                                alt="Muhammad Anees"
                                 width={800}
                                 height={600}
                                 style={{ width: "100%", height: "auto" }} loading="lazy" />
@@ -98,7 +98,7 @@ export default function Section5() {
                                     <div className="testimonial-left-img size-50 rounded-3 overflow-hidden">
                                         <img
                                             src="/assets/imgs/template/avatar/avatar-8.webp"
-                                            alt="Klarus AI"
+                                            alt="Muhammad Anees"
                                             width={50}
                                             height={50} loading="lazy" />
                                     </div>

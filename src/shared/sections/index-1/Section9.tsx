@@ -48,8 +48,8 @@ export default function Section9() {
                                 </span>
                                 <h3 className="at-section-title reveal-text mb-lg-0 mb-4">
                                     <RevealText>
-                                        Meet the minds behind Klarus AI Studio. Rely on our experienced professionals to find
-                                        solutions tailored just for you.
+                                        Engineering scalable, secure systems for fintech, telecom, and modern web
+                                        products, tailored to what your business needs.
                                     </RevealText>
                                 </h3>
                                 <div
@@ -58,13 +58,13 @@ export default function Section9() {
                                     data-fade-from="bottom"
                                     data-ease="bounce"
                                 >
-                                    <Link className="at-btn-circle" to="/team">
+                                    <Link className="at-btn-circle" to="/contact-2">
                                         {BTN_CIRCLE_ARROW_SVG}
                                     </Link>
-                                    <Link className="at-btn z-index-1" to="/team">
-                                        Join our Team
+                                    <Link className="at-btn z-index-1" to="/contact-2">
+                                        Work With Me
                                     </Link>
-                                    <Link className="at-btn-circle" to="/team">
+                                    <Link className="at-btn-circle" to="/contact-2">
                                         {BTN_CIRCLE_ARROW_SVG}
                                     </Link>
                                 </div>
@@ -72,36 +72,19 @@ export default function Section9() {
                                     <div className="d-flex gap-4 justify-content-center">
                                         {LOCATION_SVG}
                                         <div>
-                                            <h6 className="fw-600">We are here</h6>
+                                            <h6 className="fw-600">Based in</h6>
                                             <div className="d-flex flex-md-row flex-column gap-md-5 gap-4">
                                                 <span className="fz-font-md neutral-500">
-                                                    205 North Michigan Avenue, Suite 810
-                                                    <br className="d-block" />
-                                                    Chicago, 60601, USA
+                                                    Islamabad, Pakistan
                                                     <br className="d-block" />
                                                     Phone:{" "}
                                                     <span className="neutral-900">
-                                                        <a href="tel:+1234567890">+1234567890</a>
+                                                        <a href="tel:+923390004208">+923390004208</a>
                                                     </span>
                                                     <br className="d-block" />
                                                     Email:{" "}
                                                     <span className="neutral-900">
-                                                        <a href="mailto:info@klarus.io">info@klarus.io</a>
-                                                    </span>
-                                                </span>
-                                                <span className="fz-font-md neutral-500 ps-md-5">
-                                                    245 Fifth Avenue, Suite 1800
-                                                    <br className="d-block" />
-                                                    New York, NY 10016, USA
-                                                    <br className="d-block" />
-                                                    Phone:{" "}
-                                                    <span className="neutral-900">
-                                                        <a href="tel:+2125557398">+2125557398</a>
-                                                    </span>
-                                                    <br className="d-block" />
-                                                    Email:{" "}
-                                                    <span className="neutral-900">
-                                                        <a href="mailto:info@klarus.io">info@klarus.io</a>
+                                                        <a href="mailto:aneese421@gmail.com">aneese421@gmail.com</a>
                                                     </span>
                                                 </span>
                                             </div>

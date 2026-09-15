@@ -98,7 +98,7 @@ export default function Section3() {
                                 <div className="anim-zoomin">
                                     <img
                                         src={project.img}
-                                        alt="Klarus AI"
+                                        alt="Muhammad Anees"
                                         width={800}
                                         height={600} loading="lazy" />
                                 </div>

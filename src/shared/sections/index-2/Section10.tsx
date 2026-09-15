@@ -120,7 +120,7 @@ export default function Section10() {
                                                                     <div className="testimonial-left-img">
                                                                         <img
                                                                             src={item.img}
-                                                                            alt="Klarus AI"
+                                                                            alt="Muhammad Anees"
                                                                             width={56}
                                                                             height={56} loading="lazy" />
                                                                     </div>

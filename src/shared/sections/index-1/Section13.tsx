@@ -74,7 +74,7 @@ export default function Section13() {
                     </div>
                     <div className="col-xxl-2 col-lg-3 ms-auto text-xxl-end text-lg-end">
                         <div className="at-service-btn pt-30">
-                            <Link className="at-btn" to="/archive">
+                            <Link className="at-btn" to="/archive-4">
                                 <span>
                                     <span className="text-1">ALL ARTICLES</span>
                                     <span className="text-2">ALL ARTICLES</span>

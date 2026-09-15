@@ -3,13 +3,13 @@ import Marquee from "react-fast-marquee";
 // About 2 Section 4 - Moving gallery (carousel ticker left)
 
 const GALLERY_IMGS = [
-    { src: "/assets/imgs/pages/img-130.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-131.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-132.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-133.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-134.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-135.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-136.webp", alt: "Klarus AI" },
+    { src: "/assets/imgs/pages/img-130.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-131.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-132.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-133.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-134.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-135.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-136.webp", alt: "Muhammad Anees" },
 ];
 
 export default function Section4() {

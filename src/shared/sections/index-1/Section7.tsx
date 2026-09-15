@@ -84,14 +84,14 @@ export default function Section7() {
                                         <img
                                             className="zoom-blur-image img-cover"
                                             src="/assets/imgs/pages/img-15.webp"
-                                            alt="Klarus AI"
+                                            alt="Muhammad Anees"
                                             width={600}
                                             height={400} loading="lazy" />
                                     </div>
                                     <img
                                         className="p-absolute bottom-0 start-0 m-4"
                                         src="/assets/imgs/template/logo/logo-w-lg.svg"
-                                        alt="Klarus AI"
+                                        alt="Muhammad Anees"
                                         width={227}
                                         height={70}
                                         style={{ width: "auto", height: "auto" }} loading="lazy" />
@@ -109,7 +109,7 @@ export default function Section7() {
                                         <img
                                             className="zoom-blur-image img-cover"
                                             src="/assets/imgs/pages/img-16.webp"
-                                            alt="Klarus AI"
+                                            alt="Muhammad Anees"
                                             width={600}
                                             height={450} loading="lazy" />
                                     </div>

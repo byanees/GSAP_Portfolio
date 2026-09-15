@@ -134,7 +134,7 @@ export default function Section6() {
                     <img
                       className="img-cover"
                       src={step.img}
-                      alt="Klarus AI" loading="lazy" />
+                      alt="Muhammad Anees" loading="lazy" />
                   </div>
                 </div>
               </div>

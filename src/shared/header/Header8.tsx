@@ -14,7 +14,7 @@ export default function Header8() {
                       width={28}
                       height={30}
                       src="/assets/imgs/template/logo/favicon.svg"
-                      alt="Klarus AI"
+                      alt="Muhammad Anees"
                       style={{ width: "auto", height: "auto" }} loading="lazy" />
                     <h6 className="fw-700 fz-24 mb-0">Klarus AI</h6>
                   </Link>

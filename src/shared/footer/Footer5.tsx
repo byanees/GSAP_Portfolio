@@ -83,7 +83,7 @@ export default function Footer5() {
                         </div>
                         <div className="col-xxl-3 col-md-6">
                             <h4 className="mb-0 fw-medium text-decoration-underline">
-                                <a href="mailto:info@klarus.io">info@klarus.io</a>
+                                <a href="mailto:aneese421@gmail.com">aneese421@gmail.com</a>
                             </h4>
                         </div>
                         <div className="col-xxl-3 col-lg-5 col-md-6">
@@ -135,7 +135,7 @@ export default function Footer5() {
                                     I&apos;m{" "}
                                     <img
                                         src="/assets/imgs/pages/img-116.webp"
-                                        alt="Klarus AI"
+                                        alt="Muhammad Anees"
                                         width={205}
                                         height={315}
                                         className="d-none d-md-block"

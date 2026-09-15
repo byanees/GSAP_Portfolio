@@ -27,7 +27,7 @@ export default function Section5() {
             <div className="sec-5-home-10__container">
                 <div className="row align-items-end align-items-xl-center justify-content-between sec-5-home-10__intro-row">
                     <div className="col-xl-9 col-lg-10">
-                        <Link className="sec-5-home-10__eyebrow d-inline-flex align-items-center gap-2 text-decoration-none at_fade_anim" to="/about-1" data-delay="0.05">
+                        <Link className="sec-5-home-10__eyebrow d-inline-flex align-items-center gap-2 text-decoration-none at_fade_anim" to="/about-3" data-delay="0.05">
                             <span className="at-btn common-black bg-transparent mb-10 rounded-0 p-0">
                                 <span className="text-uppercase">
                                     <span className="text-1">About Us</span>
@@ -37,11 +37,11 @@ export default function Section5() {
                             </span>
                         </Link>
                         <h2 className="sec-5-home-10__title mt-3 mb-0 at_fade_anim reveal-text" data-delay="0.1">
-                            <RevealText>At Klarus, we create n8n automations, scalable MVPs, and high-performing mobile apps that turn ideas into real business systems.</RevealText>
+                            <RevealText>I create n8n automations, scalable MVPs, and high-performing mobile apps that turn ideas into real business systems.</RevealText>
                         </h2>
                     </div>
                     <div className="col-xl-auto col-lg-10">
-                        <Link className="sec-5-home-10__cta d-inline-flex align-items-center gap-3 at_fade_anim" to="/contact-1" data-delay="0.15">
+                        <Link className="sec-5-home-10__cta d-inline-flex align-items-center gap-3 at_fade_anim" to="/contact-2" data-delay="0.15">
                             <span>Get a free quote</span>
                             <svg className="sec-5-home-10__cta-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
                                 <path d="M1 12L13 1M13 1H4M13 1V10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -54,7 +54,7 @@ export default function Section5() {
                     <img
                         className="sec-5-home-10__figure-img"
                         src="/assets/imgs/pages/home-10/sec-5-wireframe-head.webp"
-                        alt="Klarus AI"
+                        alt="Muhammad Anees"
                         width={800}
                         height={500} loading="lazy" />
                 </figure>

@@ -50,7 +50,7 @@ function StarsRating() {
     return (
         <>
             {Array.from({ length: 5 }).map((_, i) => (
-                <img key={i} src="/assets/imgs/pages/home-8/sec8-star.svg" alt="Klarus AI" width={16} height={16} loading="lazy" />
+                <img key={i} src="/assets/imgs/pages/home-8/sec8-star.svg" alt="Muhammad Anees" width={16} height={16} loading="lazy" />
             ))}
         </>
     );
@@ -64,14 +64,14 @@ export default function Section8() {
                     <div className="d-flex align-items-center gap-2">
                         <span className="sec-8-home-8__kicker text-scramble">Testimonials</span>
                         <span className="sec-8-home-8__kicker-icon" aria-hidden="true">
-                            <img src="/assets/imgs/pages/home-8/sec8-arrow.svg" alt="Klarus AI" width={24} height={12} loading="lazy" />
+                            <img src="/assets/imgs/pages/home-8/sec8-arrow.svg" alt="Muhammad Anees" width={24} height={12} loading="lazy" />
                         </span>
                     </div>
                     <span className="sec-8-home-8__trusted text-decoration-underline at_fade_anim">15k+ trusted clients</span>
                 </div>
                 <div className="sec-8-home-8__stage">
                     <div className="sec-8-home-8__center">
-                        <img className="sec-8-home-8__asterisk at-scroll-rotate" data-rotate-duration="12" data-rotate-sensitivity="0.18" data-rotate-boost="12" src="/assets/imgs/pages/home-8/sec8-asterisk.svg" alt="Klarus AI" width={100} height={100} loading="lazy" />
+                        <img className="sec-8-home-8__asterisk at-scroll-rotate" data-rotate-duration="12" data-rotate-sensitivity="0.18" data-rotate-boost="12" src="/assets/imgs/pages/home-8/sec8-asterisk.svg" alt="Muhammad Anees" width={100} height={100} loading="lazy" />
                         <h2 className="sec-8-home-8__title mb-0 reveal-text"><RevealText>Insights from Industry Partners</RevealText></h2>
                     </div>
 
@@ -86,7 +86,7 @@ export default function Section8() {
                                         </div>
                                         <div className="sec-8-home-8__body">
                                             <div className="sec-8-home-8__avatar">
-                                                <img src={t.avatar} alt="Klarus AI" width={80} height={80} loading="lazy" />
+                                                <img src={t.avatar} alt="Muhammad Anees" width={80} height={80} loading="lazy" />
                                             </div>
                                             <p className="sec-8-home-8__quote mb-0">
                                                 {t.quote}
@@ -114,7 +114,7 @@ export default function Section8() {
                                         </div>
                                         <div className="sec-8-home-8__body">
                                             <div className="sec-8-home-8__avatar">
-                                                <img src={t.avatar} alt="Klarus AI" width={80} height={80} loading="lazy" />
+                                                <img src={t.avatar} alt="Muhammad Anees" width={80} height={80} loading="lazy" />
                                             </div>
                                             <p className="sec-8-home-8__quote mb-0">
                                                 {t.quote}

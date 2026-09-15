@@ -175,7 +175,7 @@ export default function Footer7() {
                                     <Link to="tel:+12125557398">+212 - 555-7398</Link>
                                 </p>
                                 <p className="footer-7__contact-line mb-3 at_fade_anim" data-delay="0.2">
-                                    <Link to="mailto:info@klarus.io">info@klarus.io</Link>
+                                    <Link to="mailto:aneese421@gmail.com">aneese421@gmail.com</Link>
                                 </p>
                                 <p className="footer-7__address mb-0 at_fade_anim" data-delay="0.3">
                                     245 Fifth Avenue, Suite 1800<br />New York, NY 10016, USA

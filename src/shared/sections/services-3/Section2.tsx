@@ -75,7 +75,7 @@ export default function Section2() {
                                 <img
                                     className="img-cover"
                                     src="/assets/imgs/pages/img-77.webp"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={400}
                                     height={500} loading="lazy" />
                             </Link>
@@ -99,7 +99,7 @@ export default function Section2() {
                                 <img
                                     className="img-cover"
                                     src="/assets/imgs/pages/img-78.webp"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={400}
                                     height={300} loading="lazy" />
                             </Link>
@@ -107,7 +107,7 @@ export default function Section2() {
                                 <img
                                     className="img-cover"
                                     src="/assets/imgs/pages/img-79.webp"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={400}
                                     height={300} loading="lazy" />
                             </Link>
@@ -131,7 +131,7 @@ export default function Section2() {
                                 <img
                                     className="img-cover"
                                     src="/assets/imgs/pages/img-80.webp"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={400}
                                     height={500} loading="lazy" />
                             </Link>

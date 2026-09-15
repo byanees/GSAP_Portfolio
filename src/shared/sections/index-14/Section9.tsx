@@ -29,7 +29,7 @@ const COL3: Tile[] = [
 function Tile({ tile }: { tile: Tile }) {
     return (
         <a className={`sec-9-home-14__tile sec-9-home-14__tile--${tile.size} anim-zoomin-wrap`} href="https://instagram.com" target="_blank" rel="noopener">
-            <img className="sec-9-home-14__tile-img anim-zoomin" src={`/assets/imgs/pages/home-14/${tile.img}`} alt="Klarus AI" loading="lazy" />
+            <img className="sec-9-home-14__tile-img anim-zoomin" src={`/assets/imgs/pages/home-14/${tile.img}`} alt="Muhammad Anees" loading="lazy" />
             <span className="sec-9-home-14__tile-top">
                 <span className="sec-9-home-14__tile-handle text-white">@klarus.io</span>
                 <span className="sec-9-home-14__tile-tag text-white">speed {tile.speed}</span>

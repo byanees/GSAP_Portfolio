@@ -13,18 +13,18 @@ const ARROW_SVG = (
 );
 
 const AVATARS = [
-    { src: "/assets/imgs/template/avatar/avatar-10.webp", alt: "Klarus AI", hiddenOnMobile: false },
-    { src: "/assets/imgs/template/avatar/avatar-11.webp", alt: "Klarus AI", hiddenOnMobile: false },
-    { src: "/assets/imgs/template/avatar/avatar-12.webp", alt: "Klarus AI", hiddenOnMobile: false },
-    { src: "/assets/imgs/template/avatar/avatar-13.webp", alt: "Klarus AI", hiddenOnMobile: false },
-    { src: "/assets/imgs/template/avatar/avatar-14.webp", alt: "Klarus AI", hiddenOnMobile: true },
+    { src: "/assets/imgs/template/avatar/avatar-10.webp", alt: "Muhammad Anees", hiddenOnMobile: false },
+    { src: "/assets/imgs/template/avatar/avatar-11.webp", alt: "Muhammad Anees", hiddenOnMobile: false },
+    { src: "/assets/imgs/template/avatar/avatar-12.webp", alt: "Muhammad Anees", hiddenOnMobile: false },
+    { src: "/assets/imgs/template/avatar/avatar-13.webp", alt: "Muhammad Anees", hiddenOnMobile: false },
+    { src: "/assets/imgs/template/avatar/avatar-14.webp", alt: "Muhammad Anees", hiddenOnMobile: true },
 ];
 
 const SLIDES = [
-    { src: "/assets/imgs/pages/img-117.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-118.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-119.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-120.webp", alt: "Klarus AI" },
+    { src: "/assets/imgs/pages/img-117.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-118.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-119.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-120.webp", alt: "Muhammad Anees" },
 ];
 
 export default function Section1() {

@@ -15,12 +15,12 @@ function ArrowIcon() {
 }
 
 const brandLogos = [
-    { src: "/assets/imgs/pages/home-9/logo-brand-01.webp", alt: "Klarus AI", delay: ".1" },
-    { src: "/assets/imgs/pages/home-9/logo-brand-02.webp", alt: "Klarus AI", delay: ".2" },
-    { src: "/assets/imgs/pages/home-9/logo-brand-03.webp", alt: "Klarus AI", delay: ".3" },
-    { src: "/assets/imgs/pages/home-9/logo-brand-04.webp", alt: "Klarus AI", delay: ".4" },
-    { src: "/assets/imgs/pages/home-9/logo-brand-06.webp", alt: "Klarus AI", delay: ".5" },
-    { src: "/assets/imgs/pages/home-9/logo-brand-07.webp", alt: "Klarus AI", delay: ".6" },
+    { src: "/assets/imgs/pages/home-9/logo-brand-01.webp", alt: "Muhammad Anees", delay: ".1" },
+    { src: "/assets/imgs/pages/home-9/logo-brand-02.webp", alt: "Muhammad Anees", delay: ".2" },
+    { src: "/assets/imgs/pages/home-9/logo-brand-03.webp", alt: "Muhammad Anees", delay: ".3" },
+    { src: "/assets/imgs/pages/home-9/logo-brand-04.webp", alt: "Muhammad Anees", delay: ".4" },
+    { src: "/assets/imgs/pages/home-9/logo-brand-06.webp", alt: "Muhammad Anees", delay: ".5" },
+    { src: "/assets/imgs/pages/home-9/logo-brand-07.webp", alt: "Muhammad Anees", delay: ".6" },
 ];
 
 const services = [
@@ -87,7 +87,7 @@ export default function Section1() {
                                     data-scroll-parallax-range={thumb.parallaxRange}
                                     data-h8-parallax-ease={thumb.parallaxEase}
                                 >
-                                    <img src={thumb.src} alt="Klarus AI" width={300} height={400} loading="lazy" />
+                                    <img src={thumb.src} alt="Muhammad Anees" width={300} height={400} loading="lazy" />
                                 </div>
                             ))}
                         </div>
@@ -116,7 +116,7 @@ export default function Section1() {
                                 data-rotate-sensitivity="0.18"
                                 data-rotate-boost="12"
                                 src="/assets/imgs/pages/home-9/star.webp"
-                                alt="Klarus AI"
+                                alt="Muhammad Anees"
                                 width={200}
                                 height={200} loading="lazy" />
                             <div className="sec-1-home-9__services">

@@ -34,7 +34,7 @@ export default function Section8() {
                 <div className="row mb-60">
                     <div className="col-lg-8">
                         <p className="sec-8-portfolio-details-3__title fz-font-3xl fw-500 neutral-950 mb-0 at_fade_anim" data-fade-from="bottom" data-delay=".15">
-                            More work from Klarus AI
+                            More work from Muhammad Anees
                         </p>
                     </div>
                 </div>

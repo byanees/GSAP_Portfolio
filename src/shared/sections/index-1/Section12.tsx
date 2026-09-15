@@ -61,7 +61,7 @@ export default function Section12() {
                     data-speed=".4"
                     className="img-cover"
                     src="/assets/imgs/pages/img-22.webp"
-                    alt="Klarus AI" loading="lazy" />
+                    alt="Muhammad Anees" loading="lazy" />
             </div>
             <div className="position-absolute top-0 bottom-0 start-0 end-0">
                 <div className="container">
@@ -73,11 +73,11 @@ export default function Section12() {
                                         <img
                                             data-width="30"
                                             src="/assets/imgs/template/logo/favicon-dark.svg"
-                                            alt="Klarus AI"
+                                            alt="Muhammad Anees"
                                             width={30}
                                             height={30}
                                             style={{ width: "auto", height: "auto" }} loading="lazy" />
-                                        <h6 className="fw-700 fz-24 text-white mb-0">Klarus AI</h6>
+                                        <h6 className="fw-700 fz-24 text-white mb-0">Muhammad Anees</h6>
                                     </Link>
                                 </div>
                                 <Link
@@ -97,7 +97,7 @@ export default function Section12() {
                             <div className="d-flex gap-4 align-items-center pt-30">
                                 <Link
                                     className="at-btn at-btn-border-white common-white rounded-0"
-                                    to="/contact"
+                                    to="/contact-2"
                                 >
                                     <span>
                                         <span className="text-1">Book A Call Now</span>
@@ -113,8 +113,8 @@ export default function Section12() {
                         </div>
                         <div className="col-lg-4 col-md-6 ms-auto text-end">
                             <span className="common-white fz-font-lg">
-                                [ A creative studio crafting bold, user-focused digital experiences. At Klarus AI, we blend
-                                strategy, design, and innovation to help brands stand out and grow. ]
+                                [ Full stack engineer building scalable, secure systems for fintech, telecom, and
+                                modern web products, from backend architecture to polished interfaces. ]
                             </span>
                         </div>
                     </div>

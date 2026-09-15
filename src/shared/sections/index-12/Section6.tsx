@@ -42,7 +42,7 @@ export default function Section6() {
     }, []);
 
     return (
-        <section className="sec-6-home-12 changeless" aria-label="About Klarus AI">
+        <section className="sec-6-home-12 changeless" aria-label="Muhammad Anees">
             <div className="sec-6-home-12__topbar">
                 <span className="sec-6-home-12__topline" aria-hidden="true"></span>
                 <div className="container-fluid px-3 px-lg-5">
@@ -64,7 +64,7 @@ export default function Section6() {
                     <div className="swiper-wrapper">
                         {slides.map((n, i) => (
                             <div key={i} className="swiper-slide sec-6-home-12__brand-slide">
-                                <img className="sec-6-home-12__brand-img" src={`/assets/imgs/pages/home-12/sec-6-brand-${n}.svg`} alt="Klarus AI" loading="lazy" />
+                                <img className="sec-6-home-12__brand-img" src={`/assets/imgs/pages/home-12/sec-6-brand-${n}.svg`} alt="Muhammad Anees" loading="lazy" />
                             </div>
                         ))}
                     </div>

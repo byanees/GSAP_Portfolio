@@ -11,11 +11,11 @@ const ARROW_SVG = (
 );
 
 const SLIDER_IMAGES = [
-    { src: "/assets/imgs/pages/img-177.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-176.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-178.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-179.webp", alt: "Klarus AI" },
-    { src: "/assets/imgs/pages/img-180.webp", alt: "Klarus AI" },
+    { src: "/assets/imgs/pages/img-177.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-176.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-178.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-179.webp", alt: "Muhammad Anees" },
+    { src: "/assets/imgs/pages/img-180.webp", alt: "Muhammad Anees" },
 ];
 
 function InfoRow({ label, value }: { label: string; value: string }) {
@@ -139,7 +139,7 @@ export default function Section1() {
                     <div className="col-12 py-5">
                         <img
                             src="/assets/imgs/pages/img-181.webp"
-                            alt="Klarus AI"
+                            alt="Muhammad Anees"
                             width={1200}
                             height={700}
                             className="w-100" loading="lazy" />
@@ -179,7 +179,7 @@ export default function Section1() {
                     <div className="col-md-6 py-5">
                         <img
                             src="/assets/imgs/pages/img-182.webp"
-                            alt="Klarus AI"
+                            alt="Muhammad Anees"
                             width={600}
                             height={400}
                             className="w-100" loading="lazy" />
@@ -187,7 +187,7 @@ export default function Section1() {
                     <div className="col-md-6 py-5">
                         <img
                             src="/assets/imgs/pages/img-183.webp"
-                            alt="Klarus AI"
+                            alt="Muhammad Anees"
                             width={600}
                             height={400}
                             className="w-100" loading="lazy" />
@@ -214,7 +214,7 @@ export default function Section1() {
                                 <div className="testimonial-left-img size-50 rounded-3 overflow-hidden">
                                     <img
                                         src="/assets/imgs/template/avatar/avatar-20.webp"
-                                        alt="Klarus AI"
+                                        alt="Muhammad Anees"
                                         width={50}
                                         height={50}
                                         className="img-cover" loading="lazy" />

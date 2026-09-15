@@ -119,7 +119,7 @@ export default function Section6() {
                                             <div className="sec-6-home-11__step-media">
                                                 <img
                                                     src={step.img}
-                                                    alt="Klarus AI"
+                                                    alt="Muhammad Anees"
                                                     width={640}
                                                     height={400}
                                                     loading="lazy"

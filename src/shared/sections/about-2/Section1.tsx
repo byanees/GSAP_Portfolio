@@ -126,7 +126,7 @@ export default function Section1() {
                             <div className="img anim-zoomin">
                                 <img
                                     src="/assets/imgs/pages/img-122.webp"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={1700}
                                     height={830}
                                     className="img-cover" loading="lazy" />

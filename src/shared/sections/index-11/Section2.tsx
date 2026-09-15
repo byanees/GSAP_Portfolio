@@ -16,7 +16,7 @@ const LOGO_DIMS: Record<string, { width: number; height: number }> = {
 
 const makeLogo = (n: string) => ({
     src: `/assets/imgs/template/logo/logo-brand-${n}.webp`,
-    alt: "Klarus AI",
+    alt: "Muhammad Anees",
     dataLogo: n,
     ...LOGO_DIMS[n],
 });

@@ -53,7 +53,7 @@ export default function Section8() {
                 <div className="sec-8-home-13__body">
                     <div className="sec-8-home-13__left">
                         <figure className="sec-8-home-13__media anim-zoomin-wrap mb-0">
-                            <img className="anim-zoomin" src={`/assets/imgs/pages/home-13/${ITEMS[0].img}`} alt="Klarus AI" loading="lazy" />
+                            <img className="anim-zoomin" src={`/assets/imgs/pages/home-13/${ITEMS[0].img}`} alt="Muhammad Anees" loading="lazy" />
                         </figure>
                         <p className="sec-8-home-13__lede mb-0">{ITEMS[0].lede}</p>
                     </div>

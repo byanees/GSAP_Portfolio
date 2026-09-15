@@ -12,8 +12,8 @@ export default function Section1() {
                     </div>
                     <div className="col-lg-3 ms-auto text-lg-end">
                         <h5>
-                            <a href="mailto:info@klarus.io" className="text-decoration-none">
-                                info@klarus.io
+                            <a href="mailto:aneese421@gmail.com" className="text-decoration-none">
+                                aneese421@gmail.com
                             </a>
                         </h5>
                         <h6 className="fw-600">
@@ -29,7 +29,7 @@ export default function Section1() {
                     className="img-cover scale-up"
                     data-speed=".4"
                     src="/assets/imgs/pages/img-153.webp"
-                    alt="Klarus AI"
+                    alt="Muhammad Anees"
                     width={1920}
                     height={800} loading="lazy" />
             </div>

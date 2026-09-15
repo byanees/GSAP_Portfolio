@@ -118,7 +118,7 @@ export default function Section1() {
                             {SERVICES.map((srv, i) => (
                                 <button key={i} type="button" className="swiper-slide sec-1-home-13__service" aria-label={`View ${srv.name}`}>
                                     <span className="sec-1-home-13__service-img">
-                                        <img src={`/assets/imgs/pages/home-13/${srv.icon}`} alt="Klarus AI" loading="lazy" />
+                                        <img src={`/assets/imgs/pages/home-13/${srv.icon}`} alt="Muhammad Anees" loading="lazy" />
                                     </span>
                                     <span className="sec-1-home-13__service-meta">
                                         <span className="sec-1-home-13__service-num">{srv.num}</span>

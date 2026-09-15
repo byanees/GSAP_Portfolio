@@ -107,7 +107,7 @@ export default function Section2() {
                                     data-value-1="1.5"
                                     data-value-2="1"
                                     src="/assets/imgs/pages/img-121.webp"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={550}
                                     height={660} loading="lazy" />
                                 <div className="alt-portfolio-btn">

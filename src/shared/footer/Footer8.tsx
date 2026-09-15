@@ -59,7 +59,7 @@ export default function Footer8() {
             <div className="footer-8__bg" aria-hidden="true">
                 <img
                     src="/assets/imgs/pages/home-8/footer-8-bg.webp"
-                    alt="Klarus AI"
+                    alt="Muhammad Anees"
                     style={{ objectFit: "cover" }}
                     priority={false} loading="lazy" />
             </div>
@@ -79,7 +79,7 @@ export default function Footer8() {
                                 <img
                                     className="footer-8__nav-arrow"
                                     src="/assets/imgs/pages/home-8/footer-8-nav-arrow.svg"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={14}
                                     height={13}
                                     aria-hidden="true"
@@ -98,7 +98,7 @@ export default function Footer8() {
                                     <Link to="tel:+12125557398">+212 - 555-7398</Link>
                                 </p>
                                 <p className="footer-8__contact-line mb-3">
-                                    <Link to="mailto:info@klarus.io">info@klarus.io</Link>
+                                    <Link to="mailto:aneese421@gmail.com">aneese421@gmail.com</Link>
                                 </p>
                                 <p className="footer-8__address mb-0">
                                     245 Fifth Avenue, Suite 1800<br />New York, NY 10016, USA
@@ -136,7 +136,7 @@ export default function Footer8() {
                                                 <img
                                                     className="footer-8__social-icon"
                                                     src={`/assets/imgs/pages/home-8/${social.icon}`}
-                                                    alt="Klarus AI"
+                                                    alt="Muhammad Anees"
                                                     width={18}
                                                     height={18} loading="lazy" />
                                                 <span>{social.label}</span>
@@ -144,7 +144,7 @@ export default function Footer8() {
                                             <span className="footer-8__social-arrow" aria-hidden="true">
                                                 <img
                                                     src={`/assets/imgs/pages/home-8/${social.arrow}`}
-                                                    alt="Klarus AI"
+                                                    alt="Muhammad Anees"
                                                     width={24}
                                                     height={10} loading="lazy" />
                                             </span>

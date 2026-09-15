@@ -49,7 +49,7 @@ export default function Section1() {
                             <div data-speed=".8">
                                 <img
                                     src="/assets/imgs/pages/img-155.webp"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={1900}
                                     height={800}
                                     style={{ width: "100%", height: "auto", objectFit: "contain" }} loading="lazy" />

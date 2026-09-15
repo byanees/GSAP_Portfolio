@@ -84,7 +84,7 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
                 <div className="sec-2-home-5__avatar-sm">
                     <img
                         src={item.avatar}
-                        alt="Klarus AI"
+                        alt="Muhammad Anees"
                         width={65}
                         height={65}
                         className="img-cover" loading="lazy" />
@@ -124,7 +124,7 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
                             <div className="sec-2-home-5__avatar-sm">
                                 <img
                                     src={item.avatar}
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={65}
                                     height={65}
                                     className="img-cover" loading="lazy" />
@@ -179,7 +179,7 @@ export default function Section7() {
                                     <Link to="tel:+2125557398">+212-555-7398</Link>
                                 </h6>
                                 <h6 className="fw-600">
-                                    <Link to="mailto:info@klarus.io">info@klarus.io</Link>
+                                    <Link to="mailto:aneese421@gmail.com">aneese421@gmail.com</Link>
                                 </h6>
                             </div>
                         </div>
@@ -204,7 +204,7 @@ export default function Section7() {
                                     <div className="anim-zoomin">
                                         <img
                                             src="/assets/imgs/pages/img-112.webp"
-                                            alt="Klarus AI"
+                                            alt="Muhammad Anees"
                                             width={450}
                                             height={500}
                                             className="img-cover" loading="lazy" />

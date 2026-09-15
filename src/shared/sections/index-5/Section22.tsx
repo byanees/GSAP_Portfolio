@@ -189,7 +189,7 @@ export default function Section2() {
                                                 <div key={i} className="sec-2-home-5__avatar-sm">
                                                     <img
                                                         src={src}
-                                                        alt="Klarus AI"
+                                                        alt="Muhammad Anees"
                                                         width={65}
                                                         height={65}
                                                         className="img-cover" loading="lazy" />
@@ -233,7 +233,7 @@ export default function Section2() {
                                         <div className="p-absolute bottom-0 end-0">
                                             <img
                                                 src="/assets/imgs/pages/img-105.webp"
-                                                alt="Klarus AI"
+                                                alt="Muhammad Anees"
                                                 width={447}
                                                 height={103}
                                                 className="at_fade_anim"

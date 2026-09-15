@@ -65,7 +65,7 @@ export default function Section7() {
                             <div key={i} className="swiper-slide">
                                 <article className="sec-7-home-14__main">
                                     <figure className="sec-7-home-14__portrait mb-0">
-                                        <img className="sec-7-home-14__portrait-img" src={`/assets/imgs/pages/home-14/${t.img}`} alt="Klarus AI" loading="lazy" />
+                                        <img className="sec-7-home-14__portrait-img" src={`/assets/imgs/pages/home-14/${t.img}`} alt="Muhammad Anees" loading="lazy" />
                                         <figcaption className="sec-7-home-14__portrait-overlay">
                                             <div className="sec-7-home-14__portrait-top">
                                                 <span className="sec-7-home-14__portrait-tag text-white">{t.tag}</span>

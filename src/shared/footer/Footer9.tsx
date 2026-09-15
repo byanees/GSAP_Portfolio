@@ -144,7 +144,7 @@ export default function Footer9() {
                                     <Link to="tel:+12125557398">+212 - 555-7398</Link>
                                 </p>
                                 <p className="footer-9__contact-line mb-0 at_fade_anim" data-delay="0.2">
-                                    <Link to="mailto:info@klarus.io">info@klarus.io</Link>
+                                    <Link to="mailto:aneese421@gmail.com">aneese421@gmail.com</Link>
                                 </p>
                                 <p className="footer-9__address mb-0 at_fade_anim" data-delay="0.3">
                                     245 Fifth Avenue, Suite 1800<br />New York, NY 10016, USA
@@ -200,7 +200,7 @@ export default function Footer9() {
                     <div className="footer-9__line" aria-hidden="true">
                         <img
                             src="/assets/imgs/pages/home-9/footer-9-line.webp"
-                            alt="Klarus AI"
+                            alt="Muhammad Anees"
                             width={1720}
                             height={33}
                             loading="lazy"

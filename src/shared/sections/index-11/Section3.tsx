@@ -93,7 +93,7 @@ export default function Section3() {
                                 <img
                                     className="anim-zoomin sec-3-home-11__img w-100"
                                     src="/assets/imgs/pages/home-11/img-1.webp"
-                                    alt="Klarus AI workspace"
+                                    alt="Muhammad Anees"
                                     width={800}
                                     height={1100}
                                     loading="lazy"
@@ -182,7 +182,7 @@ export default function Section3() {
                                 <img
                                     className="anim-zoomin sec-3-home-11__img w-100"
                                     src="/assets/imgs/pages/home-11/img-2.webp"
-                                    alt="Klarus AI team"
+                                    alt="Muhammad Anees"
                                     width={600}
                                     height={700}
                                     loading="lazy"

@@ -75,7 +75,7 @@ export default function Section3() {
                                                         >
                                                             <img
                                                                 src={logoSrc(logo)}
-                                                                alt="Klarus AI"
+                                                                alt="Muhammad Anees"
                                                                 width={120}
                                                                 height={48}
                                                                 className="dark-mode-invert" loading="lazy" />

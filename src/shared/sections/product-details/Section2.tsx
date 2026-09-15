@@ -21,7 +21,7 @@ export default function Section2() {
                                 <img
                                     className="img-cover"
                                     src={img.src}
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={img.width}
                                     height={img.height} loading="lazy" />
                             </div>
@@ -48,7 +48,7 @@ export default function Section2() {
                                         </Link>
                                     </h6>
                                     <h4 className="mb-0 fw-medium text-decoration-underline">
-                                        <Link to="mailto:info@klarus.io">info@klarus.io</Link>
+                                        <Link to="mailto:aneese421@gmail.com">aneese421@gmail.com</Link>
                                     </h4>
                                 </div>
                             </div>

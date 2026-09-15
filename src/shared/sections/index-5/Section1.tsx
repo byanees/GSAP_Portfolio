@@ -61,7 +61,7 @@ export default function Section1() {
                                 </p>
                                 <img
                                     src="/assets/imgs/pages/img-102.webp"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={214}
                                     height={138}
                                     style={{ width: "auto", height: "auto" }} loading="lazy" />
@@ -76,7 +76,7 @@ export default function Section1() {
                                 >
                                     <img
                                         src="/assets/imgs/pages/img-101.webp"
-                                        alt="Klarus AI"
+                                        alt="Muhammad Anees"
                                         width={560}
                                         height={860}
                                         className="d-none d-lg-block" loading="lazy" />

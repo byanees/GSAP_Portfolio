@@ -128,7 +128,7 @@ export default function Section8() {
                             <img
                               src={post.img}
                               className="blog-card-2__img rounded-0"
-                              alt="Klarus AI" loading="lazy" />
+                              alt="Muhammad Anees" loading="lazy" />
                           </a>
                         </div>
                       </article>

@@ -60,8 +60,8 @@ export default function Footer6() {
                                     </Link>
                                 </p>
                                 <p className="h6 text-white mb-2">
-                                    <Link to="mailto:info@klarus.io" className="text-white text-decoration-none">
-                                        info@klarus.io
+                                    <Link to="mailto:aneese421@gmail.com" className="text-white text-decoration-none">
+                                        aneese421@gmail.com
                                     </Link>
                                 </p>
                                 <p className="h6 text-white mb-2">

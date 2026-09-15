@@ -15,7 +15,7 @@ export default function Header7() {
                       height={54}
                       className="invert-0"
                       src="/assets/imgs/template/logo/favicon-dark.svg"
-                      alt="Klarus AI"
+                      alt="Muhammad Anees"
                       style={{ width: "auto", height: "auto" }} loading="lazy" />
                     <h6 className="fw-700 fz-24 text-white mb-0">Klarus AI</h6>
                   </Link>

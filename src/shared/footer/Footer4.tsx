@@ -82,7 +82,7 @@ export default function Footer4() {
                         </div>
                         <div className="col-lg-5 col-md-6 d-flex flex-column justify-content-between gap-lg-5 gap-4">
                             <h4 className="text-white mb-5 fw-medium text-decoration-underline">
-                                <a href="mailto:info@klarus.io">info@klarus.io</a>
+                                <a href="mailto:aneese421@gmail.com">aneese421@gmail.com</a>
                             </h4>
                             <div className="d-flex flex-wrap gap-lg-5 gap-4">
                                 <div className="d-flex flex-column">

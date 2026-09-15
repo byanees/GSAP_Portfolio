@@ -82,8 +82,8 @@ export default function Footer15() {
 
                 <section className="footer-15__panel footer-15__panel--brand at_fade_anim" data-fade-from="bottom" data-delay=".3" aria-label="Brand and services">
                     <div className="footer-15__brand-head">
-                        <Link className="footer-15__brand-mark" to="/index-15" aria-label="Klarus AI home">
-                            <img className="footer-15__brand-icon" src="/assets/imgs/template/logo/logo-w.svg" alt="Klarus AI" loading="lazy" />
+                        <Link className="footer-15__brand-mark" to="/index-15" aria-label="Muhammad Anees">
+                            <img className="footer-15__brand-icon" src="/assets/imgs/template/logo/logo-w.svg" alt="Muhammad Anees" loading="lazy" />
                         </Link>
                         <h2 className="footer-15__brand-title mb-0">
                             <span className="footer-15__brand-title-strong">Let&rsquo;s Sha</span><span className="footer-15__brand-title-muted">pe Your Next Idea</span>
@@ -107,7 +107,7 @@ export default function Footer15() {
                         <p className="footer-15__intro mb-0">Klarus AI is a digital agency creating impactful digital experiences. We think like strategists and execute with clarity, creativity, and performance.</p>
                         <address className="footer-15__contact mb-0">
                             <a className="footer-15__contact-line" href="tel:+2125557398">+212 &ndash; 555-7398</a>
-                            <a className="footer-15__contact-line" href="mailto:info@klarus.io">info@klarus.io</a>
+                            <a className="footer-15__contact-line" href="mailto:aneese421@gmail.com">aneese421@gmail.com</a>
                             <span className="footer-15__contact-line">245 Fifth Avenue, Suite 1800<br />New York, NY 10016, USA</span>
                         </address>
                     </div>

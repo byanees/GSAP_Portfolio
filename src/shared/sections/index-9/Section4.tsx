@@ -118,7 +118,7 @@ export default function Section4() {
                                     <div className="sec-4-home-9__visual">
                                         <Link to="/portfolio-details-1" className="sec-4-home-9__visual-link cursor-hide">
                                             <div className="fix anim-zoomin">
-                                                <img src={card.img} alt="Klarus AI" width={600} height={450} loading="lazy" />
+                                                <img src={card.img} alt="Muhammad Anees" width={600} height={450} loading="lazy" />
                                             </div>
                                             <div className="sec-4-home-9__overlay">
                                                 <span className="sec-4-home-9__tag">{card.tag}</span>
@@ -151,7 +151,7 @@ export default function Section4() {
                                     <div className="sec-4-home-9__visual">
                                         <Link to="/portfolio-details-1" className="sec-4-home-9__visual-link cursor-hide">
                                             <div className="fix anim-zoomin">
-                                                <img src={card.img} alt="Klarus AI" width={600} height={450} loading="lazy" />
+                                                <img src={card.img} alt="Muhammad Anees" width={600} height={450} loading="lazy" />
                                             </div>
                                             <div className="sec-4-home-9__overlay">
                                                 <span className="sec-4-home-9__tag">{card.tag}</span>

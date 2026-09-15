@@ -37,28 +37,28 @@ const SUBSCRIBE_ARROW_SVG = (
 
 const DECO_IMAGE_1 = {
     src: "/assets/imgs/pages/home-10/footer-10-deco-1.webp",
-    alt: "Klarus AI",
+    alt: "Muhammad Anees",
     width: 420,
     height: 559,
 };
 
 const DECO_IMAGE_2 = {
     src: "/assets/imgs/pages/home-10/footer-10-deco-2.webp",
-    alt: "Klarus AI",
+    alt: "Muhammad Anees",
     width: 420,
     height: 503,
 };
 
 const BG_IMAGE = {
     src: "/assets/imgs/pages/home-10/footer-10-bg-lines.webp",
-    alt: "Klarus AI",
+    alt: "Muhammad Anees",
     width: 2096,
     height: 1180,
 };
 
 const NAV_ARROW_IMAGE = {
     src: "/assets/imgs/pages/home-8/footer-8-nav-arrow.svg",
-    alt: "Klarus AI",
+    alt: "Muhammad Anees",
     width: 14,
     height: 13,
 };
@@ -184,7 +184,7 @@ export default function Footer10() {
                                         <Link to="tel:+12125557398">+212 - 555-7398</Link>
                                     </p>
                                     <p className="footer-10__contact-line mb-3">
-                                        <Link to="mailto:info@klarus.io">info@klarus.io</Link>
+                                        <Link to="mailto:aneese421@gmail.com">aneese421@gmail.com</Link>
                                     </p>
                                     <p className="footer-10__address mb-0">
                                         245 Fifth Avenue, Suite 1800<br />New York, NY 10016, USA

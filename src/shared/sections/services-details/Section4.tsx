@@ -102,7 +102,7 @@ export default function Section4() {
                                         <img
                                             className="img-cover rounded-2"
                                             src={step.img}
-                                            alt="Klarus AI"
+                                            alt="Muhammad Anees"
                                             width={400}
                                             height={280} loading="lazy" />
                                     </div>

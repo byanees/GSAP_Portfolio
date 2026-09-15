@@ -75,7 +75,7 @@ export default function Section8() {
                                 <div className="testimonial-img anim-zoomin-wrap">
                                     <img
                                         src={item.img}
-                                        alt="Klarus AI"
+                                        alt="Muhammad Anees"
                                         className="anim-zoomin"
                                         width={400}
                                         height={300} loading="lazy" />
@@ -84,7 +84,7 @@ export default function Section8() {
                                     <p className="testimonial-quote">&quot;{item.quote}&quot;</p>
                                     <div className="testimonial-author">
                                         <div className="author-logo">
-                                            <img src={item.logo} alt="Klarus AI" width={80} height={30} loading="lazy" />
+                                            <img src={item.logo} alt="Muhammad Anees" width={80} height={30} loading="lazy" />
                                         </div>
                                         <div className="author-info">
                                             <h6 className="author-name neutral-950 m-0 fw-600">{item.name}</h6>

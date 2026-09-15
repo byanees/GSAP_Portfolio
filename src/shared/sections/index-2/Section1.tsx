@@ -42,7 +42,7 @@ export default function Section1({ classList }: { classList?: string }) {
                                 <img
                                     className="img-cover"
                                     src="/assets/imgs/pages/img-27.webp"
-                                    alt="Klarus AI"
+                                    alt="Muhammad Anees"
                                     width={400}
                                     height={500} loading="lazy" />
                             </div>

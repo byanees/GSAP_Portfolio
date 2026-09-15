@@ -35,7 +35,7 @@ export default function Section3() {
                                     <img
                                         data-speed=".8"
                                         src="/assets/imgs/pages/home-9/sec-3-img-0.webp"
-                                        alt="Klarus AI"
+                                        alt="Muhammad Anees"
                                         width={699}
                                         height={415}
                                         loading="lazy"
@@ -56,7 +56,7 @@ export default function Section3() {
                                     <span className="sec-3-home-9__eyebrow-icon" aria-hidden="true">
                                         <img
                                             src="/assets/imgs/pages/home-9/sec-3-eyebrow-arrow.svg"
-                                            alt="Klarus AI"
+                                            alt="Muhammad Anees"
                                             width={14}
                                             height={13}
                                             loading="lazy"
@@ -84,7 +84,7 @@ export default function Section3() {
                                             <div className="fix anim-zoomin position-relative w-100 h-100">
                                                 <img
                                                     src={feature.img}
-                                                    alt="Klarus AI"
+                                                    alt="Muhammad Anees"
                                                     style={{ objectFit: "cover" }}
                                                     loading="lazy"
                                                 />

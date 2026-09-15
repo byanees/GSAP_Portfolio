@@ -101,8 +101,8 @@ export default function Section1() {
                             <a href="tel:+2125557398" className="fz-font-lg neutral-500 fw-500">
                                 [ (+01) 555-7398 ]
                             </a>
-                            <a href="mailto:info@klarus.io" className="fz-font-lg neutral-500 fw-500">
-                                [ info@klarus.io ]
+                            <a href="mailto:aneese421@gmail.com" className="fz-font-lg neutral-500 fw-500">
+                                [ aneese421@gmail.com ]
                             </a>
                         </div>
                     </div>
@@ -118,7 +118,7 @@ export default function Section1() {
                     className="img-cover scale-up"
                     data-speed=".8"
                     src="/assets/imgs/pages/img-169.webp"
-                    alt="Klarus AI"
+                    alt="Muhammad Anees"
                     width={1920}
                     height={800} loading="lazy" />
             </div>
