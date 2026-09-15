@@ -11,14 +11,14 @@ const ARROW_SVG = (
 
 export default function Section1() {
     return (
-        <section className="sec-1-services2 pt-150 border-bottom-100 overflow-hidden">
+        <section className="sec-1-services2 pt-150 pb-60 border-bottom-100 overflow-hidden">
             <div className="container">
                 <div className="row align-items-center mb-20">
                     <div className="col-12">
                         <span className="at-btn common-black bg-transparent mb-10 rounded-0 p-0">
                             <span className="text-uppercase">
-                                <span className="text-1">Enterprise-Grade - Scalable - Battle-Tested</span>
-                                <span className="text-2">Enterprise-Grade - Scalable - Battle-Tested</span>
+                                <span className="text-1">Full-time · Freelance · Contract</span>
+                                <span className="text-2">Full-time · Freelance · Contract</span>
                             </span>
                             <i>
                                 {ARROW_SVG}
@@ -27,25 +27,16 @@ export default function Section1() {
                         </span>
                     </div>
                     <div className="col-lg-8">
-                        <h1 className="section-title d-flex fw-600 fz-200 reveal-text mb-0">
-                            My Services
+                        <h1 className="section-title d-flex fw-600 fz-ds-1 lh-1 reveal-text mb-0">
+                            Work With Me
                         </h1>
                     </div>
                     <div className="col-lg-4 ms-auto">
                         <h6 className="fw-500 fz-font-lg reveal-text mb-0 ps-xxl-5">
-                            I deliver production-ready backend systems, modern frontends, and cloud-native architectures for fintech, telecom, and enterprise clients.
+                            Hire me full-time or bring me in for a scoped project: backend systems, payment integrations, and full stack products for fintech, telecom, and enterprise teams.
                         </h6>
                     </div>
                 </div>
-            </div>
-            <div className="at-banner-thumb overflow-hidden scale-up-img">
-                <img
-                    className="img-cover scale-up"
-                    data-speed=".4"
-                    src="/assets/imgs/pages/img-154.webp"
-                    alt="Muhammad Anees"
-                    width={1920}
-                    height={800} loading="lazy" />
             </div>
         </section>
     );

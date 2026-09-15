@@ -7,7 +7,7 @@ const FAQ_ITEMS = [
         id: "collapseOne",
         num: "1",
         question: "What backend technologies do you work with?",
-        answer: "Primarily C# and .NET Core/.NET 9 with ASP.NET Core, Entity Framework Core, ABP.io, and clean architecture patterns across microservices.",
+        answer: "Primarily C# on .NET 9 with ABP.io, EF Core, PostgreSQL, and Redis, using domain-driven design and clean architecture across microservices. I've also built REST APIs with Node.js and Express.",
         open: true,
     },
     {
@@ -28,7 +28,7 @@ const FAQ_ITEMS = [
         id: "collapseFour",
         num: "4",
         question: "Do you work with cloud infrastructure?",
-        answer: "Yes — Docker, Kubernetes, Jenkins, Azure DevOps, AWS. I've deployed production microservices in cloud-native environments with monitoring via Elastic Stack.",
+        answer: "Yes. Docker and Kubernetes for containers, Jenkins and GitHub Actions for CI/CD, AWS (EC2, S3, SQS, Lambda), and the ELK stack for logging and monitoring.",
         open: false,
     },
 ];

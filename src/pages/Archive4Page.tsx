@@ -1,14 +1,13 @@
 import PageMeta from "@/seo/PageMeta";
-import Section1 from "@/shared/sections/archive-4/Section1";
-import Section2 from "@/shared/sections/index-3/Section12";
+import BlogIndex from "@/shared/sections/dev/BlogIndex";
+import HomeCta from "@/shared/sections/dev/HomeCta";
 
 export default function Archive4Page() {
   return (
     <>
       <PageMeta title="Muhammad Anees — Blog" />
-                <Section1 />
-                <Section2 />
-            
+      <BlogIndex />
+      <HomeCta />
     </>
   );
 }

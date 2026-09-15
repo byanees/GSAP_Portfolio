@@ -6,7 +6,7 @@ type Item = { to: string; label: string };
 const MENU_LINKS: Item[] = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Me" },
-  { to: "/services", label: "Services" },
+  { to: "/services", label: "Work With Me" },
   { to: "/portfolio", label: "Portfolio" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },

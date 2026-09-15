@@ -12,18 +12,20 @@ const DOT_SVG = (
 );
 
 const TICKER_ITEMS = [
-    ".NET Core",
+    ".NET 9",
+    "ABP.io",
     "Microservices",
     "Angular",
     "React",
     "TypeScript",
-    "Docker",
-    "Kubernetes",
     "PostgreSQL",
     "Redis",
+    "Docker",
+    "Kubernetes",
+    "AWS",
     "Clean Architecture",
     "Domain-Driven Design",
-    "Payment Systems",
+    "EMV QR",
 ];
 
 export default function Section2() {
