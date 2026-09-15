@@ -1,0 +1,123 @@
+/* Custom overrides for Muhammad Anees Portfolio */
+
+/* Refined hero tagline styling */
+.sec-1-home-4__tagline {
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.15) 0%, rgba(0, 212, 170, 0.15) 100%) !important;
+  border: 1px solid rgba(0, 102, 255, 0.3) !important;
+  backdrop-filter: blur(20px);
+  padding: 8px 20px !important;
+  border-radius: 50px !important;
+  font-size: 13px !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase;
+}
+
+/* Subtle glow effect on primary buttons */
+.at-btn:hover {
+  box-shadow: 0 4px 25px rgba(0, 102, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Card hover enhancement */
+.card_case__studies-card:hover {
+  transform: translateY(-4px);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Stats counter gradient accent */
+.card_case__studies-metric-value {
+  background: linear-gradient(135deg, #0066FF, #00D4AA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Skill bar color override */
+.at-progress-bar .progress-bar,
+.progress-bar {
+  background: linear-gradient(90deg, #0066FF 0%, #00D4AA 100%) !important;
+}
+
+/* FAQ accordion active state */
+.accordion-button:not(.collapsed) {
+  color: #0066FF !important;
+  background-color: rgba(0, 102, 255, 0.05) !important;
+}
+
+/* Footer accent line */
+.at-footer .border-bottom-100 {
+  border-color: rgba(0, 102, 255, 0.2) !important;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(0, 102, 255, 0.2);
+  color: inherit;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero tag pills unique styling */
+.sec-1-home-4__tag {
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(24px);
+  transition: all 0.3s ease;
+}
+
+.sec-1-home-4__tag:hover {
+  border-color: rgba(0, 102, 255, 0.6) !important;
+  background: rgba(0, 102, 255, 0.15) !important;
+}
+
+/* Service cards subtle left border accent */
+.sec-2-home-4__card {
+  border-left: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.sec-2-home-4__card:hover {
+  border-left-color: #0066FF;
+}
+
+/* Process step number gradient */
+.sec-3-home-4__step-number {
+  background: linear-gradient(135deg, #0066FF, #00D4AA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Featured case study card subtle border glow */
+.card_case__studies-list .card_case__studies-card {
+  transition: box-shadow 0.4s ease;
+}
+
+.card_case__studies-list .card_case__studies-card:hover {
+  box-shadow: 0 8px 40px rgba(0, 102, 255, 0.12);
+}
+
+/* Testimonial card accent */
+.testimonial-card:hover {
+  border-bottom: 2px solid #0066FF;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0066FF, #00D4AA);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0055DD;
+}
