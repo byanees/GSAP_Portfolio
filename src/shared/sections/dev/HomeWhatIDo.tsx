@@ -25,15 +25,12 @@ export default function HomeWhatIDo() {
                     </div>
 
                     <div className="row g-3">
-                        {EXPERTISE.map((item, i) => (
+                        {EXPERTISE.map((item) => (
                             <div key={item.key} className="col-lg-3 col-md-6">
                                 <article className="dev-card h-100">
-                                    <span className="dev-card__file">
-                                        {String(i + 1).padStart(2, "0")} / {item.key}
-                                    </span>
                                     <h5 className="dev-card__title">{item.title}</h5>
                                     <p className="dev-card__desc">{item.description}</p>
-                                    <StackTags tags={item.tags} />
+                                    <StackTags tags={item.tags} label="Tools I use" />
                                 </article>
                             </div>
                         ))}

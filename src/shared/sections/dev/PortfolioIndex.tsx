@@ -21,7 +21,7 @@ export default function PortfolioIndex() {
                         </div>
                         <div className="col-xxl-3 col-lg-5 ms-lg-auto text-lg-end">
                             <p className="dev-count mb-3">
-                                [ {CASE_STUDIES.length} case studies · {PROJECTS.length} projects ]
+                                {CASE_STUDIES.length} case studies and {PROJECTS.length} earlier projects
                             </p>
                             <a href={PROFILE.cvUrl} download className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
                                 <span>
@@ -73,7 +73,6 @@ export default function PortfolioIndex() {
                                 <div>
                                     <span className="project-row__meta">{p.meta}</span>
                                     <h4 className="project-row__title">{p.title}</h4>
-                                    <span className="project-row__type">{p.type}</span>
                                 </div>
                                 <div>
                                     <p className="project-row__desc">{p.description}</p>

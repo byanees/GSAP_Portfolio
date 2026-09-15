@@ -40,7 +40,6 @@ export default function AboutStack() {
                                         className={`stack-tab${i === active ? " is-active" : ""}`}
                                         onClick={() => setActive(i)}
                                     >
-                                        <span className="stack-tab__index">{String(i + 1).padStart(2, "0")}</span>
                                         <span className="stack-tab__title">{g.title}</span>
                                         <span className="stack-tab__count">{g.items.length}</span>
                                     </button>

@@ -20,7 +20,7 @@ export default function CaseStudyCard({ cs }: { cs: CaseStudy }) {
             </div>
             <div className="code-card__body">
                 <span className="code-card__meta">
-                    {cs.company} · {cs.period}
+                    {cs.company}, {cs.period}
                 </span>
                 <h5 className="code-card__title">
                     <Link to={href}>{cs.title}</Link>

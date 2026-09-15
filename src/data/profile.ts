@@ -180,23 +180,23 @@ export const SKILLS = [
 
 export const NOW = [
   {
-    key: "building",
+    key: "Building",
     value: "Enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited, using DDD and clean architecture.",
   },
   {
-    key: "workflow",
+    key: "How I work",
     value: "AI-assisted development as part of the daily workflow, with tools like Cursor and Claude.",
   },
   {
-    key: "team",
+    key: "Team",
     value: "Coordinating execution across developers, QA, and DevOps in a 40-person delivery team.",
   },
   {
-    key: "open_to",
+    key: "Open to",
     value: PROFILE.availability,
   },
   {
-    key: "certified",
+    key: "Certified",
     value: "Cybersecurity Essentials V3 · OWASP 2021: Web Application Security Awareness",
   },
 ];

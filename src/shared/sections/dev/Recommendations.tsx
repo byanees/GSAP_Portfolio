@@ -56,7 +56,7 @@ export default function Recommendations({ muted = false }: { muted?: boolean }) 
                                     <span className="reco-card__name">{r.name}</span>
                                     <span className="reco-card__role">{r.role}</span>
                                     <span className="reco-card__relation">
-                                        {r.relationship} · {r.date}
+                                        {r.relationship}, {r.date}
                                     </span>
                                 </span>
                             </figcaption>

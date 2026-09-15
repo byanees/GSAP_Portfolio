@@ -27,8 +27,9 @@ export default function HomeHero() {
                     <div className="container p-relative z-index-1">
                         <div className="row align-items-center g-5">
                             <div className="col-xl-6 col-lg-6">
-                                <span className="dev-hero__tagline d-inline-block mb-30">
-                                    [ {PROFILE.role} · {PROFILE.location} ]
+                                <span className="dev-hero__tagline d-inline-flex align-items-center gap-2 mb-30">
+                                    <span className="contact-status__dot" aria-hidden />
+                                    {PROFILE.role}, based in Islamabad
                                 </span>
                                 <h1 className="dev-hero__headline fw-600 text-white mb-30">
                                     I build payment platforms and backend systems that hold up under real traffic.

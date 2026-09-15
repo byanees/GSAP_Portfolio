@@ -20,15 +20,15 @@ export default function AboutExperience() {
                         <ul className="xp-facts">
                             <li>
                                 <span className="xp-facts__value">3+</span>
-                                years shipping
+                                years in production
                             </li>
                             <li>
                                 <span className="xp-facts__value">{companies}</span>
-                                teams
+                                places I&apos;ve worked
                             </li>
                             <li>
                                 <span className="xp-facts__value">2</span>
-                                countries served
+                                countries shipped to
                             </li>
                         </ul>
                         <a href={PROFILE.cvUrl} download className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
@@ -54,12 +54,7 @@ export default function AboutExperience() {
                                     <div className="xp-item__head">
                                         <span className="xp-item__period">{item.period}</span>
                                         <span>{item.location}</span>
-                                        {item.current && (
-                                            <span className="xp-item__badge">
-                                                <span className="contact-status__dot" aria-hidden />
-                                                current
-                                            </span>
-                                        )}
+                                        {item.current && <span className="xp-item__badge">Current role</span>}
                                     </div>
                                     <div className="xp-card">
                                         <div className="xp-card__title-row">
@@ -77,7 +72,7 @@ export default function AboutExperience() {
                                                 ))}
                                             </ul>
                                         )}
-                                        {item.stack.length > 0 && <StackTags tags={item.stack} dark={item.current} />}
+                                        {item.stack.length > 0 && <StackTags tags={item.stack} label="Worked with" dark={item.current} />}
                                     </div>
                                 </li>
                             ))}

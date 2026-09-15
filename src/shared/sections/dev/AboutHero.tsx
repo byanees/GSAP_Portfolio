@@ -53,7 +53,7 @@ export default function AboutHero() {
                             <span className="about-portrait__mark" aria-hidden>
                                 MA
                             </span>
-                            <span>portrait.webp — coming soon</span>
+                            <span>Photo coming soon</span>
                         </div>
                     )}
                 </div>

@@ -36,12 +36,12 @@ export default function BlogPost() {
                             <Link to="/blog" className="cs-back">
                                 ← All posts
                             </Link>
-                            <span className="post-row__meta d-block mb-20">
-                                {formatPostDate(post.date)} · {post.category} · {post.readTime}
+                            <span className="code-card__meta d-block mb-20">
+                                {post.category}, {formatPostDate(post.date)}
                             </span>
                             <h1 className="post-title">{post.title}</h1>
                             <p className="fz-font-lg neutral-500 mb-30">{post.excerpt}</p>
-                            <StackTags tags={post.tags} />
+                            <StackTags tags={[...post.tags, post.readTime]} label="Filed under" />
                             <div className="post-body border-top-100 mt-50 pt-50" dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
                             <div className="post-author border-top-100 mt-60 pt-40">
                                 <span className="site-logo__mark post-author__mark" aria-hidden>

@@ -43,7 +43,9 @@ export default function CaseStudyDetail() {
                     </Link>
                     <div className="row">
                         <div className="col-xl-9">
-                            <span className="code-card__meta d-block mb-20">{cs.file}</span>
+                            <span className="code-card__meta d-block mb-20">
+                                {cs.company}, {cs.period}
+                            </span>
                             <h1 className="fz-ds-1 fw-500 lh-1 mb-30">{cs.title}</h1>
                             <p className="fz-font-3xl fw-400 neutral-500 mb-0">{cs.summary}</p>
                         </div>
@@ -87,8 +89,7 @@ export default function CaseStudyDetail() {
                                 ))}
                             </ol>
                             <div className="pt-50">
-                                <span className="cs-meta__label">Stack</span>
-                                <StackTags tags={cs.stack} />
+                                <StackTags tags={cs.stack} label="Stack" className="stack-line--lg" />
                             </div>
                         </div>
                     </div>

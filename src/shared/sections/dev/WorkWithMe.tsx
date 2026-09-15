@@ -54,7 +54,6 @@ export default function WorkWithMe() {
                 <div className="row g-4">
                     <div className="col-lg-6">
                         <article className="engage-card">
-                            <span className="engage-card__label">01 / full-time</span>
                             <h3 className="mb-0">Full-time roles</h3>
                             <p className="neutral-500 mb-0">
                                 Full stack or backend roles where reliability matters: fintech, telecom, and enterprise platforms.
@@ -72,7 +71,6 @@ export default function WorkWithMe() {
                     </div>
                     <div className="col-lg-6">
                         <article className="engage-card">
-                            <span className="engage-card__label">02 / freelance</span>
                             <h3 className="mb-0">Freelance &amp; contract</h3>
                             <p className="neutral-500 mb-0">
                                 Scoped backend or full stack work: APIs, payment integrations, dashboards, or moving an existing .NET or React codebase forward.
@@ -95,12 +93,11 @@ export default function WorkWithMe() {
                     </div>
                 </div>
                 <ul className="expertise-list">
-                    {EXPERTISE.map((item, i) => (
+                    {EXPERTISE.map((item) => (
                         <li key={item.key} className="expertise-row">
-                            <span className="expertise-row__index">{String(i + 1).padStart(2, "0")}</span>
                             <h4 className="expertise-row__title">{item.title}</h4>
                             <p className="expertise-row__desc">{item.description}</p>
-                            <StackTags tags={item.tags} />
+                            <StackTags tags={item.tags} label="Tools I use" />
                         </li>
                     ))}
                 </ul>
