@@ -14,7 +14,13 @@ export default function HomeCta() {
                         <h2 className="dev-cta__title reveal-text mb-0">
                             <RevealText>Building something that has to work on the first attempt?</RevealText>
                         </h2>
-                        <p className="fz-font-lg neutral-500 mt-30 mb-0">[ {PROFILE.availability} ]</p>
+                        <p className="availability mt-30 mb-0">
+                            <span className="contact-status__dot" aria-hidden />
+                            <span>
+                                Open to full stack &amp; backend roles in <strong>{PROFILE.relocationCountries}</strong>, or{" "}
+                                <strong>remote across Europe</strong>.
+                            </span>
+                        </p>
                     </div>
                     <div className="col-lg-4">
                         <div className="d-flex flex-wrap align-items-center justify-content-lg-end gap-4">

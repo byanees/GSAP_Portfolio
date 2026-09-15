@@ -1,10 +1,10 @@
 import PageMeta from "@/seo/PageMeta";
 import Section4 from "@/shared/sections/about-3/Section4";
 import Section7 from "@/shared/sections/about-3/Section7";
+import AboutExperience from "@/shared/sections/dev/AboutExperience";
 import AboutHero from "@/shared/sections/dev/AboutHero";
 import AboutNow from "@/shared/sections/dev/AboutNow";
 import AboutStack from "@/shared/sections/dev/AboutStack";
-import Recommendations from "@/shared/sections/dev/Recommendations";
 
 export default function About3Page() {
   return (
@@ -12,9 +12,9 @@ export default function About3Page() {
       <PageMeta title="Muhammad Anees — About" />
       <AboutHero />
       <Section4 />
-      <AboutNow />
+      <AboutExperience />
       <AboutStack />
-      <Recommendations muted />
+      <AboutNow />
       <Section7 />
     </>
   );

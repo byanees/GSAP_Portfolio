@@ -39,6 +39,7 @@ const DETAILS = [
     { label: "LinkedIn", value: "in/ianees", href: "https://www.linkedin.com/in/ianees/" },
     { label: "Upwork", value: "Hire on Upwork", href: "https://www.upwork.com/freelancers/~017655f3515038fc66" },
     { label: "Based in", value: "Islamabad, Pakistan (PKT, UTC+5)" },
+    { label: "Open to", value: "Saudi Arabia · UAE · Qatar · Remote (EU)" },
 ];
 
 function EyebrowLabel({ children }: { children: string }) {
@@ -90,7 +91,7 @@ export function ContactHero() {
                         <div className="d-flex flex-column align-items-start align-items-lg-end gap-3">
                             <span className="contact-status neutral-500">
                                 <span className="contact-status__dot" aria-hidden />
-                                [ Open to full stack &amp; backend roles ]
+                                Open to full stack &amp; backend roles
                             </span>
                             <a
                                 href={`mailto:${EMAIL}`}
@@ -173,9 +174,6 @@ export function ContactForm() {
                                 </li>
                             ))}
                         </ul>
-                        <p className="neutral-500 fz-font-md mt-30 mb-0">
-                            [ Available for roles in Saudi Arabia, UAE, Qatar, and remote across Europe. Visa sponsorship needed. ]
-                        </p>
                     </div>
 
                     <div className="col-xl-7 col-lg-7 ms-lg-auto">
