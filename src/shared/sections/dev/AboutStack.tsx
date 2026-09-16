@@ -1,95 +1,92 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CASE_STUDIES } from "@/data/caseStudies";
-import { SKILLS } from "@/data/profile";
+import { STACK_LAYERS, STACK_PRINCIPLES } from "@/data/profile";
 import Eyebrow from "./Eyebrow";
 
-/** Dark panel: pick a stack group on the left, read it as a code file on the right. */
+/**
+ * The stack drawn as the layers a request passes through. Layers light up in turn
+ * (paused while the visitor hovers or focuses one) and each shows where it was used.
+ */
 export default function AboutStack() {
     const [active, setActive] = useState(0);
-    const group = SKILLS[active];
-    const usedIn = CASE_STUDIES.filter((cs) => group.usedIn.includes(cs.slug));
+    const [paused, setPaused] = useState(false);
+
+    useEffect(() => {
+        if (paused || window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+        const id = window.setInterval(() => setActive((i) => (i + 1) % STACK_LAYERS.length), 2800);
+        return () => window.clearInterval(id);
+    }, [paused]);
+
+    const focusLayer = (i: number) => {
+        setPaused(true);
+        setActive(i);
+    };
 
     return (
         <div className="container-2200 pt-30 pb-30">
             <section className="stack-panel rounded-5 mx-lg-3 mx-2 changeless">
                 <div className="container">
                     <div className="row g-4 align-items-end pb-60">
-                        <div className="col-lg-6">
+                        <div className="col-lg-7">
                             <Eyebrow light>my stack</Eyebrow>
-                            <h3 className="text-white mb-0">Tech I work with</h3>
+                            <h3 className="text-white mb-0">From the screen to the server, what I use at every layer</h3>
                         </div>
-                        <div className="col-lg-5 ms-auto text-lg-end">
+                        <div className="col-lg-4 ms-auto text-lg-end">
                             <p className="stack-panel__intro mb-0">
-                                .NET and ABP.io on the backend, Angular and React on the frontend, and Docker, Kubernetes, and AWS underneath.
+                                Follow a request down through the systems I build. Hover a layer to see where it shows up in my work.
                             </p>
                         </div>
                     </div>
 
-                    <div className="row g-5">
-                        <div className="col-lg-4">
-                            <div className="stack-tabs" role="tablist" aria-label="Tech stack groups">
-                                {SKILLS.map((g, i) => (
-                                    <button
-                                        key={g.key}
-                                        type="button"
-                                        role="tab"
-                                        id={`stack-tab-${g.key}`}
-                                        aria-selected={i === active}
-                                        aria-controls="stack-editor"
-                                        className={`stack-tab${i === active ? " is-active" : ""}`}
-                                        onClick={() => setActive(i)}
+                    <div className="arch" onMouseLeave={() => setPaused(false)}>
+                        <ol className="arch__layers">
+                            {STACK_LAYERS.map((layer, i) => {
+                                const used = CASE_STUDIES.filter((cs) => layer.usedIn.includes(cs.slug));
+                                return (
+                                    <li
+                                        key={layer.key}
+                                        className={`arch-layer${i === active ? " is-active" : ""}`}
+                                        tabIndex={0}
+                                        onMouseEnter={() => focusLayer(i)}
+                                        onFocus={() => focusLayer(i)}
+                                        onBlur={() => setPaused(false)}
                                     >
-                                        <span className="stack-tab__title">{g.title}</span>
-                                        <span className="stack-tab__count">{g.items.length}</span>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
+                                        <span className="arch-layer__node" aria-hidden />
+                                        <div className="arch-layer__head">
+                                            <span className="arch-layer__name">{layer.name}</span>
+                                            <p className="arch-layer__role">{layer.role}</p>
+                                        </div>
+                                        <ul className="arch-layer__items">
+                                            {layer.items.map((item) => (
+                                                <li key={item}>{item}</li>
+                                            ))}
+                                        </ul>
+                                        <div className="arch-layer__used">
+                                            <span className="arch-layer__used-label">{used.length ? "Shows up in" : "Behind"}</span>
+                                            {used.length ? (
+                                                used.map((cs) => (
+                                                    <Link key={cs.slug} to={`/portfolio/${cs.slug}`}>
+                                                        {cs.title}
+                                                    </Link>
+                                                ))
+                                            ) : (
+                                                <span>every project I ship</span>
+                                            )}
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ol>
 
-                        <div className="col-lg-8">
-                            <div className="terminal-card stack-editor" id="stack-editor" role="tabpanel" aria-labelledby={`stack-tab-${group.key}`}>
-                                <div className="terminal-card__bar">
-                                    <span className="terminal-card__dot" aria-hidden />
-                                    <span className="terminal-card__dot" aria-hidden />
-                                    <span className="terminal-card__dot" aria-hidden />
-                                    <div className="stack-editor__files" aria-hidden>
-                                        {SKILLS.map((g, i) => (
-                                            <span key={g.key} className={`stack-editor__file${i === active ? " is-active" : ""}`}>
-                                                {g.key}.ts
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <pre className="terminal-card__body stack-editor__body">
-                                    <code key={group.key} className="stack-editor__code">
-                                        <span className="tok-comment">{`// ${group.comment}`}</span>
-                                        {"\n"}
-                                        <span className="tok-keyword">export const</span> <span className="tok-name">{group.key}</span>{" "}
-                                        <span className="tok-punct">= [</span>
-                                        {"\n"}
-                                        {group.items.map((item, i) => (
-                                            <span key={item}>
-                                                {"  "}
-                                                <span className="tok-string">{`"${item}"`}</span>
-                                                <span className="tok-punct">{i < group.items.length - 1 ? "," : ""}</span>
-                                                {"\n"}
-                                            </span>
-                                        ))}
-                                        <span className="tok-punct">]</span> <span className="tok-keyword">as const</span>
-                                        <span className="tok-punct">;</span>
-                                    </code>
-                                </pre>
-                            </div>
-                            <div className="stack-used">
-                                <span className="stack-used__label">{usedIn.length ? "used in →" : "// across every project above"}</span>
-                                {usedIn.map((cs) => (
-                                    <Link key={cs.slug} to={`/portfolio/${cs.slug}`} className="stack-used__link">
-                                        {cs.file}
-                                    </Link>
+                        <aside className="arch__principles">
+                            <span className="arch__principles-label">Holding it together</span>
+                            <ul>
+                                {STACK_PRINCIPLES.map((p) => (
+                                    <li key={p}>{p}</li>
                                 ))}
-                            </div>
-                        </div>
+                            </ul>
+                        </aside>
                     </div>
                 </div>
             </section>

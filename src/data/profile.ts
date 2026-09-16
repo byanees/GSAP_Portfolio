@@ -19,10 +19,6 @@ export const PROFILE = {
     "Full Stack Engineer with 3+ years building fintech, telco, and enterprise platforms. Now building distributed systems on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.",
   summary:
     "I've delivered payment infrastructure for 60,000+ merchants and a push notification scheduler that processes 700–800k messages per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
-  relocationCountries: "Saudi Arabia, UAE, Qatar",
-  availability:
-    "Full stack & backend roles in Saudi Arabia, UAE, Qatar, or remote across Europe. Visa sponsorship needed.",
-  nowUpdated: "September 2026",
 };
 
 export const ELSEWHERE = [
@@ -35,7 +31,6 @@ export const ELSEWHERE = [
 type Highlight = { value: string; label: string };
 
 export type ExperienceItem = {
-  kind: "work" | "education";
   period: string;
   company: string;
   role: string;
@@ -48,7 +43,6 @@ export type ExperienceItem = {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    kind: "work",
     period: "Jan 2026 — Present",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
@@ -63,7 +57,6 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: [".NET 9", "ABP.io", "Angular", "DDD", "HyperPay"],
   },
   {
-    kind: "work",
     period: "Aug 2024 — Jan 2026",
     company: "DPL",
     role: "Software Engineer",
@@ -79,7 +72,6 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: [".NET 8", "Microservices", "Redis", "EMV QR"],
   },
   {
-    kind: "work",
     period: "Dec 2023 — Aug 2024",
     company: "Axontick Technologies",
     role: "Full Stack Developer",
@@ -94,7 +86,6 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: ["React", ".NET Core", "Stripe", "PassportJS"],
   },
   {
-    kind: "work",
     period: "Mar 2023 — Aug 2023",
     company: "LantroTech & Bytewise",
     role: "Web Developer & MERN Stack Fellow",
@@ -103,16 +94,6 @@ export const EXPERIENCE: ExperienceItem[] = [
       "Developed reusable React components for a payment gateway platform, and built REST APIs with Node.js, Express, and MongoDB in a 4-member backend team.",
     highlights: [{ value: "35%", label: "less UI development time" }],
     stack: ["React", "Node.js", "Express", "MongoDB"],
-  },
-  {
-    kind: "education",
-    period: "Sept 2020 — June 2024",
-    company: "COMSATS University Islamabad",
-    role: "Bachelor's in Computer Science",
-    location: "Islamabad, PK",
-    summary: "Certifications: Cybersecurity Essentials V3 · OWASP 2021: Web Application Security Awareness.",
-    highlights: [],
-    stack: [],
   },
 ];
 
@@ -147,56 +128,43 @@ export const EXPERTISE = [
   },
 ];
 
-export const SKILLS = [
+/** The stack as layers a request passes through, top to bottom. From the CV's skills section. */
+export const STACK_LAYERS = [
   {
-    key: "backend",
-    title: "Backend",
-    comment: "what I reach for in production",
-    items: [".NET Core / .NET 9", "ABP.io", ".NET Aspire", "Node.js", "PostgreSQL", "Redis", "EF Core", "RESTful APIs", "Microservices"],
-    usedIn: ["telecom-agent-apps", "bulk-push-notification-scheduler", "backend-aggregation-layer"],
-  },
-  {
-    key: "frontend",
-    title: "Frontend",
-    comment: "micro-frontends, dashboards, and product UIs",
-    items: ["Angular", "React", "Next.js", "Micro-frontends", "TypeScript", "Redux Toolkit", "Tailwind CSS"],
+    key: "interface",
+    name: "Interface",
+    role: "What people click, scan, and export.",
+    items: ["Angular", "React", "Next.js", "TypeScript", "Micro-frontends", "Redux Toolkit", "Tailwind CSS"],
     usedIn: ["qualification-certificate-workflow", "backend-aggregation-layer"],
   },
   {
-    key: "infrastructure",
-    title: "Infrastructure",
-    comment: "shipping it and keeping it running",
-    items: ["Docker", "Kubernetes", "Jenkins", "GitHub Actions", "AWS (EC2, S3, SQS, Lambda)", "ELK", "WSO2", "Nginx"],
+    key: "services",
+    name: "Services",
+    role: "APIs and business rules, split into services.",
+    items: [".NET 9", ".NET Core", "ABP.io", ".NET Aspire", "Node.js", "REST", "WebSockets"],
+    usedIn: ["emv-qr-request-to-pay", "bulk-push-notification-scheduler", "telecom-agent-apps"],
+  },
+  {
+    key: "data",
+    name: "Data & messaging",
+    role: "Where state lives and work gets queued.",
+    items: ["PostgreSQL", "EF Core", "Redis", "AWS SQS"],
+    usedIn: ["telecom-agent-apps"],
+  },
+  {
+    key: "platform",
+    name: "Platform",
+    role: "Containers, gateways, and cloud underneath.",
+    items: ["Docker", "Kubernetes", "AWS EC2, S3 & Lambda", "Nginx", "WSO2"],
     usedIn: [] as string[],
   },
   {
-    key: "architecture",
-    title: "Architecture",
-    comment: "how the pieces fit together",
-    items: ["Clean Architecture", "DDD", "QR / TLV encoding", "REST", "WebSockets"],
-    usedIn: ["emv-qr-request-to-pay", "qualification-certificate-workflow"],
+    key: "delivery",
+    name: "Delivery",
+    role: "Shipping changes and watching them run.",
+    items: ["Jenkins", "GitHub Actions", "ELK"],
+    usedIn: [] as string[],
   },
 ];
 
-export const NOW = [
-  {
-    key: "Building",
-    value: "Enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited, using DDD and clean architecture.",
-  },
-  {
-    key: "How I work",
-    value: "AI-assisted development as part of the daily workflow, with tools like Cursor and Claude.",
-  },
-  {
-    key: "Team",
-    value: "Coordinating execution across developers, QA, and DevOps in a 40-person delivery team.",
-  },
-  {
-    key: "Open to",
-    value: PROFILE.availability,
-  },
-  {
-    key: "Certified",
-    value: "Cybersecurity Essentials V3 · OWASP 2021: Web Application Security Awareness",
-  },
-];
+export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "QR / TLV encoding", "AI-assisted development"];

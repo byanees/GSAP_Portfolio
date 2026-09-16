@@ -5,8 +5,6 @@ import { ARROW_SVG } from "./icons";
 
 /** Career timeline: commit-style nodes on a rail, one card per role with its numbers and stack. */
 export default function AboutExperience() {
-    const companies = EXPERIENCE.filter((item) => item.kind === "work").length;
-
     return (
         <section className="xp-section pt-120 pb-120">
             <div className="container">
@@ -17,20 +15,6 @@ export default function AboutExperience() {
                         <p className="neutral-500 fz-font-lg mb-30">
                             Building fintech, telecom, and enterprise systems since 2023.
                         </p>
-                        <ul className="xp-facts">
-                            <li>
-                                <span className="xp-facts__value">3+</span>
-                                years in production
-                            </li>
-                            <li>
-                                <span className="xp-facts__value">{companies}</span>
-                                places I&apos;ve worked
-                            </li>
-                            <li>
-                                <span className="xp-facts__value">2</span>
-                                countries shipped to
-                            </li>
-                        </ul>
                         <a href={PROFILE.cvUrl} download className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
                             <span>
                                 <span className="text-1">Download CV</span>
@@ -48,7 +32,7 @@ export default function AboutExperience() {
                             {EXPERIENCE.map((item) => (
                                 <li
                                     key={item.period}
-                                    className={`xp-item${item.current ? " is-current" : ""}${item.kind === "education" ? " xp-item--edu" : ""}`}
+                                    className={`xp-item${item.current ? " is-current" : ""}`}
                                 >
                                     <span className="xp-item__node" aria-hidden />
                                     <div className="xp-item__head">

@@ -37,7 +37,7 @@ const FAQ_ITEMS = [
         id: "collapseFour",
         num: "4",
         question: "Are you available for new opportunities?",
-        answer: "I'm open to full stack and backend roles in Saudi Arabia, UAE, Qatar, and remote roles in Europe. I would need visa sponsorship.",
+        answer: "Yes. I'm open to full stack and backend roles, either on-site after relocation or fully remote. Relocation would need visa sponsorship.",
         open: false,
     },
     {

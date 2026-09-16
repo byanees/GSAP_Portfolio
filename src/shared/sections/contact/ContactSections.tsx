@@ -39,7 +39,7 @@ const DETAILS = [
     { label: "LinkedIn", value: "in/ianees", href: "https://www.linkedin.com/in/ianees/" },
     { label: "Upwork", value: "Hire on Upwork", href: "https://www.upwork.com/freelancers/~017655f3515038fc66" },
     { label: "Based in", value: "Islamabad, Pakistan (PKT, UTC+5)" },
-    { label: "Open to", value: "Saudi Arabia · UAE · Qatar · Remote (EU)" },
+    { label: "Open to", value: "Full-time roles & freelance projects" },
 ];
 
 function EyebrowLabel({ children }: { children: string }) {

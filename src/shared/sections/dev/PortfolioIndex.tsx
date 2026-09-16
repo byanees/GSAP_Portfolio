@@ -64,45 +64,51 @@ export default function PortfolioIndex() {
                             <h3 className="mb-0">Earlier client work</h3>
                         </div>
                         <div className="col-lg-5 ms-auto text-lg-end">
-                            <p className="neutral-500 mb-0">[ Frontend and full stack products, 2023–2024 ]</p>
+                            <p className="neutral-500 mb-0">
+                                Products I built for clients before moving into fintech full time, most of them still live.
+                            </p>
                         </div>
                     </div>
-                    <ul className="project-list">
+                    <div className="row g-4">
                         {PROJECTS.map((p) => (
-                            <li key={p.slug} className="project-row">
-                                <div>
-                                    <span className="project-row__meta">{p.meta}</span>
-                                    <h4 className="project-row__title">{p.title}</h4>
-                                </div>
-                                <div>
-                                    <p className="project-row__desc">{p.description}</p>
-                                    <StackTags tags={p.stack} />
-                                </div>
-                                <ul className="project-row__results">
-                                    {p.results.map((r) => (
-                                        <li key={r.label}>
-                                            <strong>{r.value}</strong>
-                                            <span>{r.label}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="project-row__action">
-                                    {p.link && (
-                                        <a
-                                            href={p.link.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="project-row__link"
-                                            aria-label={`${p.title}: ${p.link.label}`}
-                                            title={p.link.label}
-                                        >
-                                            {ARROW_SVG}
-                                        </a>
-                                    )}
-                                </div>
-                            </li>
+                            <div key={p.slug} className="col-lg-6">
+                                <article className="web-card h-100">
+                                    <div className="web-card__bar">
+                                        <span className="code-card__dots" aria-hidden>
+                                            <i />
+                                            <i />
+                                            <i />
+                                        </span>
+                                        <span className="web-card__url">{p.domain ?? "Client-owned build"}</span>
+                                    </div>
+                                    <div className="web-card__body">
+                                        <div className="web-card__top">
+                                            <span className="code-card__meta">{p.meta}</span>
+                                            <span className="web-card__role">{p.role}</span>
+                                        </div>
+                                        <h3 className="web-card__title">{p.title}</h3>
+                                        <p className="web-card__desc">{p.description}</p>
+                                        <ul className="web-card__metrics">
+                                            {p.results.map((r) => (
+                                                <li key={r.label}>
+                                                    <strong>{r.value}</strong>
+                                                    <span>{r.label}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <StackTags tags={p.stack} />
+                                        {p.href ? (
+                                            <a href={p.href} target="_blank" rel="noopener noreferrer" className="web-card__visit">
+                                                Visit {p.domain} {ARROW_SVG}
+                                            </a>
+                                        ) : (
+                                            <span className="web-card__private">No public link, the client owns this one</span>
+                                        )}
+                                    </div>
+                                </article>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             </section>
         </>

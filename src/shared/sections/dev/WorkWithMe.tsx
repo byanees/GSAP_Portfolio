@@ -60,7 +60,7 @@ export default function WorkWithMe() {
                             </p>
                             <ul className="engage-card__list">
                                 <li>Based in {PROFILE.location}, {PROFILE.timezone}</li>
-                                <li>Open to Saudi Arabia, UAE, Qatar, and remote across Europe</li>
+                                <li>Open to relocation or fully remote roles</li>
                                 <li>Visa sponsorship needed for relocation</li>
                             </ul>
                             <div className="engage-card__actions">
