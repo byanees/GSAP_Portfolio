@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import Logo from "@/shared/Logo";
+import { ELSEWHERE } from "@/data/profile";
 
 const ARROW_SVG = (
   <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -21,10 +22,6 @@ const SOCIAL_ARROW = (
 );
 
 const FOOTER_SERVICES = ["Backend Engineering", "Frontend Development", "Fintech & Payments", "Cloud & DevOps"];
-
-const SOCIAL_LINKS = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/ianees/" },
-] as const;
 
 function FooterServiceTag({ label }: { label: string }) {
   return (
@@ -81,9 +78,6 @@ const Footer2 = forwardRef<HTMLElement, Record<string, never>>(function Footer2(
                       <Link to="/about">About</Link>
                     </li>
                     <li className="mb-15">
-                      <Link to="/services">Services</Link>
-                    </li>
-                    <li className="mb-15">
                       <Link to="/portfolio">Portfolio</Link>
                     </li>
                     <li className="mb-15">
@@ -94,18 +88,31 @@ const Footer2 = forwardRef<HTMLElement, Record<string, never>>(function Footer2(
                     </li>
                   </ul>
                 </div>
+                <div className="alt-footer-link-item col-6">
+                  <ul>
+                    {ELSEWHERE.map(({ label, href, download }) => (
+                      <li key={label} className="mb-15">
+                        <a href={href} {...(download ? { download: true } : { target: "_blank", rel: "noopener noreferrer" })}>
+                          {label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
 
             <div className="col-lg-3 col-md-6 flex-column justify-content-lg-end d-none d-md-flex">
-              <p className="footer-2-follow-label text-white opacity-50 text-uppercase small mb-3">Connect</p>
+              <p className="footer-2-follow-label text-white opacity-50 text-uppercase small mb-3">Status</p>
+              <p className="footer-status mb-3">
+                <span className="contact-status__dot" aria-hidden />
+                Open to full stack &amp; backend roles
+              </p>
               <div className="at-footer-widget at-footer-link">
                 <div className="at-hero-social">
-                  {SOCIAL_LINKS.map(({ label, href }) => (
-                    <a key={label} href={href} target="_blank" rel="noopener noreferrer">
-                      {label} {SOCIAL_ARROW}
-                    </a>
-                  ))}
+                  <Link to="/contact">
+                    Start a conversation {SOCIAL_ARROW}
+                  </Link>
                 </div>
               </div>
             </div>

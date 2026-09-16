@@ -1,32 +1,21 @@
 import PageMeta from "@/seo/PageMeta";
-import Section2 from "@/shared/sections/index-4/Section2";
-import Section1 from "@/shared/sections/index-4/Section1";
 import Section3 from "@/shared/sections/index-4/Section3";
-import Section6 from "@/shared/sections/index-1/Section6";
-import Section8 from "@/shared/sections/index-1/Section8";
-import Section7 from "@/shared/sections/index-4/Section7";
-import Section5 from "@/shared/sections/index-10/Section5";
-import Section4 from "@/shared/sections/index-4/Section4";
-import Section55 from "@/shared/sections/index-2/Section55"
-import Section9 from "@/shared/sections/index-1/Section9";
-import Section10 from "@/shared/sections/index-1/Section10";
-import Section11 from "@/shared/sections/index-1/Section11";
-import Section12 from "@/shared/sections/index-1/Section12";
-import Section13 from "@/shared/sections/index-1/Section13";
+import HomeCaseStudies from "@/shared/sections/dev/HomeCaseStudies";
+import HomeCta from "@/shared/sections/dev/HomeCta";
+import HomeHero from "@/shared/sections/dev/HomeHero";
+import HomeWhatIDo from "@/shared/sections/dev/HomeWhatIDo";
+import Recommendations from "@/shared/sections/dev/Recommendations";
 
-export default function Home11Page() {
+export default function Home16Page() {
   return (
     <>
       <PageMeta title="Muhammad Anees — Full Stack Engineer" />
-      <Section1 />
-      <Section2 />
+      <HomeHero />
+      <HomeWhatIDo />
       <Section3 />
-      <Section4 />
-      <Section7 />
-      <Section55 />
-
-
-
+      <HomeCaseStudies />
+      <Recommendations muted />
+      <HomeCta />
     </>
   );
 }

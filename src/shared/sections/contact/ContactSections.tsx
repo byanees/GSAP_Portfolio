@@ -39,6 +39,7 @@ const DETAILS = [
     { label: "LinkedIn", value: "in/ianees", href: "https://www.linkedin.com/in/ianees/" },
     { label: "Upwork", value: "Hire on Upwork", href: "https://www.upwork.com/freelancers/~017655f3515038fc66" },
     { label: "Based in", value: "Islamabad, Pakistan (PKT, UTC+5)" },
+    { label: "Open to", value: "Full-time roles & freelance projects" },
 ];
 
 function EyebrowLabel({ children }: { children: string }) {
@@ -90,7 +91,7 @@ export function ContactHero() {
                         <div className="d-flex flex-column align-items-start align-items-lg-end gap-3">
                             <span className="contact-status neutral-500">
                                 <span className="contact-status__dot" aria-hidden />
-                                [ Open to full stack &amp; backend roles ]
+                                Open to full stack &amp; backend roles
                             </span>
                             <a
                                 href={`mailto:${EMAIL}`}
@@ -129,7 +130,7 @@ export function ContactForm() {
         const company = form.company.trim();
         const subject = `Project enquiry from ${form.name.trim()}${company ? ` (${company})` : ""}`;
         const body = [
-            "Hi Muhammad,",
+            "Hi Anees,",
             "",
             `My name is ${form.name.trim()}${company ? ` and I work at ${company}` : ""}.`,
             topics.length ? `I'm reaching out about: ${topics.join(", ")}.` : null,
@@ -173,16 +174,13 @@ export function ContactForm() {
                                 </li>
                             ))}
                         </ul>
-                        <p className="neutral-500 fz-font-md mt-30 mb-0">
-                            [ Available for roles in Saudi Arabia, UAE, Qatar, and remote across Europe. Visa sponsorship needed. ]
-                        </p>
                     </div>
 
                     <div className="col-xl-7 col-lg-7 ms-lg-auto">
                         <EyebrowLabel>Write me a note</EyebrowLabel>
                         <form className="contact-letter" onSubmit={handleSubmit}>
                             <p className="contact-letter__text">
-                                Hi Muhammad, my name is{" "}
+                                Hi Anees, my name is{" "}
                                 <Blank label="Your name" name="name" placeholder="your name" value={form.name} onChange={update("name")} required autoComplete="name" />
                                 {" "}and I work at{" "}
                                 <span className="text-nowrap">

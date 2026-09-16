@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
 import Logo from "@/shared/Logo";
+import { ELSEWHERE } from "@/data/profile";
 
 const ARROW_SVG = (
   <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -36,7 +37,6 @@ const SOCIAL_LINKS = [
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -125,7 +125,15 @@ export default function Footer1() {
                     </ul>
                   </div>
                   <div className="alt-footer-link-item col-6">
-
+                    <ul>
+                      {ELSEWHERE.map(({ label, href, download }) => (
+                        <li key={label} className="mb-15">
+                          <a href={href} {...(download ? { download: true } : { target: "_blank", rel: "noopener noreferrer" })}>
+                            {label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>

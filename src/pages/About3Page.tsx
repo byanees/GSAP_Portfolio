@@ -1,24 +1,23 @@
 import PageMeta from "@/seo/PageMeta";
-import Section1 from "@/shared/sections/about-3/Section1";
-import Section2 from "@/shared/sections/about-3/Section2";
-import Section3 from "@/shared/sections/about-3/Section3";
 import Section4 from "@/shared/sections/about-3/Section4";
-import Section5 from "@/shared/sections/about-3/Section5";
-import Section6 from "@/shared/sections/about-3/Section6";
 import Section7 from "@/shared/sections/about-3/Section7";
+import AboutExperience from "@/shared/sections/dev/AboutExperience";
+import AboutHero from "@/shared/sections/dev/AboutHero";
+import AboutStack from "@/shared/sections/dev/AboutStack";
+import WorkWithMe from "@/shared/sections/dev/WorkWithMe";
+import TechTicker from "@/shared/sections/services-2/Section2";
 
 export default function About3Page() {
   return (
     <>
       <PageMeta title="Muhammad Anees — About" />
-                <Section1 />
-                <Section2 />
-                <Section3 />
-                <Section4 />
-                <Section5 />
-                <Section6 />
-                <Section7 />
-            
+      <AboutHero />
+      <TechTicker />
+      <Section4 />
+      <AboutExperience />
+      <AboutStack />
+      <WorkWithMe />
+      <Section7 />
     </>
   );
 }

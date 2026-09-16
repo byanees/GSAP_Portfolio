@@ -5,10 +5,10 @@ import OdometerCounter from "@/shared/elements/OdometerCounter";
 // About 3 Section 4 - Stats (Years of Practice, Deployments, Partners)
 
 const STATS = [
-    { count: 4000, prefix: undefined as React.ReactNode, suffix: "+", label: "Merchants on Request to Pay" },
-    { count: 700, prefix: undefined as React.ReactNode, suffix: "K+", label: "Notifications Dispatched in Minutes" },
-    { count: 30, prefix: undefined as React.ReactNode, suffix: "%", label: "Payment Errors Reduced" },
-    { count: 10, prefix: undefined as React.ReactNode, suffix: "+", label: "Microservices Architected" },
+    { count: 60, prefix: undefined as React.ReactNode, suffix: "K+", label: "Merchants on Payment Infrastructure" },
+    { count: 800, prefix: undefined as React.ReactNode, suffix: "K", label: "Push Notifications per Run" },
+    { count: 600, prefix: undefined as React.ReactNode, suffix: "K+", label: "Concurrent Sessions Handled" },
+    { count: 30, prefix: undefined as React.ReactNode, suffix: "%", label: "Fewer Payment Errors" },
     { count: 3, prefix: undefined as React.ReactNode, suffix: "+", label: "Years of Experience" },
 ];
 
@@ -20,7 +20,7 @@ export default function Section4() {
                     <div className="col-lg-8">
                         <h3 className="reveal-text">
                             <RevealText>
-                                Real Impact — Systems Built, Merchants Onboarded, Messages Delivered
+                                Impact in numbers, from systems running in production
                             </RevealText>
                         </h3>
                     </div>
