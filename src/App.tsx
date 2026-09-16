@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import MainLayout from "@/layouts/MainLayout";
 import About3Page from "@/pages/About3Page";
 import Archive4Page from "@/pages/Archive4Page";
@@ -7,7 +7,6 @@ import Contact2Page from "@/pages/Contact2Page";
 import Home16Page from "@/pages/Home16Page";
 import Portfolio3Page from "@/pages/Portfolio3Page";
 import PortfolioDetails3Page from "@/pages/PortfolioDetails3Page";
-import Services2Page from "@/pages/Services2Page";
 import NotFoundPage from "@/pages/NotFoundPage";
 
 export default function App() {
@@ -18,7 +17,7 @@ export default function App() {
       </Route>
       <Route element={<MainLayout headerStyle={2} footerStyle={2} />}>
         <Route path="/about" element={<About3Page />} />
-        <Route path="/services" element={<Services2Page />} />
+        <Route path="/services" element={<Navigate to="/about" replace />} />
         <Route path="/portfolio" element={<Portfolio3Page />} />
         <Route path="/portfolio/:slug" element={<PortfolioDetails3Page />} />
         <Route path="/blog" element={<Archive4Page />} />

@@ -17,8 +17,7 @@ export default function HomeCta() {
                         <p className="availability mt-30 mb-0">
                             <span className="contact-status__dot" aria-hidden />
                             <span>
-                                Open to full stack &amp; backend roles in <strong>{PROFILE.relocationCountries}</strong>, or{" "}
-                                <strong>remote across Europe</strong>.
+                                Open to <strong>full stack &amp; backend roles</strong>, and to scoped freelance work.
                             </span>
                         </p>
                     </div>

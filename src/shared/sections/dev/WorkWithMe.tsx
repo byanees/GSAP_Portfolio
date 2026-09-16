@@ -40,7 +40,7 @@ function UnderlineLink({ href, label, external = false, download = false }: { hr
 
 export default function WorkWithMe() {
     return (
-        <section className="work-with-me pt-120 pb-120">
+        <section id="work-with-me" className="work-with-me pt-120 pb-80 border-top-100">
             <div className="container">
                 <div className="row pb-60 g-4 align-items-end">
                     <div className="col-lg-7">

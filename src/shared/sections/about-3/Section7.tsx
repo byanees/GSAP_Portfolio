@@ -40,6 +40,20 @@ const FAQ_ITEMS = [
         answer: "I'm open to full stack and backend roles in Saudi Arabia, UAE, Qatar, and remote roles in Europe. I would need visa sponsorship.",
         open: false,
     },
+    {
+        id: "collapseFive",
+        num: "5",
+        question: "Can you handle both frontend and backend?",
+        answer: "Yes. I build Angular micro-frontends and React apps on the frontend and .NET microservices on the backend, and I've shipped features end to end across both.",
+        open: false,
+    },
+    {
+        id: "collapseSix",
+        num: "6",
+        question: "Do you take freelance or contract work?",
+        answer: "Yes, for well-scoped backend or full stack work. You can hire me through Upwork or contract directly, and we agree on the scope before any code is written.",
+        open: false,
+    },
 ];
 
 export default function Section7({ classList = "" }: { classList?: string }) {

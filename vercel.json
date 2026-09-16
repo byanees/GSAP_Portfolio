@@ -2,7 +2,8 @@
   "redirects": [
     { "source": "/index-16", "destination": "/", "permanent": true },
     { "source": "/about-3", "destination": "/about", "permanent": true },
-    { "source": "/services-2", "destination": "/services", "permanent": true },
+    { "source": "/services-2", "destination": "/about", "permanent": true },
+    { "source": "/services", "destination": "/about", "permanent": true },
     { "source": "/portfolio-3", "destination": "/portfolio", "permanent": true },
     { "source": "/portfolio-details-3", "destination": "/portfolio", "permanent": true },
     { "source": "/portfolio-details-3/:slug", "destination": "/portfolio/:slug", "permanent": true },
