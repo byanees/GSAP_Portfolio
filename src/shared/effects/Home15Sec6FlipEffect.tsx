@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 type GsapContext = { revert: () => void };
 
 /**
- * Home 15 sec-6 — scroll-scrubbed 3D flip (rotateX) on each member card.
+ * Home 15 sec-6 - scroll-scrubbed 3D flip (rotateX) on each member card.
  * Card enters viewport tilted back (75deg), un-tilts to flat as it scrolls
  * from "top bottom" to "top 30%". Mirrors main.js block above #20.
  */

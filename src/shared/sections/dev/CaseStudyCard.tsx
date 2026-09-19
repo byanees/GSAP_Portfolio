@@ -22,9 +22,9 @@ export default function CaseStudyCard({ cs }: { cs: CaseStudy }) {
                 <span className="code-card__meta">
                     {cs.company}, {cs.period}
                 </span>
-                <h5 className="code-card__title">
+                <h3 className="h5 code-card__title">
                     <Link to={href}>{cs.title}</Link>
-                </h5>
+                </h3>
                 <p className="code-card__summary">{cs.summary}</p>
                 {headline && (
                     <div className="code-card__result">

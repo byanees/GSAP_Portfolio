@@ -9,7 +9,7 @@ import Recommendations from "@/shared/sections/dev/Recommendations";
 export default function Home16Page() {
   return (
     <>
-      <PageMeta title="Muhammad Anees — Full Stack Engineer" />
+      <PageMeta title="Muhammad Anees - Full Stack Engineer" />
       <HomeHero />
       <HomeWhatIDo />
       <Section3 />

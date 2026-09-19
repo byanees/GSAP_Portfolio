@@ -25,7 +25,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "EMV QR Payments & Request to Pay",
     company: "DPL",
     role: "Software Engineer, led Request to Pay delivery",
-    period: "2024 – 2026",
+    period: "2024 - 2026",
     featured: true,
     summary:
       "Designed a peer-to-peer QR payment system on the EMV standard, and led delivery of Request to Pay across the mobile app and USSD.",
@@ -47,20 +47,20 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Bulk Push Notification Scheduler",
     company: "DPL",
     role: "Software Engineer",
-    period: "2024 – 2026",
+    period: "2024 - 2026",
     featured: true,
     summary:
-      "Built a scheduler that dispatches 700–800k push notifications per run in 6–8 minutes, with multilingual payloads for Android and Huawei devices.",
+      "Built a scheduler that dispatches 700-800k push notifications per run in 6-8 minutes, with multilingual payloads for Android and Huawei devices.",
     problem:
       "Large campaigns and alerts had to reach hundreds of thousands of devices quickly, in each user's language, across two different push platforms.",
     built: [
-      "Built a bulk push notification scheduler dispatching 700–800k notifications in 6–8 minutes",
+      "Built a bulk push notification scheduler dispatching 700-800k notifications in 6-8 minutes",
       "Supported multilingual payloads so each user receives the message in their language",
       "Targeted both Android and Huawei (HMS) devices from the same scheduler",
     ],
     results: [
-      { value: "700–800k", label: "notifications per run" },
-      { value: "6–8 min", label: "to dispatch a full run" },
+      { value: "700-800k", label: "notifications per run" },
+      { value: "6-8 min", label: "to dispatch a full run" },
     ],
     stack: [".NET", "Schedulers", "Android push", "HMS Push"],
   },
@@ -70,7 +70,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Telecom Agent Apps for Tanzania & Togo",
     company: "DPL",
     role: "Led development and a small engineering team",
-    period: "2024 – 2026",
+    period: "2024 - 2026",
     region: "Tanzania & Togo",
     featured: true,
     summary:
@@ -94,7 +94,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Qualification Certificate Workflow",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
-    period: "2026 – Present",
+    period: "2026 - Present",
     summary:
       "Built the qualification certificate issuance workflow end to end: payment, reviewer assignment, approval, and role-based access.",
     problem:
@@ -116,7 +116,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Backend Aggregation Layer & Analytics Dashboards",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
-    period: "2026 – Present",
+    period: "2026 - Present",
     summary:
       "Built a caching aggregation layer in front of five downstream services, and shipped analytics dashboards for the Online Travel Agency and Admin portals.",
     problem:
@@ -138,7 +138,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Batch Validation for Bulk Corporate Payments",
     company: "DPL",
     role: "Software Engineer",
-    period: "2024 – 2026",
+    period: "2024 - 2026",
     summary:
       "Built a batch validation scheduler that detects errors before bulk corporate payments are processed, reducing processing errors by 30%.",
     problem:

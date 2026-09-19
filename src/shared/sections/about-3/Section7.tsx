@@ -72,14 +72,14 @@ export default function Section7({ classList = "" }: { classList?: string }) {
                                 {ARROW_SVG}
                             </i>
                         </span>
-                        <h3 className="section-title lh-1 reveal-text">
+                        <h2 className="h3 section-title lh-1 reveal-text">
                             <RevealText>
                                 Frequently <br />Asked Questions
                             </RevealText>
-                        </h3>
-                        <h6 className="fz-font-lg fw-500">
-                            Your questions about my experience, skills, <br className="d-none d-xxl-block" />and availability—answered.
-                        </h6>
+                        </h2>
+                        <p className="fz-font-lg fw-500 neutral-900">
+                            Your questions about my experience, skills, <br className="d-none d-xxl-block" />and availability, answered.
+                        </p>
                     </div>
                     <div className="col-lg-7 ms-lg-auto">
                         <div className="accordion pt-80" id="accordionExample">

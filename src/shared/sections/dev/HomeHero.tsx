@@ -58,7 +58,7 @@ export default function HomeHero() {
                         </div>
 
                         <div className="dev-hero__footer">
-                            <h2 className="dev-hero__brand text-scale-anim mb-4">Muhammad Anees</h2>
+                            <p className="dev-hero__brand text-scale-anim mb-4" aria-hidden="true">Muhammad Anees</p>
                             <div className="row">
                                 {HERO_LINKS.map((item) => (
                                     <div key={item.label} className="col-lg-3 col-md-6 col-12 text-center">

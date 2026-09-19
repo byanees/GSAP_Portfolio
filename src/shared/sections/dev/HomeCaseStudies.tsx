@@ -15,9 +15,9 @@ export default function HomeCaseStudies() {
                     <div className="row align-items-end g-4">
                         <div className="col-lg-6">
                             <Eyebrow>case studies</Eyebrow>
-                            <h3 className="reveal-text mb-0">
+                            <h2 className="h3 reveal-text mb-0">
                                 <RevealText>Production systems, with the numbers to show for it</RevealText>
-                            </h3>
+                            </h2>
                         </div>
                         <div className="col-lg-3 ms-auto d-flex justify-content-lg-end">
                             <div className="at-btn-group at-btn-group-transparent">

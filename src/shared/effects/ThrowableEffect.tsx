@@ -47,7 +47,7 @@ export default function ThrowableEffect() {
         let cancelled = false;
 
         (async () => {
-            // throwable.js calls gsap.to / gsap.quickSetter / gsap.utils — expose globally
+            // throwable.js calls gsap.to / gsap.quickSetter / gsap.utils - expose globally
             const gsap = (await import("gsap")).default;
             (window as WindowWithGlobals).gsap = gsap;
 
@@ -63,7 +63,7 @@ export default function ThrowableEffect() {
             }
 
             // throwable.js auto-inits via $(document).ready, but on client-side route
-            // changes that callback may not fire — call init manually for idempotency.
+            // changes that callback may not fire - call init manually for idempotency.
             const w = window as WindowWithGlobals;
             const $ = w.jQuery;
             if ($ && $.fn && typeof $.fn.tThrowable === "function") {

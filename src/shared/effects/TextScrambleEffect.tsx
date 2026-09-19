@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const CHARS = "!<>-_\\/[]{}—=+*^?#________ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const CHARS = "!<>-_\\/[]{}-=+*^?#________ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const pickChar = () => CHARS[Math.floor(Math.random() * CHARS.length)];
 
 type ScrambleState = HTMLElement & { _scrambling?: boolean };

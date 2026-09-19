@@ -2021,3 +2021,232 @@ a.contact-info__value:hover svg {
     min-width: 70%;
   }
 }
+
+/* ==========================================================================
+   UX audit pass - accessibility, typographic and layout corrections
+   ========================================================================== */
+
+/* Skip link: visually hidden until focused, then pinned above the sticky header. */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 8px;
+  z-index: 9999;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--at-neutral-900, #0b0b0b);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Shown on any focus, not only :focus-visible - a skip link reached by keyboard
+   must appear even where the browser withholds the focus-visible heuristic. */
+.skip-link:focus {
+  top: 8px;
+  outline: 2px solid #00d4aa;
+  outline-offset: 2px;
+}
+
+/* Baseline focus ring. Component rules can override, but nothing is left
+   without a visible focus state for keyboard users. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+/* Headings anchored from the URL should not hide under the sticky header. */
+:where(h1, h2, h3, h4, h5, h6, [id]) {
+  scroll-margin-top: 120px;
+}
+
+/* Removes the 300ms double-tap delay on touch targets. */
+a,
+button,
+input,
+textarea,
+select,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+/* Long single-token strings (email addresses) must wrap rather than clip. */
+.footer-email,
+.footer-email a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: none;
+}
+
+/* Stats and ticker items lost their heading tags; keep the visual weight. */
+.stat-figure {
+  font-size: 70px;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+  color: var(--at-neutral-900);
+}
+
+@media screen and (min-width: 1401px) {
+  .stat-figure {
+    font-size: 84px;
+  }
+}
+
+.ticker-item__label {
+  color: var(--at-neutral-900);
+  line-height: 1.2;
+}
+
+/* Section sub-paragraph, stacked under its headline instead of floating in a
+   right-hand column (split-header pattern). */
+.section-lead {
+  max-width: 58ch;
+  font-size: 17px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* Headlines should not leave a widow on the last line. */
+h1,
+h2,
+h3,
+h4,
+.dev-hero__headline {
+  text-wrap: balance;
+}
+
+/* "What I do": lead panel plus a stacked list, instead of four identical cards. */
+.dev-card--lead {
+  justify-content: space-between;
+  padding: 36px;
+  background: var(--at-neutral-900);
+  border-color: var(--at-neutral-900);
+}
+
+.dev-card--lead .dev-card__title {
+  color: var(--at-neutral-0);
+}
+
+.dev-card--lead .dev-card__desc,
+.dev-card--lead .stack-line {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.dev-card--lead .stack-line {
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+.dev-card--lead .stack-line__label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dev-card--lead:hover {
+  border-color: var(--at-neutral-900);
+}
+
+.dev-stack-list {
+  display: grid;
+  gap: 12px;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dev-stack-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 28px;
+  background: var(--at-neutral-0);
+  border: 1px solid var(--at-neutral-100);
+  border-radius: 20px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.dev-stack-list__item:hover {
+  border-color: var(--at-neutral-900);
+  transform: translateY(-3px);
+}
+
+.dev-stack-list__item .stack-line {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--at-neutral-100);
+}
+
+.dev-stack-list__item .dev-card__desc {
+  flex-grow: 0;
+}
+
+@media (max-width: 991px) {
+  .dev-card--lead {
+    padding: 28px;
+  }
+
+  .dev-stack-list {
+    margin-top: 12px;
+  }
+}
+
+/* Case study body headings (were eyebrow labels with no heading at all). */
+.case-section__title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  color: var(--at-neutral-900);
+}
+
+/* Reduced motion: everything decorative settles to its end state. */
+@media (prefers-reduced-motion: reduce) {
+  .dev-card,
+  .dev-stack-list__item {
+    transition: none;
+  }
+
+  .dev-card:hover,
+  .dev-stack-list__item:hover {
+    transform: none;
+  }
+}
+
+/* Ticker: pause control and a static fallback under reduced motion. */
+.ticker-toggle {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  z-index: 2;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--at-neutral-900);
+  background: var(--at-neutral-0);
+  border: 1px solid var(--at-neutral-100);
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sec-2-services:hover .ticker-toggle,
+.ticker-toggle:focus-visible {
+  opacity: 1;
+}
+
+.ticker-static .carouselTicker__list {
+  flex-wrap: wrap;
+}

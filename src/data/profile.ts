@@ -16,9 +16,9 @@ export const PROFILE = {
   /** Set to an image path (e.g. "/assets/imgs/me/portrait.webp") to replace the About page placeholder. */
   portrait: null as string | null,
   heroLead:
-    "Full Stack Engineer with 3+ years building fintech, telco, and enterprise platforms. Now building distributed systems on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.",
+    "3+ years building fintech, telco, and enterprise platforms. Now on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.",
   summary:
-    "I've delivered payment infrastructure for 60,000+ merchants and a push notification scheduler that processes 700–800k messages per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
+    "I've delivered payment infrastructure for 60,000+ merchants and a push notification scheduler that processes 700-800k messages per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
 };
 
 export const ELSEWHERE = [
@@ -43,7 +43,7 @@ export type ExperienceItem = {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    period: "Jan 2026 — Present",
+    period: "Jan 2026 - Present",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
     location: "Islamabad, PK",
@@ -57,7 +57,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: [".NET 9", "ABP.io", "Angular", "DDD", "HyperPay"],
   },
   {
-    period: "Aug 2024 — Jan 2026",
+    period: "Aug 2024 - Jan 2026",
     company: "DPL",
     role: "Software Engineer",
     location: "Islamabad, PK",
@@ -65,14 +65,14 @@ export const EXPERIENCE: ExperienceItem[] = [
       "Led development of enterprise telecom agent apps for Tanzania and Togo, managing a small engineering team, and built payment and messaging systems at scale.",
     highlights: [
       { value: "4,000+", label: "merchants on Request to Pay" },
-      { value: "700–800k", label: "notifications per run" },
+      { value: "700-800k", label: "notifications per run" },
       { value: "600k+", label: "concurrent sessions" },
       { value: "30%", label: "fewer payment errors" },
     ],
     stack: [".NET 8", "Microservices", "Redis", "EMV QR"],
   },
   {
-    period: "Dec 2023 — Aug 2024",
+    period: "Dec 2023 - Aug 2024",
     company: "Axontick Technologies",
     role: "Full Stack Developer",
     location: "Remote",
@@ -86,7 +86,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: ["React", ".NET Core", "Stripe", "PassportJS"],
   },
   {
-    period: "Mar 2023 — Aug 2023",
+    period: "Mar 2023 - Aug 2023",
     company: "LantroTech & Bytewise",
     role: "Web Developer & MERN Stack Fellow",
     location: "Islamabad, PK",

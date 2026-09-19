@@ -91,7 +91,7 @@ export default function CarouselTickerEffect() {
             ticker.addEventListener("mouseenter", stop);
             ticker.addEventListener("mouseleave", start);
 
-            // Pause when the ticker is offscreen — no point animating hidden elements.
+            // Pause when the ticker is offscreen - no point animating hidden elements.
             const io = new IntersectionObserver(([entry]) => {
                 if (entry.isIntersecting) start();
                 else stop();

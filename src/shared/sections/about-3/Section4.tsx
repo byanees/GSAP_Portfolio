@@ -18,24 +18,24 @@ export default function Section4() {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8">
-                        <h3 className="reveal-text">
+                        <h2 className="h3 reveal-text">
                             <RevealText>
                                 Impact in numbers, from systems running in production
                             </RevealText>
-                        </h3>
+                        </h2>
                     </div>
                     <div className="pt-100">
                         <div className="d-flex flex-wrap align-items-center justify-content-lg-between justify-content-center gap-md-5 gap-4">
                             {STATS.map((item, i) => (
                                 <div key={i} className="text-center">
-                                    <h1 className="fw-600 mb-0">
+                                    <p className="stat-figure fw-600 mb-0">
                                         <OdometerCounter
                                             count={item.count}
                                             prefix={item.prefix}
                                             suffix={item.suffix}
                                         />
-                                    </h1>
-                                    <h6 className="fw-500 fz-font-md neutral-500 mb-0">{item.label}</h6>
+                                    </p>
+                                    <p className="fw-500 fz-font-md neutral-500 mb-0">{item.label}</p>
                                 </div>
                             ))}
                         </div>

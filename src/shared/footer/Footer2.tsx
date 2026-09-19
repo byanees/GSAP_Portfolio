@@ -52,17 +52,19 @@ const Footer2 = forwardRef<HTMLElement, Record<string, never>>(function Footer2(
                   </Link>
                 </div>
                 <div className="d-flex flex-column gap-3">
-                  <h6 className="text-white mb-2 fw-medium">+923390004208</h6>
-                  <h6 className="text-white mb-2">
+                  <p className="h6 text-white mb-2 fw-medium">
+                    <a href="tel:+923390004208" className="text-white text-decoration-none">+92 339 000 4208</a>
+                  </p>
+                  <p className="h6 text-white mb-2 footer-email">
                     <a href="mailto:aneese421@gmail.com" className="text-white text-decoration-none">
                       aneese421@gmail.com
                     </a>
-                  </h6>
-                  <h6 className="text-white mb-0">
+                  </p>
+                  <p className="h6 text-white mb-0">
                     Islamabad,
                     <br />
                     Pakistan
-                  </h6>
+                  </p>
                 </div>
               </div>
             </div>

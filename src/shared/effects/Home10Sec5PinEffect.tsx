@@ -6,7 +6,7 @@ type GsapContext = { revert: () => void };
  * Pin chain for Home 10 sec-5: keeps the intro row anchored at viewport top
  * while stats scroll past. Each stat (--1, --2) also pins until stat--3 reaches
  * the top, so the three numbers stack visually before the section releases.
- * Mirrors `main.js` "Home 10 sec-5 — pin the intro-row" + step-pin stats.
+ * Mirrors `main.js` "Home 10 sec-5 - pin the intro-row" + step-pin stats.
  */
 export default function Home10Sec5PinEffect() {
     const ctxRef = useRef<GsapContext | null>(null);

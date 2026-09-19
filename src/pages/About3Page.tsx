@@ -10,7 +10,7 @@ import TechTicker from "@/shared/sections/services-2/Section2";
 export default function About3Page() {
   return (
     <>
-      <PageMeta title="Muhammad Anees — About" />
+      <PageMeta title="Muhammad Anees - About" />
       <AboutHero />
       <TechTicker />
       <Section4 />

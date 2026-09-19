@@ -6,7 +6,7 @@ import { ARROW_SVG } from "./icons";
 const LINKS = [
     { label: "Follow on LinkedIn", href: PROFILE.linkedin, external: true },
     { label: "Suggest a topic", href: "/contact" },
-    { label: "Read the case studies", href: "/portfolio" },
+    { label: "View case studies", href: "/portfolio" },
 ];
 
 /** Blog-only closing section: follow along, suggest a topic, or jump to the work. */

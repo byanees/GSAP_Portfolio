@@ -6,7 +6,7 @@ export const useTheme = () => {
     const [theme, setTheme] = useState<Theme>("light");
     const [isMounted, setIsMounted] = useState(false);
 
-    // Persist + apply — only called from user actions (toggle / setThemeMode).
+    // Persist + apply - only called from user actions (toggle / setThemeMode).
     // Visiting /index-*-dark must NOT auto-write to localStorage; the URL-forced
     // dark theme is applied by theme-init.js / ThemeRouteSync to data-bs-theme only.
     const persistTheme = useCallback((newTheme: Theme) => {

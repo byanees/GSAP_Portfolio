@@ -61,7 +61,7 @@ export default function SmoothScrollEffect() {
 
       if (!mounted) return;
 
-      // ScrollSmoother — let any plugin error surface in console for diagnostics.
+      // ScrollSmoother - let any plugin error surface in console for diagnostics.
       if (smoothWrapper && smoothContent) {
         const ScrollSmootherMod = await import("gsap/ScrollSmoother");
         const ScrollSmoother = ScrollSmootherMod.default as unknown as {
@@ -115,7 +115,7 @@ export default function SmoothScrollEffect() {
   }, []);
 
   // Re-scan `[data-speed]` / `[data-lag]` only on SUBSEQUENT route changes (not the initial
-  // render — `effects: true` at create time already scanned). ScrollSmoother only auto-scans
+  // render - `effects: true` at create time already scanned). ScrollSmoother only auto-scans
   // once, so SPA navigation needs us to re-apply manually for the new page's sections.
   const firstRenderRef = useRef(true);
   useEffect(() => {

@@ -1,7 +1,6 @@
 import RevealText from "@/shared/effects/RevealText";
 import { PROFILE } from "@/data/profile";
 import { RECOMMENDATIONS } from "@/data/recommendations";
-import Eyebrow from "./Eyebrow";
 import { ARROW_SVG } from "./icons";
 
 function initials(name: string) {
@@ -16,10 +15,9 @@ export default function Recommendations({ muted = false }: { muted?: boolean }) 
             <div className="container">
                 <div className="row align-items-end g-4 pb-50">
                     <div className="col-lg-7">
-                        <Eyebrow>recommendations</Eyebrow>
-                        <h3 className="reveal-text mb-0">
+                        <h2 className="h3 reveal-text mb-0">
                             <RevealText>What colleagues say</RevealText>
-                        </h3>
+                        </h2>
                     </div>
                     <div className="col-lg-4 ms-auto text-lg-end">
                         <a

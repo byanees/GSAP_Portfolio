@@ -4,11 +4,11 @@ type GsapContext = { revert: () => void };
 type ScrollTriggerInstance = { progress?: number; isActive?: () => boolean };
 
 /**
- * GSAP ScrollTrigger effects — mirror of NextJS/components/effects/ScrollSectionEffects.tsx:
- * 24. postbox-scroll-zoom — pin .postbox-item, clip-path reveal 200×100 → full, play btn fade at 0.78
- * 32. section-fix        — pin section, stack .item (scale + yPercent), sync .active on items + .navigation-active-item
- * 33. section-title-pin  — (min-width: 1400px) pin .section-title-pin when not inside .section-fix
- * 51. scroll-section     — card stacking for .scroll-section (vertical/horizontal) when not inside .section-fix
+ * GSAP ScrollTrigger effects - mirror of NextJS/components/effects/ScrollSectionEffects.tsx:
+ * 24. postbox-scroll-zoom - pin .postbox-item, clip-path reveal 200×100 → full, play btn fade at 0.78
+ * 32. section-fix        - pin section, stack .item (scale + yPercent), sync .active on items + .navigation-active-item
+ * 33. section-title-pin  - (min-width: 1400px) pin .section-title-pin when not inside .section-fix
+ * 51. scroll-section     - card stacking for .scroll-section (vertical/horizontal) when not inside .section-fix
  */
 export default function ScrollSectionEffects() {
   const ctxRef = useRef<GsapContext | null>(null);
@@ -33,7 +33,7 @@ export default function ScrollSectionEffects() {
       const ctx = (gsap as unknown as {
         context: (fn: () => void) => GsapContext;
       }).context(() => {
-        // —— 24. postbox-scroll-zoom (clip-path inset reveal 200×100 → full, marquee fade, play btn at 0.78) ——
+        // -- 24. postbox-scroll-zoom (clip-path inset reveal 200×100 → full, marquee fade, play btn at 0.78) --
         document.querySelectorAll<HTMLElement>(".postbox-scroll-zoom").forEach((section) => {
           const itemwrap = section.querySelector<HTMLElement>(".postbox-item");
           const img = section.querySelector<HTMLElement>(".postbox-scroll-zoom-img");
@@ -95,7 +95,7 @@ export default function ScrollSectionEffects() {
           tl.call(() => section.classList.add("postbox-scroll-zoom-ready"), [], 0.78);
         });
 
-        // —— 32. section-fix (pin section-title + stacking cards + active nav) ——
+        // -- 32. section-fix (pin section-title + stacking cards + active nav) --
         const sectionFixList = document.querySelectorAll<HTMLElement>(".section-fix");
         sectionFixList.forEach((sectionFix) => {
           const sectionTitlePin = sectionFix.querySelector(".section-title-pin");
@@ -160,7 +160,7 @@ export default function ScrollSectionEffects() {
           });
         });
 
-        // —— 33. section-title-pin (min-width: 1400px, skip if inside .section-fix) ——
+        // -- 33. section-title-pin (min-width: 1400px, skip if inside .section-fix) --
         gsap.matchMedia().add("(min-width: 1400px)", () => {
           const panels = document.querySelectorAll<HTMLElement>(".section-title-pin");
           panels.forEach((section) => {
@@ -179,7 +179,7 @@ export default function ScrollSectionEffects() {
           });
         });
 
-        // —— 51. scroll-section card stacking (skip if inside .section-fix) ——
+        // -- 51. scroll-section card stacking (skip if inside .section-fix) --
         const initScroll = (
           section: HTMLElement,
           items: NodeListOf<HTMLElement>,

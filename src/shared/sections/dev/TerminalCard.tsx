@@ -13,7 +13,7 @@ const LINES: Line[] = [
     { kind: "json", text: "}" },
     { kind: "cmd", text: "./impact --top 3" },
     { kind: "out", text: "✓ 60,000+ merchants on payment infrastructure" },
-    { kind: "out", text: "✓ 700–800k push notifications per run, in 6–8 min" },
+    { kind: "out", text: "✓ 700-800k push notifications per run, in 6-8 min" },
     { kind: "out", text: "✓ 600k+ concurrent sessions, no Redis pool exhaustion" },
     { kind: "cmd", text: "status" },
     { kind: "ok", text: "● open to full stack & backend roles" },

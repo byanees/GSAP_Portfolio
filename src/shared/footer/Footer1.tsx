@@ -85,12 +85,14 @@ export default function Footer1() {
             </div>
             <div className="col-xxl-3 col-lg-5 col-md-8 ms-lg-auto text-lg-end">
               <div className="at-footer-title-wrap">
-                <h6 className="text-white">+923390004208</h6>
-                <h4 className="text-white text-decoration-underline text-wrap">
+                <p className="h6 text-white mb-0">
+                  <a href="tel:+923390004208" className="text-white">+92 339 000 4208</a>
+                </p>
+                <p className="h4 text-white text-decoration-underline footer-email mb-0">
                   <a href="mailto:aneese421@gmail.com" className="text-white text-decoration-underline">
                     aneese421@gmail.com
                   </a>
-                </h4>
+                </p>
                 <div className="at-footer-widget at-footer-link pt-50">
                   <div className="at-hero-social justify-content-lg-end">
                     {SOCIAL_LINKS.map(({ label, href }) => (
@@ -138,9 +140,9 @@ export default function Footer1() {
                 </div>
               </div>
               <div className="col-xxl-9 col-lg-8 col-12 text-lg-end">
-                <h1 className="fz-160 common-white mb-0 text-scale-anim">
+                <p className="fz-160 common-white mb-0 text-scale-anim" aria-hidden="true">
                   Muhammad Anees
-                </h1>
+                </p>
               </div>
             </div>
           </div>
@@ -163,7 +165,7 @@ export default function Footer1() {
               </div>
               <div className="col-lg-2">
                 <div className="at-footer-copyright-wrap text-lg-end">
-                  <span className="at-footer-copyright">[ Since 2023 ]</span>
+                  <span className="at-footer-copyright">Building since 2023</span>
                 </div>
               </div>
             </div>

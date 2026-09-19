@@ -1,12 +1,13 @@
 (function () {
+    function apply(theme) {
+        document.documentElement.setAttribute("data-bs-theme", theme);
+        // Keeps native scrollbars, form controls and date pickers in step with the theme.
+        document.documentElement.style.colorScheme = theme;
+    }
     try {
         var theme = localStorage.getItem("theme");
-        if (theme === "light" || theme === "dark") {
-            document.documentElement.setAttribute("data-bs-theme", theme);
-        } else {
-            document.documentElement.setAttribute("data-bs-theme", "light");
-        }
+        apply(theme === "light" || theme === "dark" ? theme : "light");
     } catch (e) {
-        document.documentElement.setAttribute("data-bs-theme", "light");
+        apply("light");
     }
 })();

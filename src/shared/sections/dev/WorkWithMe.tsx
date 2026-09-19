@@ -45,16 +45,16 @@ export default function WorkWithMe() {
                 <div className="row pb-60 g-4 align-items-end">
                     <div className="col-lg-7">
                         <Eyebrow>two ways to work together</Eyebrow>
-                        <h3 className="reveal-text mb-0">
+                        <h2 className="h3 reveal-text mb-0">
                             <RevealText>Hire me full-time, or bring me in for a project</RevealText>
-                        </h3>
+                        </h2>
                     </div>
                 </div>
 
                 <div className="row g-4">
                     <div className="col-lg-6">
                         <article className="engage-card">
-                            <h3 className="mb-0">Full-time roles</h3>
+                            <h3 className="h4 mb-0">Full-time roles</h3>
                             <p className="neutral-500 mb-0">
                                 Full stack or backend roles where reliability matters: fintech, telecom, and enterprise platforms.
                             </p>
@@ -71,7 +71,7 @@ export default function WorkWithMe() {
                     </div>
                     <div className="col-lg-6">
                         <article className="engage-card">
-                            <h3 className="mb-0">Freelance &amp; contract</h3>
+                            <h3 className="h4 mb-0">Freelance &amp; contract</h3>
                             <p className="neutral-500 mb-0">
                                 Scoped backend or full stack work: APIs, payment integrations, dashboards, or moving an existing .NET or React codebase forward.
                             </p>
@@ -81,21 +81,20 @@ export default function WorkWithMe() {
                             </ul>
                             <div className="engage-card__actions">
                                 <UnderlineLink href={PROFILE.upwork} label="Hire on Upwork" external />
-                                <UnderlineLink href="/contact" label="Describe your project" />
                             </div>
                         </article>
                     </div>
                 </div>
 
                 <div className="row pt-120 pb-40">
-                    <div className="col-lg-6">
-                        <Eyebrow>what I can help with</Eyebrow>
+                    <div className="col-lg-7">
+                        <h2 className="h3 mb-0">What I can help with</h2>
                     </div>
                 </div>
                 <ul className="expertise-list">
                     {EXPERTISE.map((item) => (
                         <li key={item.key} className="expertise-row">
-                            <h4 className="expertise-row__title">{item.title}</h4>
+                            <h3 className="h4 expertise-row__title">{item.title}</h3>
                             <p className="expertise-row__desc">{item.description}</p>
                             <StackTags tags={item.tags} label="Tools I use" />
                         </li>

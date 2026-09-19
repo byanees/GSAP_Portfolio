@@ -3,15 +3,6 @@ import RevealText from "@/shared/effects/RevealText";
 
 // Home 4 Section 3 - How we work / Process cards
 
-const ARROW_SVG = (
-    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-            d="M0.21967 9.40717C-0.0732232 9.70006 -0.0732232 10.1749 0.21967 10.4678C0.512563 10.7607 0.987437 10.7607 1.28033 10.4678L0.21967 9.40717ZM10.6875 0.75C10.6875 0.335786 10.3517 2.97145e-09 9.9375 1.50485e-07L3.1875 -2.70983e-07C2.77329 -2.70983e-07 2.4375 0.335786 2.4375 0.75C2.4375 1.16421 2.77329 1.5 3.1875 1.5H9.1875V7.5C9.1875 7.91421 9.52329 8.25 9.9375 8.25C10.3517 8.25 10.6875 7.91421 10.6875 7.5L10.6875 0.75ZM0.75 9.9375L1.28033 10.4678L10.4678 1.28033L9.9375 0.75L9.40717 0.21967L0.21967 9.40717L0.75 9.9375Z"
-            fill="currentColor"
-        />
-    </svg>
-);
-
 const ARROW_CIRCLE = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">
         <path
@@ -91,21 +82,11 @@ export default function Section3() {
                 <div className="container p-relative z-1">
                     <div className="row align-items-end g-4">
                         <div className="col-lg-6 col-md-10">
-                            <span className="at-btn common-black text-uppercase bg-transparent mb-10 rounded-0 p-0">
-                                <span className="text-uppercase">
-                                    <span className="text-1">HOW I WORK</span>
-                                    <span className="text-2">HOW I WORK</span>
-                                </span>
-                                <i>
-                                    {ARROW_SVG}
-                                    {ARROW_SVG}
-                                </i>
-                            </span>
-                            <h3 className="reveal-text mb-0">
+                            <h2 className="h3 reveal-text mb-0">
                                 <RevealText>
                                     A disciplined process built for production-grade systems
                                 </RevealText>
-                            </h3>
+                            </h2>
                         </div>
                         <div className="col-lg-3 ms-auto d-flex justify-content-lg-end">
                             <div
@@ -136,7 +117,7 @@ export default function Section3() {
                                         <span className="card__process-num">{card.num}</span>
                                     </div>
                                     <div className="card__process-content">
-                                        <h6 className="card__process-title">{card.title}</h6>
+                                        <h3 className="h6 card__process-title">{card.title}</h3>
                                         <p className="card__process-desc">{card.description}</p>
                                         <div className="card__process-divider" />
                                     </div>

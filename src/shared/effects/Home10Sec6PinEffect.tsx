@@ -5,7 +5,7 @@ type GsapContext = { revert: () => void };
 /**
  * Pin `.sec-6-home-10__title-block` once it crosses 60% viewport, releasing
  * when the section bottom reaches 10% viewport. Desktop ≥1200px only.
- * Mirrors `main.js` "Home 10 sec-6 — pin the title-block".
+ * Mirrors `main.js` "Home 10 sec-6 - pin the title-block".
  */
 export default function Home10Sec6PinEffect() {
     const ctxRef = useRef<GsapContext | null>(null);

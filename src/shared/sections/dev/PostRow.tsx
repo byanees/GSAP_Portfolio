@@ -13,9 +13,9 @@ export default function PostRow({ post }: { post: Post }) {
                 </span>
             </div>
             <div>
-                <h4 className="post-row__title">
+                <h2 className="h4 post-row__title">
                     <Link to={href}>{post.title}</Link>
-                </h4>
+                </h2>
                 <p className="post-row__excerpt">{post.excerpt}</p>
             </div>
             <Link to={href} className="project-row__link" aria-label={`Read: ${post.title}`}>

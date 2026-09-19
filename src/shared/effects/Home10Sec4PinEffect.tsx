@@ -5,7 +5,7 @@ type GsapContext = { revert: () => void };
 /**
  * Pin `.sec-4-home-10__title-block` at viewport mid-line while cards continue
  * scrolling underneath, releasing once the section bottom reaches 10% viewport.
- * Desktop only (≥992px). Mirrors `main.js` "Home 10 sec-4 — pin the title-block".
+ * Desktop only (≥992px). Mirrors `main.js` "Home 10 sec-4 - pin the title-block".
  */
 export default function Home10Sec4PinEffect() {
     const ctxRef = useRef<GsapContext | null>(null);

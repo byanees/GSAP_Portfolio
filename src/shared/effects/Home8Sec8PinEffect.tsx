@@ -5,7 +5,7 @@ type GsapContext = { revert: () => void };
 /**
  * Pin `.sec-8-home-8__stage` while scrubbing `.sec-8-home-8__group` cards upward,
  * so the center title stays visible at 10% viewport while testimonial cards stream
- * past it. Mirrors `main.js` "Home 8 sec-8 — pin stage" block.
+ * past it. Mirrors `main.js` "Home 8 sec-8 - pin stage" block.
  */
 export default function Home8Sec8PinEffect() {
     const ctxRef = useRef<GsapContext | null>(null);
