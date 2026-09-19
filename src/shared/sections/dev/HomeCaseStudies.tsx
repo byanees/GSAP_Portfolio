@@ -34,9 +34,9 @@ export default function HomeCaseStudies() {
                         </div>
                     </div>
 
-                    <div className="row g-4 pt-60">
+                    <div className="row g-4 pt-60" data-reveal-group>
                         {featured.map((cs) => (
-                            <div key={cs.slug} className="col-lg-4 col-md-6">
+                            <div key={cs.slug} className="col-lg-4 col-md-6" data-reveal>
                                 <CaseStudyCard cs={cs} />
                             </div>
                         ))}

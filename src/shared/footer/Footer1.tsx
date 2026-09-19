@@ -76,7 +76,7 @@ export default function Footer1() {
                       What Scales
                     </RevealText>
                   </h4>
-                  <p className="mb-0">
+                  <p className="footer-tagline mb-0">
                     Full stack engineering, fintech solutions, <br />
                     and scalable systems built with modern tools.
                   </p>

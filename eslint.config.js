@@ -8,6 +8,11 @@ export default [
   { ignores: ["dist/**", "public/**", "disk/**", "1.Orisa_development/**", "3.Orisa-Nextjs/**", "scripts/**"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  // Build-time config files run in Node, not the browser.
+  {
+    files: ["*.config.js", "*.config.ts"],
+    languageOptions: { globals: { ...globals.node } },
+  },
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {

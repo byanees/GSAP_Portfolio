@@ -5,7 +5,7 @@ import { ARROW_SVG } from "./icons";
 export default function PostRow({ post }: { post: Post }) {
     const href = `/blog/${post.slug}`;
     return (
-        <li className="post-row">
+        <li className="post-row" data-reveal>
             <div className="post-row__meta">
                 <span className="post-row__date">{formatPostDate(post.date)}</span>
                 <span>

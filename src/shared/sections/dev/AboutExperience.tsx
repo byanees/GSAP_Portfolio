@@ -28,11 +28,12 @@ export default function AboutExperience() {
                     </div>
 
                     <div className="col-lg-8">
-                        <ol className="xp-list">
+                        <ol className="xp-list" data-reveal-group>
                             {EXPERIENCE.map((item) => (
                                 <li
                                     key={item.period}
                                     className={`xp-item${item.current ? " is-current" : ""}`}
+                                    data-reveal
                                 >
                                     <span className="xp-item__node" aria-hidden />
                                     <div className="xp-item__head">

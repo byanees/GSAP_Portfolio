@@ -38,9 +38,9 @@ export default function Recommendations({ muted = false }: { muted?: boolean }) 
                     </div>
                 </div>
 
-                <div className="reco-grid">
+                <div className="reco-grid" data-reveal-group>
                     {RECOMMENDATIONS.map((r) => (
-                        <figure key={r.name} className={`reco-card${muted ? " reco-card--light" : ""}`}>
+                        <figure key={r.name} className={`reco-card${muted ? " reco-card--light" : ""}`} data-reveal>
                             <blockquote className="reco-card__quote">
                                 {r.text.split("\n\n").map((paragraph, i) => (
                                     <p key={i}>{paragraph}</p>

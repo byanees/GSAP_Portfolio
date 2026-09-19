@@ -21,9 +21,9 @@ export default function HomeWhatIDo() {
                     </div>
 
                     {/* Asymmetric split: the lead discipline gets a full panel, the rest read as a stacked list. */}
-                    <div className="row g-3">
+                    <div className="row g-3" data-reveal-group>
                         <div className="col-lg-5">
-                            <article className="dev-card dev-card--lead h-100">
+                            <article className="dev-card dev-card--lead h-100" data-reveal>
                                 <h3 className="h5 dev-card__title">{lead.title}</h3>
                                 <p className="dev-card__desc">{lead.description}</p>
                                 <StackTags tags={lead.tags} label="Tools I use" />
@@ -32,7 +32,7 @@ export default function HomeWhatIDo() {
                         <div className="col-lg-7">
                             <ul className="dev-stack-list">
                                 {rest.map((item) => (
-                                    <li key={item.key} className="dev-stack-list__item">
+                                    <li key={item.key} className="dev-stack-list__item" data-reveal>
                                         <h3 className="h5 dev-card__title">{item.title}</h3>
                                         <p className="dev-card__desc">{item.description}</p>
                                         <StackTags tags={item.tags} label="Tools I use" />

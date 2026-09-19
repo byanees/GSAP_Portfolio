@@ -45,9 +45,9 @@ export default function PortfolioIndex() {
                             <h2 className="h3 mb-0">Production systems</h2>
                         </div>
                     </div>
-                    <div className="row g-4">
+                    <div className="row g-4" data-reveal-group>
                         {CASE_STUDIES.map((cs) => (
-                            <div key={cs.slug} className="col-lg-6">
+                            <div key={cs.slug} className="col-lg-6" data-reveal>
                                 <CaseStudyCard cs={cs} />
                             </div>
                         ))}
@@ -68,9 +68,9 @@ export default function PortfolioIndex() {
                             </p>
                         </div>
                     </div>
-                    <div className="row g-4">
+                    <div className="row g-4" data-reveal-group>
                         {PROJECTS.map((p) => (
-                            <div key={p.slug} className="col-lg-6">
+                            <div key={p.slug} className="col-lg-6" data-reveal>
                                 <article className="web-card h-100">
                                     <div className="web-card__bar">
                                         <span className="code-card__dots" aria-hidden>

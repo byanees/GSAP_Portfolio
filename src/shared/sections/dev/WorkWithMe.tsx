@@ -91,9 +91,9 @@ export default function WorkWithMe() {
                         <h2 className="h3 mb-0">What I can help with</h2>
                     </div>
                 </div>
-                <ul className="expertise-list">
+                <ul className="expertise-list" data-reveal-group>
                     {EXPERTISE.map((item) => (
-                        <li key={item.key} className="expertise-row">
+                        <li key={item.key} className="expertise-row" data-reveal>
                             <h3 className="h4 expertise-row__title">{item.title}</h3>
                             <p className="expertise-row__desc">{item.description}</p>
                             <StackTags tags={item.tags} label="Tools I use" />

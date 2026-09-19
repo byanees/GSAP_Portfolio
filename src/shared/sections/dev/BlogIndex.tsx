@@ -13,7 +13,7 @@ export default function BlogIndex() {
                         <p className="section-lead neutral-500 mb-0">Backend, payments, and scaling lessons from production work.</p>
                     </div>
                 </div>
-                <ul className="post-list">
+                <ul className="post-list" data-reveal-group>
                     {POSTS.map((post) => (
                         <PostRow key={post.slug} post={post} />
                     ))}
