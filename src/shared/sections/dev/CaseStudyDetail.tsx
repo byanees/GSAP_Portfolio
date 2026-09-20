@@ -62,9 +62,9 @@ export default function CaseStudyDetail() {
 
             <section className="pb-100">
                 <div className="container">
-                    <div className="cs-results">
+                    <div className="cs-results" data-reveal-group>
                         {cs.results.map((r) => (
-                            <div key={r.label} className="cs-result">
+                            <div key={r.label} className="cs-result" data-reveal>
                                 <span className="cs-result__value">{r.value}</span>
                                 <span className="cs-result__label">{r.label}</span>
                             </div>

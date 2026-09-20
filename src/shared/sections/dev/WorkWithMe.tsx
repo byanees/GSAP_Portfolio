@@ -50,9 +50,9 @@ export default function WorkWithMe() {
                     </div>
                 </div>
 
-                <div className="row g-4">
+                <div className="row g-4" data-reveal-group>
                     <div className="col-lg-6">
-                        <article className="engage-card">
+                        <article className="engage-card" data-reveal>
                             <h3 className="h4 mb-0">Full-time roles</h3>
                             <p className="neutral-500 mb-0">
                                 Full stack or backend roles where reliability matters: fintech, telecom, and enterprise platforms.
@@ -69,7 +69,7 @@ export default function WorkWithMe() {
                         </article>
                     </div>
                     <div className="col-lg-6">
-                        <article className="engage-card">
+                        <article className="engage-card" data-reveal>
                             <h3 className="h4 mb-0">Freelance &amp; contract</h3>
                             <p className="neutral-500 mb-0">
                                 Scoped backend or full stack work: APIs, payment integrations, dashboards, or moving an existing .NET or React codebase forward.

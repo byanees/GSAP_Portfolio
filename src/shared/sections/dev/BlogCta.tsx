@@ -24,9 +24,9 @@ export default function BlogCta() {
                             </p>
                         </div>
                         <div className="col-lg-4 ms-auto">
-                            <ul className="blog-cta__links">
+                            <ul className="blog-cta__links" data-reveal-group>
                                 {LINKS.map((link) => (
-                                    <li key={link.label}>
+                                    <li key={link.label} data-reveal>
                                         {link.external ? (
                                             <a href={link.href} target="_blank" rel="noopener noreferrer">
                                                 <span>{link.label}</span>

@@ -82,11 +82,12 @@ export default function Section7({ classList = "" }: { classList?: string }) {
                         </p>
                     </div>
                     <div className="col-lg-7 ms-lg-auto">
-                        <div className="accordion pt-80" id="accordionExample">
+                        <div className="accordion pt-80" id="accordionExample" data-reveal-group>
                             {FAQ_ITEMS.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="at-faq-item bg-neutral-0 border-100 scroll-move-up rounded-4"
+                                    className="at-faq-item bg-neutral-0 border-100 rounded-4"
+                                    data-reveal
                                 >
                                     <div className="at-faq-header d-flex gap-2">
                                         <div className="box-number">

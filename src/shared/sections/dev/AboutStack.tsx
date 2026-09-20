@@ -40,13 +40,14 @@ export default function AboutStack() {
                     </div>
 
                     <div className="arch" onMouseLeave={() => setPaused(false)}>
-                        <ol className="arch__layers">
+                        <ol className="arch__layers" data-reveal-group>
                             {STACK_LAYERS.map((layer, i) => {
                                 const used = CASE_STUDIES.filter((cs) => layer.usedIn.includes(cs.slug));
                                 return (
                                     <li
                                         key={layer.key}
                                         className={`arch-layer${i === active ? " is-active" : ""}`}
+                                        data-reveal
                                         tabIndex={0}
                                         onMouseEnter={() => focusLayer(i)}
                                         onFocus={() => focusLayer(i)}

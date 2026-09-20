@@ -135,9 +135,9 @@ export function ContactForm() {
                 <div className="row g-5">
                     <div className="col-xl-4 col-lg-5">
                         <h2 className="h3 mb-40">Direct lines</h2>
-                        <ul className="contact-info" role="list">
+                        <ul className="contact-info" role="list" data-reveal-group>
                             {DETAILS.map((d, i) => (
-                                <li key={d.label} className="contact-info__item border-bottom-100">
+                                <li key={d.label} className="contact-info__item border-bottom-100" data-reveal>
                                     <span className="contact-info__index neutral-500">{String(i + 1).padStart(2, "0")}</span>
                                     <div>
                                         <span className="contact-info__label neutral-500 text-uppercase">{d.label}</span>
