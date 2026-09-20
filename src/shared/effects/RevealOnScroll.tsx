@@ -13,8 +13,8 @@ type Killable = { kill?: () => void };
  *
  * Under prefers-reduced-motion nothing is hidden and no trigger is created.
  */
-const STAGGER = 0.08;
-const MAX_STAGGER_STEPS = 5;
+const STAGGER = 0.06;
+const MAX_STAGGER_STEPS = 4;
 
 export default function RevealOnScroll() {
     const { pathname } = useLocation();
@@ -44,11 +44,13 @@ export default function RevealOnScroll() {
 
                 const tween = gsap.from(el, {
                     opacity: 0,
-                    y: 24,
-                    duration: 0.7,
+                    y: 20,
+                    duration: 0.55,
                     ease: "power3.out",
                     delay: step * STAGGER,
-                    scrollTrigger: { trigger: el, start: "top 88%", once: true },
+                    // Starts just before the element is properly in view, so a fast
+                    // scroller does not outrun it. Worst case is 0.55s + 0.24s stagger.
+                    scrollTrigger: { trigger: el, start: "top 92%", once: true },
                 });
                 created.push(tween as Killable);
                 const st = (tween as unknown as { scrollTrigger?: Killable }).scrollTrigger;

@@ -22,7 +22,7 @@ export const PROFILE = {
   aboutLead:
     "I work on the parts of a product that have to stay up: payment rails, schedulers, and the services behind them. Three years in, mostly fintech and telecom.",
   summary:
-    "I've delivered payment infrastructure for 60,000+ merchants and a push notification scheduler that processes 700-800k messages per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
+    "I've led the telecom agent apps serving 60,000+ agents across Tanzania and Togo, shipped EMV QR payments adopted by 4,000+ merchants, and built a scheduler that pushes 700-800k notifications per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
 };
 
 export const ELSEWHERE = [

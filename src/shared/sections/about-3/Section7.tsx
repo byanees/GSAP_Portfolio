@@ -23,7 +23,7 @@ const FAQ_ITEMS = [
         id: "collapseTwo",
         num: "2",
         question: "What kind of projects have you worked on?",
-        answer: "Payment infrastructure serving 60,000+ merchants, EMV QR payments and Request to Pay, telecom agent apps for Tanzania and Togo, an enterprise certificate workflow, and earlier client products like an AI assistant and a Dubai property platform.",
+        answer: "Telecom agent apps serving 60,000+ agents across Tanzania and Togo, EMV QR payments and Request to Pay adopted by 4,000+ merchants, an enterprise certificate workflow, and earlier client products like an AI assistant and a Dubai property platform.",
         open: false,
     },
     {

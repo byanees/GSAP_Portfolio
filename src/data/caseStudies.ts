@@ -75,7 +75,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Tanzania & Togo",
     featured: true,
     summary:
-      "Led development of enterprise agent apps for telecom operators in Tanzania and Togo, and removed the Redis bottleneck that threatened peak traffic.",
+      "Led development of enterprise agent apps serving 60,000+ agents for telecom operators in Tanzania and Togo, and removed the Redis bottleneck that threatened peak traffic.",
     problem:
       "At peak, 600k+ concurrent sessions were exhausting the Redis connection pool, putting the agent apps at risk of outages exactly when traffic mattered most.",
     built: [
@@ -84,6 +84,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Migrated all microservices from .NET 7 to .NET 8",
     ],
     results: [
+      { value: "60,000+", label: "agents served across Tanzania and Togo" },
       { value: "600k+", label: "concurrent sessions without pool exhaustion" },
       { value: ".NET 7 → 8", label: "migration across all microservices" },
     ],
