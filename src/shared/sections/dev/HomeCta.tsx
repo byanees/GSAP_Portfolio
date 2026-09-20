@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
 import { PROFILE } from "@/data/profile";
-import Eyebrow from "./Eyebrow";
 import { ARROW_CIRCLE_SVG, ARROW_SVG } from "./icons";
 
 export default function HomeCta() {
@@ -10,7 +9,6 @@ export default function HomeCta() {
             <div className="container">
                 <div className="row align-items-end g-5">
                     <div className="col-lg-8">
-                        <Eyebrow>let&apos;s talk</Eyebrow>
                         <h2 className="dev-cta__title reveal-text mb-0">
                             <RevealText>Building something that has to work on the first attempt?</RevealText>
                         </h2>

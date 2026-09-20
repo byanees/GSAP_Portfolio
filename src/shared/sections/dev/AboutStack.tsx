@@ -30,7 +30,7 @@ export default function AboutStack() {
                     <div className="row g-4 align-items-end pb-60">
                         <div className="col-lg-7">
                             <Eyebrow light>my stack</Eyebrow>
-                            <h3 className="text-white mb-0">From the screen to the server, what I use at every layer</h3>
+                            <h2 className="h3 text-white mb-0">From the screen to the server, what I use at every layer</h2>
                         </div>
                         <div className="col-lg-4 ms-auto text-lg-end">
                             <p className="stack-panel__intro mb-0">
@@ -40,13 +40,14 @@ export default function AboutStack() {
                     </div>
 
                     <div className="arch" onMouseLeave={() => setPaused(false)}>
-                        <ol className="arch__layers">
+                        <ol className="arch__layers" data-reveal-group>
                             {STACK_LAYERS.map((layer, i) => {
                                 const used = CASE_STUDIES.filter((cs) => layer.usedIn.includes(cs.slug));
                                 return (
                                     <li
                                         key={layer.key}
                                         className={`arch-layer${i === active ? " is-active" : ""}`}
+                                        data-reveal
                                         tabIndex={0}
                                         onMouseEnter={() => focusLayer(i)}
                                         onFocus={() => focusLayer(i)}

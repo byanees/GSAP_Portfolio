@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
-import { EXPERTISE, PROFILE } from "@/data/profile";
+import { PROFILE } from "@/data/profile";
 import Eyebrow from "./Eyebrow";
-import StackTags from "./StackTags";
 import { ARROW_SVG } from "./icons";
 
 function UnderlineLink({ href, label, external = false, download = false }: { href: string; label: string; external?: boolean; download?: boolean }) {
@@ -45,16 +44,16 @@ export default function WorkWithMe() {
                 <div className="row pb-60 g-4 align-items-end">
                     <div className="col-lg-7">
                         <Eyebrow>two ways to work together</Eyebrow>
-                        <h3 className="reveal-text mb-0">
+                        <h2 className="h3 reveal-text mb-0">
                             <RevealText>Hire me full-time, or bring me in for a project</RevealText>
-                        </h3>
+                        </h2>
                     </div>
                 </div>
 
-                <div className="row g-4">
+                <div className="row g-4" data-reveal-group>
                     <div className="col-lg-6">
-                        <article className="engage-card">
-                            <h3 className="mb-0">Full-time roles</h3>
+                        <article className="engage-card" data-reveal>
+                            <h3 className="h4 mb-0">Full-time roles</h3>
                             <p className="neutral-500 mb-0">
                                 Full stack or backend roles where reliability matters: fintech, telecom, and enterprise platforms.
                             </p>
@@ -70,8 +69,8 @@ export default function WorkWithMe() {
                         </article>
                     </div>
                     <div className="col-lg-6">
-                        <article className="engage-card">
-                            <h3 className="mb-0">Freelance &amp; contract</h3>
+                        <article className="engage-card" data-reveal>
+                            <h3 className="h4 mb-0">Freelance &amp; contract</h3>
                             <p className="neutral-500 mb-0">
                                 Scoped backend or full stack work: APIs, payment integrations, dashboards, or moving an existing .NET or React codebase forward.
                             </p>
@@ -81,26 +80,11 @@ export default function WorkWithMe() {
                             </ul>
                             <div className="engage-card__actions">
                                 <UnderlineLink href={PROFILE.upwork} label="Hire on Upwork" external />
-                                <UnderlineLink href="/contact" label="Describe your project" />
                             </div>
                         </article>
                     </div>
                 </div>
 
-                <div className="row pt-120 pb-40">
-                    <div className="col-lg-6">
-                        <Eyebrow>what I can help with</Eyebrow>
-                    </div>
-                </div>
-                <ul className="expertise-list">
-                    {EXPERTISE.map((item) => (
-                        <li key={item.key} className="expertise-row">
-                            <h4 className="expertise-row__title">{item.title}</h4>
-                            <p className="expertise-row__desc">{item.description}</p>
-                            <StackTags tags={item.tags} label="Tools I use" />
-                        </li>
-                    ))}
-                </ul>
             </div>
         </section>
     );

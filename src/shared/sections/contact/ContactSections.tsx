@@ -42,21 +42,6 @@ const DETAILS = [
     { label: "Open to", value: "Full-time roles & freelance projects" },
 ];
 
-function EyebrowLabel({ children }: { children: string }) {
-    return (
-        <span className="at-btn common-black bg-transparent mb-10 rounded-0 p-0">
-            <span className="text-uppercase">
-                <span className="text-1">{children}</span>
-                <span className="text-2">{children}</span>
-            </span>
-            <i>
-                {ARROW_SVG}
-                {ARROW_SVG}
-            </i>
-        </span>
-    );
-}
-
 /** Inline "fill in the blank" input that grows with its content. */
 function Blank({ label, value, placeholder, ...rest }: InputHTMLAttributes<HTMLInputElement> & { label: string; value: string; placeholder: string }) {
     const chars = Math.max(placeholder.length, value.length) + 1;
@@ -78,7 +63,6 @@ export function ContactHero() {
             <div className="container pb-70">
                 <div className="row align-items-end g-4">
                     <div className="col-xxl-6 col-lg-7">
-                        <EyebrowLabel>Let&apos;s build something</EyebrowLabel>
                         <h1 className="section-title fw-600 fz-ds-1 lh-1 reveal-text">
                             <RevealText>Contact</RevealText>
                         </h1>
@@ -150,11 +134,10 @@ export function ContactForm() {
             <div className="container">
                 <div className="row g-5">
                     <div className="col-xl-4 col-lg-5">
-                        <EyebrowLabel>Get in touch</EyebrowLabel>
-                        <h3 className="mb-40">Direct lines</h3>
-                        <ul className="contact-info" role="list">
+                        <h2 className="h3 mb-40">Direct lines</h2>
+                        <ul className="contact-info" role="list" data-reveal-group>
                             {DETAILS.map((d, i) => (
-                                <li key={d.label} className="contact-info__item border-bottom-100">
+                                <li key={d.label} className="contact-info__item border-bottom-100" data-reveal>
                                     <span className="contact-info__index neutral-500">{String(i + 1).padStart(2, "0")}</span>
                                     <div>
                                         <span className="contact-info__label neutral-500 text-uppercase">{d.label}</span>
@@ -177,7 +160,7 @@ export function ContactForm() {
                     </div>
 
                     <div className="col-xl-7 col-lg-7 ms-lg-auto">
-                        <EyebrowLabel>Write me a note</EyebrowLabel>
+                        <h2 className="h3 mb-40">Write me a note</h2>
                         <form className="contact-letter" onSubmit={handleSubmit}>
                             <p className="contact-letter__text">
                                 Hi Anees, my name is{" "}
@@ -209,7 +192,7 @@ export function ContactForm() {
                             <p className="contact-letter__text">
                                 You can reply to me at{" "}
                                 <span className="text-nowrap">
-                                    <Blank label="Your email" name="email" type="email" placeholder="you@company.com" value={form.email} onChange={update("email")} required autoComplete="email" />.
+                                    <Blank label="Your email" name="email" type="email" inputMode="email" spellCheck={false} placeholder="you@company.com" value={form.email} onChange={update("email")} required autoComplete="email" />.
                                 </span>{" "}
                                 Here&apos;s what I have in mind:
                             </p>
@@ -218,7 +201,7 @@ export function ContactForm() {
                                 className="contact-letter__message"
                                 name="message"
                                 aria-label="Project details"
-                                placeholder="What you're building, where it's stuck, and the timeline you're working with."
+                                placeholder="What you’re building, where it’s stuck, and the timeline you’re working with…"
                                 rows={3}
                                 value={form.message}
                                 onChange={update("message")}
@@ -249,7 +232,7 @@ export function ContactForm() {
                             </div>
                         </form>
                         <p className="neutral-500 fz-font-md mt-30 mb-0">
-                            Prefer to skip the form? <Link to="/portfolio" className="neutral-900 text-decoration-underline">Browse my work</Link> first.
+                            Prefer to skip the form? <Link to="/portfolio" className="neutral-900 text-decoration-underline">View case studies</Link> first.
                         </p>
                     </div>
                 </div>

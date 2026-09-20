@@ -16,9 +16,13 @@ export const PROFILE = {
   /** Set to an image path (e.g. "/assets/imgs/me/portrait.webp") to replace the About page placeholder. */
   portrait: null as string | null,
   heroLead:
-    "Full Stack Engineer with 3+ years building fintech, telco, and enterprise platforms. Now building distributed systems on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.",
+    "3+ years building fintech, telco, and enterprise platforms. Now on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.",
+  /** About page opening line. Deliberately different from heroLead, which the
+   *  home hero already prints. */
+  aboutLead:
+    "I work on the parts of a product that have to stay up: payment rails, schedulers, and the services behind them. Three years in, mostly fintech and telecom.",
   summary:
-    "I've delivered payment infrastructure for 60,000+ merchants and a push notification scheduler that processes 700–800k messages per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
+    "I've led the telecom agent apps serving 60,000+ agents across Tanzania and Togo, shipped EMV QR payments adopted by 4,000+ merchants, and built a scheduler that pushes 700-800k notifications per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
 };
 
 export const ELSEWHERE = [
@@ -43,7 +47,7 @@ export type ExperienceItem = {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    period: "Jan 2026 — Present",
+    period: "Jan 2026 - Present",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
     location: "Islamabad, PK",
@@ -57,7 +61,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: [".NET 9", "ABP.io", "Angular", "DDD", "HyperPay"],
   },
   {
-    period: "Aug 2024 — Jan 2026",
+    period: "Aug 2024 - Jan 2026",
     company: "DPL",
     role: "Software Engineer",
     location: "Islamabad, PK",
@@ -65,14 +69,14 @@ export const EXPERIENCE: ExperienceItem[] = [
       "Led development of enterprise telecom agent apps for Tanzania and Togo, managing a small engineering team, and built payment and messaging systems at scale.",
     highlights: [
       { value: "4,000+", label: "merchants on Request to Pay" },
-      { value: "700–800k", label: "notifications per run" },
+      { value: "700-800k", label: "notifications per run" },
       { value: "600k+", label: "concurrent sessions" },
       { value: "30%", label: "fewer payment errors" },
     ],
     stack: [".NET 8", "Microservices", "Redis", "EMV QR"],
   },
   {
-    period: "Dec 2023 — Aug 2024",
+    period: "Dec 2023 - Aug 2024",
     company: "Axontick Technologies",
     role: "Full Stack Developer",
     location: "Remote",
@@ -86,7 +90,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: ["React", ".NET Core", "Stripe", "PassportJS"],
   },
   {
-    period: "Mar 2023 — Aug 2023",
+    period: "Mar 2023 - Aug 2023",
     company: "LantroTech & Bytewise",
     role: "Web Developer & MERN Stack Fellow",
     location: "Islamabad, PK",
@@ -168,3 +172,27 @@ export const STACK_LAYERS = [
 ];
 
 export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "QR / TLV encoding", "AI-assisted development"];
+
+/** Education and certifications, from the CV. */
+export const EDUCATION = {
+  degree: "BS Computer Science",
+  school: "COMSATS University Islamabad",
+  period: "Sept 2020 - June 2024",
+  coursework: [
+    "Data Structures & Algorithms",
+    "Database Systems",
+    "Operating Systems",
+    "Object Oriented Programming",
+    "Machine Learning & DevOps",
+  ],
+};
+
+export const CERTIFICATIONS = [
+  "Cybersecurity Essentials V3",
+  "OWASP 2021: Web Application Security Awareness",
+];
+
+export const LANGUAGES = [
+  { name: "English", level: "Fluent" },
+  { name: "Urdu", level: "Native" },
+];

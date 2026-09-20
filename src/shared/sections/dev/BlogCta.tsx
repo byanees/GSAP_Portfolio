@@ -6,7 +6,7 @@ import { ARROW_SVG } from "./icons";
 const LINKS = [
     { label: "Follow on LinkedIn", href: PROFILE.linkedin, external: true },
     { label: "Suggest a topic", href: "/contact" },
-    { label: "Read the case studies", href: "/portfolio" },
+    { label: "View case studies", href: "/portfolio" },
 ];
 
 /** Blog-only closing section: follow along, suggest a topic, or jump to the work. */
@@ -24,9 +24,9 @@ export default function BlogCta() {
                             </p>
                         </div>
                         <div className="col-lg-4 ms-auto">
-                            <ul className="blog-cta__links">
+                            <ul className="blog-cta__links" data-reveal-group>
                                 {LINKS.map((link) => (
-                                    <li key={link.label}>
+                                    <li key={link.label} data-reveal>
                                         {link.external ? (
                                             <a href={link.href} target="_blank" rel="noopener noreferrer">
                                                 <span>{link.label}</span>

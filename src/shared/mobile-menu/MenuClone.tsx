@@ -76,7 +76,9 @@ export default function MenuClone() {
         btn.className = "at-menu-close";
         btn.setAttribute("aria-expanded", "false");
         btn.setAttribute("aria-label", "Toggle submenu");
-        btn.innerHTML = '<i class="fa-solid fa-plus"></i>';
+        btn.innerHTML =
+          '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
+          '<path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
         parentLi.appendChild(btn);
       });
 

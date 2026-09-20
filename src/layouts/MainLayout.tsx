@@ -3,38 +3,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import PopupSearch from "@/shared/PopupSearch";
 import Header1 from "@/shared/header/Header1";
 import Header2 from "@/shared/header/Header2";
-import Header3 from "@/shared/header/Header3";
-import Header4 from "@/shared/header/Header4";
-import Header5 from "@/shared/header/Header5";
-import Header7 from "@/shared/header/Header7";
-import Header8 from "@/shared/header/Header8";
-import Header9 from "@/shared/header/Header9";
-import Header10 from "@/shared/header/Header10";
-import Header12 from "@/shared/header/Header12";
-import Header13 from "@/shared/header/Header13";
-import Header14 from "@/shared/header/Header14";
-import Header15 from "@/shared/header/Header15";
-import Header16 from "@/shared/header/Header16";
 import Footer1 from "@/shared/footer/Footer1";
 import Footer2 from "@/shared/footer/Footer2";
-import Footer3 from "@/shared/footer/Footer3";
-import Footer4 from "@/shared/footer/Footer4";
-import Footer5 from "@/shared/footer/Footer5";
-import Footer6 from "@/shared/footer/Footer6";
-import Footer7 from "@/shared/footer/Footer7";
-import Footer8 from "@/shared/footer/Footer8";
-import Footer9 from "@/shared/footer/Footer9";
-import Footer10 from "@/shared/footer/Footer10";
-import Footer11 from "@/shared/footer/Footer11";
-import Footer12 from "@/shared/footer/Footer12";
-import Footer13 from "@/shared/footer/Footer13";
-import Footer14 from "@/shared/footer/Footer14";
-import Footer15 from "@/shared/footer/Footer15";
 import SideBar from "@/shared/sidebar/SideBar";
 import { MobileMenuCloneProvider } from "@/shared/mobile-menu/MobileMenuCloneContext";
 import GlobalEffects from "@/shared/effects/GlobalEffects";
 import ThemeRouteSync from "@/shared/effects/ThemeRouteSync";
 import BackToTop from "@/shared/elements/BackToTop";
+import ContactDock from "@/shared/elements/ContactDock";
 import SmoothScrollEffect from "@/shared/effects/SmoothScrollEffect";
 
 type HeaderHandlers = {
@@ -47,38 +23,13 @@ type HeaderHandlers = {
 const HEADER_COMPONENTS: Record<number, React.ComponentType<HeaderHandlers>> = {
   1: Header1,
   2: Header2,
-  3: Header3,
-  4: Header4,
-  5: Header5,
-  6: Header1, // fallback
-  7: Header7,
-  8: Header8,
-  9: Header9,
-  10: Header10,
-  11: Header1, // fallback
-  12: Header12,
-  13: Header13,
-  14: Header14,
-  15: Header15,
-  16: Header16,
 };
 
-const FOOTER_COMPONENTS: Record<number, React.ComponentType> = {
+type FooterProps = { ref?: React.Ref<HTMLElement> };
+
+const FOOTER_COMPONENTS: Record<number, React.ComponentType<FooterProps>> = {
   1: Footer1,
-  2: Footer2 as unknown as React.ComponentType,
-  3: Footer3,
-  4: Footer4,
-  5: Footer5,
-  6: Footer6,
-  7: Footer7,
-  8: Footer8,
-  9: Footer9,
-  10: Footer10,
-  11: Footer11,
-  12: Footer12,
-  13: Footer13,
-  14: Footer14,
-  15: Footer15,
+  2: Footer2,
 };
 
 export type MainLayoutProps = {
@@ -160,13 +111,12 @@ export default function MainLayout({
     return () => document.removeEventListener("click", onClick);
   }, []);
 
-  // Sticky header on scroll (mirrors useHeaderInteractive behaviour for all headers)
+  // Flags the header once the page has scrolled, so it can lift off the content.
   useEffect(() => {
-    const el = document.getElementById("header-sticky");
-    if (!el) return;
+    const header = document.querySelector("header");
+    if (!header) return;
     const onScroll = () => {
-      const y = window.scrollY ?? window.pageYOffset;
-      el.classList.toggle("header-sticky", y >= 20);
+      header.classList.toggle("is-stuck", (window.scrollY ?? window.pageYOffset) >= 20);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -194,7 +144,7 @@ export default function MainLayout({
 
       <div id="smooth-wrapper">
         <div id="smooth-content" className="z-index-3">
-          <main className={mainClass}>
+          <main id="main-content" tabIndex={-1} className={mainClass}>
             <Outlet />
           </main>
           {!noFooter && isFooterFloating ? <div className="footer-placeholder" aria-hidden="true" /> : null}
@@ -204,6 +154,7 @@ export default function MainLayout({
       </div>
 
       <BackToTop />
+      <ContactDock />
     </MobileMenuCloneProvider>
   );
 }

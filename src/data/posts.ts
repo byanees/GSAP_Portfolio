@@ -76,7 +76,7 @@ public sealed class SessionStore(IConnectionMultiplexer redis)
 <ul>
   <li><code>00</code> Payload format indicator, always <code>01</code></li>
   <li><code>01</code> Point of initiation: <code>11</code> for static, <code>12</code> for dynamic</li>
-  <li><code>26</code>–<code>51</code> Merchant account information (nested TLV)</li>
+  <li><code>26</code>-<code>51</code> Merchant account information (nested TLV)</li>
   <li><code>52</code> Merchant category code</li>
   <li><code>53</code> Transaction currency, ISO 4217 numeric (for example <code>834</code> for TZS)</li>
   <li><code>54</code> Transaction amount, used in dynamic codes</li>
@@ -140,7 +140,7 @@ payload += Crc16(payload);</code></pre>
     readTime: "6 min read",
     tags: [".NET", "Messaging", "Scalability"],
     bodyHtml: `
-<p>At DPL I built a scheduler that dispatches 700–800k push notifications per run in 6–8 minutes, to Android and Huawei (HMS) devices, in multiple languages. Sending one notification is easy. Sending hundreds of thousands without falling over, and without anyone receiving the same message twice, is the interesting part.</p>
+<p>At DPL I built a scheduler that dispatches 700-800k push notifications per run in 6-8 minutes, to Android and Huawei (HMS) devices, in multiple languages. Sending one notification is easy. Sending hundreds of thousands without falling over, and without anyone receiving the same message twice, is the interesting part.</p>
 
 <h2>Start from the deadline</h2>
 <p>800k messages in 8 minutes is roughly 1,700 per second, sustained. That one number drives most of the design: batch size, how many workers run in parallel, and how much headroom is left for retries. Doing the arithmetic first saves a lot of guessing later.</p>

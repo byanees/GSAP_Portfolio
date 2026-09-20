@@ -2,7 +2,6 @@ import { Link, useParams } from "react-router-dom";
 import PageMeta from "@/seo/PageMeta";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import CaseStudyCard from "./CaseStudyCard";
-import Eyebrow from "./Eyebrow";
 import StackTags from "./StackTags";
 
 export default function CaseStudyDetail() {
@@ -13,7 +12,7 @@ export default function CaseStudyDetail() {
     if (!cs) {
         return (
             <section className="pt-150 pb-120">
-                <PageMeta title="Muhammad Anees — Case study not found" />
+                <PageMeta title="Muhammad Anees - Case study not found" />
                 <div className="container">
                     <h1 className="fz-ds-1 fw-500 lh-1">Case study not found</h1>
                     <Link to="/portfolio" className="cs-back mt-30">
@@ -34,7 +33,7 @@ export default function CaseStudyDetail() {
 
     return (
         <>
-            <PageMeta title={`Muhammad Anees — ${cs.title}`} />
+            <PageMeta title={`Muhammad Anees - ${cs.title}`} />
 
             <section className="pt-150 pb-80">
                 <div className="container">
@@ -63,9 +62,9 @@ export default function CaseStudyDetail() {
 
             <section className="pb-100">
                 <div className="container">
-                    <div className="cs-results">
+                    <div className="cs-results" data-reveal-group>
                         {cs.results.map((r) => (
-                            <div key={r.label} className="cs-result">
+                            <div key={r.label} className="cs-result" data-reveal>
                                 <span className="cs-result__value">{r.value}</span>
                                 <span className="cs-result__label">{r.label}</span>
                             </div>
@@ -78,11 +77,11 @@ export default function CaseStudyDetail() {
                 <div className="container">
                     <div className="row g-5">
                         <div className="col-lg-4">
-                            <Eyebrow>the problem</Eyebrow>
+                            <h2 className="case-section__title">The problem</h2>
                             <p className="cs-problem mt-20 mb-0">{cs.problem}</p>
                         </div>
                         <div className="col-lg-7 ms-lg-auto">
-                            <Eyebrow>what I built</Eyebrow>
+                            <h2 className="case-section__title">What I built</h2>
                             <ol className="build-list mt-20">
                                 {cs.built.map((item) => (
                                     <li key={item}>{item}</li>
@@ -101,8 +100,7 @@ export default function CaseStudyDetail() {
                     <div className="container">
                         <div className="row g-4 align-items-center">
                             <div className="col-lg-5">
-                                <Eyebrow>next case study</Eyebrow>
-                                <h3 className="mb-0">{next.title}</h3>
+                                <h3 className="h3 mb-0">{next.title}</h3>
                             </div>
                             <div className="col-lg-6 ms-auto">
                                 <CaseStudyCard cs={next} />

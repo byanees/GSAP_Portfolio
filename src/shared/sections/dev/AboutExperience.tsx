@@ -11,7 +11,7 @@ export default function AboutExperience() {
                 <div className="row g-5">
                     <div className="col-lg-4">
                         <Eyebrow>my journey</Eyebrow>
-                        <h3 className="mb-20">Experience</h3>
+                        <h2 className="h3 mb-20">Experience</h2>
                         <p className="neutral-500 fz-font-lg mb-30">
                             Building fintech, telecom, and enterprise systems since 2023.
                         </p>
@@ -28,11 +28,12 @@ export default function AboutExperience() {
                     </div>
 
                     <div className="col-lg-8">
-                        <ol className="xp-list">
+                        <ol className="xp-list" data-reveal-group>
                             {EXPERIENCE.map((item) => (
                                 <li
                                     key={item.period}
                                     className={`xp-item${item.current ? " is-current" : ""}`}
+                                    data-reveal
                                 >
                                     <span className="xp-item__node" aria-hidden />
                                     <div className="xp-item__head">
@@ -42,7 +43,7 @@ export default function AboutExperience() {
                                     </div>
                                     <div className="xp-card">
                                         <div className="xp-card__title-row">
-                                            <h4 className="xp-card__company">{item.company}</h4>
+                                            <h3 className="h4 xp-card__company">{item.company}</h3>
                                             <span className="xp-card__role">{item.role}</span>
                                         </div>
                                         <p className="xp-card__summary">{item.summary}</p>

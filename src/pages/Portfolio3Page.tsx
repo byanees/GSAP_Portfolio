@@ -5,7 +5,7 @@ import PortfolioIndex from "@/shared/sections/dev/PortfolioIndex";
 export default function Portfolio3Page() {
   return (
     <>
-      <PageMeta title="Muhammad Anees — Work" />
+      <PageMeta title="Muhammad Anees - Work" />
       <PortfolioIndex />
       <HomeCta />
     </>

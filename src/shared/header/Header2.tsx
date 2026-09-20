@@ -5,8 +5,8 @@ import MainMenu from "@/shared/MainMenu";
 
 interface Header2Props {
   onOpenSearch?: () => void;
-  onToggleSidebar: () => void;
-  onOpenHamburgerMenu: () => void;
+  onToggleSidebar?: () => void;
+  onOpenHamburgerMenu?: () => void;
 }
 
 export default function Header2({ onToggleSidebar, onOpenHamburgerMenu }: Header2Props) {

@@ -30,7 +30,9 @@ function CloseIconSvg() {
   );
 }
 
-const socialLinks = [
+type SocialLink = { label: string; href: string; ariaLabel: string; path: string; h?: number; viewBox?: string };
+
+const socialLinks: SocialLink[] = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/ianees/",
@@ -109,7 +111,7 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
           <div className="at-offcanvas-content d-none d-xl-block">
             <h3 className="at-offcanvas-title">Hey there!</h3>
             <p className="fz-font-lg">
-              I build full stack applications, fintech solutions, and scalable systems — helping businesses operate faster and grow with confidence.
+              I build full stack applications, fintech solutions, and scalable systems - helping businesses operate faster and grow with confidence.
             </p>
           </div>
 

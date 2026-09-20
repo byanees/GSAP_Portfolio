@@ -35,7 +35,7 @@ const ARROW_UP_LEFT_SVG = (
 export default function NotFoundPage() {
     return (
         <>
-            <PageMeta title="Muhammad Anees — Page Not Found" />
+            <PageMeta title="Muhammad Anees - Page Not Found" />
             <section className="sec-1-404 overflow-hidden pt-150">
                 <div className="container">
                     <div className="row">
@@ -58,7 +58,7 @@ export default function NotFoundPage() {
                             </p>
                             <form action="/page-search-results" method="get" className="w-75 pt-50 pb-60">
                                 <div className="at-search-form-input opacity-100">
-                                    <input type="text" name="q" placeholder="Search..." required />
+                                    <input type="text" name="q" placeholder="Search…" required />
                                     <span className="at-search-focus-border"></span>
                                     <button className="at-search-form-btn at-btn" type="submit">
                                         <span>

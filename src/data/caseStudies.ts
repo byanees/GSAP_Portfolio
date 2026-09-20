@@ -4,7 +4,8 @@ export type Result = { value: string; label: string };
 
 export type CaseStudy = {
   slug: string;
-  file: string;
+  /** Real problem domain, shown as the card's category label. */
+  domain: string;
   title: string;
   company: string;
   role: string;
@@ -21,11 +22,11 @@ export type CaseStudy = {
 export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "emv-qr-request-to-pay",
-    file: "emv-qr-payments.md",
+    domain: "Payments",
     title: "EMV QR Payments & Request to Pay",
     company: "DPL",
     role: "Software Engineer, led Request to Pay delivery",
-    period: "2024 – 2026",
+    period: "2024 - 2026",
     featured: true,
     summary:
       "Designed a peer-to-peer QR payment system on the EMV standard, and led delivery of Request to Pay across the mobile app and USSD.",
@@ -43,58 +44,85 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "bulk-push-notification-scheduler",
-    file: "push-scheduler.cs",
+    domain: "Messaging at scale",
     title: "Bulk Push Notification Scheduler",
     company: "DPL",
     role: "Software Engineer",
-    period: "2024 – 2026",
+    period: "2024 - 2026",
     featured: true,
     summary:
-      "Built a scheduler that dispatches 700–800k push notifications per run in 6–8 minutes, with multilingual payloads for Android and Huawei devices.",
+      "Built a scheduler that dispatches 700-800k push notifications per run in 6-8 minutes, with multilingual payloads for Android and Huawei devices.",
     problem:
       "Large campaigns and alerts had to reach hundreds of thousands of devices quickly, in each user's language, across two different push platforms.",
     built: [
-      "Built a bulk push notification scheduler dispatching 700–800k notifications in 6–8 minutes",
+      "Built a bulk push notification scheduler dispatching 700-800k notifications in 6-8 minutes",
       "Supported multilingual payloads so each user receives the message in their language",
       "Targeted both Android and Huawei (HMS) devices from the same scheduler",
     ],
     results: [
-      { value: "700–800k", label: "notifications per run" },
-      { value: "6–8 min", label: "to dispatch a full run" },
+      { value: "700-800k", label: "notifications per run" },
+      { value: "6-8 min", label: "to dispatch a full run" },
     ],
     stack: [".NET", "Schedulers", "Android push", "HMS Push"],
   },
   {
     slug: "telecom-agent-apps",
-    file: "agent-apps.md",
+    domain: "Telecom",
     title: "Telecom Agent Apps for Tanzania & Togo",
     company: "DPL",
     role: "Led development and a small engineering team",
-    period: "2024 – 2026",
+    period: "2024 - 2026",
     region: "Tanzania & Togo",
     featured: true,
     summary:
-      "Led development of enterprise agent apps for telecom operators in Tanzania and Togo, and removed the Redis bottleneck that threatened peak traffic.",
+      "Led development of enterprise agent apps serving 60,000+ agents for telecom operators in Tanzania and Togo, and removed the Redis bottleneck that threatened peak traffic.",
     problem:
       "At peak, 600k+ concurrent sessions were exhausting the Redis connection pool, putting the agent apps at risk of outages exactly when traffic mattered most.",
     built: [
       "Led development of the enterprise telecom agent apps for Tanzania and Togo, managing a small engineering team",
+      "Shipped the core telecom operations agents use daily: SIM registration, SIM swap, SIM stock management, agent inventory tracking, and airtime and bundle subscriptions",
+      "Built Tanzania-specific onboarding, including Kinara registration, bulk registration, and enterprise B2B flows alongside B2C",
       "Implemented a Redis connection multiplexing strategy that eliminated connection pool exhaustion",
+      "Automated the release pipeline with Docker and Jenkins, cutting deployment errors by 30%",
       "Migrated all microservices from .NET 7 to .NET 8",
     ],
     results: [
+      { value: "60,000+", label: "agents served across Tanzania and Togo" },
       { value: "600k+", label: "concurrent sessions without pool exhaustion" },
       { value: ".NET 7 → 8", label: "migration across all microservices" },
     ],
     stack: [".NET 8", "Microservices", "Redis"],
   },
   {
+    slug: "otapp-bus-ticketing",
+    domain: "Third-party integration",
+    title: "Bus Ticketing Inside the Mixx Tanzania App",
+    company: "DPL",
+    role: "Software Engineer",
+    period: "2024 - 2026",
+    region: "Tanzania",
+    summary:
+      "Integrated the OTAPP bus ticketing service into the Mixx Tanzania super app, so booking a seat and paying for it never leaves the wallet.",
+    problem:
+      "Buying a bus ticket meant leaving the wallet app and paying somewhere else. The super app needed ticketing as a first-class service, using the balance the customer already had.",
+    built: [
+      "Integrated the OTAPP third-party ticketing service behind the app's own API surface",
+      "Built the booking flow end to end: route search, seat selection, and payment from the wallet balance",
+      "Handled the failure cases a third-party dependency brings, so a timeout never leaves a customer charged without a seat",
+    ],
+    results: [
+      { value: "In-app", label: "search, seat selection and payment, without leaving the wallet" },
+      { value: "New service", label: "added to the Mixx Tanzania super app" },
+    ],
+    stack: [".NET", "Microservices", "Third-party APIs"],
+  },
+  {
     slug: "qualification-certificate-workflow",
-    file: "certificate-workflow.ts",
+    domain: "Enterprise workflow",
     title: "Qualification Certificate Workflow",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
-    period: "2026 – Present",
+    period: "2026 - Present",
     summary:
       "Built the qualification certificate issuance workflow end to end: payment, reviewer assignment, approval, and role-based access.",
     problem:
@@ -112,11 +140,11 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "backend-aggregation-layer",
-    file: "aggregation-layer.cs",
+    domain: "Platform & analytics",
     title: "Backend Aggregation Layer & Analytics Dashboards",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
-    period: "2026 – Present",
+    period: "2026 - Present",
     summary:
       "Built a caching aggregation layer in front of five downstream services, and shipped analytics dashboards for the Online Travel Agency and Admin portals.",
     problem:
@@ -134,11 +162,11 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "batch-payment-validation",
-    file: "batch-validation.cs",
+    domain: "Payments",
     title: "Batch Validation for Bulk Corporate Payments",
     company: "DPL",
     role: "Software Engineer",
-    period: "2024 – 2026",
+    period: "2024 - 2026",
     summary:
       "Built a batch validation scheduler that detects errors before bulk corporate payments are processed, reducing processing errors by 30%.",
     problem:

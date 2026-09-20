@@ -5,7 +5,7 @@ import BlogIndex from "@/shared/sections/dev/BlogIndex";
 export default function Archive4Page() {
   return (
     <>
-      <PageMeta title="Muhammad Anees — Blog" />
+      <PageMeta title="Muhammad Anees - Blog" />
       <BlogIndex />
       <BlogCta />
     </>

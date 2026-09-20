@@ -15,9 +15,12 @@ export default function HomeCaseStudies() {
                     <div className="row align-items-end g-4">
                         <div className="col-lg-6">
                             <Eyebrow>case studies</Eyebrow>
-                            <h3 className="reveal-text mb-0">
+                            <h2 className="h3 reveal-text mb-0">
                                 <RevealText>Production systems, with the numbers to show for it</RevealText>
-                            </h3>
+                            </h2>
+                            <p className="section-lead neutral-500 mt-30 mb-0">
+                                Three of {CASE_STUDIES.length}. The rest are on the work page.
+                            </p>
                         </div>
                         <div className="col-lg-3 ms-auto d-flex justify-content-lg-end">
                             <div className="at-btn-group at-btn-group-transparent">
@@ -34,9 +37,9 @@ export default function HomeCaseStudies() {
                         </div>
                     </div>
 
-                    <div className="row g-4 pt-60">
+                    <div className="row g-4 pt-60" data-reveal-group>
                         {featured.map((cs) => (
-                            <div key={cs.slug} className="col-lg-4 col-md-6">
+                            <div key={cs.slug} className="col-lg-4 col-md-6" data-reveal>
                                 <CaseStudyCard cs={cs} />
                             </div>
                         ))}

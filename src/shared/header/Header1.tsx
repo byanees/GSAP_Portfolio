@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import Logo from "@/shared/Logo";
 import MainMenu from "@/shared/MainMenu";
-import Topbar from "./Topbar";
 
 export default function Header4() {
   return (
     <>
       <header className="z-index-5 bg-neutral-50">
-        <Topbar />
 
         <div className="container-2200">
           <div className="at-header-area at-header-spacing bg-neutral-0 rounded-4 mx-lg-3 mx-2 mt-3 border-100">

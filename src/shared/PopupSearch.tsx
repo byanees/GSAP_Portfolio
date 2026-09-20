@@ -43,7 +43,9 @@ export default function PopupSearch({ open, onClose }: PopupSearchProps) {
                   </Link>
                 </div>
                 <button type="button" className="at-search-close" onClick={onClose} aria-label="Close search">
-                  <i className="fa-light fa-xmark" />
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                  </svg>
                 </button>
               </div>
             </div>

@@ -13,15 +13,16 @@ export default function PortfolioIndex() {
                 <div className="container">
                     <div className="row g-4 align-items-end pb-60 border-bottom-100">
                         <div className="col-xxl-8 col-lg-7">
-                            <Eyebrow>selected work</Eyebrow>
                             <h1 className="fz-ds-1 fw-500 lh-1">What I&apos;ve Built</h1>
                             <p className="fz-font-lg neutral-900 mb-0">
-                                Case studies from fintech and enterprise platforms first, then earlier client projects picked for measurable impact.
+                                A selection, not everything I have shipped. Case studies from fintech and
+                                enterprise platforms first, then earlier client projects, each picked because
+                                the outcome is measurable. Happy to walk through the rest.
                             </p>
                         </div>
                         <div className="col-xxl-3 col-lg-5 ms-lg-auto text-lg-end">
                             <p className="dev-count mb-3">
-                                {CASE_STUDIES.length} case studies and {PROJECTS.length} earlier projects
+                                {CASE_STUDIES.length} selected case studies, {PROJECTS.length} earlier projects
                             </p>
                             <a href={PROFILE.cvUrl} download className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
                                 <span>
@@ -43,12 +44,12 @@ export default function PortfolioIndex() {
                     <div className="row pb-40">
                         <div className="col-lg-6">
                             <Eyebrow>case studies</Eyebrow>
-                            <h3 className="mb-0">Production systems</h3>
+                            <h2 className="h3 mb-0">Production systems</h2>
                         </div>
                     </div>
-                    <div className="row g-4">
+                    <div className="row g-4" data-reveal-group>
                         {CASE_STUDIES.map((cs) => (
-                            <div key={cs.slug} className="col-lg-6">
+                            <div key={cs.slug} className="col-lg-6" data-reveal>
                                 <CaseStudyCard cs={cs} />
                             </div>
                         ))}
@@ -61,7 +62,7 @@ export default function PortfolioIndex() {
                     <div className="row pb-50 g-4 align-items-end">
                         <div className="col-lg-6">
                             <Eyebrow>projects</Eyebrow>
-                            <h3 className="mb-0">Earlier client work</h3>
+                            <h2 className="h3 mb-0">Earlier client work</h2>
                         </div>
                         <div className="col-lg-5 ms-auto text-lg-end">
                             <p className="neutral-500 mb-0">
@@ -69,24 +70,19 @@ export default function PortfolioIndex() {
                             </p>
                         </div>
                     </div>
-                    <div className="row g-4">
+                    <div className="row g-4" data-reveal-group>
                         {PROJECTS.map((p) => (
-                            <div key={p.slug} className="col-lg-6">
+                            <div key={p.slug} className="col-lg-6" data-reveal>
                                 <article className="web-card h-100">
                                     <div className="web-card__bar">
-                                        <span className="code-card__dots" aria-hidden>
-                                            <i />
-                                            <i />
-                                            <i />
-                                        </span>
                                         <span className="web-card__url">{p.domain ?? "Client-owned build"}</span>
+                                        <span className="code-card__where">{p.meta}</span>
                                     </div>
                                     <div className="web-card__body">
                                         <div className="web-card__top">
-                                            <span className="code-card__meta">{p.meta}</span>
                                             <span className="web-card__role">{p.role}</span>
                                         </div>
-                                        <h3 className="web-card__title">{p.title}</h3>
+                                        <h3 className="h4 web-card__title">{p.title}</h3>
                                         <p className="web-card__desc">{p.description}</p>
                                         <ul className="web-card__metrics">
                                             {p.results.map((r) => (

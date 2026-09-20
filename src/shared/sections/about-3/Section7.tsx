@@ -23,7 +23,7 @@ const FAQ_ITEMS = [
         id: "collapseTwo",
         num: "2",
         question: "What kind of projects have you worked on?",
-        answer: "Payment infrastructure serving 60,000+ merchants, EMV QR payments and Request to Pay, telecom agent apps for Tanzania and Togo, an enterprise certificate workflow, and earlier client products like an AI assistant and a Dubai property platform.",
+        answer: "Telecom agent apps serving 60,000+ agents across Tanzania and Togo, EMV QR payments and Request to Pay adopted by 4,000+ merchants, an enterprise certificate workflow, and earlier client products like an AI assistant and a Dubai property platform.",
         open: false,
     },
     {
@@ -72,21 +72,22 @@ export default function Section7({ classList = "" }: { classList?: string }) {
                                 {ARROW_SVG}
                             </i>
                         </span>
-                        <h3 className="section-title lh-1 reveal-text">
+                        <h2 className="h3 section-title lh-1 reveal-text">
                             <RevealText>
                                 Frequently <br />Asked Questions
                             </RevealText>
-                        </h3>
-                        <h6 className="fz-font-lg fw-500">
-                            Your questions about my experience, skills, <br className="d-none d-xxl-block" />and availability—answered.
-                        </h6>
+                        </h2>
+                        <p className="fz-font-lg fw-500 neutral-900">
+                            Your questions about my experience, skills, <br className="d-none d-xxl-block" />and availability, answered.
+                        </p>
                     </div>
                     <div className="col-lg-7 ms-lg-auto">
-                        <div className="accordion pt-80" id="accordionExample">
+                        <div className="accordion pt-80" id="accordionExample" data-reveal-group>
                             {FAQ_ITEMS.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="at-faq-item bg-neutral-0 border-100 scroll-move-up rounded-4"
+                                    className="at-faq-item bg-neutral-0 border-100 rounded-4"
+                                    data-reveal
                                 >
                                     <div className="at-faq-header d-flex gap-2">
                                         <div className="box-number">
