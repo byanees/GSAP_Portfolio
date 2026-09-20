@@ -11,7 +11,7 @@ import GlobalEffects from "@/shared/effects/GlobalEffects";
 import ThemeRouteSync from "@/shared/effects/ThemeRouteSync";
 import BackToTop from "@/shared/elements/BackToTop";
 import ContactDock from "@/shared/elements/ContactDock";
-import SmoothScrollEffect from "@/shared/effects/SmoothScrollEffect";
+import FooterRevealEffect from "@/shared/effects/FooterRevealEffect";
 
 type HeaderHandlers = {
   onOpenSearch?: () => void;
@@ -130,7 +130,7 @@ export default function MainLayout({
   return (
     <MobileMenuCloneProvider>
       <div className="px-blur-bottom" />
-      <SmoothScrollEffect />
+      <FooterRevealEffect />
       <GlobalEffects />
       <ThemeRouteSync />
       <HeaderComponent

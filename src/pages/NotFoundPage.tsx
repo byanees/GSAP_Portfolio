@@ -89,7 +89,6 @@ export default function NotFoundPage() {
                         <div className="col-lg-5 pt-lg-0 pt-100 d-none d-lg-block">
                             <div className="card_case__studies-avatar fix anim-zoomin">
                                 <img
-                                    data-speed=".8"
                                     className="img-cover"
                                     src="/assets/imgs/pages/img-168.webp"
                                     alt="Amelia Courtney"

@@ -7,9 +7,8 @@ type Killable = { kill?: () => void };
  * Reveals [data-reveal] elements as they scroll into view, staggering siblings
  * inside a [data-reveal-group] so a row of cards arrives in reading order.
  *
- * Driven by GSAP ScrollTrigger rather than IntersectionObserver: ScrollSmoother
- * transforms #smooth-content, which puts every element's viewport rect out of
- * step with what IntersectionObserver reports. ScrollTrigger is smoother-aware.
+ * Driven by GSAP ScrollTrigger, which the project already uses for the footer
+ * reveal, so the whole site shares one scroll engine.
  *
  * Under prefers-reduced-motion nothing is hidden and no trigger is created.
  */

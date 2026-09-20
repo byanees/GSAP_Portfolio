@@ -1634,9 +1634,13 @@
   color: inherit;
 }
 
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
+/* Smooth scrolling for in-page anchors. Guarded, because scroll-behavior
+   ignores prefers-reduced-motion on its own. Route changes override this
+   per-call with behavior: "instant" (see ScrollToTop). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Hero tag pills unique styling */
@@ -2313,14 +2317,10 @@ h1, h2, h3, h4, h5, h6,
    floating "MENU" chip that sat on top of body text. A persistent header is
    both less intrusive and what a visitor scanning the site expects.
 
-   The header lives outside #smooth-wrapper, so the document still scrolls
-   natively behind it and position: sticky works.
    ========================================================================== */
 
-/* Fixed, not sticky: ScrollSmoother takes #smooth-wrapper out of flow, which
-   leaves #root only as tall as the header itself, so a sticky header has no
-   containing block to travel in. The scrolling content is positioned
-   independently and the hero's own top padding already clears the bar. */
+/* Fixed rather than sticky, so the bar is pinned regardless of what the page
+   below it does. The hero's own top padding clears it. */
 header:has(.at-header-area) {
   position: fixed;
   top: 0;
@@ -2569,4 +2569,22 @@ header.is-stuck .at-header-area {
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+/* ==========================================================================
+   Horizontal clipping
+   Bootstrap rows carry negative side gutters that spill ~12px past the
+   viewport. ScrollSmoother used to hide this inside its own clipped wrapper;
+   with native scrolling the page has to clip it itself.
+
+   clip rather than hidden: it does not create a scroll container, so it cannot
+   introduce nested scrolling or break position: sticky further down the tree.
+   Fixed-position elements (header, contact dock, back-to-top, off-canvas menu)
+   are unaffected.
+   ========================================================================== */
+
+/* On #root, not body: overflow set on html or body propagates to the viewport,
+   which leaves the element itself painting as visible and clipping nothing. */
+#root {
+  overflow-x: clip;
 }
