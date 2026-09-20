@@ -1,6 +1,6 @@
 import PageMeta from "@/seo/PageMeta";
-import Section4 from "@/shared/sections/about-3/Section4";
 import Section7 from "@/shared/sections/about-3/Section7";
+import AboutCredentials from "@/shared/sections/dev/AboutCredentials";
 import AboutExperience from "@/shared/sections/dev/AboutExperience";
 import AboutHero from "@/shared/sections/dev/AboutHero";
 import AboutStack from "@/shared/sections/dev/AboutStack";
@@ -13,9 +13,9 @@ export default function About3Page() {
       <PageMeta title="Muhammad Anees - About" />
       <AboutHero />
       <TechTicker />
-      <Section4 />
       <AboutExperience />
       <AboutStack />
+      <AboutCredentials />
       <WorkWithMe />
       <Section7 />
     </>

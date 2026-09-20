@@ -24,9 +24,11 @@ const HEADER_COMPONENTS: Record<number, React.ComponentType<HeaderHandlers>> = {
   2: Header2,
 };
 
-const FOOTER_COMPONENTS: Record<number, React.ComponentType> = {
+type FooterProps = { ref?: React.Ref<HTMLElement> };
+
+const FOOTER_COMPONENTS: Record<number, React.ComponentType<FooterProps>> = {
   1: Footer1,
-  2: Footer2 as unknown as React.ComponentType,
+  2: Footer2,
 };
 
 export type MainLayoutProps = {
@@ -108,13 +110,12 @@ export default function MainLayout({
     return () => document.removeEventListener("click", onClick);
   }, []);
 
-  // Sticky header on scroll (mirrors useHeaderInteractive behaviour for all headers)
+  // Flags the header once the page has scrolled, so it can lift off the content.
   useEffect(() => {
-    const el = document.getElementById("header-sticky");
-    if (!el) return;
+    const header = document.querySelector("header");
+    if (!header) return;
     const onScroll = () => {
-      const y = window.scrollY ?? window.pageYOffset;
-      el.classList.toggle("header-sticky", y >= 20);
+      header.classList.toggle("is-stuck", (window.scrollY ?? window.pageYOffset) >= 20);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });

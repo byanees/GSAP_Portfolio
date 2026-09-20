@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
 import { PROFILE } from "@/data/profile";
-import { ARROW_CIRCLE_SVG, ARROW_SVG } from "./icons";
+import { ARROW_CIRCLE_SVG } from "./icons";
 
 export default function AboutHero() {
     return (
@@ -12,7 +12,7 @@ export default function AboutHero() {
                         <h1 className="section-title fw-600 fz-ds-1 lh-1 reveal-text">
                             <RevealText>About Me</RevealText>
                         </h1>
-                        <p className="mb-0 fz-font-lg fw-600 neutral-900">{PROFILE.heroLead}</p>
+                        <p className="mb-0 fz-font-lg fw-600 neutral-900">{PROFILE.aboutLead}</p>
                     </div>
                     <div className="col-lg-5 ms-auto">
                         <div className="d-flex flex-wrap justify-content-lg-end align-items-center gap-4">
@@ -27,16 +27,6 @@ export default function AboutHero() {
                                     {ARROW_CIRCLE_SVG}
                                 </Link>
                             </div>
-                            <a href={PROFILE.cvUrl} download className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
-                                <span>
-                                    <span className="text-1">Download CV</span>
-                                    <span className="text-2">Download CV</span>
-                                </span>
-                                <i>
-                                    {ARROW_SVG}
-                                    {ARROW_SVG}
-                                </i>
-                            </a>
                         </div>
                     </div>
                 </div>

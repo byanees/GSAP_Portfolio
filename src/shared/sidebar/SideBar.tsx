@@ -30,7 +30,9 @@ function CloseIconSvg() {
   );
 }
 
-const socialLinks = [
+type SocialLink = { label: string; href: string; ariaLabel: string; path: string; h?: number; viewBox?: string };
+
+const socialLinks: SocialLink[] = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/ianees/",

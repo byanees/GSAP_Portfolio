@@ -17,6 +17,10 @@ export const PROFILE = {
   portrait: null as string | null,
   heroLead:
     "3+ years building fintech, telco, and enterprise platforms. Now on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.",
+  /** About page opening line. Deliberately different from heroLead, which the
+   *  home hero already prints. */
+  aboutLead:
+    "I work on the parts of a product that have to stay up: payment rails, schedulers, and the services behind them. Three years in, mostly fintech and telecom.",
   summary:
     "I've delivered payment infrastructure for 60,000+ merchants and a push notification scheduler that processes 700-800k messages per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
 };
@@ -168,3 +172,27 @@ export const STACK_LAYERS = [
 ];
 
 export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "QR / TLV encoding", "AI-assisted development"];
+
+/** Education and certifications, from the CV. */
+export const EDUCATION = {
+  degree: "BS Computer Science",
+  school: "COMSATS University Islamabad",
+  period: "Sept 2020 - June 2024",
+  coursework: [
+    "Data Structures & Algorithms",
+    "Database Systems",
+    "Operating Systems",
+    "Object Oriented Programming",
+    "Machine Learning & DevOps",
+  ],
+};
+
+export const CERTIFICATIONS = [
+  "Cybersecurity Essentials V3",
+  "OWASP 2021: Web Application Security Awareness",
+];
+
+export const LANGUAGES = [
+  { name: "English", level: "Fluent" },
+  { name: "Urdu", level: "Native" },
+];

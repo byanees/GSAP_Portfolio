@@ -73,16 +73,11 @@ export default function PortfolioIndex() {
                             <div key={p.slug} className="col-lg-6" data-reveal>
                                 <article className="web-card h-100">
                                     <div className="web-card__bar">
-                                        <span className="code-card__dots" aria-hidden>
-                                            <i />
-                                            <i />
-                                            <i />
-                                        </span>
                                         <span className="web-card__url">{p.domain ?? "Client-owned build"}</span>
+                                        <span className="code-card__where">{p.meta}</span>
                                     </div>
                                     <div className="web-card__body">
                                         <div className="web-card__top">
-                                            <span className="code-card__meta">{p.meta}</span>
                                             <span className="web-card__role">{p.role}</span>
                                         </div>
                                         <h3 className="h4 web-card__title">{p.title}</h3>

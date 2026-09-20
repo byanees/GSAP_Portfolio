@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
-import { EXPERTISE, PROFILE } from "@/data/profile";
+import { PROFILE } from "@/data/profile";
 import Eyebrow from "./Eyebrow";
-import StackTags from "./StackTags";
 import { ARROW_SVG } from "./icons";
 
 function UnderlineLink({ href, label, external = false, download = false }: { href: string; label: string; external?: boolean; download?: boolean }) {
@@ -86,20 +85,6 @@ export default function WorkWithMe() {
                     </div>
                 </div>
 
-                <div className="row pt-120 pb-40">
-                    <div className="col-lg-7">
-                        <h2 className="h3 mb-0">What I can help with</h2>
-                    </div>
-                </div>
-                <ul className="expertise-list" data-reveal-group>
-                    {EXPERTISE.map((item) => (
-                        <li key={item.key} className="expertise-row" data-reveal>
-                            <h3 className="h4 expertise-row__title">{item.title}</h3>
-                            <p className="expertise-row__desc">{item.description}</p>
-                            <StackTags tags={item.tags} label="Tools I use" />
-                        </li>
-                    ))}
-                </ul>
             </div>
         </section>
     );

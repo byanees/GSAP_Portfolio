@@ -4,7 +4,8 @@ export type Result = { value: string; label: string };
 
 export type CaseStudy = {
   slug: string;
-  file: string;
+  /** Real problem domain, shown as the card's category label. */
+  domain: string;
   title: string;
   company: string;
   role: string;
@@ -21,7 +22,7 @@ export type CaseStudy = {
 export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "emv-qr-request-to-pay",
-    file: "emv-qr-payments.md",
+    domain: "Payments",
     title: "EMV QR Payments & Request to Pay",
     company: "DPL",
     role: "Software Engineer, led Request to Pay delivery",
@@ -43,7 +44,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "bulk-push-notification-scheduler",
-    file: "push-scheduler.cs",
+    domain: "Messaging at scale",
     title: "Bulk Push Notification Scheduler",
     company: "DPL",
     role: "Software Engineer",
@@ -66,7 +67,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "telecom-agent-apps",
-    file: "agent-apps.md",
+    domain: "Telecom",
     title: "Telecom Agent Apps for Tanzania & Togo",
     company: "DPL",
     role: "Led development and a small engineering team",
@@ -90,7 +91,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "qualification-certificate-workflow",
-    file: "certificate-workflow.ts",
+    domain: "Enterprise workflow",
     title: "Qualification Certificate Workflow",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
@@ -112,7 +113,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "backend-aggregation-layer",
-    file: "aggregation-layer.cs",
+    domain: "Platform & analytics",
     title: "Backend Aggregation Layer & Analytics Dashboards",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
@@ -134,7 +135,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "batch-payment-validation",
-    file: "batch-validation.cs",
+    domain: "Payments",
     title: "Batch Validation for Bulk Corporate Payments",
     company: "DPL",
     role: "Software Engineer",

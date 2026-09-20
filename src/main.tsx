@@ -7,7 +7,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // can purge the unused theme rules and minify what is left.
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/vendor-carousel-ticker.css";
-import "@/styles/vendor-odometer.css";
 import "@/styles/vendor-spacing.css";
 import "@/styles/theme.css";
 import "@/styles/sticky-cards.css";

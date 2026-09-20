@@ -262,30 +262,26 @@
 
 .code-card__bar {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 12px;
-  padding: 12px 18px;
+  padding: 14px 18px;
   background: var(--at-neutral-50);
   border-bottom: 1px solid var(--at-neutral-100);
 }
 
-.code-card__dots {
-  display: inline-flex;
-  gap: 6px;
+.code-card__domain {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--at-neutral-900);
 }
 
-.code-card__dots i {
-  display: block;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--at-neutral-200);
-}
-
-.code-card__file {
-  font-family: var(--dev-mono);
-  font-size: 12.5px;
+.code-card__where {
+  font-size: 12px;
   color: var(--at-neutral-500);
+  white-space: nowrap;
 }
 
 .code-card__meta {
@@ -1048,25 +1044,23 @@
 
 .web-card__bar {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 14px;
   padding: 14px 18px;
+  background: var(--at-neutral-50);
   border-bottom: 1px solid var(--at-neutral-100);
 }
 
 .web-card__url {
-  flex: 1;
   min-width: 0;
-  padding: 6px 14px;
   overflow: hidden;
-  font-size: 13px;
-  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--at-neutral-500);
-  background: var(--at-neutral-50);
-  border-radius: 50px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--at-neutral-900);
 }
 
 .web-card:hover .web-card__url {
@@ -2281,4 +2275,141 @@ h1, h2, h3, h4, h5, h6,
    near-black footer. */
 .footer-tagline {
   color: #b7b7b7;
+}
+
+/* ==========================================================================
+   Sticky header
+   The theme kept the nav in the flow and, once scrolled, replaced it with a
+   floating "MENU" chip that sat on top of body text. A persistent header is
+   both less intrusive and what a visitor scanning the site expects.
+
+   The header lives outside #smooth-wrapper, so the document still scrolls
+   natively behind it and position: sticky works.
+   ========================================================================== */
+
+/* Fixed, not sticky: ScrollSmoother takes #smooth-wrapper out of flow, which
+   leaves #root only as tall as the header itself, so a sticky header has no
+   containing block to travel in. The scrolling content is positioned
+   independently and the hero's own top padding already clears the bar. */
+header:has(.at-header-area) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+header .at-header-area {
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Lifts off the page only once there is content underneath it. */
+header.is-stuck .at-header-area {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  header .at-header-area {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* The floating chip is redundant now, and it overlapped body copy. */
+.hamburger-sticky-menu {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Education & credentials
+   ========================================================================== */
+
+.credential {
+  padding: 28px 0;
+  border-top: 1px solid var(--at-neutral-100);
+}
+
+.credential:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.credential__period {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--at-neutral-500);
+}
+
+.credential__title {
+  margin: 0 0 6px;
+}
+
+.credential__where {
+  margin: 0 0 14px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--at-neutral-900);
+}
+
+.credential__detail {
+  font-size: 15px;
+  color: var(--at-neutral-500);
+}
+
+.credential__label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--at-neutral-500);
+}
+
+.credential__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.credential__list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+  color: var(--at-neutral-500);
+}
+
+.credential__list li + li {
+  margin-top: 8px;
+}
+
+.credential__list li::before {
+  content: "";
+  position: absolute;
+  top: 0.7em;
+  left: 0;
+  width: 6px;
+  height: 1px;
+  background: var(--at-neutral-500);
+}
+
+.credential__list--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+
+.credential__list--inline li + li {
+  margin-top: 0;
+}
+
+.credential__level {
+  color: var(--at-neutral-900);
+  font-weight: 600;
 }
