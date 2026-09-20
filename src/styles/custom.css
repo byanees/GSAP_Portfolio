@@ -2752,3 +2752,90 @@ header.is-stuck .at-header-area {
     transform: none;
   }
 }
+
+/* Contact form validation + sent state
+   ------------------------------------------------------------------------- */
+
+/* Invalid fields keep the letter's underline treatment, just in the error
+   colour, so a wrong field reads as part of the sentence rather than a box
+   bolted onto it. */
+.contact-letter .contact-letter__blank.is-invalid {
+  border-bottom-style: solid;
+  border-bottom-color: #d2322d;
+}
+
+.contact-letter .contact-letter__message.is-invalid {
+  border-bottom-color: #d2322d;
+}
+
+.contact-letter__error {
+  display: block;
+  margin: -10px 0 18px;
+  font-family: var(--dev-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #d2322d;
+}
+
+.contact-letter__error::before {
+  content: "↳ ";
+}
+
+.contact-letter__status--error {
+  color: #d2322d;
+}
+
+/* The sent state replaces the form. A cleared form with a caption reads as
+   though the message was discarded. */
+.contact-sent {
+  padding: 44px 0 8px;
+}
+
+.contact-sent__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 22px;
+  color: #0f0f0f;
+  background: #00d4aa;
+  border-radius: 50%;
+}
+
+.contact-sent__title {
+  margin-bottom: 12px;
+  font-size: clamp(26px, 2.4vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--at-neutral-900);
+}
+
+.contact-sent__text {
+  max-width: 46ch;
+  margin-bottom: 28px;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--at-neutral-500);
+}
+
+.contact-sent__again {
+  padding: 0 0 3px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--at-neutral-900);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--at-neutral-900);
+  transition: opacity 0.25s ease;
+}
+
+.contact-sent__again:hover {
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-sent__again {
+    transition: none;
+  }
+}
