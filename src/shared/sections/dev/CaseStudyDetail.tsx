@@ -1,5 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import PageMeta from "@/seo/PageMeta";
+import { TITLE_SUFFIX } from "@/seo/siteConfig";
+import { breadcrumbSchema, caseStudySchema, graph } from "@/seo/schema";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import CaseStudyCard from "./CaseStudyCard";
 import StackTags from "./StackTags";
@@ -12,7 +14,7 @@ export default function CaseStudyDetail() {
     if (!cs) {
         return (
             <section className="pt-150 pb-120">
-                <PageMeta title="Muhammad Anees - Case study not found" noindex />
+                <PageMeta title={`Case study not found${TITLE_SUFFIX}`} noindex />
                 <div className="container">
                     <h1 className="fz-ds-1 fw-500 lh-1">Case study not found</h1>
                     <Link to="/portfolio" className="cs-back mt-30">
@@ -33,7 +35,19 @@ export default function CaseStudyDetail() {
 
     return (
         <>
-            <PageMeta title={`Muhammad Anees - ${cs.title}`} />
+            <PageMeta
+                title={`${cs.title}${TITLE_SUFFIX}`}
+                description={cs.summary}
+                path={`/portfolio/${cs.slug}`}
+                ogType="article"
+                jsonLd={graph(
+                    caseStudySchema(cs),
+                    breadcrumbSchema([
+                        { name: "Work", path: "/portfolio" },
+                        { name: cs.title, path: `/portfolio/${cs.slug}` },
+                    ]),
+                )}
+            />
 
             <section className="pt-150 pb-80">
                 <div className="container">

@@ -39,12 +39,12 @@ export default function Footer1() {
                   <Logo tone="light" size="lg" />
                 </Link>
                 <div>
-                  <h4 className="text-white reveal-text">
+                  <h3 className="h4 text-white reveal-text">
                     <RevealText>
                       Let&apos;s Build <br />
                       What Scales
                     </RevealText>
-                  </h4>
+                  </h3>
                   <p className="footer-tagline mb-0">
                     Full stack engineering, fintech solutions, <br />
                     and scalable systems built with modern tools.

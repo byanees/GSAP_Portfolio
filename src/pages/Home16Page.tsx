@@ -1,4 +1,6 @@
 import PageMeta from "@/seo/PageMeta";
+import { ROUTE_META } from "@/seo/siteConfig";
+import { graph } from "@/seo/schema";
 import HomeCaseStudies from "@/shared/sections/dev/HomeCaseStudies";
 import HomeCta from "@/shared/sections/dev/HomeCta";
 import HomeHero from "@/shared/sections/dev/HomeHero";
@@ -8,7 +10,12 @@ import Recommendations from "@/shared/sections/dev/Recommendations";
 export default function Home16Page() {
   return (
     <>
-      <PageMeta title="Muhammad Anees - Full Stack Engineer" />
+      <PageMeta
+        title={ROUTE_META["/"].title}
+        description={ROUTE_META["/"].description}
+        path="/"
+        jsonLd={graph()}
+      />
       <HomeHero />
       <HomeWhatIDo />
       <HomeCaseStudies />

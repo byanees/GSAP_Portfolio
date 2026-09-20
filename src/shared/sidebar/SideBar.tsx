@@ -85,6 +85,7 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
       <div
         className={`body-overlay sidebar-overlay ${isAnyOpen ? "apply" : ""}`}
         aria-hidden={!isAnyOpen}
+        inert={!isAnyOpen}
         onClick={onClose}
         onKeyDown={(e) => e.key === "Escape" && onClose()}
         role="button"
@@ -93,7 +94,7 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
       />
 
       {/* at-offcanvas-area */}
-      <div className="at-offcanvas-area" aria-hidden={!open}>
+      <div className="at-offcanvas-area" aria-hidden={!open} inert={!open}>
         <div className={`at-offcanvas ${open ? "opened" : ""}`}>
           <div className="at-offcanvas-top d-flex align-items-center justify-content-between">
             <div className="at-offcanvas-logo">
@@ -154,7 +155,7 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
       </div>
 
       {/* at-offcanvas-2-area */}
-      <div className={`at-offcanvas-2-area ${hamburgerOpen ? "menu-open" : ""}`} aria-hidden={!hamburgerOpen}>
+      <div className={`at-offcanvas-2-area ${hamburgerOpen ? "menu-open" : ""}`} aria-hidden={!hamburgerOpen} inert={!hamburgerOpen}>
         <div className="offcanvas-bg" />
         <div className="at-offcanvas-2-wrapper offcanvas-menu sidebar-left">
           <div className="at-offcanvas-2-left">

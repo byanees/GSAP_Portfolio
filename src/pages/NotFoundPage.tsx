@@ -24,7 +24,7 @@ export default function NotFoundPage() {
     return (
         <>
             <PageMeta
-                title="Muhammad Anees - Page Not Found"
+                title="Page not found — Muhammad Anees"
                 description="That page doesn't exist. Here's everything that does."
                 noindex
             />

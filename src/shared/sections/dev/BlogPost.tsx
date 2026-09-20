@@ -1,5 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import PageMeta from "@/seo/PageMeta";
+import { TITLE_SUFFIX } from "@/seo/siteConfig";
+import { blogPostingSchema, breadcrumbSchema, graph } from "@/seo/schema";
 import { PROFILE } from "@/data/profile";
 import { POSTS, formatPostDate } from "@/data/posts";
 import Eyebrow from "./Eyebrow";
@@ -13,7 +15,7 @@ export default function BlogPost() {
     if (!post) {
         return (
             <section className="pt-150 pb-120">
-                <PageMeta title="Muhammad Anees - Post not found" noindex />
+                <PageMeta title={`Post not found${TITLE_SUFFIX}`} noindex />
                 <div className="container">
                     <h1 className="fz-ds-1 fw-500 lh-1">Post not found</h1>
                     <Link to="/blog" className="cs-back mt-30">
@@ -28,7 +30,20 @@ export default function BlogPost() {
 
     return (
         <>
-            <PageMeta title={`${post.title} - Muhammad Anees`} />
+            <PageMeta
+                title={`${post.title}${TITLE_SUFFIX}`}
+                description={post.excerpt}
+                path={`/blog/${post.slug}`}
+                ogType="article"
+                publishedTime={post.date}
+                jsonLd={graph(
+                    blogPostingSchema(post),
+                    breadcrumbSchema([
+                        { name: "Notes", path: "/blog" },
+                        { name: post.title, path: `/blog/${post.slug}` },
+                    ]),
+                )}
+            />
             <article className="pt-150 pb-100">
                 <div className="container">
                     <div className="row">

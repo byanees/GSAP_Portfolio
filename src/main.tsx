@@ -1,7 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 // Stylesheets, in cascade order. These live in src/ (not public/) so the build
 // can purge the unused theme rules and minify what is left.
@@ -14,10 +13,24 @@ import "@/styles/custom.css";
 
 import App from "@/App";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root")!;
+
+const tree = (
   <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
+
+// The build prerenders every route, so in production the container already
+// holds the markup and React only needs to attach to it. The empty-container
+// path keeps `vite dev` working, where nothing is prerendered.
+if (container.firstChild) hydrateRoot(container, tree);
+else createRoot(container).render(tree);
+
+// Loaded after the tree is attached, not at module scope. Bootstrap's bundle
+// initialises itself against whatever markup it finds, and against the
+// prerendered HTML that runs before hydration and changes the DOM out from
+// under it.
+void import("bootstrap/dist/js/bootstrap.bundle.min.js");

@@ -5,7 +5,7 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default [
-  { ignores: ["dist/**", "public/**", "disk/**", "1.Orisa_development/**", "3.Orisa-Nextjs/**", "scripts/**"] },
+  { ignores: ["dist/**", "dist-ssr/**", "public/**", "disk/**", "1.Orisa_development/**", "3.Orisa-Nextjs/**", "scripts/**"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   // Build-time config files run in Node, not the browser.

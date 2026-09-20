@@ -13,5 +13,11 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
   },
+  ssr: {
+    // The prerender build externalises dependencies by default, which leaves
+    // this CommonJS package resolving to a module namespace object instead of
+    // the component. Bundling it lets Rollup handle the interop.
+    noExternal: ["react-fast-marquee"],
+  },
 });
 
