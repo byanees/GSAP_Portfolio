@@ -21,7 +21,7 @@ const Footer2 = forwardRef<HTMLElement, object>(function Footer2(_, ref) {
             <div className="col-lg-4">
               <div className="d-flex flex-wrap align-items-start gap-5">
                 <div className="at-header-logo">
-                  <Link to="/" className="text-decoration-none d-inline-flex align-items-center" aria-label="Muhammad Anees, home">
+                  <Link to="/" className="text-decoration-none d-inline-flex align-items-center">
                     <Logo tone="light" />
                   </Link>
                 </div>

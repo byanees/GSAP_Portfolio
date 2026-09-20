@@ -13,7 +13,7 @@ export default function Header4() {
               <div className="row align-items-center">
                 <div className="col-xxl-3 col-lg-1 col-6">
                   <div className="at-header-logo">
-                    <Link to="/" className="text-decoration-none" aria-label="Muhammad Anees, home">
+                    <Link to="/" className="text-decoration-none">
                       <Logo />
                     </Link>
                   </div>

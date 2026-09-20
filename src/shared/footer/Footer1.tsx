@@ -35,7 +35,7 @@ export default function Footer1() {
           <div className="row g-5">
             <div className="col-xxl-4 col-lg-6">
               <div className="d-flex flex-wrap align-items-start gap-4">
-                <Link to="/" className="mt-5 text-decoration-none" aria-label="Muhammad Anees, home">
+                <Link to="/" className="mt-5 text-decoration-none">
                   <Logo tone="light" size="lg" />
                 </Link>
                 <div>

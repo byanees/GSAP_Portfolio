@@ -3,7 +3,7 @@
 export const PROFILE = {
   name: "Muhammad Anees",
   shortName: "Anees",
-  role: "Full Stack Engineer",
+  role: "AI-Native Full Stack Engineer",
   location: "Islamabad, Pakistan",
   timezone: "PKT (UTC+5)",
   email: "aneese421@gmail.com",

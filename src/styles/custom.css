@@ -2839,3 +2839,11 @@ header.is-stuck .at-header-area {
     transition: none;
   }
 }
+
+/* The footer contact links sat at 22px tall with almost no gap between them,
+   under the 24px minimum tap target. Padding rather than line-height, so the
+   text baseline and the block's visual rhythm stay where they were. */
+.at-footer-title-wrap a {
+  display: inline-block;
+  padding-block: 2px;
+}

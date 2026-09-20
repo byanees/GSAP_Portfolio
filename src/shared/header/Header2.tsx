@@ -30,7 +30,7 @@ export default function Header2({ onToggleSidebar, onOpenHamburgerMenu }: Header
           <div className="row align-items-center">
             <div className="col-xl-2 col-6">
               <div className="at-header-logo">
-                <Link to="/" className="text-decoration-none d-inline-flex align-items-center" aria-label="Muhammad Anees, home">
+                <Link to="/" className="text-decoration-none d-inline-flex align-items-center">
                   <Logo />
                 </Link>
               </div>
