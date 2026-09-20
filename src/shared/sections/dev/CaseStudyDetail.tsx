@@ -12,7 +12,7 @@ export default function CaseStudyDetail() {
     if (!cs) {
         return (
             <section className="pt-150 pb-120">
-                <PageMeta title="Muhammad Anees - Case study not found" />
+                <PageMeta title="Muhammad Anees - Case study not found" noindex />
                 <div className="container">
                     <h1 className="fz-ds-1 fw-500 lh-1">Case study not found</h1>
                     <Link to="/portfolio" className="cs-back mt-30">

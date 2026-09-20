@@ -2588,3 +2588,167 @@ header.is-stuck .at-header-area {
 #root {
   overflow-x: clip;
 }
+
+/* ==========================================================================
+   404
+   The template shipped a stock portrait and a search box pointing at a route
+   that never existed. This is a signpost instead: the request that failed,
+   then every page the site actually serves.
+   ========================================================================== */
+
+.nf__lead {
+  max-width: 660px;
+  margin-bottom: 28px;
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--at-neutral-500);
+}
+
+/* The failed request, printed the way a log would print it. */
+.nf-request {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  margin: 0;
+  padding: 12px 16px;
+  font-family: var(--dev-mono);
+  font-size: 14px;
+  background: var(--at-neutral-50);
+  border: 1px solid var(--at-neutral-100);
+  border-radius: 12px;
+}
+
+.nf-request__method {
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--at-neutral-500);
+}
+
+.nf-request__path {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--at-neutral-900);
+}
+
+.nf-request__status {
+  padding: 2px 8px;
+  font-weight: 600;
+  color: var(--at-neutral-0);
+  background: var(--at-neutral-900);
+  border-radius: 999px;
+}
+
+.nf-links-wrap {
+  margin-top: 70px;
+}
+
+.nf-links__label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--at-neutral-500);
+}
+
+.nf-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--at-neutral-100);
+}
+
+.nf-link {
+  border-bottom: 1px solid var(--at-neutral-100);
+}
+
+/* The whole row is the target, so the pointer never has to find the label. */
+.nf-link__anchor {
+  display: grid;
+  grid-template-columns: 220px 1fr 24px;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 8px;
+  color: var(--at-neutral-900);
+  text-decoration: none;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.nf-link__anchor:hover,
+.nf-link__anchor:focus-visible {
+  padding-left: 20px;
+  background: var(--at-neutral-50);
+  color: var(--at-neutral-900);
+}
+
+.nf-link__label {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.nf-link__desc {
+  max-width: 620px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--at-neutral-500);
+}
+
+.nf-link__icon {
+  display: inline-flex;
+  justify-content: flex-end;
+  color: var(--at-neutral-500);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nf-link__anchor:hover .nf-link__icon,
+.nf-link__anchor:focus-visible .nf-link__icon {
+  color: var(--at-neutral-900);
+  transform: translate(3px, -3px);
+}
+
+.nf-actions {
+  margin-top: 60px;
+}
+
+@media (max-width: 767px) {
+  .nf-link__anchor {
+    grid-template-columns: 1fr 24px;
+    gap: 6px 16px;
+    padding: 22px 4px;
+  }
+
+  .nf-link__label {
+    font-size: 22px;
+  }
+
+  .nf-link__icon {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    align-items: center;
+  }
+
+  .nf-links-wrap {
+    margin-top: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-link__anchor,
+  .nf-link__icon {
+    transition: none;
+  }
+
+  .nf-link__anchor:hover,
+  .nf-link__anchor:focus-visible {
+    padding-left: 8px;
+  }
+
+  .nf-link__anchor:hover .nf-link__icon,
+  .nf-link__anchor:focus-visible .nf-link__icon {
+    transform: none;
+  }
+}

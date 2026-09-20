@@ -13,7 +13,7 @@ export default function BlogPost() {
     if (!post) {
         return (
             <section className="pt-150 pb-120">
-                <PageMeta title="Muhammad Anees - Post not found" />
+                <PageMeta title="Muhammad Anees - Post not found" noindex />
                 <div className="container">
                     <h1 className="fz-ds-1 fw-500 lh-1">Post not found</h1>
                     <Link to="/blog" className="cs-back mt-30">
