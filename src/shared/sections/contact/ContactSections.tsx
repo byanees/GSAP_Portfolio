@@ -98,10 +98,17 @@ export function ContactHero() {
     );
 }
 
+/** Idle until it has actually sent, so the status line can only report what
+ *  really happened. The previous version announced "your email app should be
+ *  open" whether or not anything had opened. */
+type SendState = { status: "idle" | "sending" | "sent" } | { status: "error"; message: string };
+
 export function ContactForm() {
     const [form, setForm] = useState({ name: "", company: "", email: "", message: "" });
     const [topics, setTopics] = useState<string[]>([]);
-    const [opened, setOpened] = useState(false);
+    const [send, setSend] = useState<SendState>({ status: "idle" });
+    /** Honeypot: hidden from people, and bots fill it in. */
+    const [website, setWebsite] = useState("");
 
     const update = (key: keyof typeof form) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
         setForm((f) => ({ ...f, [key]: e.target.value }));
@@ -109,24 +116,41 @@ export function ContactForm() {
     const toggleTopic = (topic: string) =>
         setTopics((ts) => (ts.includes(topic) ? ts.filter((t) => t !== topic) : [...ts, topic]));
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const sending = send.status === "sending";
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const company = form.company.trim();
-        const subject = `Project enquiry from ${form.name.trim()}${company ? ` (${company})` : ""}`;
-        const body = [
-            "Hi Anees,",
-            "",
-            `My name is ${form.name.trim()}${company ? ` and I work at ${company}` : ""}.`,
-            topics.length ? `I'm reaching out about: ${topics.join(", ")}.` : null,
-            "",
-            form.message.trim(),
-            "",
-            `You can reach me at ${form.email.trim()}.`,
-        ]
-            .filter((line) => line !== null)
-            .join("\n");
-        window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        setOpened(true);
+        if (sending) return;
+        setSend({ status: "sending" });
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: form.name.trim(),
+                    company: form.company.trim(),
+                    email: form.email.trim(),
+                    message: form.message.trim(),
+                    topics,
+                    website,
+                }),
+            });
+            const data: { ok?: boolean; error?: string } = await res.json().catch(() => ({}));
+
+            if (!res.ok || !data.ok) {
+                setSend({ status: "error", message: data.error ?? "That didn't send. Try again, or email me directly." });
+                return;
+            }
+
+            setSend({ status: "sent" });
+            setForm({ name: "", company: "", email: "", message: "" });
+            setTopics([]);
+        } catch {
+            // Offline, or the request never landed. Say so, rather than leaving
+            // the button sitting there looking busy.
+            setSend({ status: "error", message: "Couldn't reach the server. Check your connection, or email me directly." });
+        }
     };
 
     return (
@@ -212,22 +236,39 @@ export function ContactForm() {
                                 required
                             />
 
+                            {/* Off-screen rather than display:none, which some bots skip.
+                                tabIndex -1 and aria-hidden keep it away from people. */}
+                            <input
+                                type="text"
+                                name="website"
+                                tabIndex={-1}
+                                autoComplete="off"
+                                aria-hidden="true"
+                                value={website}
+                                onChange={(e) => setWebsite(e.target.value)}
+                                style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none", left: "-9999px" }}
+                            />
+
                             <div className="d-flex flex-wrap align-items-center justify-content-between gap-4 pt-40">
                                 <div className="at-btn-group">
-                                    <button type="submit" className="at-btn-circle" aria-hidden tabIndex={-1}>
+                                    <button type="submit" className="at-btn-circle" aria-hidden tabIndex={-1} disabled={sending}>
                                         {ARROW_CIRCLE_SVG}
                                     </button>
-                                    <button type="submit" className="at-btn z-index-1">
-                                        Send message
+                                    <button type="submit" className="at-btn z-index-1" disabled={sending}>
+                                        {sending ? "Sending…" : "Send message"}
                                     </button>
-                                    <button type="submit" className="at-btn-circle" aria-hidden tabIndex={-1}>
+                                    <button type="submit" className="at-btn-circle" aria-hidden tabIndex={-1} disabled={sending}>
                                         {ARROW_CIRCLE_SVG}
                                     </button>
                                 </div>
                                 <span className="neutral-500 fz-font-md" aria-live="polite">
-                                    {opened
-                                        ? "[ Your email app should be open. Hit send there. ]"
-                                        : "[ Opens in your email app. I reply within 24 hours ]"}
+                                    {send.status === "sent"
+                                        ? "[ Sent. I reply within 24 hours ]"
+                                        : send.status === "sending"
+                                          ? "[ Sending… ]"
+                                          : send.status === "error"
+                                            ? `[ ${send.message} ]`
+                                            : "[ Goes straight to my inbox. I reply within 24 hours ]"}
                                 </span>
                             </div>
                         </form>
