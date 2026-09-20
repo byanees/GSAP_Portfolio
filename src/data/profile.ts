@@ -6,7 +6,7 @@ export const PROFILE = {
   role: "AI-Native Full Stack Engineer",
   location: "Islamabad, Pakistan",
   timezone: "PKT (UTC+5)",
-  email: "aneese421@gmail.com",
+  email: "hello@byanees.com",
   phone: "+92 339 000 4208",
   phoneHref: "tel:+923390004208",
   linkedin: "https://www.linkedin.com/in/ianees/",

@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import Logo from "@/shared/Logo";
-import { ELSEWHERE } from "@/data/profile";
+import { ELSEWHERE, PROFILE } from "@/data/profile";
 
 const SOCIAL_ARROW = (
   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none" aria-hidden="true">
@@ -30,8 +30,8 @@ const Footer2 = forwardRef<HTMLElement, object>(function Footer2(_, ref) {
                     <a href="tel:+923390004208" className="text-white text-decoration-none">+92 339 000 4208</a>
                   </p>
                   <p className="h6 text-white mb-2 footer-email">
-                    <a href="mailto:aneese421@gmail.com" className="text-white text-decoration-none">
-                      aneese421@gmail.com
+                    <a href={`mailto:${PROFILE.email}`} className="text-white text-decoration-none">
+                      {PROFILE.email}
                     </a>
                   </p>
                   <p className="h6 text-white mb-0">Islamabad, Pakistan</p>

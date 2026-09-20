@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "@/shared/Logo";
+import { PROFILE } from "@/data/profile";
 import { OffcanvasMenuMount } from "@/shared/mobile-menu/MobileMenuCloneContext";
 import MenuClone from "@/shared/mobile-menu/MenuClone";
 
@@ -129,8 +130,8 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
                 </a>
               </li>
               <li>
-                <a className="fz-font-lg" href="mailto:aneese421@gmail.com">
-                  aneese421@gmail.com
+                <a className="fz-font-lg" href={`mailto:${PROFILE.email}`}>
+                  {PROFILE.email}
                 </a>
               </li>
               <li>

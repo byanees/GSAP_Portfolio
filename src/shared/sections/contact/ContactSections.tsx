@@ -1,10 +1,12 @@
 import { useState, type ChangeEvent, type FormEvent, type InputHTMLAttributes } from "react";
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
+import { PROFILE } from "@/data/profile";
 
 // Contact page - editorial hero + "letter" style enquiry form
 
-const EMAIL = "aneese421@gmail.com";
+/** Read from the profile so the address lives in exactly one place. */
+const EMAIL = PROFILE.email;
 
 const ARROW_SVG = (
     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

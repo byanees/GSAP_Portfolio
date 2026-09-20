@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
 import Logo from "@/shared/Logo";
-import { ELSEWHERE } from "@/data/profile";
+import { ELSEWHERE, PROFILE } from "@/data/profile";
 
 const SOCIAL_ARROW = (
   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none" aria-hidden="true">
@@ -58,8 +58,8 @@ export default function Footer1() {
                   <a href="tel:+923390004208" className="text-white">+92 339 000 4208</a>
                 </p>
                 <p className="h4 text-white text-decoration-underline footer-email mb-0">
-                  <a href="mailto:aneese421@gmail.com" className="text-white text-decoration-underline">
-                    aneese421@gmail.com
+                  <a href={`mailto:${PROFILE.email}`} className="text-white text-decoration-underline">
+                    {PROFILE.email}
                   </a>
                 </p>
                 <div className="at-footer-widget at-footer-link pt-50">
