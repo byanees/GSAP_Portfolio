@@ -18,6 +18,9 @@ export default function HomeCaseStudies() {
                             <h2 className="h3 reveal-text mb-0">
                                 <RevealText>Production systems, with the numbers to show for it</RevealText>
                             </h2>
+                            <p className="section-lead neutral-500 mt-30 mb-0">
+                                Three of {CASE_STUDIES.length}. The rest are on the work page.
+                            </p>
                         </div>
                         <div className="col-lg-3 ms-auto d-flex justify-content-lg-end">
                             <div className="at-btn-group at-btn-group-transparent">

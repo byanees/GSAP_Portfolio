@@ -10,6 +10,7 @@ import { MobileMenuCloneProvider } from "@/shared/mobile-menu/MobileMenuCloneCon
 import GlobalEffects from "@/shared/effects/GlobalEffects";
 import ThemeRouteSync from "@/shared/effects/ThemeRouteSync";
 import BackToTop from "@/shared/elements/BackToTop";
+import ContactDock from "@/shared/elements/ContactDock";
 import SmoothScrollEffect from "@/shared/effects/SmoothScrollEffect";
 
 type HeaderHandlers = {
@@ -153,6 +154,7 @@ export default function MainLayout({
       </div>
 
       <BackToTop />
+      <ContactDock />
     </MobileMenuCloneProvider>
   );
 }

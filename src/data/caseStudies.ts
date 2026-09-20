@@ -80,7 +80,10 @@ export const CASE_STUDIES: CaseStudy[] = [
       "At peak, 600k+ concurrent sessions were exhausting the Redis connection pool, putting the agent apps at risk of outages exactly when traffic mattered most.",
     built: [
       "Led development of the enterprise telecom agent apps for Tanzania and Togo, managing a small engineering team",
+      "Shipped the core telecom operations agents use daily: SIM registration, SIM swap, SIM stock management, agent inventory tracking, and airtime and bundle subscriptions",
+      "Built Tanzania-specific onboarding, including Kinara registration, bulk registration, and enterprise B2B flows alongside B2C",
       "Implemented a Redis connection multiplexing strategy that eliminated connection pool exhaustion",
+      "Automated the release pipeline with Docker and Jenkins, cutting deployment errors by 30%",
       "Migrated all microservices from .NET 7 to .NET 8",
     ],
     results: [
@@ -89,6 +92,29 @@ export const CASE_STUDIES: CaseStudy[] = [
       { value: ".NET 7 → 8", label: "migration across all microservices" },
     ],
     stack: [".NET 8", "Microservices", "Redis"],
+  },
+  {
+    slug: "otapp-bus-ticketing",
+    domain: "Third-party integration",
+    title: "Bus Ticketing Inside the Mixx Tanzania App",
+    company: "DPL",
+    role: "Software Engineer",
+    period: "2024 - 2026",
+    region: "Tanzania",
+    summary:
+      "Integrated the OTAPP bus ticketing service into the Mixx Tanzania super app, so booking a seat and paying for it never leaves the wallet.",
+    problem:
+      "Buying a bus ticket meant leaving the wallet app and paying somewhere else. The super app needed ticketing as a first-class service, using the balance the customer already had.",
+    built: [
+      "Integrated the OTAPP third-party ticketing service behind the app's own API surface",
+      "Built the booking flow end to end: route search, seat selection, and payment from the wallet balance",
+      "Handled the failure cases a third-party dependency brings, so a timeout never leaves a customer charged without a seat",
+    ],
+    results: [
+      { value: "Search → seat → pay", label: "completed without leaving the app" },
+      { value: "New service line", label: "added to the Mixx Tanzania super app" },
+    ],
+    stack: [".NET", "Microservices", "Third-party APIs"],
   },
   {
     slug: "qualification-certificate-workflow",

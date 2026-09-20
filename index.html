@@ -23,9 +23,160 @@
 
     <!-- Theme init before paint -->
     <script src="/scripts/theme-init.js"></script>
+
+    <!--
+      Loader styles are inline so the panel paints on the first frame. Living in
+      the bundled stylesheet, it would either flash unstyled or appear only after
+      the page underneath had already shown, which reads as a broken page.
+    -->
+    <style>
+      #site-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0f0f0f;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 56px 56px;
+        font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+        transition: transform 0.62s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.4s ease 0.22s;
+        will-change: transform;
+      }
+      #site-loader.is-leaving {
+        transform: translateY(-101%);
+        opacity: 0;
+      }
+      html.is-loading,
+      html.is-loading body {
+        overflow: hidden;
+      }
+      .sl-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 0 24px;
+      }
+      .sl-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #0f0f0f;
+        background: #fefefe;
+        border-radius: 15px;
+        animation: sl-pop 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      .sl-name {
+        font-size: clamp(22px, 4vw, 30px);
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        color: #fefefe;
+        animation: sl-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+      }
+      .sl-rule {
+        position: relative;
+        display: block;
+        width: 168px;
+        max-width: 60vw;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.14);
+        border-radius: 2px;
+      }
+      .sl-fill {
+        position: absolute;
+        inset: 0;
+        background: #00d4aa;
+        transform-origin: left center;
+        animation: sl-fill 1.6s cubic-bezier(0.33, 0.6, 0.35, 1) both;
+      }
+      @keyframes sl-pop {
+        from { opacity: 0; transform: scale(0.82); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      @keyframes sl-rise {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes sl-fill {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #site-loader { display: none; }
+        html.is-loading,
+        html.is-loading body { overflow: auto; }
+      }
+    </style>
   </head>
   <body class="at-magic-cursor">
     <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Removed by the inline script below once the page is ready. -->
+    <div id="site-loader" role="status" aria-live="polite">
+      <span
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%)"
+        >Loading</span
+      >
+      <div class="sl-inner" aria-hidden="true">
+        <span class="sl-mark">MA</span>
+        <span class="sl-name">Muhammad Anees</span>
+        <span class="sl-rule"><span class="sl-fill"></span></span>
+      </div>
+    </div>
+
+    <script>
+      // Inline on purpose: the loader must lift even if the app bundle never loads.
+      (function () {
+        var el = document.getElementById("site-loader");
+        if (!el) return;
+
+        var reduce = false;
+        try {
+          reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        } catch (e) {}
+
+        if (reduce) {
+          if (el.parentNode) el.parentNode.removeChild(el);
+          return;
+        }
+
+        var root = document.documentElement;
+        root.classList.add("is-loading");
+
+        var started = Date.now();
+        var MIN = 500; // long enough to register, short enough not to irritate
+        var MAX = 2200; // hard cap, whatever the network is doing
+        var settled = false;
+
+        function done() {
+          if (settled) return;
+          settled = true;
+          var wait = Math.max(0, MIN - (Date.now() - started));
+          setTimeout(function () {
+            el.classList.add("is-leaving");
+            root.classList.remove("is-loading");
+            setTimeout(function () {
+              if (el.parentNode) el.parentNode.removeChild(el);
+            }, 650);
+          }, wait);
+        }
+
+        if (document.readyState === "complete") done();
+        else window.addEventListener("load", done, { once: true });
+
+        setTimeout(done, MAX);
+      })();
+    </script>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
