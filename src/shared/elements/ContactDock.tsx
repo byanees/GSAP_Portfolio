@@ -1,27 +1,86 @@
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 /**
  * Persistent route to the contact page, so someone who finds something
  * interesting halfway down a case study does not have to go hunting for it.
  *
- * Sits bottom-left. Back-to-top owns bottom-right, and the header owns the top,
- * so this is the one corner where a fixed control does not land on body copy.
- * Hidden on the contact page, where it would point at itself.
+ * Sits directly above back-to-top, right-aligned with it. Collapsed to a round
+ * icon so it covers as little of the page as possible, and it expands to show
+ * the label on hover or keyboard focus. It also retreats while the visitor is
+ * scrolling down and comes back the moment they stop or scroll up, so it never
+ * sits on top of something being read.
+ *
+ * The icon is inline SVG to match every other icon in this project (the arrows,
+ * the back-to-top chevron). Pulling in an icon package for one glyph would add
+ * a dependency for roughly 200 bytes of path data.
  */
+const IDLE_MS = 500;
+const DOWN_THRESHOLD = 8;
+
 export default function ContactDock() {
     const { pathname } = useLocation();
+    const [hidden, setHidden] = useState(false);
+    const lastY = useRef(0);
+    const idleTimer = useRef(0);
+    const frame = useRef(0);
+
+    useEffect(() => {
+        if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+
+        lastY.current = window.scrollY;
+
+        const evaluate = () => {
+            frame.current = 0;
+            const y = window.scrollY;
+            const delta = y - lastY.current;
+            lastY.current = y;
+
+            // Retreat only while moving down and clear of the top of the page.
+            if (delta > DOWN_THRESHOLD && y > 240) setHidden(true);
+            else if (delta < 0) setHidden(false);
+
+            window.clearTimeout(idleTimer.current);
+            idleTimer.current = window.setTimeout(() => setHidden(false), IDLE_MS);
+        };
+
+        const onScroll = () => {
+            // rAF-throttled: the listener only ever schedules, it never measures.
+            if (frame.current) return;
+            frame.current = requestAnimationFrame(evaluate);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.clearTimeout(idleTimer.current);
+            if (frame.current) cancelAnimationFrame(frame.current);
+        };
+    }, []);
+
+    // A fresh page starts at the top, so the dock should always be showing.
+    useEffect(() => setHidden(false), [pathname]);
+
     if (pathname === "/contact") return null;
 
     return (
-        <Link to="/contact" className="contact-dock">
-            <span className="contact-dock__dot" aria-hidden="true" />
+        <Link
+            to="/contact"
+            className={`contact-dock${hidden ? " is-tucked" : ""}`}
+            aria-label="Go to the contact page"
+        >
+            <span className="contact-dock__icon" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
+                    <path
+                        d="M3 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H8.5L5 16.4V13a2 2 0 0 1-2-2V5Z"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                </svg>
+            </span>
             <span className="contact-dock__label">Let&apos;s talk</span>
-            <svg className="contact-dock__arrow" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-                <path
-                    d="M0.21967 9.40717C-0.0732232 9.70006 -0.0732232 10.1749 0.21967 10.4678C0.512563 10.7607 0.987437 10.7607 1.28033 10.4678L0.21967 9.40717ZM10.6875 0.75C10.6875 0.335786 10.3517 2.97145e-09 9.9375 1.50485e-07L3.1875 -2.70983e-07C2.77329 -2.70983e-07 2.4375 0.335786 2.4375 0.75C2.4375 1.16421 2.77329 1.5 3.1875 1.5H9.1875V7.5C9.1875 7.91421 9.52329 8.25 9.9375 8.25C10.3517 8.25 10.6875 7.91421 10.6875 7.5L10.6875 0.75ZM0.75 9.9375L1.28033 10.4678L10.4678 1.28033L9.9375 0.75L9.40717 0.21967L0.21967 9.40717L0.75 9.9375Z"
-                    fill="currentColor"
-                />
-            </svg>
         </Link>
     );
 }

@@ -2446,13 +2446,13 @@ header.is-stuck .at-header-area {
 
 /* ==========================================================================
    Contact dock
-   Fixed route to the contact page. Bottom-left, because back-to-top owns
-   bottom-right and the header owns the top.
+   Round icon stacked above back-to-top, expanding to its label on hover or
+   focus, and tucking away while the page is scrolled down.
    ========================================================================== */
 
 .contact-dock {
-  /* Stacked directly above back-to-top, which the theme fixes at
-     right: 50px / bottom: 50px (right: 20px on phones) with a 44px button. */
+  /* Sits on back-to-top's own offsets: right 50px / bottom 50px, 44px tall
+     (right 20px on phones). */
   position: fixed;
   right: 50px;
   bottom: 106px;
@@ -2461,71 +2461,89 @@ header.is-stuck .at-header-area {
   z-index: 60;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
+  justify-content: flex-start;
+  gap: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  overflow: hidden;
   font-size: 14px;
   font-weight: 600;
+  white-space: nowrap;
   text-decoration: none;
   color: var(--at-neutral-0);
   background: var(--at-neutral-950);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  box-shadow: 0 8px 20px rgba(3, 4, 28, 0.3);
+  transition: width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Out of the way while the visitor is scrolling down the page. */
+.contact-dock.is-tucked {
+  transform: translateX(calc(100% + 60px));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact-dock__icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+}
+
+.contact-dock__label {
+  padding-right: 20px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .contact-dock:hover,
 .contact-dock:focus-visible {
+  width: 148px;
   color: var(--at-neutral-0);
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 14px 30px rgba(3, 4, 28, 0.38);
 }
 
-.contact-dock:active {
-  transform: translateY(0);
-}
-
-/* Availability indicator: real state, not decoration. */
-.contact-dock__dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #00d4aa;
-  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.18);
-}
-
-.contact-dock__arrow {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.contact-dock:hover .contact-dock__arrow,
-.contact-dock:focus-visible .contact-dock__arrow {
-  transform: translate(2px, -2px);
+.contact-dock:hover .contact-dock__label,
+.contact-dock:focus-visible .contact-dock__label {
+  opacity: 1;
+  transition-delay: 0.08s;
 }
 
 @media (max-width: 575.98px) {
   .contact-dock {
     right: 20px;
     right: max(20px, env(safe-area-inset-right));
-    padding: 11px 16px;
-    font-size: 13px;
+  }
+}
+
+/* Coarse pointers get no hover, so the label would never be reachable. Keep it
+   collapsed; the aria-label carries the meaning for assistive tech. */
+@media (hover: none) {
+  .contact-dock:hover {
+    width: 44px;
+  }
+
+  .contact-dock:hover .contact-dock__label {
+    opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .contact-dock,
-  .contact-dock__arrow {
+  .contact-dock__label {
     transition: none;
   }
 
-  .contact-dock:hover,
-  .contact-dock:focus-visible {
+  .contact-dock.is-tucked {
     transform: none;
-  }
-
-  .contact-dock:hover .contact-dock__arrow,
-  .contact-dock:focus-visible .contact-dock__arrow {
-    transform: none;
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 

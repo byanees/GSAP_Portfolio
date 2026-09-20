@@ -57,7 +57,9 @@ export default function RevealOnScroll() {
                 if (st) created.push(st);
             }
 
-            ScrollTrigger.refresh();
+            // Deliberately no ScrollTrigger.refresh() here: it restores the saved
+            // scroll position, which fights ScrollToTop on every navigation. The
+            // triggers above are created against the new route's DOM already.
         })();
 
         return () => {
