@@ -3,7 +3,9 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 // Stylesheets, in cascade order. These live in src/ (not public/) so the build
-// can purge the unused theme rules and minify what is left.
+// can purge the unused theme rules and minify what is left. The font faces go
+// first, and being bundled into the same stylesheet they cost no extra request.
+import "@/styles/fonts.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/vendor-carousel-ticker.css";
 import "@/styles/vendor-spacing.css";

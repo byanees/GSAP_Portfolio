@@ -34,12 +34,16 @@ export default {
   plugins: isProd
     ? [
         purgecss({
-          content: ["./index.html", "./src/**/*.{ts,tsx}", "./public/scripts/*.js"],
+          content: ["./index.html", "./src/**/*.{ts,tsx}"],
           defaultExtractor: (content) => content.match(/[\w-/:%.]+(?<!:)/g) || [],
           safelist,
           variables: true,
           keyframes: true,
-          fontFace: true,
+          // Vite runs PostCSS per stylesheet, so fonts.css is purged in
+          // isolation: nothing in that file "uses" the faces it declares and
+          // all six get dropped. It is the only file with @font-face, so this
+          // setting protects nothing and only deletes our own fonts.
+          fontFace: false,
         }),
         cssnano({ preset: "default" }),
       ]

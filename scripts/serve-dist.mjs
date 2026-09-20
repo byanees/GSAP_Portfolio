@@ -23,6 +23,7 @@ const TYPES = {
   ".png": "image/png",
   ".webp": "image/webp",
   ".pdf": "application/pdf",
+  ".woff2": "font/woff2",
 };
 
 const COMPRESSIBLE = /^(text\/|image\/svg|application\/(javascript|json|xml))/;
