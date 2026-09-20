@@ -34,11 +34,7 @@ const Footer2 = forwardRef<HTMLElement, object>(function Footer2(_, ref) {
                       aneese421@gmail.com
                     </a>
                   </p>
-                  <p className="h6 text-white mb-0">
-                    Islamabad,
-                    <br />
-                    Pakistan
-                  </p>
+                  <p className="h6 text-white mb-0">Islamabad, Pakistan</p>
                 </div>
               </div>
             </div>

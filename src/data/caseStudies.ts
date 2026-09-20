@@ -111,8 +111,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Handled the failure cases a third-party dependency brings, so a timeout never leaves a customer charged without a seat",
     ],
     results: [
-      { value: "Search → seat → pay", label: "completed without leaving the app" },
-      { value: "New service line", label: "added to the Mixx Tanzania super app" },
+      { value: "In-app", label: "search, seat selection and payment, without leaving the wallet" },
+      { value: "New service", label: "added to the Mixx Tanzania super app" },
     ],
     stack: [".NET", "Microservices", "Third-party APIs"],
   },
