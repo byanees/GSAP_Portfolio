@@ -10,7 +10,7 @@ export const PROFILE = {
   phone: "+92 339 000 4208",
   phoneHref: "tel:+923390004208",
   linkedin: "https://www.linkedin.com/in/ianees/",
-  github: "https://github.com/ianeesdev",
+  github: "https://github.com/byanees",
   upwork: "https://www.upwork.com/freelancers/~017655f3515038fc66",
   cvUrl: "/assets/cv/Muhammad-Anees-Full-Stack-Engineer-CV.pdf",
   /** Set to an image path (e.g. "/assets/imgs/me/portrait.webp") to replace the About page placeholder. */
