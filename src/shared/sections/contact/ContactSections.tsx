@@ -5,8 +5,10 @@ import { PROFILE } from "@/data/profile";
 
 // Contact page - editorial hero + "letter" style enquiry form
 
-/** Read from the profile so the address lives in exactly one place. */
+/** Read from the profile so these live in exactly one place. */
 const EMAIL = PROFILE.email;
+/** "in/handle", derived rather than typed, so it cannot disagree with the link. */
+const LINKEDIN_HANDLE = `in/${PROFILE.linkedin.replace(/\/+$/, "").split("/").pop()}`;
 
 const ARROW_SVG = (
     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -38,8 +40,8 @@ const TOPICS = [
 const DETAILS = [
     { label: "Email", value: EMAIL, href: `mailto:${EMAIL}` },
     { label: "Phone", value: "+92 339 000 4208", href: "tel:+923390004208" },
-    { label: "LinkedIn", value: "in/ianees", href: "https://www.linkedin.com/in/ianees/" },
-    { label: "Upwork", value: "Hire on Upwork", href: "https://www.upwork.com/freelancers/~017655f3515038fc66" },
+    { label: "LinkedIn", value: LINKEDIN_HANDLE, href: PROFILE.linkedin },
+    { label: "Upwork", value: "Hire on Upwork", href: PROFILE.upwork },
     { label: "Based in", value: "Islamabad, Pakistan (PKT, UTC+5)" },
     { label: "Open to", value: "Full-time roles & freelance projects" },
 ];

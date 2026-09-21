@@ -9,9 +9,9 @@ export const PROFILE = {
   email: "hello@byanees.com",
   phone: "+92 339 000 4208",
   phoneHref: "tel:+923390004208",
-  linkedin: "https://www.linkedin.com/in/ianees/",
+  linkedin: "https://www.linkedin.com/in/byaneees/",
   github: "https://github.com/byanees",
-  upwork: "https://www.upwork.com/freelancers/~017655f3515038fc66",
+  upwork: "https://www.upwork.com/freelancers/~018e9a658c85846d75",
   cvUrl: "/assets/cv/Muhammad-Anees-Full-Stack-Engineer-CV.pdf",
   /** Set to an image path (e.g. "/assets/imgs/me/portrait.webp") to replace the About page placeholder. */
   portrait: null as string | null,

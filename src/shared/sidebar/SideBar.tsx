@@ -36,7 +36,7 @@ type SocialLink = { label: string; href: string; ariaLabel: string; path: string
 const socialLinks: SocialLink[] = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/ianees/",
+    href: PROFILE.linkedin,
     ariaLabel: "LinkedIn",
     path: "M16.2 0H1.8C0.81 0 0 0.81 0 1.8V16.2C0 17.19 0.81 18 1.8 18H16.2C17.19 18 18 17.19 18 16.2V1.8C18 0.81 17.19 0 16.2 0ZM5.4 15.3H2.7V7.2H5.4V15.3ZM4.05 5.85C3.15 5.85 2.43 5.13 2.43 4.23C2.43 3.33 3.15 2.61 4.05 2.61C4.95 2.61 5.67 3.33 5.67 4.23C5.67 5.13 4.95 5.85 4.05 5.85ZM15.3 15.3H12.6V11.07C12.6 9.99 12.58 8.61 11.1 8.61C9.6 8.61 9.38 9.77 9.38 10.99V15.3H6.68V7.2H9.26V8.46H9.3C9.66 7.74 10.6 6.98 12 6.98C14.73 6.98 15.3 8.79 15.3 11.16V15.3Z",
   },

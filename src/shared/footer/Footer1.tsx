@@ -13,7 +13,7 @@ const SOCIAL_ARROW = (
 );
 
 const SOCIAL_LINKS = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/ianees/" },
+  { label: "LinkedIn", href: PROFILE.linkedin },
 ] as const;
 
 
