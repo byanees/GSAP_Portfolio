@@ -3,8 +3,11 @@ import PageMeta from "@/seo/PageMeta";
 import { TITLE_SUFFIX } from "@/seo/siteConfig";
 import { breadcrumbSchema, caseStudySchema, graph } from "@/seo/schema";
 import { CASE_STUDIES } from "@/data/caseStudies";
+import { DIAGRAMS } from "@/data/diagrams";
 import CaseStudyCard from "./CaseStudyCard";
+import Eyebrow from "./Eyebrow";
 import StackTags from "./StackTags";
+import SystemDiagram from "./SystemDiagram";
 
 export default function CaseStudyDetail() {
     const { slug } = useParams<{ slug: string }>();
@@ -26,6 +29,7 @@ export default function CaseStudyDetail() {
     }
 
     const next = CASE_STUDIES[(index + 1) % CASE_STUDIES.length];
+    const diagram = DIAGRAMS[cs.slug];
     const meta = [
         { label: "Company", value: cs.company },
         { label: "Role", value: cs.role },
@@ -86,6 +90,21 @@ export default function CaseStudyDetail() {
                     </div>
                 </div>
             </section>
+
+            {diagram && (
+                <section className="pt-40 pb-60">
+                    <div className="container">
+                        <div className="cs-how__head">
+                            <div>
+                                <Eyebrow>how it works</Eyebrow>
+                                <h2 className="cs-how__title">{diagram.title}</h2>
+                            </div>
+                            <p className="cs-how__hint">Pick a step to replay it</p>
+                        </div>
+                        <SystemDiagram diagram={diagram} />
+                    </div>
+                </section>
+            )}
 
             <section className="pt-60 pb-120">
                 <div className="container">

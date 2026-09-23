@@ -2847,3 +2847,262 @@ header.is-stuck .at-header-area {
   display: inline-block;
   padding-block: 2px;
 }
+
+/* ---------------------------------------------------------------
+   How it works: animated system diagrams (SystemDiagram.tsx)
+   The panel is always dark, like the result tiles, so the diagram
+   reads as a blueprint in either theme. One accent marks the part
+   of each system the case study is about, and the moving traffic.
+---------------------------------------------------------------- */
+.dg {
+  --dg-bg: #0c0d0d;
+  --dg-panel: #151616;
+  --dg-line: #3a3b3b;
+  --dg-line-dim: #262727;
+  --dg-text: #f2f2f2;
+  --dg-muted: #8d8e8e;
+  --dg-accent: #c8ff4d;
+  --dg-accent-dim: rgba(200, 255, 77, 0.14);
+  color: var(--dg-text);
+  background: var(--dg-bg);
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.dg-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dg-line) transparent;
+}
+
+.dg-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--dev-mono);
+}
+
+.dg-scroll .dg-svg {
+  min-width: 760px;
+}
+
+.dg-grid-dot { fill: #2a2b2b; }
+
+.dg-zone rect {
+  fill: rgba(255, 255, 255, 0.015);
+  stroke: var(--dg-line-dim);
+  stroke-dasharray: 4 6;
+}
+
+.dg-zone text {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--dg-muted);
+}
+
+.dg-wire {
+  fill: none;
+  stroke: var(--dg-line);
+  stroke-width: 1.5;
+  transition: stroke 0.35s ease, stroke-width 0.35s ease;
+}
+
+.dg-wire.is-dashed { stroke-dasharray: 5 6; }
+
+.dg-wire.is-active {
+  stroke: var(--dg-accent);
+  stroke-width: 2;
+}
+
+.dg-arrow { fill: var(--dg-line); }
+
+.dg-node__box {
+  fill: var(--dg-panel);
+  stroke: var(--dg-line);
+  stroke-width: 1.25;
+}
+
+.dg-node--external .dg-node__box { stroke-dasharray: 6 5; }
+.dg-node--actor .dg-node__box { fill: #1c1d1d; }
+
+.dg-node__detail {
+  fill: none;
+  stroke: var(--dg-line);
+  stroke-width: 1.25;
+}
+
+.dg-node.is-focus .dg-node__box {
+  fill: #171b10;
+  stroke: var(--dg-accent);
+}
+
+.dg-node.is-focus .dg-node__detail { stroke: var(--dg-accent); }
+
+.dg-node__glow {
+  fill: var(--dg-accent-dim);
+  stroke: var(--dg-accent);
+  stroke-opacity: 0.35;
+  opacity: 0;
+}
+
+.dg-node__label {
+  font-family: var(--at-ff-heading, "DM Sans", sans-serif);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  fill: var(--dg-text);
+}
+
+.dg-node__sub {
+  font-size: 12.5px;
+  fill: var(--dg-muted);
+}
+
+.dg-node.is-focus .dg-node__sub { fill: var(--dg-accent); }
+
+.dg-node__bars rect { fill: var(--dg-line); }
+.dg-node.is-focus .dg-node__bars rect { fill: var(--dg-accent); opacity: 0.7; }
+
+.dg-badge circle {
+  fill: var(--dg-bg);
+  stroke: var(--dg-line);
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+.dg-badge__num {
+  font-size: 12px;
+  font-weight: 500;
+  fill: var(--dg-text);
+}
+
+.dg-badge.is-active circle {
+  fill: var(--dg-accent);
+  stroke: var(--dg-accent);
+}
+
+.dg-badge.is-active .dg-badge__num { fill: #0c0d0d; }
+
+.dg-badge__label {
+  font-size: 12.5px;
+  fill: var(--dg-muted);
+  paint-order: stroke;
+  stroke: var(--dg-bg);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+
+.dg-note {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  fill: var(--dg-accent);
+  opacity: 0.85;
+}
+
+.dg-packet {
+  fill: var(--dg-accent);
+  filter: drop-shadow(0 0 6px rgba(200, 255, 77, 0.9));
+  pointer-events: none;
+}
+
+.dg-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--dg-line-dim);
+  border-top: 1px solid var(--dg-line-dim);
+}
+
+.dg-step {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 22px 24px 26px;
+  text-align: left;
+  color: var(--dg-muted);
+  background: var(--dg-bg);
+  border: 0;
+  transition: color 0.35s ease, background-color 0.35s ease;
+}
+
+.dg-step:hover { color: var(--dg-text); }
+
+.dg-step:focus-visible {
+  outline: 2px solid var(--dg-accent);
+  outline-offset: -2px;
+}
+
+.dg-step__num {
+  font-family: var(--dev-mono);
+  font-size: 13px;
+  color: var(--dg-muted);
+  transition: color 0.35s ease;
+}
+
+.dg-step__text {
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+.dg-step.is-active {
+  color: var(--dg-text);
+  background: #121410;
+  box-shadow: inset 0 2px 0 var(--dg-accent);
+}
+
+.dg-step.is-active .dg-step__num { color: var(--dg-accent); }
+
+/* Card thumbnail */
+.dg--mini {
+  border-radius: 0;
+  border-bottom: 1px solid var(--at-neutral-100);
+}
+
+.dg--mini .dg-wire { stroke-width: 2.5; }
+.dg--mini .dg-wire.is-active { stroke-width: 3; }
+.dg--mini .dg-node__box { stroke-width: 2; }
+
+.cs-how__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 40px;
+  margin-bottom: 32px;
+}
+
+.cs-how__title {
+  max-width: 720px;
+  margin: 12px 0 0;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--at-neutral-900);
+}
+
+.cs-how__hint {
+  margin: 0;
+  font-family: var(--dev-mono);
+  font-size: 13px;
+  color: var(--at-neutral-500);
+}
+
+@media (max-width: 767px) {
+  .dg { border-radius: 20px; }
+  .dg--mini { border-radius: 0; }
+  .dg-step { padding: 18px 20px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-wire, .dg-badge circle, .dg-step, .dg-step__num { transition: none; }
+}
+
+.code-card__figure {
+  display: block;
+}

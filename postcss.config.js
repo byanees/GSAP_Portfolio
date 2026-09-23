@@ -25,7 +25,7 @@ const safelist = {
     /^terminal/, /^arch/, /^xp-/, /^reco-/, /^code-card/, /^web-card/,
     /^post-/, /^contact-/, /^engage-/, /^expertise-/, /^dev-/, /^stack-/,
     /^blog-cta/, /^case-/, /^site-logo/, /^skip-link/, /^ticker-/,
-    /^stat-figure/, /^section-lead/, /^footer-email/,
+    /^stat-figure/, /^section-lead/, /^footer-email/, /^dg-/, /^cs-how/,
   ],
   greedy: [/^is-/, /^has-/, /^js-/, /^data-/],
 };

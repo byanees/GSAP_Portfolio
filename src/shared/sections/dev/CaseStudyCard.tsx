@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import type { CaseStudy } from "@/data/caseStudies";
+import { DIAGRAMS } from "@/data/diagrams";
 import StackTags from "./StackTags";
+import SystemDiagram from "./SystemDiagram";
 import { ARROW_SVG } from "./icons";
 
-/** Text-first case study card, headed by the problem domain it belongs to. */
+/** Case study card, headed by the problem domain and a live thumbnail of the system. */
 export default function CaseStudyCard({ cs }: { cs: CaseStudy }) {
     const href = `/portfolio/${cs.slug}`;
     const headline = cs.results[0];
+    const diagram = DIAGRAMS[cs.slug];
 
     return (
         <article className="code-card h-100">
@@ -16,6 +19,11 @@ export default function CaseStudyCard({ cs }: { cs: CaseStudy }) {
                     {cs.company}, {cs.period}
                 </span>
             </div>
+            {diagram && (
+                <Link to={href} tabIndex={-1} aria-hidden className="code-card__figure">
+                    <SystemDiagram diagram={diagram} mini />
+                </Link>
+            )}
             <div className="code-card__body">
                 <h3 className="h5 code-card__title">
                     <Link to={href}>{cs.title}</Link>
