@@ -52,10 +52,11 @@ type Curve = [Pt, Pt, Pt, Pt];
 
 function curvesFor(edge: DiagramEdge, a: Box, b: Box): Curve[] {
     if (edge.loop) {
-        // Out of the bottom of one, round underneath, and back up into the other.
-        const p0 = { x: a.x, y: a.y + a.h / 2 };
-        const p3 = { x: b.x, y: b.y + b.h / 2 };
-        const depth = edge.bend ?? 130;
+        // Out of one node's bottom (or top), round underneath (or over), and back into the other.
+        const s = edge.loop === "above" ? -1 : 1;
+        const p0 = { x: a.x, y: a.y + (s * a.h) / 2 };
+        const p3 = { x: b.x, y: b.y + (s * b.h) / 2 };
+        const depth = s * (edge.bend ?? 130);
         return [[p0, { x: p0.x, y: p0.y + depth }, { x: p3.x, y: p3.y + depth }, p3]];
     }
     const { horizontal, p0, p3, n0 } = anchors(a, b, edge.axis);

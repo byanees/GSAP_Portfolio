@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import { PROFILE } from "@/data/profile";
 import { PROJECTS } from "@/data/projects";
@@ -16,13 +17,13 @@ export default function PortfolioIndex() {
                             <h1 className="fz-ds-1 fw-500 lh-1">What I&apos;ve Built</h1>
                             <p className="fz-font-lg neutral-900 mb-0">
                                 A selection, not everything I have shipped. Case studies from fintech and
-                                enterprise platforms first, then earlier client projects, each picked because
+                                enterprise platforms first, then other projects, each picked because
                                 the outcome is measurable. Happy to walk through the rest.
                             </p>
                         </div>
                         <div className="col-xxl-3 col-lg-5 ms-lg-auto text-lg-end">
                             <p className="dev-count mb-3">
-                                {CASE_STUDIES.length} selected case studies, {PROJECTS.length} earlier projects
+                                {CASE_STUDIES.length} selected case studies, {PROJECTS.length} projects
                             </p>
                             <a href={PROFILE.cvUrl} download className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
                                 <span>
@@ -62,11 +63,11 @@ export default function PortfolioIndex() {
                     <div className="row pb-50 g-4 align-items-end">
                         <div className="col-lg-6">
                             <Eyebrow>projects</Eyebrow>
-                            <h2 className="h3 mb-0">Earlier client work</h2>
+                            <h2 className="h3 mb-0">Projects</h2>
                         </div>
                         <div className="col-lg-5 ms-auto text-lg-end">
                             <p className="neutral-500 mb-0">
-                                Products I built for clients before moving into fintech full time, most of them still live.
+                                Platforms and products beyond the case studies, from a telco agent platform to SaaS and client sites.
                             </p>
                         </div>
                     </div>
@@ -75,7 +76,7 @@ export default function PortfolioIndex() {
                             <div key={p.slug} className="col-lg-6" data-reveal>
                                 <article className="web-card h-100">
                                     <div className="web-card__bar">
-                                        <span className="web-card__url">{p.domain ?? "Client-owned build"}</span>
+                                        <span className="web-card__url">{p.domain ?? p.owner ?? "Client-owned build"}</span>
                                         <span className="code-card__where">{p.meta}</span>
                                     </div>
                                     <div className="web-card__body">
@@ -97,7 +98,18 @@ export default function PortfolioIndex() {
                                             <a href={p.href} target="_blank" rel="noopener noreferrer" className="web-card__visit">
                                                 Visit {p.domain} {ARROW_SVG}
                                             </a>
-                                        ) : (
+                                        ) : p.caseStudies?.length ? (
+                                            <div className="web-card__related">
+                                                {p.caseStudies.map((slug) => {
+                                                    const cs = CASE_STUDIES.find((c) => c.slug === slug);
+                                                    return cs ? (
+                                                        <Link key={slug} to={`/portfolio/${slug}`} className="web-card__visit">
+                                                            Case study: {cs.title} {ARROW_SVG}
+                                                        </Link>
+                                                    ) : null;
+                                                })}
+                                            </div>
+                                        ) : p.owner ? null : (
                                             <span className="web-card__private">No public link, the client owns this one</span>
                                         )}
                                     </div>

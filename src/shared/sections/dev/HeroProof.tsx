@@ -18,13 +18,13 @@ const PROOF = [
     },
     {
         figure: "600k+",
-        label: "concurrent sessions held without Redis pool exhaustion",
-        slug: "telecom-agent-apps",
+        label: "concurrent sessions held after moving Redis to one multiplexed connection",
+        slug: "redis-connection-multiplexing",
     },
     {
         figure: "4,000+",
-        label: "merchants onboarded onto EMV QR Request to Pay",
-        slug: "emv-qr-request-to-pay",
+        label: "merchants adopted Request to Pay, over app and USSD",
+        slug: "request-to-pay",
     },
 ];
 

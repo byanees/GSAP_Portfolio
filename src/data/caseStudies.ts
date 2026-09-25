@@ -1,4 +1,5 @@
-// Case studies drawn from Anees' CV. Only facts from the CV; no invented metrics.
+// Case studies from Anees' CV and his own write-ups of how each system works.
+// Only facts he has stated; no invented metrics.
 
 export type Result = { value: string; label: string };
 
@@ -21,26 +22,28 @@ export type CaseStudy = {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    slug: "emv-qr-request-to-pay",
+    slug: "request-to-pay",
     domain: "Payments",
-    title: "EMV QR Payments & Request to Pay",
+    title: "Request to Pay over App and USSD",
     company: "DPL",
     role: "Software Engineer, led Request to Pay delivery",
     period: "2024 - 2026",
     featured: true,
     summary:
-      "Designed a peer-to-peer QR payment system on the EMV standard, and led delivery of Request to Pay across the mobile app and USSD.",
+      "Led delivery of Request to Pay: a merchant requests money from a customer, who can pay from a push notification or a USSD prompt, and can never pay twice.",
     problem:
-      "Customers and merchants needed QR payments that any compliant wallet could read, and a way to request money that also reached users without a smartphone.",
+      "Merchants needed to collect payments from customers on any phone, smartphone or not. Sending every request down two channels at once raised the obvious risk: a customer paying on both.",
     built: [
-      "Designed a P2P QR payment system conforming to EMV standards, using TLV encoding for the payloads",
-      "Led delivery of the Request to Pay feature through both the mobile app and USSD",
+      "Built the merchant flow: enter the customer's MSISDN, confirm the name through a name-check API, set the amount, and send",
+      "Delivered each request to the customer twice, as a push notification in the app and as a USSD prompt, so it also reaches phones without data",
+      "Made payment idempotent: the first payment settles the request, and any second attempt, on either channel, gets an 'already paid' business exception",
+      "Closed the USSD loop with a callback that updates the request record in the database once the USSD payment completes",
     ],
     results: [
       { value: "4,000+", label: "merchants adopted Request to Pay" },
-      { value: "App + USSD", label: "channels for requesting payments" },
+      { value: "Paid once", label: "whichever channel the customer uses" },
     ],
-    stack: [".NET", "Microservices", "EMV QR", "TLV encoding", "USSD"],
+    stack: [".NET", "Microservices", "USSD", "Push notifications", "Idempotency"],
   },
   {
     slug: "bulk-push-notification-scheduler",
@@ -51,47 +54,92 @@ export const CASE_STUDIES: CaseStudy[] = [
     period: "2024 - 2026",
     featured: true,
     summary:
-      "Built a scheduler that dispatches 700-800k push notifications per run in 6-8 minutes, with multilingual payloads for Android and Huawei devices.",
+      "Built the scheduler behind bulk push campaigns: 700-800k notifications per run in 6-8 minutes, read in chunks and sent with controlled parallelism to Android (FCM) and Huawei devices.",
     problem:
-      "Large campaigns and alerts had to reach hundreds of thousands of devices quickly, in each user's language, across two different push platforms.",
+      "A campaign can target 800k or more MSISDNs. Loading that many recipients into memory at once would take the system down, and anything that fails to send still has to go out.",
     built: [
-      "Built a bulk push notification scheduler dispatching 700-800k notifications in 6-8 minutes",
-      "Supported multilingual payloads so each user receives the message in their language",
-      "Targeted both Android and Huawei (HMS) devices from the same scheduler",
+      "Back-office flow: the admin imports a file of MSISDNs and sets the notification's body, type, and send time",
+      "A scheduler picks up unprocessed notifications, then reads the MSISDNs stored against each one",
+      "Recipients are read in fixed-size chunks instead of all at once, since holding 800k+ records in memory is not safe",
+      "A semaphore caps parallelism at 2, so two workers each process a chunk at a time",
+      "Each worker looks up the device (FCM or Huawei) and the notification content, then delivers to the right platform",
+      "Sent records are marked processed, and anything that failed is retried once every chunk has been delivered",
     ],
     results: [
       { value: "700-800k", label: "notifications per run" },
       { value: "6-8 min", label: "to dispatch a full run" },
     ],
-    stack: [".NET", "Schedulers", "Android push", "HMS Push"],
+    stack: [".NET", "Schedulers", "Semaphore", "FCM", "HMS Push"],
   },
   {
-    slug: "telecom-agent-apps",
-    domain: "Telecom",
-    title: "Telecom Agent Apps for Tanzania & Togo",
+    slug: "redis-connection-multiplexing",
+    domain: "Reliability",
+    title: "Redis Connection Multiplexing",
     company: "DPL",
-    role: "Led development and a small engineering team",
-    period: "2024 - 2026",
-    region: "Tanzania & Togo",
+    role: "Backend lead, telco agent apps",
+    period: "2025 - 2026",
+    region: "Tanzania",
     featured: true,
     summary:
-      "Led development of enterprise agent apps serving 60,000+ agents for telecom operators in Tanzania and Togo, and removed the Redis bottleneck that threatened peak traffic.",
+      "Every Redis call was opening its own connection. At peak that went past the connection limit and took the agent apps down, so I replaced it with one shared, multiplexed connection.",
     problem:
-      "At peak, 600k+ concurrent sessions were exhausting the Redis connection pool, putting the agent apps at risk of outages exactly when traffic mattered most.",
+      "Each request created a new Redis connection. During peak traffic, with 600k+ concurrent sessions, the connection count went past the limit, causing timeouts, runtime errors, and downtime for the agents.",
     built: [
-      "Led development of the enterprise telecom agent apps for Tanzania and Togo, managing a small engineering team",
-      "Shipped the core telecom operations agents use daily: SIM registration, SIM swap, SIM stock management, agent inventory tracking, and airtime and bundle subscriptions",
-      "Built Tanzania-specific onboarding, including Kinara registration, bulk registration, and enterprise B2B flows alongside B2C",
-      "Implemented a Redis connection multiplexing strategy that eliminated connection pool exhaustion",
-      "Automated the release pipeline with Docker and Jenkins, cutting deployment errors by 30%",
-      "Migrated all microservices from .NET 7 to .NET 8",
+      "Traced the peak-time timeouts to connection handling: every Redis call opened a new connection instead of reusing one",
+      "Replaced it with a single, long-lived multiplexed connection shared across the application, so concurrent commands are pipelined over the same connection",
+      "Created that connection once for the application's lifetime instead of per request, so the connection count stays flat however busy it gets",
+      "Eliminated the timeout errors during peak traffic and made the platform noticeably more stable",
     ],
     results: [
-      { value: "60,000+", label: "agents served across Tanzania and Togo" },
-      { value: "600k+", label: "concurrent sessions without pool exhaustion" },
-      { value: ".NET 7 → 8", label: "migration across all microservices" },
+      { value: "600k+", label: "concurrent sessions without running out of connections" },
+      { value: "Zero", label: "Redis timeout errors at peak after the change" },
     ],
-    stack: [".NET 8", "Microservices", "Redis"],
+    stack: [".NET", "Redis", "Connection multiplexing"],
+  },
+  {
+    slug: "preprod-image-promotion",
+    domain: "DevOps",
+    title: "Build Once, Promote to Production",
+    company: "DPL",
+    role: "Backend lead, telco agent apps",
+    period: "2025 - 2026",
+    summary:
+      "Automated CI/CD for the telco agent apps with Docker and Jenkins. The image signed off in UAT on PreProd is the exact image that goes to production, under a new tag, which cut deployment errors by 99%.",
+    problem:
+      "Deployments were slow and error-prone, and issues that never appeared in testing were turning up at runtime in production.",
+    built: [
+      "Automated the build and release pipeline with Jenkins, packaging each service as a Docker image",
+      "Kept PreProd as a replica of production, so UAT runs against the same setup the release will land on",
+      "Once UAT is signed off on PreProd, the same image is rolled out to production under a new tag, with no rebuild in between",
+      "Tightened image tagging so every release is traceable to the exact image that was tested",
+    ],
+    results: [
+      { value: "99%", label: "fewer deployment errors" },
+      { value: "Same image", label: "from PreProd UAT to production" },
+    ],
+    stack: ["Docker", "Jenkins", "CI/CD", ".NET"],
+  },
+  {
+    slug: "emv-qr-p2p-payments",
+    domain: "Payments",
+    title: "EMV QR Peer-to-Peer Payments",
+    company: "DPL",
+    role: "Software Engineer",
+    period: "2024 - 2026",
+    summary:
+      "Built a P2P QR payment system, with static and dynamic codes, on the EMV® QR Code standard, so users can scan a code and start a transfer inside the app.",
+    problem:
+      "Peer-to-peer payments needed a QR format that follows the industry standard, carrying either just who to pay (static) or who to pay and how much (dynamic).",
+    built: [
+      "Developed P2P QR payments in both static and dynamic modes, following the EMV® QR Code specification",
+      "Encoded the QR data structure as TLV (Tag-Length-Value), so every field says what it is and how long it is",
+      "Parsed scanned codes back into their fields, so scanning a QR starts a peer-to-peer transaction inside the app",
+    ],
+    results: [
+      { value: "Static + dynamic", label: "QR codes on one EMV-compliant format" },
+      { value: "Scan to pay", label: "P2P transfers started straight from a QR" },
+    ],
+    stack: [".NET", "Microservices", "EMV QR", "TLV encoding"],
   },
   {
     slug: "otapp-bus-ticketing",
@@ -102,17 +150,18 @@ export const CASE_STUDIES: CaseStudy[] = [
     period: "2024 - 2026",
     region: "Tanzania",
     summary:
-      "Integrated the OTAPP bus ticketing service into the Mixx Tanzania super app, so booking a seat and paying for it never leaves the wallet.",
+      "Built bus ticketing into the Mixx Tanzania wallet app: pick a route, a bus and a seat, pay from the Mixx wallet, and get the ticket by email.",
     problem:
-      "Buying a bus ticket meant leaving the wallet app and paying somewhere else. The super app needed ticketing as a first-class service, using the balance the customer already had.",
+      "Buying a bus ticket meant leaving the wallet app and paying somewhere else. The super app needed ticketing as a first-class service, paid from the balance the customer already had.",
     built: [
-      "Integrated the OTAPP third-party ticketing service behind the app's own API surface",
-      "Built the booking flow end to end: route search, seat selection, and payment from the wallet balance",
-      "Handled the failure cases a third-party dependency brings, so a timeout never leaves a customer charged without a seat",
+      "Route search: the customer picks a source and destination, and buses load with their departure times",
+      "Seat selection: they choose a bus, see which seats are available, and pick one",
+      "Passenger details, including email, contact number, and emergency contact",
+      "Payment from the customer's Mixx wallet, after which the ticket is issued and its details are emailed to them",
     ],
     results: [
-      { value: "In-app", label: "search, seat selection and payment, without leaving the wallet" },
-      { value: "New service", label: "added to the Mixx Tanzania super app" },
+      { value: "In-app", label: "search, seat, payment and ticket without leaving the wallet" },
+      { value: "Emailed", label: "ticket details as soon as it is issued" },
     ],
     stack: [".NET", "Microservices", "Third-party APIs"],
   },
@@ -124,56 +173,62 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: "AI-Native Full Stack Engineer",
     period: "2026 - Present",
     summary:
-      "Built the qualification certificate issuance workflow end to end: payment, reviewer assignment, approval, and role-based access.",
+      "Built the Qualification Certificate workflow end to end: an investor applies, an admin reviews, an approver decides, and an approved QC is reported to an external system and announced.",
     problem:
-      "Issuing a certificate involved payment, review, and approval steps owned by different roles, while the business rules kept evolving during delivery.",
+      "A QC application passes through three roles and can be sent back more than once, but has to end the same way every time: a decision on record, and an issued certificate the external system knows about.",
     built: [
-      "Built the issuance workflow end to end on .NET 9 and ABP.io, with Angular micro-frontend screens",
-      "Integrated HyperPay for certificate payments",
-      "Implemented reviewer assignment, approval, and role-based access control aligned with evolving business rules",
+      "Multi-step investor application, covering license eligibility for the QC and selection of company representatives",
+      "Company representatives can later add card details on the company's behalf through HyperPay, and view the company dashboard",
+      "Admin review: the admin can send the application back for corrections, and the investor corrects and resubmits it",
+      "Approval: the approver can reject, return the application to the reviewer, or approve it with a comment",
+      "On approval, the external system is informed and notifications go out that the QC has been issued",
+      "Role-based access control for investors, representatives, admins, and approvers",
     ],
     results: [
-      { value: "End to end", label: "payment → review → approval → issuance" },
-      { value: "RBAC", label: "kept in step with changing business rules" },
+      { value: "3 roles", label: "investor, admin reviewer, approver" },
+      { value: "End to end", label: "application to issued certificate" },
     ],
     stack: [".NET 9", "ABP.io", "Angular", "DDD", "HyperPay"],
   },
   {
     slug: "backend-aggregation-layer",
     domain: "Platform & analytics",
-    title: "Backend Aggregation Layer & Analytics Dashboards",
+    title: "Visa by Package Dashboards: One API per Dashboard",
     company: "Systems Limited",
     role: "AI-Native Full Stack Engineer",
     period: "2026 - Present",
     summary:
-      "Built a caching aggregation layer in front of five downstream services, and shipped analytics dashboards for the Online Travel Agency and Admin portals.",
+      "Nine dashboards, 4 for investors and 5 for admins, draw their data from another system's APIs. I centralised those calls in our ABP.io backend, so each dashboard makes one call, with a short-TTL cache in front.",
     problem:
-      "Portal screens were making redundant calls to several downstream services, and teams needed analytics they could filter and export.",
+      "The dashboard data lives in another system, exposed through its own APIs. Calling them from the frontend would mean several requests per dashboard, made straight from the browser.",
     built: [
-      "Built a backend aggregation layer with response caching across five downstream services",
-      "Cut redundant downstream calls made by the portals",
-      "Shipped analytics dashboards with filtering and export options for the Online Travel Agency and Admin portals",
+      "Centralised the external system's API calls in our own ABP.io backend",
+      "Exposed a single API per dashboard, so the frontend makes one call instead of many",
+      "Added a caching layer with a short TTL, so repeat loads are fast and the data stays current",
+      "Covered all 9 dashboards: 4 on the investor side and 5 on the admin side",
     ],
     results: [
-      { value: "5", label: "downstream services behind one cached layer" },
-      { value: "2", label: "portals with filterable, exportable analytics" },
+      { value: "9", label: "dashboards: 4 investor, 5 admin" },
+      { value: "1 call", label: "per dashboard from the frontend" },
     ],
-    stack: [".NET 9", "ABP.io", "Response caching", "Angular"],
+    stack: [".NET 9", "ABP.io", "Caching", "Angular"],
   },
   {
     slug: "batch-payment-validation",
     domain: "Payments",
-    title: "Batch Validation for Bulk Corporate Payments",
+    title: "Validation Scheduler for Bulk Payments",
     company: "DPL",
     role: "Software Engineer",
     period: "2024 - 2026",
     summary:
-      "Built a batch validation scheduler that detects errors before bulk corporate payments are processed, reducing processing errors by 30%.",
+      "Built the scheduler that validates bulk payment files before any money moves: it name-checks every recipient in chunks and marks each record for the disbursement scheduler, reducing payment processing errors by 30%.",
     problem:
-      "Errors in bulk corporate payments were surfacing during processing, when they are the most expensive to unwind.",
+      "Admins upload files of people to be paid. Errors found during disbursement, after money has started moving, are the most expensive to unwind.",
     built: [
-      "Built a batch validation scheduler that runs ahead of bulk corporate payment processing",
-      "Added pre-processing error detection so problems are caught before payments are processed",
+      "The admin uploads a file of the people to be paid",
+      "The validation scheduler loads the records in chunks rather than the whole file at once",
+      "Each record goes through a name check and the other validations",
+      "Every record's status is updated in the database, for a separate scheduler to pick up and disburse",
     ],
     results: [{ value: "30%", label: "fewer payment processing errors" }],
     stack: [".NET", "Schedulers", "Microservices"],

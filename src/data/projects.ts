@@ -1,5 +1,6 @@
-// Earlier client and product work, picked from the old portfolio (ianees.vercel.app/projects)
-// for measurable impact. Metrics come from the CV.
+// Projects beyond the case studies: recent platform and product builds first, then
+// earlier client work picked from the old portfolio (ianees.vercel.app/projects).
+// Metrics come from the CV or Anees' own project write-ups.
 
 import type { Result } from "./caseStudies";
 
@@ -10,13 +11,46 @@ export type Project = {
   role: string;
   /** Public domain shown in the card's address bar; omitted for client-owned builds. */
   domain?: string;
+  /** Shown in the address bar instead of a domain, for builds with no public URL. */
+  owner?: string;
   href?: string;
+  /** Case studies that go deeper into parts of this project, linked from the card. */
+  caseStudies?: string[];
   description: string;
   results: Result[];
   stack: string[];
 };
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "telco-agent-apps",
+    title: "Telco Agent Apps: Tanzania & Togo",
+    meta: "DPL, Aug 2025 - Jan 2026",
+    role: "Backend lead",
+    owner: "Internal telco platform",
+    description:
+      "Enterprise agent apps for telco operators, serving 60,000+ agents across Tanzania with nationwide coverage planned for both countries. I led backend development and the technical architecture: SIM registration, SIM swap, SIM stock, agent inventory, and airtime and bundle subscriptions, integrated with existing telco and legacy systems. I also built Tanzania's B2B and B2C onboarding, including Kinara, bulk, and enterprise registrations, and ran the backend team's code reviews and mentoring.",
+    results: [
+      { value: "60,000+", label: "agents across Tanzania" },
+      { value: "2", label: "countries, with nationwide coverage planned" },
+    ],
+    stack: [".NET Core", "PostgreSQL", "Angular", "Jenkins"],
+    caseStudies: ["redis-connection-multiplexing", "preprod-image-promotion"],
+  },
+  {
+    slug: "dooattend",
+    title: "DooAttend",
+    meta: "Mar 2025 - Jul 2025",
+    role: "Backend",
+    owner: "Private build",
+    description:
+      "A workforce platform for users, events, attendance, shift scheduling, tasks, and leave. I designed its MongoDB schemas with Mongoose, built JWT login with role-based access middleware for everyone from admins to employees, and connected a Python AI service to the Node.js backend so employees check in with a face scan. Modular middleware handles auth, error logging, and subscription checks; live chat and push notifications run on Socket.io and Firebase Cloud Messaging, and Stripe bills the subscriptions.",
+    results: [
+      { value: "Face scan", label: "contactless check-in through a Python AI service" },
+      { value: "Real time", label: "chat and push notifications" },
+    ],
+    stack: ["Node.js", "MongoDB", "Socket.io", "Stripe", "Firebase", "AWS S3", "Python", "AI/ML"],
+  },
   {
     slug: "chadgpt",
     title: "ChadGPT",

@@ -10,7 +10,9 @@
     { "source": "/archive-4", "destination": "/blog", "permanent": true },
     { "source": "/blog-details", "destination": "/blog", "permanent": true },
     { "source": "/blog-details/:slug", "destination": "/blog/:slug", "permanent": true },
-    { "source": "/contact-2", "destination": "/contact", "permanent": true }
+    { "source": "/contact-2", "destination": "/contact", "permanent": true },
+    { "source": "/portfolio/emv-qr-request-to-pay", "destination": "/portfolio/request-to-pay", "permanent": true },
+    { "source": "/portfolio/telecom-agent-apps", "destination": "/portfolio", "permanent": true }
   ],
   "cleanUrls": true,
   "trailingSlash": false

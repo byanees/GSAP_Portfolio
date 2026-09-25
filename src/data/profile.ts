@@ -22,7 +22,7 @@ export const PROFILE = {
   aboutLead:
     "I work on the parts of a product that have to stay up: payment rails, schedulers, and the services behind them. Three years in, mostly fintech and telecom.",
   summary:
-    "I've led the telecom agent apps serving 60,000+ agents across Tanzania and Togo, shipped EMV QR payments adopted by 4,000+ merchants, and built a scheduler that pushes 700-800k notifications per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
+    "I've led the backend for telco agent apps serving 60,000+ agents across Tanzania, delivered Request to Pay to 4,000+ merchants, and built a scheduler that pushes 700-800k notifications per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
 };
 
 export const ELSEWHERE = [
@@ -56,7 +56,7 @@ export const EXPERIENCE: ExperienceItem[] = [
       "Building REST APIs on .NET 9 and ABP.io with domain-driven design across a microservices architecture, and Angular micro-frontend features for multiple product teams.",
     highlights: [
       { value: "40", label: "person delivery team, coordinated daily" },
-      { value: "5", label: "downstream services behind one cached layer" },
+      { value: "9", label: "dashboards, each served by one cached API" },
     ],
     stack: [".NET 9", "ABP.io", "Angular", "DDD", "HyperPay"],
   },
@@ -146,14 +146,14 @@ export const STACK_LAYERS = [
     name: "Services",
     role: "APIs and business rules, split into services.",
     items: [".NET 9", ".NET Core", "ABP.io", ".NET Aspire", "Node.js", "REST", "WebSockets"],
-    usedIn: ["emv-qr-request-to-pay", "bulk-push-notification-scheduler", "telecom-agent-apps"],
+    usedIn: ["request-to-pay", "bulk-push-notification-scheduler", "emv-qr-p2p-payments"],
   },
   {
     key: "data",
     name: "Data & messaging",
     role: "Where state lives and work gets queued.",
     items: ["PostgreSQL", "EF Core", "Redis", "AWS SQS"],
-    usedIn: ["telecom-agent-apps"],
+    usedIn: ["redis-connection-multiplexing"],
   },
   {
     key: "platform",
@@ -167,7 +167,7 @@ export const STACK_LAYERS = [
     name: "Delivery",
     role: "Shipping changes and watching them run.",
     items: ["Jenkins", "GitHub Actions", "ELK"],
-    usedIn: [] as string[],
+    usedIn: ["preprod-image-promotion"],
   },
 ];
 

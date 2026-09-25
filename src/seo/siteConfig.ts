@@ -26,7 +26,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   "/": {
     title: "Muhammad Anees — Full Stack Engineer, .NET & Angular",
     description:
-      "Full stack engineer in Islamabad building payment platforms and backend systems on .NET 9, ABP.io, and Angular. EMV QR payments for 4,000+ merchants, telecom agent apps for 60,000+ agents.",
+      "Full stack engineer in Islamabad building payment platforms and backend systems on .NET 9, ABP.io, and Angular. Request to Pay for 4,000+ merchants, telco agent apps for 60,000+ agents.",
   },
   "/about": {
     title: `About${TITLE_SUFFIX}`,
@@ -36,7 +36,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   "/portfolio": {
     title: `Work${TITLE_SUFFIX}`,
     description:
-      "Case studies in payments and distributed systems: EMV QR and Request to Pay, a scheduler pushing 700-800k notifications per run, telecom agent apps for Tanzania and Togo.",
+      "Case studies in payments and distributed systems: Request to Pay over app and USSD, a scheduler pushing 700-800k notifications per run, and Redis multiplexing and build-once releases for telco agent apps.",
   },
   "/blog": {
     title: `Notes${TITLE_SUFFIX}`,
