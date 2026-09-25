@@ -35,7 +35,21 @@ export const PROJECTS: Project[] = [
       { value: "2", label: "countries, with nationwide coverage planned" },
     ],
     stack: [".NET Core", "PostgreSQL", "Angular", "Jenkins"],
-    caseStudies: ["redis-connection-multiplexing", "preprod-image-promotion"],
+    caseStudies: ["preprod-image-promotion"],
+  },
+  {
+    slug: "emv-qr-p2p-payments",
+    title: "EMV QR Peer-to-Peer Payments",
+    meta: "DPL, 2024 - 2026",
+    role: "Backend",
+    owner: "Internal fintech platform",
+    description:
+      "A P2P QR payment system with static and dynamic codes, built to the EMV® QR Code standard. The QR data structure is TLV (Tag-Length-Value) encoded, and scanned codes are parsed back into their fields, so users can scan a code and start a peer-to-peer transaction inside the app.",
+    results: [
+      { value: "Static + dynamic", label: "QR codes on one EMV-compliant format" },
+      { value: "Scan to pay", label: "P2P transfers started straight from a QR" },
+    ],
+    stack: [".NET", "Microservices", "EMV QR", "TLV encoding"],
   },
   {
     slug: "dooattend",

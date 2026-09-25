@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import { PROFILE } from "@/data/profile";
 import { PROJECTS } from "@/data/projects";
@@ -7,18 +8,78 @@ import Eyebrow from "./Eyebrow";
 import StackTags from "./StackTags";
 import { ARROW_SVG } from "./icons";
 
+const TABS = [
+    { key: "case-studies", label: "Case studies", count: CASE_STUDIES.length },
+    { key: "projects", label: "Projects", count: PROJECTS.length },
+] as const;
+
+type TabKey = (typeof TABS)[number]["key"];
+
+/** `/portfolio#projects` opens on the projects tab; anything else on the case studies. */
+const tabFromHash = (hash: string): TabKey => (hash === "#projects" ? "projects" : "case-studies");
+
 export default function PortfolioIndex() {
+    const { hash } = useLocation();
+    // Always starts on case studies so the first client render matches the
+    // prerendered HTML; the hash is applied once hydrated.
+    const [tab, setTab] = useState<TabKey>("case-studies");
+    // Panels only animate in after a switch, so the first paint is left to the
+    // cards' own scroll reveal.
+    const [switched, setSwitched] = useState(false);
+    const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+    const mounted = useRef(false);
+
+    useEffect(() => {
+        const next = tabFromHash(hash);
+        setTab(next);
+        if (next !== "case-studies") setSwitched(true);
+    }, [hash]);
+
+    useEffect(() => {
+        // Hidden cards were measured at zero height, so ScrollTrigger (the diagram
+        // thumbnails, the footer reveal) needs fresh positions once a panel shows.
+        if (!mounted.current) {
+            mounted.current = true;
+            return;
+        }
+        void import("gsap/ScrollTrigger").then(({ default: ScrollTrigger }) => ScrollTrigger.refresh());
+    }, [tab]);
+
+    const select = (key: TabKey) => {
+        setTab(key);
+        setSwitched(true);
+        // Kept in the URL so the tab survives a reload and can be linked to, without
+        // a router navigation (which would reset the scroll position).
+        const url = key === "projects" ? "#projects" : window.location.pathname + window.location.search;
+        window.history.replaceState(window.history.state, "", url);
+    };
+
+    // Arrow keys, Home and End move between tabs, per the WAI-ARIA tabs pattern.
+    const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>, i: number) => {
+        const last = TABS.length - 1;
+        const next =
+            e.key === "ArrowRight" ? (i === last ? 0 : i + 1)
+            : e.key === "ArrowLeft" ? (i === 0 ? last : i - 1)
+            : e.key === "Home" ? 0
+            : e.key === "End" ? last
+            : null;
+        if (next === null) return;
+        e.preventDefault();
+        select(TABS[next].key);
+        tabRefs.current[next]?.focus();
+    };
+
     return (
         <>
-            <section className="pt-150 pb-80">
+            <section className="pt-150 pb-60">
                 <div className="container">
                     <div className="row g-4 align-items-end pb-60 border-bottom-100">
                         <div className="col-xxl-8 col-lg-7">
                             <h1 className="fz-ds-1 fw-500 lh-1">What I&apos;ve Built</h1>
                             <p className="fz-font-lg neutral-900 mb-0">
                                 A selection, not everything I have shipped. Case studies from fintech and
-                                enterprise platforms first, then other projects, each picked because
-                                the outcome is measurable. Happy to walk through the rest.
+                                enterprise platforms, and other projects, each picked because the outcome
+                                is measurable. Happy to walk through the rest.
                             </p>
                         </div>
                         <div className="col-xxl-3 col-lg-5 ms-lg-auto text-lg-end">
@@ -37,85 +98,123 @@ export default function PortfolioIndex() {
                             </a>
                         </div>
                     </div>
+
+                    <div className="dev-tabs" role="tablist" aria-label="Work">
+                        {TABS.map((t, i) => {
+                            const active = tab === t.key;
+                            return (
+                                <button
+                                    key={t.key}
+                                    ref={(el) => {
+                                        tabRefs.current[i] = el;
+                                    }}
+                                    type="button"
+                                    role="tab"
+                                    id={`work-tab-${t.key}`}
+                                    aria-controls={`work-panel-${t.key}`}
+                                    aria-selected={active}
+                                    tabIndex={active ? 0 : -1}
+                                    className={`dev-tab${active ? " is-active" : ""}`}
+                                    onClick={() => select(t.key)}
+                                    onKeyDown={(e) => onKeyDown(e, i)}
+                                >
+                                    {t.label}
+                                    <span className="dev-tab__count">{t.count}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
             </section>
 
             <section className="pb-120">
                 <div className="container">
-                    <div className="row pb-40">
-                        <div className="col-lg-6">
-                            <Eyebrow>case studies</Eyebrow>
-                            <h2 className="h3 mb-0">Production systems</h2>
+                    <div
+                        role="tabpanel"
+                        id="work-panel-case-studies"
+                        aria-labelledby="work-tab-case-studies"
+                        className={`dev-tabpanel${switched ? " is-switched" : ""}`}
+                        hidden={tab !== "case-studies"}
+                    >
+                        <div className="row pb-40">
+                            <div className="col-lg-6">
+                                <Eyebrow>case studies</Eyebrow>
+                                <h2 className="h3 mb-0">Production systems</h2>
+                            </div>
+                        </div>
+                        <div className="row g-4" data-reveal-group>
+                            {CASE_STUDIES.map((cs) => (
+                                <div key={cs.slug} className="col-lg-6" data-reveal>
+                                    <CaseStudyCard cs={cs} />
+                                </div>
+                            ))}
                         </div>
                     </div>
-                    <div className="row g-4" data-reveal-group>
-                        {CASE_STUDIES.map((cs) => (
-                            <div key={cs.slug} className="col-lg-6" data-reveal>
-                                <CaseStudyCard cs={cs} />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
-            <section className="pt-120 pb-120 bg-neutral-50">
-                <div className="container">
-                    <div className="row pb-50 g-4 align-items-end">
-                        <div className="col-lg-6">
-                            <Eyebrow>projects</Eyebrow>
-                            <h2 className="h3 mb-0">Projects</h2>
-                        </div>
-                        <div className="col-lg-5 ms-auto text-lg-end">
-                            <p className="neutral-500 mb-0">
-                                Platforms and products beyond the case studies, from a telco agent platform to SaaS and client sites.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="row g-4" data-reveal-group>
-                        {PROJECTS.map((p) => (
-                            <div key={p.slug} className="col-lg-6" data-reveal>
-                                <article className="web-card h-100">
-                                    <div className="web-card__bar">
-                                        <span className="web-card__url">{p.domain ?? p.owner ?? "Client-owned build"}</span>
-                                        <span className="code-card__where">{p.meta}</span>
-                                    </div>
-                                    <div className="web-card__body">
-                                        <div className="web-card__top">
-                                            <span className="web-card__role">{p.role}</span>
-                                        </div>
-                                        <h3 className="h4 web-card__title">{p.title}</h3>
-                                        <p className="web-card__desc">{p.description}</p>
-                                        <ul className="web-card__metrics">
-                                            {p.results.map((r) => (
-                                                <li key={r.label}>
-                                                    <strong>{r.value}</strong>
-                                                    <span>{r.label}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <StackTags tags={p.stack} />
-                                        {p.href ? (
-                                            <a href={p.href} target="_blank" rel="noopener noreferrer" className="web-card__visit">
-                                                Visit {p.domain} {ARROW_SVG}
-                                            </a>
-                                        ) : p.caseStudies?.length ? (
-                                            <div className="web-card__related">
-                                                {p.caseStudies.map((slug) => {
-                                                    const cs = CASE_STUDIES.find((c) => c.slug === slug);
-                                                    return cs ? (
-                                                        <Link key={slug} to={`/portfolio/${slug}`} className="web-card__visit">
-                                                            Case study: {cs.title} {ARROW_SVG}
-                                                        </Link>
-                                                    ) : null;
-                                                })}
-                                            </div>
-                                        ) : p.owner ? null : (
-                                            <span className="web-card__private">No public link, the client owns this one</span>
-                                        )}
-                                    </div>
-                                </article>
+                    <div
+                        role="tabpanel"
+                        id="work-panel-projects"
+                        aria-labelledby="work-tab-projects"
+                        className={`dev-tabpanel${switched ? " is-switched" : ""}`}
+                        hidden={tab !== "projects"}
+                    >
+                        <div className="row pb-40 g-4 align-items-end">
+                            <div className="col-lg-6">
+                                <Eyebrow>projects</Eyebrow>
+                                <h2 className="h3 mb-0">Platforms and products</h2>
                             </div>
-                        ))}
+                            <div className="col-lg-5 ms-auto text-lg-end">
+                                <p className="neutral-500 mb-0">
+                                    Work beyond the case studies, from a telco agent platform and QR payments to SaaS and client sites.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="row g-4" data-reveal-group>
+                            {PROJECTS.map((p) => (
+                                <div key={p.slug} className="col-lg-6" data-reveal>
+                                    <article className="web-card h-100">
+                                        <div className="web-card__bar">
+                                            <span className="web-card__url">{p.domain ?? p.owner ?? "Client-owned build"}</span>
+                                            <span className="code-card__where">{p.meta}</span>
+                                        </div>
+                                        <div className="web-card__body">
+                                            <div className="web-card__top">
+                                                <span className="web-card__role">{p.role}</span>
+                                            </div>
+                                            <h3 className="h4 web-card__title">{p.title}</h3>
+                                            <p className="web-card__desc">{p.description}</p>
+                                            <ul className="web-card__metrics">
+                                                {p.results.map((r) => (
+                                                    <li key={r.label}>
+                                                        <strong>{r.value}</strong>
+                                                        <span>{r.label}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                            <StackTags tags={p.stack} />
+                                            {p.href ? (
+                                                <a href={p.href} target="_blank" rel="noopener noreferrer" className="web-card__visit">
+                                                    Visit {p.domain} {ARROW_SVG}
+                                                </a>
+                                            ) : p.caseStudies?.length ? (
+                                                <div className="web-card__related">
+                                                    {p.caseStudies.map((slug) => {
+                                                        const cs = CASE_STUDIES.find((c) => c.slug === slug);
+                                                        return cs ? (
+                                                            <Link key={slug} to={`/portfolio/${slug}`} className="web-card__visit">
+                                                                Case study: {cs.title} {ARROW_SVG}
+                                                            </Link>
+                                                        ) : null;
+                                                    })}
+                                                </div>
+                                            ) : p.owner ? null : (
+                                                <span className="web-card__private">No public link, the client owns this one</span>
+                                            )}
+                                        </div>
+                                    </article>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>

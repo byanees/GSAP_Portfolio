@@ -3113,3 +3113,66 @@ header.is-stuck .at-header-area {
 .code-card__figure {
   display: block;
 }
+
+/* Portfolio tabs: case studies / projects. Same pill as the contact form's
+   topic buttons, so the site keeps one selectable-chip style. */
+.dev-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 40px;
+}
+
+.dev-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--at-neutral-700);
+  background: transparent;
+  border: 1px solid var(--at-neutral-100);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.dev-tab:hover {
+  border-color: var(--at-neutral-900);
+  color: var(--at-neutral-900);
+}
+
+.dev-tab.is-active {
+  background: var(--at-neutral-900);
+  border-color: var(--at-neutral-900);
+  color: var(--at-neutral-0);
+}
+
+.dev-tab:focus-visible {
+  outline: 2px solid var(--at-neutral-900);
+  outline-offset: 3px;
+}
+
+.dev-tab__count {
+  font-family: var(--dev-mono);
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+/* Matches the scroll reveal (RevealOnScroll): 20px lift, 0.55s, power3.out. */
+.dev-tabpanel.is-switched:not([hidden]) {
+  animation: dev-tabpanel-in 0.55s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@keyframes dev-tabpanel-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dev-tab { transition: none; }
+  .dev-tabpanel.is-switched:not([hidden]) { animation: none; }
+}

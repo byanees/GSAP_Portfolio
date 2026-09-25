@@ -36,7 +36,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   "/portfolio": {
     title: `Work${TITLE_SUFFIX}`,
     description:
-      "Case studies in payments and distributed systems: Request to Pay over app and USSD, a scheduler pushing 700-800k notifications per run, and Redis multiplexing and build-once releases for telco agent apps.",
+      "Case studies in payments and distributed systems: Request to Pay over app and USSD, a scheduler pushing 700-800k notifications per run, Redis multiplexing for the Mixx Tanzania app, and build-once releases for telco agent apps.",
   },
   "/blog": {
     title: `Notes${TITLE_SUFFIX}`,

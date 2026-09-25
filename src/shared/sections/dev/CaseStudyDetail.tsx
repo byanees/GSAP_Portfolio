@@ -78,6 +78,7 @@ export default function CaseStudyDetail() {
                 </div>
             </section>
 
+            {cs.results.length > 0 && (
             <section className="pb-100">
                 <div className="container">
                     <div className="cs-results" data-reveal-group>
@@ -90,6 +91,7 @@ export default function CaseStudyDetail() {
                     </div>
                 </div>
             </section>
+            )}
 
             {diagram && (
                 <section className="pt-40 pb-60">

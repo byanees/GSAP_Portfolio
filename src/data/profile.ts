@@ -71,7 +71,6 @@ export const EXPERIENCE: ExperienceItem[] = [
       { value: "4,000+", label: "merchants on Request to Pay" },
       { value: "700-800k", label: "notifications per run" },
       { value: "600k+", label: "concurrent sessions" },
-      { value: "30%", label: "fewer payment errors" },
     ],
     stack: [".NET 8", "Microservices", "Redis", "EMV QR"],
   },
@@ -146,7 +145,7 @@ export const STACK_LAYERS = [
     name: "Services",
     role: "APIs and business rules, split into services.",
     items: [".NET 9", ".NET Core", "ABP.io", ".NET Aspire", "Node.js", "REST", "WebSockets"],
-    usedIn: ["request-to-pay", "bulk-push-notification-scheduler", "emv-qr-p2p-payments"],
+    usedIn: ["request-to-pay", "bulk-push-notification-scheduler", "batch-payment-validation"],
   },
   {
     key: "data",

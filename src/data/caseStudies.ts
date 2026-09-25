@@ -76,14 +76,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     domain: "Reliability",
     title: "Redis Connection Multiplexing",
     company: "DPL",
-    role: "Backend lead, telco agent apps",
-    period: "2025 - 2026",
+    role: "Software Engineer, Mixx Tanzania app",
+    period: "2024 - 2026",
     region: "Tanzania",
     featured: true,
     summary:
-      "Every Redis call was opening its own connection. At peak that went past the connection limit and took the agent apps down, so I replaced it with one shared, multiplexed connection.",
+      "In the Mixx Tanzania app, every Redis call was opening its own connection. At peak that went past the connection limit and caused downtime, so I replaced it with one shared, multiplexed connection.",
     problem:
-      "Each request created a new Redis connection. During peak traffic, with 600k+ concurrent sessions, the connection count went past the limit, causing timeouts, runtime errors, and downtime for the agents.",
+      "Each request created a new Redis connection. During peak traffic, with 600k+ concurrent sessions, the connection count went past the limit, causing timeouts, runtime errors, and downtime in the Mixx Tanzania app.",
     built: [
       "Traced the peak-time timeouts to connection handling: every Redis call opened a new connection instead of reusing one",
       "Replaced it with a single, long-lived multiplexed connection shared across the application, so concurrent commands are pipelined over the same connection",
@@ -118,28 +118,6 @@ export const CASE_STUDIES: CaseStudy[] = [
       { value: "Same image", label: "from PreProd UAT to production" },
     ],
     stack: ["Docker", "Jenkins", "CI/CD", ".NET"],
-  },
-  {
-    slug: "emv-qr-p2p-payments",
-    domain: "Payments",
-    title: "EMV QR Peer-to-Peer Payments",
-    company: "DPL",
-    role: "Software Engineer",
-    period: "2024 - 2026",
-    summary:
-      "Built a P2P QR payment system, with static and dynamic codes, on the EMV® QR Code standard, so users can scan a code and start a transfer inside the app.",
-    problem:
-      "Peer-to-peer payments needed a QR format that follows the industry standard, carrying either just who to pay (static) or who to pay and how much (dynamic).",
-    built: [
-      "Developed P2P QR payments in both static and dynamic modes, following the EMV® QR Code specification",
-      "Encoded the QR data structure as TLV (Tag-Length-Value), so every field says what it is and how long it is",
-      "Parsed scanned codes back into their fields, so scanning a QR starts a peer-to-peer transaction inside the app",
-    ],
-    results: [
-      { value: "Static + dynamic", label: "QR codes on one EMV-compliant format" },
-      { value: "Scan to pay", label: "P2P transfers started straight from a QR" },
-    ],
-    stack: [".NET", "Microservices", "EMV QR", "TLV encoding"],
   },
   {
     slug: "otapp-bus-ticketing",
@@ -221,7 +199,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: "Software Engineer",
     period: "2024 - 2026",
     summary:
-      "Built the scheduler that validates bulk payment files before any money moves: it name-checks every recipient in chunks and marks each record for the disbursement scheduler, reducing payment processing errors by 30%.",
+      "Built the scheduler that validates bulk payment files before any money moves: it name-checks every recipient in chunks and marks each record for the disbursement scheduler.",
     problem:
       "Admins upload files of people to be paid. Errors found during disbursement, after money has started moving, are the most expensive to unwind.",
     built: [
@@ -230,7 +208,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Each record goes through a name check and the other validations",
       "Every record's status is updated in the database, for a separate scheduler to pick up and disburse",
     ],
-    results: [{ value: "30%", label: "fewer payment processing errors" }],
+    results: [],
     stack: [".NET", "Schedulers", "Microservices"],
   },
 ];

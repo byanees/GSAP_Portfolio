@@ -169,32 +169,6 @@ export const DIAGRAMS: Record<string, Diagram> = {
         ],
     },
 
-    "emv-qr-p2p-payments": {
-        title: "A QR any EMV scanner can read, parsed straight into a transfer",
-        nodes: [
-            { id: "static", x: 120, y: 160, label: "Static QR", sub: "who to pay", kind: "service" },
-            { id: "dynamic", x: 120, y: 380, label: "Dynamic QR", sub: "who + how much", kind: "service" },
-            { id: "tlv", x: 400, y: 270, w: 200, label: "TLV encode", sub: "EMV® QR payload", kind: "service", focus: true },
-            { id: "scan", x: 650, y: 270, w: 170, label: "Payer scans", sub: "in the app", kind: "actor" },
-            { id: "transfer", x: 880, y: 270, w: 170, label: "P2P transfer", sub: "from the fields", kind: "service" },
-        ],
-        edges: [
-            { from: "static", to: "tlv", step: 1 },
-            { from: "dynamic", to: "tlv", step: 1 },
-            { from: "tlv", to: "scan", step: 2, label: "scan" },
-            { from: "scan", to: "transfer", step: 3, label: "parse" },
-        ],
-        notes: [
-            { x: 500, y: 60, text: "00 02 01 · 01 02 12 · 26 ·· ··· · 54 ·· ··· · 63 04 ····", step: 1 },
-            { x: 400, y: 470, text: "tag 01: 11 = static · 12 = dynamic", step: 1 },
-        ],
-        steps: [
-            "A QR is generated either static (who to pay) or dynamic (who to pay, and how much)",
-            "Every field is TLV-encoded to the EMV® QR Code standard, and the payer scans it in the app",
-            "The app parses the TLV back into fields and starts the peer-to-peer transaction",
-        ],
-    },
-
     "otapp-bus-ticketing": {
         title: "Route, bus, seat, wallet, ticket: all inside Mixx",
         nodes: [
@@ -290,7 +264,6 @@ export const DIAGRAMS: Record<string, Diagram> = {
             { from: "validator", to: "db", step: 3, label: "status" },
             { from: "db", to: "disburse", step: 4, label: "passed" },
         ],
-        notes: [{ x: 640, y: 90, text: "30% fewer processing errors", step: 4 }],
         steps: [
             "The admin uploads a file of the people to be paid",
             "The validation scheduler loads it in chunks and runs a name check and the other validations on each record",

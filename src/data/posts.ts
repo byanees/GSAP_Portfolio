@@ -16,13 +16,13 @@ export const POSTS: Post[] = [
     slug: "redis-connection-pool-exhaustion",
     title: "What 600k concurrent sessions taught me about Redis connections",
     excerpt:
-      "Pool exhaustion rarely starts in Redis itself. It starts in how the application opens connections. Here's the multiplexing approach behind keeping agent apps up at peak.",
+      "Pool exhaustion rarely starts in Redis itself. It starts in how the application opens connections. Here's the multiplexing approach behind keeping the Mixx Tanzania app up at peak.",
     category: "Backend",
     date: "2026-08-18",
     readTime: "6 min read",
     tags: [".NET", "Redis", "Performance"],
     bodyHtml: `
-<p>During peak traffic on the telecom agent apps I worked on at DPL, the Redis layer started failing in a way that looked like a capacity problem. It wasn't. With 600k+ concurrent sessions, the application was running out of connections long before Redis ran out of headroom.</p>
+<p>During peak traffic on the Mixx Tanzania app I worked on at DPL, the Redis layer started failing in a way that looked like a capacity problem. It wasn't. With 600k+ concurrent sessions, the application was running out of connections long before Redis ran out of headroom.</p>
 
 <h2>Why connection pools run dry</h2>
 <p>Most Redis clients are cheap to call and expensive to connect. Every new TCP connection costs a handshake, authentication, and a slot on the server. When connections scale with traffic instead of staying flat, nobody notices at normal load. At peak, requests queue for a connection, time out, and retry, which makes the queue even longer. The usual culprits:</p>
