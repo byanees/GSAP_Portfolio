@@ -34,6 +34,8 @@ export type DiagramEdge = {
     axis?: "x" | "y";
     /** Leaves and re-enters from the bottom, for a return path drawn beneath a row of nodes. */
     loop?: boolean;
+    /** Puts the label under the wire instead of above it, when another wire crosses the space above. */
+    labelBelow?: boolean;
 };
 
 export type DiagramNote = { x: number; y: number; text: string; step?: number };
@@ -59,8 +61,8 @@ export const DIAGRAMS: Record<string, Diagram> = {
             { id: "wallet", x: 860, y: 150, label: "Any EMV wallet", sub: "scans + decodes", kind: "external" },
             { id: "requester", x: 120, y: 430, label: "Requester", sub: "asks to be paid", kind: "actor" },
             { id: "r2p", x: 390, y: 430, label: "Request to Pay", sub: "4,000+ merchants", kind: "service", focus: true },
-            { id: "app", x: 640, y: 350, w: 150, label: "Mobile app", sub: "smartphone", kind: "channel" },
-            { id: "ussd", x: 640, y: 510, w: 150, h: 70, label: "USSD", sub: "any phone", kind: "channel" },
+            { id: "app", x: 610, y: 350, w: 150, label: "Mobile app", sub: "smartphone", kind: "channel" },
+            { id: "ussd", x: 610, y: 510, w: 150, h: 70, label: "USSD", sub: "any phone", kind: "channel" },
             { id: "pay", x: 860, y: 430, label: "Payments", sub: ".NET microservices", kind: "service" },
         ],
         edges: [
@@ -121,8 +123,8 @@ export const DIAGRAMS: Record<string, Diagram> = {
             { id: "onboard", x: 500, y: 310, w: 300, label: "Kinara · bulk · B2B onboarding", kind: "service" },
             { id: "mux", x: 840, y: 220, w: 180, label: "Multiplexer", sub: "shared connections", kind: "service", focus: true },
             { id: "redis", x: 840, y: 400, w: 180, label: "Redis", sub: "no pool exhaustion", kind: "store" },
-            { id: "jenkins", x: 330, y: 480, w: 150, label: "Jenkins", sub: "pipeline", kind: "channel" },
-            { id: "docker", x: 600, y: 480, w: 150, label: "Docker", sub: "30% fewer deploy errors", kind: "channel" },
+            { id: "jenkins", x: 320, y: 480, w: 150, label: "Jenkins", sub: "pipeline", kind: "channel" },
+            { id: "docker", x: 610, y: 480, w: 200, label: "Docker", sub: "30% fewer deploy errors", kind: "channel" },
         ],
         edges: [
             { from: "agents", to: "sim", step: 1, bend: -20 },
@@ -220,7 +222,7 @@ export const DIAGRAMS: Record<string, Diagram> = {
             { from: "agg", to: "s3", step: 3, axis: "x" },
             { from: "agg", to: "s4", step: 3, axis: "x" },
             { from: "agg", to: "s5", step: 3, axis: "x" },
-            { from: "cache", to: "admin", step: 4, dashed: true, label: "dashboards", axis: "x" },
+            { from: "cache", to: "admin", step: 4, dashed: true, label: "dashboards", axis: "x", labelBelow: true },
         ],
         steps: [
             "Both portals call one aggregation layer instead of each downstream service",

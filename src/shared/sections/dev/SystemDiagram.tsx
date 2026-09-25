@@ -146,7 +146,10 @@ export default function SystemDiagram({ diagram, mini = false, className = "" }:
         const curves = curvesFor(e, box(a), box(b));
         const badge = !seenSteps.has(e.step);
         seenSteps.add(e.step);
-        return [{ e, i, curves, mid: midpoint(curves[Math.floor(curves.length / 2)]), badge }];
+        const main = curves[Math.floor(curves.length / 2)];
+        // Mostly-horizontal wires have no room beside the badge, so their label sits above it.
+        const flat = Math.abs(main[3].x - main[0].x) >= Math.abs(main[3].y - main[0].y);
+        return [{ e, i, curves, mid: midpoint(main), badge, flat }];
     });
 
     useEffect(() => {
@@ -333,6 +336,8 @@ export default function SystemDiagram({ diagram, mini = false, className = "" }:
                                     d={d(c)}
                                     className={`dg-wire${e.dashed ? " is-dashed" : ""}`}
                                     data-step={e.step}
+                                    data-edge={i}
+                                    data-from={e.from}
                                     data-to={e.to}
                                     markerEnd={j === Math.floor(curves.length / 2) ? `url(#${arrowId})` : undefined}
                                 />
@@ -347,9 +352,9 @@ export default function SystemDiagram({ diagram, mini = false, className = "" }:
                     </g>
 
                     {!mini &&
-                        edges.map(({ e, i, mid, badge }) =>
+                        edges.map(({ e, i, mid, badge, flat }) =>
                             badge || e.label ? (
-                                <g key={`b${i}`} className="dg-badge" data-step={e.step}>
+                                <g key={`b${i}`} className="dg-badge" data-step={e.step} data-edge={i}>
                                     {badge && (
                                         <>
                                             <circle cx={mid.x} cy={mid.y} r={12} />
@@ -360,9 +365,9 @@ export default function SystemDiagram({ diagram, mini = false, className = "" }:
                                     )}
                                     {e.label && (
                                         <text
-                                            x={mid.x + (badge ? 18 : 0)}
-                                            y={mid.y + (badge ? 4 : -8)}
-                                            textAnchor={badge ? "start" : "middle"}
+                                            x={mid.x + (badge && !flat ? 18 : 0)}
+                                            y={mid.y + (e.labelBelow ? 30 : !badge ? -8 : flat ? -20 : 4)}
+                                            textAnchor={badge && !flat ? "start" : "middle"}
                                             className="dg-badge__label"
                                         >
                                             {e.label}
