@@ -135,10 +135,10 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
                 </a>
               </li>
               <li>
-                <a className="fz-font-lg" href="#" onClick={(e) => e.preventDefault()}>
+                <span className="fz-font-lg">
                   Islamabad, <br />
                   Pakistan
-                </a>
+                </span>
               </li>
               <li>
                 <a className="fz-font-lg text-decoration-underline" href="/assets/cv/Muhammad-Anees-Full-Stack-Engineer-CV.pdf" download>

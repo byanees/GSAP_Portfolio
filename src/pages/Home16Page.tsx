@@ -1,6 +1,6 @@
 import PageMeta from "@/seo/PageMeta";
 import { ROUTE_META } from "@/seo/siteConfig";
-import { graph } from "@/seo/schema";
+import { graph, homePageSchema } from "@/seo/schema";
 import HomeCaseStudies from "@/shared/sections/dev/HomeCaseStudies";
 import HomeCta from "@/shared/sections/dev/HomeCta";
 import HomeHero from "@/shared/sections/dev/HomeHero";
@@ -14,7 +14,7 @@ export default function Home16Page() {
         title={ROUTE_META["/"].title}
         description={ROUTE_META["/"].description}
         path="/"
-        jsonLd={graph()}
+        jsonLd={graph(homePageSchema(ROUTE_META["/"].description))}
       />
       <HomeHero />
       <HomeWhatIDo />

@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
-import PopupSearch from "@/shared/PopupSearch";
 import Header1 from "@/shared/header/Header1";
 import Header2 from "@/shared/header/Header2";
 import Footer1 from "@/shared/footer/Footer1";
@@ -14,7 +13,6 @@ import ContactDock from "@/shared/elements/ContactDock";
 import FooterRevealEffect from "@/shared/effects/FooterRevealEffect";
 
 type HeaderHandlers = {
-  onOpenSearch?: () => void;
   onToggleSidebar?: () => void;
   onOpenHamburgerMenu?: () => void;
   style?: string;
@@ -47,15 +45,12 @@ export default function MainLayout({
   mainClass = "bg-neutral-0",
   headerProps,
 }: MainLayoutProps) {
-  const [searchOpen, setSearchOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const footerRef = useRef<HTMLElement | null>(null);
 
   const handlers = useMemo(
     () => ({
-      openSearch: () => setSearchOpen(true),
-      closeSearch: () => setSearchOpen(false),
       toggleSidebar: () => setSidebarOpen((v) => !v),
       openSidebar: () => setSidebarOpen(true),
       closeSidebar: () => setSidebarOpen(false),
@@ -72,7 +67,6 @@ export default function MainLayout({
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setSearchOpen(false);
         setSidebarOpen(false);
         setHamburgerMenuOpen(false);
       }
@@ -86,11 +80,6 @@ export default function MainLayout({
     const onClick = (e: MouseEvent) => {
       const t = e.target as Element | null;
       if (!t) return;
-      if (t.closest(".at-search-click, .search-btn")) {
-        e.preventDefault();
-        setSearchOpen(true);
-        return;
-      }
       if (t.closest(".at-header-sidebar-btn, .navbar-toggler, .at-menu-bar")) {
         e.preventDefault();
         setSidebarOpen(true);
@@ -135,12 +124,10 @@ export default function MainLayout({
       <ThemeRouteSync />
       <HeaderComponent
         {...(headerProps ?? {})}
-        onOpenSearch={handlers.openSearch}
         onToggleSidebar={handlers.toggleSidebar}
         onOpenHamburgerMenu={handlers.openHamburgerMenu}
       />
       <SideBar open={sidebarOpen} hamburgerOpen={hamburgerMenuOpen} onClose={handlers.closeAllMenus} />
-      <PopupSearch open={searchOpen} onClose={handlers.closeSearch} />
 
       <div id="smooth-wrapper">
         <div id="smooth-content" className="z-index-3">

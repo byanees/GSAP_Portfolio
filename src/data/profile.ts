@@ -3,7 +3,7 @@
 export const PROFILE = {
   name: "Muhammad Anees",
   shortName: "Anees",
-  role: "AI-Native Full Stack Engineer",
+  role: "Full Stack Engineer",
   location: "Islamabad, Pakistan",
   timezone: "PKT (UTC+5)",
   email: "hello@byanees.com",
@@ -49,7 +49,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     period: "Jan 2026 - Present",
     company: "Systems Limited",
-    role: "AI-Native Full Stack Engineer",
+    role: "Full Stack Engineer",
     location: "Islamabad, PK",
     current: true,
     summary:

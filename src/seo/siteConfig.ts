@@ -14,6 +14,15 @@ export const OG_IMAGE = "/assets/imgs/og/og-default.png";
  *  exception: it leads with the role, because that is the query it answers. */
 export const TITLE_SUFFIX = " — Muhammad Anees";
 
+/** Google cuts a title off at roughly 60 characters. A long post title is worth
+ *  more whole than with the name tacked on and then truncated, so the suffix
+ *  only goes on when there is room for it. */
+const TITLE_BUDGET = 60;
+
+export function pageTitle(title: string) {
+  return title.length + TITLE_SUFFIX.length <= TITLE_BUDGET ? `${title}${TITLE_SUFFIX}` : title;
+}
+
 export function absoluteUrl(path: string) {
   if (path.startsWith("http")) return path;
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
@@ -22,30 +31,33 @@ export function absoluteUrl(path: string) {
 type RouteMeta = { title: string; description: string };
 
 /** Static routes. Detail pages build their own meta from post/case-study data. */
+// Descriptions stay under ~155 characters, which is where Google truncates the
+// snippet on desktop. Each one names the person, the role, and something only
+// this page can answer, so it reads as a direct answer when quoted.
 export const ROUTE_META: Record<string, RouteMeta> = {
   "/": {
     title: "Muhammad Anees — Full Stack Engineer, .NET & Angular",
     description:
-      "Full stack engineer in Islamabad building payment platforms and backend systems on .NET 9, ABP.io, and Angular. Request to Pay for 4,000+ merchants, telco agent apps for 60,000+ agents.",
+      "Full stack engineer in Islamabad building payment platforms on .NET 9, ABP.io, and Angular: Request to Pay for 4,000+ merchants, apps for 60,000+ agents.",
   },
   "/about": {
-    title: `About${TITLE_SUFFIX}`,
+    title: "About Muhammad Anees — Full Stack Engineer",
     description:
-      "Three years across fintech and telecom: payment rails, schedulers, and the services behind them. Experience at Systems Limited, DPL, and Axontick, plus the stack and credentials behind it.",
+      "Muhammad Anees is a full stack engineer with 3+ years in fintech and telecom, at Systems Limited, DPL, and Axontick. Experience, stack, and credentials.",
   },
   "/portfolio": {
-    title: `Work${TITLE_SUFFIX}`,
+    title: pageTitle("Case Studies in Payments & Backend"),
     description:
-      "Case studies in payments and distributed systems: Request to Pay over app and USSD, a scheduler pushing 700-800k notifications per run, Redis multiplexing for the Mixx Tanzania app, and build-once releases for telco agent apps.",
+      "Case studies from payments and distributed systems: Request to Pay over app and USSD, 800k-notification runs, Redis multiplexing, and build-once releases.",
   },
   "/blog": {
-    title: `Notes${TITLE_SUFFIX}`,
+    title: pageTitle("Notes on .NET, Redis & Payments"),
     description:
-      "Write-ups from production work on .NET, Redis, and payment systems, drawn from platforms running at real scale.",
+      "Engineering write-ups from production: idempotent payments, EMV QR encoding, Redis connection limits, bulk push scheduling, and CI/CD on .NET.",
   },
   "/contact": {
-    title: `Contact${TITLE_SUFFIX}`,
+    title: "Contact Muhammad Anees — Hire a Full Stack Engineer",
     description:
-      "Get in touch with Muhammad Anees, full stack engineer in Islamabad, Pakistan. Email, LinkedIn, GitHub, and Upwork.",
+      "Hire or contact Muhammad Anees, full stack .NET and Angular engineer in Islamabad, Pakistan. Open to full-time, remote, and freelance work.",
   },
 };

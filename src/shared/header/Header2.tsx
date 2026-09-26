@@ -4,7 +4,6 @@ import Logo from "@/shared/Logo";
 import MainMenu from "@/shared/MainMenu";
 
 interface Header2Props {
-  onOpenSearch?: () => void;
   onToggleSidebar?: () => void;
   onOpenHamburgerMenu?: () => void;
 }

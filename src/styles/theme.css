@@ -3799,7 +3799,8 @@ input[type=color] {
 .at-offcanvas-contact ul li:not(:last-child) {
   margin-bottom: 2px;
 }
-.at-offcanvas-contact ul li a {
+.at-offcanvas-contact ul li a,
+.at-offcanvas-contact ul li span {
   display: inline-block;
   color: var(--at-neutral-900);
   position: relative;

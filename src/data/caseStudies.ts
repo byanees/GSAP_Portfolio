@@ -14,6 +14,8 @@ export type CaseStudy = {
   region?: string;
   featured?: boolean;
   summary: string;
+  /** Search snippet, for when the summary runs past ~155 characters. */
+  metaDescription?: string;
   problem: string;
   built: string[];
   results: Result[];
@@ -55,6 +57,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     featured: true,
     summary:
       "Built the scheduler behind bulk push campaigns: 700-800k notifications per run in 6-8 minutes, read in chunks and sent with controlled parallelism to Android (FCM) and Huawei devices.",
+    metaDescription:
+      "A .NET scheduler that sends 700-800k push notifications per run in 6-8 minutes: chunked reads, controlled parallelism, FCM and Huawei delivery.",
     problem:
       "A campaign can target 800k or more MSISDNs. Loading that many recipients into memory at once would take the system down, and anything that fails to send still has to go out.",
     built: [
@@ -82,6 +86,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     featured: true,
     summary:
       "In the Mixx Tanzania app, every Redis call was opening its own connection. At peak that went past the connection limit and caused downtime, so I replaced it with one shared, multiplexed connection.",
+    metaDescription:
+      "Every Redis call in the Mixx Tanzania app opened its own connection, hitting the limit at peak. One shared, multiplexed connection ended the downtime.",
     problem:
       "Each request created a new Redis connection. During peak traffic, with 600k+ concurrent sessions, the connection count went past the limit, causing timeouts, runtime errors, and downtime in the Mixx Tanzania app.",
     built: [
@@ -105,6 +111,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     period: "2025 - 2026",
     summary:
       "Automated CI/CD for the telco agent apps with Docker and Jenkins. The image signed off in UAT on PreProd is the exact image that goes to production, under a new tag, which cut deployment errors by 99%.",
+    metaDescription:
+      "Docker and Jenkins CI/CD for telco agent apps: the image signed off in UAT is the exact image promoted to production, cutting deployment errors by 99%.",
     problem:
       "Deployments were slow and error-prone, and issues that never appeared in testing were turning up at runtime in production.",
     built: [
@@ -148,10 +156,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     domain: "Enterprise workflow",
     title: "Qualification Certificate Workflow",
     company: "Systems Limited",
-    role: "AI-Native Full Stack Engineer",
+    role: "Full Stack Engineer",
     period: "2026 - Present",
     summary:
       "Built the Qualification Certificate workflow end to end: an investor applies, an admin reviews, an approver decides, and an approved QC is reported to an external system and announced.",
+    metaDescription:
+      "An end-to-end Qualification Certificate workflow on .NET and Angular: investor applies, admin reviews, approver decides, and approvals sync externally.",
     problem:
       "A QC application passes through three roles and can be sent back more than once, but has to end the same way every time: a decision on record, and an issued certificate the external system knows about.",
     built: [
@@ -173,10 +183,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     domain: "Platform & analytics",
     title: "Visa by Package Dashboards: One API per Dashboard",
     company: "Systems Limited",
-    role: "AI-Native Full Stack Engineer",
+    role: "Full Stack Engineer",
     period: "2026 - Present",
     summary:
       "Nine dashboards, 4 for investors and 5 for admins, draw their data from another system's APIs. I centralised those calls in our ABP.io backend, so each dashboard makes one call, with a short-TTL cache in front.",
+    metaDescription:
+      "Nine investor and admin dashboards, one API each: an ABP.io aggregation layer over another system's APIs, with a short-TTL cache in front.",
     problem:
       "The dashboard data lives in another system, exposed through its own APIs. Calling them from the frontend would mean several requests per dashboard, made straight from the browser.",
     built: [

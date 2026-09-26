@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import PageMeta from "@/seo/PageMeta";
-import { TITLE_SUFFIX } from "@/seo/siteConfig";
+import { TITLE_SUFFIX, pageTitle } from "@/seo/siteConfig";
 import { blogPostingSchema, breadcrumbSchema, graph } from "@/seo/schema";
 import { PROFILE } from "@/data/profile";
 import { POSTS, formatPostDate, postBodyWithIds, postSections } from "@/data/posts";
@@ -42,11 +42,14 @@ export default function BlogPost() {
     return (
         <>
             <PageMeta
-                title={`${post.title}${TITLE_SUFFIX}`}
-                description={post.excerpt}
+                title={pageTitle(post.title)}
+                description={post.metaDescription ?? post.excerpt}
                 path={`/blog/${post.slug}`}
                 ogType="article"
                 publishedTime={post.date}
+                modifiedTime={post.updated ?? post.date}
+                section={post.category}
+                tags={post.tags}
                 jsonLd={graph(
                     blogPostingSchema(post),
                     breadcrumbSchema([

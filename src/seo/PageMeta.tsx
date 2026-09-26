@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { absoluteUrl, OG_IMAGE, SITE_NAME } from "./siteConfig";
 
+/** Every route shares the one card, so it shares one description of it. */
+const IMAGE_ALT = `${SITE_NAME}, full stack engineer`;
+
 type Props = {
   title: string;
   description?: string;
@@ -18,6 +21,11 @@ type Props = {
   jsonLd?: object | object[];
   /** Article-only: ISO date, surfaced to crawlers as the publish time. */
   publishedTime?: string;
+  /** Article-only: ISO date of the last material revision. */
+  modifiedTime?: string;
+  /** Article-only: the post's category and tags. */
+  section?: string;
+  tags?: string[];
 };
 
 export default function PageMeta({
@@ -30,6 +38,9 @@ export default function PageMeta({
   noindex,
   jsonLd,
   publishedTime,
+  modifiedTime,
+  section,
+  tags,
 }: Props) {
   // The favicon is a live swap on an existing tag rather than a rendered one,
   // because index.html ships a default that must be restored on unmount.
@@ -69,6 +80,7 @@ export default function PageMeta({
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
       )}
       {description ? <meta name="description" content={description} /> : null}
+      <meta name="author" content={SITE_NAME} />
       {canonical ? <link rel="canonical" href={canonical} /> : null}
 
       <meta property="og:site_name" content={SITE_NAME} />
@@ -79,13 +91,23 @@ export default function PageMeta({
       <meta property="og:image" content={cardImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={IMAGE_ALT} />
       <meta property="og:locale" content="en_US" />
-      {publishedTime ? <meta property="article:published_time" content={publishedTime} /> : null}
+      {ogType === "article" ? (
+        <>
+          <meta property="article:author" content={absoluteUrl("/about")} />
+          {publishedTime ? <meta property="article:published_time" content={publishedTime} /> : null}
+          {modifiedTime ? <meta property="article:modified_time" content={modifiedTime} /> : null}
+          {section ? <meta property="article:section" content={section} /> : null}
+          {tags?.map((t) => <meta key={t} property="article:tag" content={t} />)}
+        </>
+      ) : null}
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       {description ? <meta name="twitter:description" content={description} /> : null}
       <meta name="twitter:image" content={cardImage} />
+      <meta name="twitter:image:alt" content={IMAGE_ALT} />
 
       {graphs.map((g, i) => (
         <script

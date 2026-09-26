@@ -8,8 +8,12 @@ export type Post = {
   slug: string;
   title: string;
   excerpt: string;
+  /** Search snippet, for when the excerpt runs past ~155 characters. */
+  metaDescription?: string;
   category: string;
   date: string; // YYYY-MM-DD
+  /** Set when a post is materially revised. Feeds dateModified and the sitemap. */
+  updated?: string; // YYYY-MM-DD
   readTime: string;
   tags: string[];
   bodyHtml: string;
@@ -21,6 +25,8 @@ export const POSTS: Post[] = [
     title: "One API per dashboard, and why a short TTL beats a long one",
     excerpt:
       "Nine dashboards, data owned by another system, and a frontend that shouldn't have to care. Here's how an aggregation endpoint and a short-lived cache keep them fast and current.",
+    metaDescription:
+      "How one aggregation endpoint per dashboard and a short-TTL cache keep nine .NET and ABP.io dashboards fast and current when the data lives elsewhere.",
     category: "Architecture",
     date: "2026-09-22",
     readTime: "6 min read",
@@ -144,6 +150,8 @@ await db.SaveChangesAsync();</code></pre>
     title: "Build once, promote by tag: how we cut deployment errors by 99%",
     excerpt:
       "If production runs an image that UAT never saw, you are testing one thing and shipping another. Here's the pipeline change that fixed it for the telco agent apps.",
+    metaDescription:
+      "If production runs an image UAT never saw, you test one thing and ship another. The build-once, promote-by-tag pipeline that cut deploy errors by 99%.",
     category: "DevOps",
     date: "2026-09-01",
     readTime: "6 min read",
@@ -190,6 +198,8 @@ docker push registry.example.com/agent-api:release-$RELEASE_VERSION</code></pre>
     title: "What 600k concurrent sessions taught me about Redis connections",
     excerpt:
       "Our Redis outages looked like a capacity problem. They weren't: every request was opening its own connection. Here's the multiplexing fix that kept the Mixx Tanzania app up at peak.",
+    metaDescription:
+      "Our Redis outages looked like a capacity problem, but every request opened its own connection. The multiplexing fix that kept a 600k-session app up.",
     category: "Backend",
     date: "2026-08-18",
     readTime: "6 min read",
@@ -239,6 +249,8 @@ public sealed class SessionStore(IConnectionMultiplexer redis)
     title: "Encoding EMV QR payloads with TLV, step by step",
     excerpt:
       "An EMV QR code is a string of tag-length-value fields with a checksum at the end. Here's how the format works, static and dynamic, and how to build one in C#.",
+    metaDescription:
+      "How an EMV QR code works: tag-length-value fields and a CRC checksum, static and dynamic payloads, and how to build one step by step in C#.",
     category: "Fintech",
     date: "2026-07-21",
     readTime: "7 min read",

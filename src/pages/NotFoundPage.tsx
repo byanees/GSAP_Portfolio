@@ -10,7 +10,7 @@ import { PROFILE } from "@/data/profile";
 const DESTINATIONS = [
     { to: "/", label: "Home", desc: "The short version: what I build, and what it runs in production." },
     { to: "/about", label: "About", desc: "Experience, the stack I work in, and how I approach a system." },
-    { to: "/portfolio", label: "Portfolio", desc: "Case studies: EMV QR payments, the bulk notification scheduler, telecom agent apps." },
+    { to: "/portfolio", label: "Portfolio", desc: "Case studies: Request to Pay, the bulk notification scheduler, Redis multiplexing, and more." },
     { to: "/blog", label: "Blog", desc: "Notes on backend work, payments, and .NET, written while building." },
     { to: "/contact", label: "Contact", desc: "Email, LinkedIn, and what I'm currently open to." },
 ];

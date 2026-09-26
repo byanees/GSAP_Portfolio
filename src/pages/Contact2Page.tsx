@@ -14,7 +14,7 @@ export default function Contact2Page() {
       />
       <ContactHero />
       <div className="at-banner-thumb overflow-hidden scale-up-img">
-        <img className="img-cover scale-up" src="/assets/imgs/pages/img-119.webp" alt="Muhammad Anees" width={1920} height={800} loading="lazy" />
+        <img className="img-cover scale-up" src="/assets/imgs/pages/img-119.webp" alt="" width={1920} height={800} loading="lazy" />
       </div>
       <ContactForm />
     </>

@@ -9,6 +9,8 @@ import { CASE_STUDIES, type CaseStudy } from "@/data/caseStudies";
 /** Stable @id so every graph node points at one Person, not five copies. */
 export const PERSON_ID = `${SITE_URL}/#person`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
+const BLOG_ID = `${SITE_URL}/blog#blog`;
+const PORTFOLIO_ID = `${SITE_URL}/portfolio#collection`;
 
 /** Topics, taken from the expertise tags and stack layers rather than guessed. */
 function knowsAbout() {
@@ -47,6 +49,12 @@ export function personSchema() {
       "@type": "EducationalOccupationalCredential",
       name,
     })),
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Full Stack Engineer",
+      occupationLocation: { "@type": "City", name: "Islamabad" },
+      skills: knowsAbout().join(", "),
+    },
     knowsAbout: knowsAbout(),
     knowsLanguage: ["English", "Urdu"],
     sameAs: [PROFILE.linkedin, PROFILE.github, PROFILE.upwork],
@@ -84,6 +92,11 @@ function isoDateTime(date: string) {
   return `${date}T09:00:00+05:00`;
 }
 
+/** Words in a post body, for BlogPosting.wordCount. */
+function wordCount(html: string) {
+  return html.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+}
+
 export function blogPostingSchema(post: Post) {
   const url = absoluteUrl(`/blog/${post.slug}`);
   return {
@@ -94,14 +107,24 @@ export function blogPostingSchema(post: Post) {
     url,
     mainEntityOfPage: url,
     datePublished: isoDateTime(post.date),
-    dateModified: isoDateTime(post.date),
+    dateModified: isoDateTime(post.updated ?? post.date),
     articleSection: post.category,
     keywords: post.tags.join(", "),
+    wordCount: wordCount(post.bodyHtml),
+    timeRequired: `PT${parseInt(post.readTime, 10) || 5}M`,
     inLanguage: "en",
     image: absoluteUrl(OG_IMAGE),
+    isPartOf: { "@id": BLOG_ID },
     author: { "@id": PERSON_ID },
     publisher: { "@id": PERSON_ID },
   };
+}
+
+/** "2024 - 2026" becomes the ISO 8601 interval "2024/2026"; an open-ended
+ *  "2026 - Present" becomes "2026/..". */
+function temporalCoverage(period: string) {
+  const [from, to] = period.split("-").map((p) => p.trim());
+  return `${from}/${!to || /present/i.test(to) ? ".." : to}`;
 }
 
 export function caseStudySchema(cs: CaseStudy) {
@@ -117,10 +140,29 @@ export function caseStudySchema(cs: CaseStudy) {
     inLanguage: "en",
     genre: cs.domain,
     keywords: cs.stack.join(", "),
+    temporalCoverage: temporalCoverage(cs.period),
     image: absoluteUrl(OG_IMAGE),
+    isPartOf: { "@id": PORTFOLIO_ID },
     author: { "@id": PERSON_ID },
     creator: { "@id": PERSON_ID },
     sourceOrganization: { "@type": "Organization", name: cs.company },
+  };
+}
+
+/** The home page. Its main entity is the Person, which is what someone
+ *  searching the name is looking for. */
+export function homePageSchema(description: string) {
+  return {
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/#webpage`,
+    url: absoluteUrl("/"),
+    name: SITE_NAME,
+    description,
+    inLanguage: "en",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": PERSON_ID },
+    mainEntity: { "@id": PERSON_ID },
+    primaryImageOfPage: absoluteUrl(OG_IMAGE),
   };
 }
 
@@ -165,7 +207,7 @@ export function graph(...nodes: object[]) {
 export function portfolioListSchema() {
   return {
     "@type": "CollectionPage",
-    "@id": `${SITE_URL}/portfolio#collection`,
+    "@id": PORTFOLIO_ID,
     url: absoluteUrl("/portfolio"),
     name: "Work",
     inLanguage: "en",
@@ -187,7 +229,7 @@ export function portfolioListSchema() {
 export function blogListSchema() {
   return {
     "@type": "Blog",
-    "@id": `${SITE_URL}/blog#blog`,
+    "@id": BLOG_ID,
     url: absoluteUrl("/blog"),
     name: "Notes from building systems",
     inLanguage: "en",

@@ -26,7 +26,7 @@ export const ROUTES: RouteEntry[] = [
   })),
   ...POSTS.map((p) => ({
     path: `/blog/${p.slug}`,
-    lastmod: p.date,
+    lastmod: p.updated ?? p.date,
     changefreq: "yearly" as const,
     priority: 0.7,
   })),

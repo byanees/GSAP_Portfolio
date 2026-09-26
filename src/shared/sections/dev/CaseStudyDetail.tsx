@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import PageMeta from "@/seo/PageMeta";
-import { TITLE_SUFFIX } from "@/seo/siteConfig";
+import { TITLE_SUFFIX, pageTitle } from "@/seo/siteConfig";
 import { breadcrumbSchema, caseStudySchema, graph } from "@/seo/schema";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import { DIAGRAMS } from "@/data/diagrams";
@@ -40,8 +40,10 @@ export default function CaseStudyDetail() {
     return (
         <>
             <PageMeta
-                title={`${cs.title}${TITLE_SUFFIX}`}
-                description={cs.summary}
+                title={pageTitle(cs.title)}
+                description={cs.metaDescription ?? cs.summary}
+                section={cs.domain}
+                tags={cs.stack}
                 path={`/portfolio/${cs.slug}`}
                 ogType="article"
                 jsonLd={graph(
