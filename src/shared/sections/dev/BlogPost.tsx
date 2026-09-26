@@ -5,6 +5,7 @@ import { blogPostingSchema, breadcrumbSchema, graph } from "@/seo/schema";
 import { PROFILE } from "@/data/profile";
 import { POSTS, formatPostDate } from "@/data/posts";
 import Eyebrow from "./Eyebrow";
+import PostFigure from "./PostFigure";
 import PostRow from "./PostRow";
 import StackTags from "./StackTags";
 
@@ -27,6 +28,8 @@ export default function BlogPost() {
     }
 
     const others = POSTS.filter((p) => p.slug !== post.slug);
+    // The body is HTML with figure markers in it: odd entries are figure ids.
+    const parts = post.bodyHtml.split(/<figure data-figure="([\w-]+)"><\/figure>/);
 
     return (
         <>
@@ -57,7 +60,15 @@ export default function BlogPost() {
                             <h1 className="post-title">{post.title}</h1>
                             <p className="fz-font-lg neutral-500 mb-30">{post.excerpt}</p>
                             <StackTags tags={[...post.tags, post.readTime]} label="Filed under" />
-                            <div className="post-body border-top-100 mt-50 pt-50" dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
+                            <div className="post-body border-top-100 mt-50 pt-50">
+                                {parts.map((part, i) =>
+                                    i % 2 ? (
+                                        <PostFigure key={i} id={part} number={(i + 1) / 2} />
+                                    ) : (
+                                        <div key={i} dangerouslySetInnerHTML={{ __html: part }} />
+                                    ),
+                                )}
+                            </div>
                             <div className="post-author border-top-100 mt-60 pt-40">
                                 <span className="site-logo__mark post-author__mark" aria-hidden>
                                     MA
