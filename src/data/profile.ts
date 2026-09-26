@@ -16,6 +16,8 @@ export const PROFILE = {
   /** About page banner, 2400x1050 (16:7). The subject sits in the middle 58%
    *  of the width, which is what survives the 4:3 crop on phones. */
   portrait: "/assets/imgs/me/about-portrait.jpg" as string | null,
+  /** The same frame in color, revealed on hover where hover exists. */
+  portraitColor: "/assets/imgs/me/about-portrait-color.jpg",
   /** Square, 800x800. The Person schema's image, which search engines show
    *  as the profile photo. */
   headshot: "/assets/imgs/me/headshot.jpg",

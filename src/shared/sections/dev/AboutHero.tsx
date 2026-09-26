@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
 import { PROFILE } from "@/data/profile";
+import AboutPortrait from "./AboutPortrait";
 import { ARROW_CIRCLE_SVG } from "./icons";
 
 export default function AboutHero() {
@@ -36,9 +37,7 @@ export default function AboutHero() {
                 section is skipped rather than shipping an empty "photo coming soon" slab. */}
             {PROFILE.portrait ? (
                 <div className="container">
-                    <div className="about-portrait">
-                        <img src={PROFILE.portrait} alt={`Portrait of ${PROFILE.name}`} width={2400} height={1050} />
-                    </div>
+                    <AboutPortrait src={PROFILE.portrait} colorSrc={PROFILE.portraitColor} />
                 </div>
             ) : null}
 

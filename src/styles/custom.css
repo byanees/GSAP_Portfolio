@@ -480,25 +480,169 @@
 }
 
 /* About: portrait placeholder, summary, /now, stack */
+/* The portrait is a spec card: photo on the left third, facts beside it.
+   The photo's backdrop is exactly #0f0f0f, the frame's own color, so the
+   photo can slide sideways without leaving an edge. The grid sits above the
+   photo and fades out before it reaches the subject. */
 .about-portrait {
+  --portrait-bg: #0f0f0f;
+  --portrait-grid: rgba(255, 255, 255, 0.04);
+  --portrait-grid-hot: rgba(0, 212, 170, 0.28);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0;
   overflow: hidden;
   aspect-ratio: 16 / 7;
-  background-color: #0f0f0f;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background: var(--portrait-bg);
   border-radius: 32px;
+  isolation: isolate;
 }
 
-.about-portrait img {
+.about-portrait__media {
+  position: absolute;
+  inset: 0;
+}
+
+/* Moves the subject from the photo's centre to the frame's left third. */
+.about-portrait__shift {
+  position: absolute;
+  inset: 0;
+  transform: translateX(-22%);
+}
+
+/* Scaled past the frame so the scroll drift never shows an edge: the suit
+   is cropped at the photo's bottom. */
+.about-portrait__layer {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.08);
+  will-change: transform;
+}
+
+.about-portrait__layer img,
+.about-portrait__color {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+}
+
+.about-portrait__layer img {
   object-fit: cover;
+  object-position: 58.5% center;
+}
+
+.about-portrait__color {
+  background: center / cover no-repeat;
+  background-position: 58.5% center;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.about-portrait__grid,
+.about-portrait__spot {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--portrait-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--portrait-grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 38%, #000 62%);
+  mask-image: linear-gradient(90deg, transparent 38%, #000 62%);
+}
+
+/* Brighter teal grid, visible only in a circle around the cursor. */
+.about-portrait__spot {
+  --portrait-grid: var(--portrait-grid-hot);
+  -webkit-mask-image: radial-gradient(circle 220px at var(--mx, -999px) var(--my, -999px), #000, transparent 70%);
+  mask-image: radial-gradient(circle 220px at var(--mx, -999px) var(--my, -999px), #000, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-portrait__color {
+    background-image: var(--portrait-color);
+  }
+  .about-portrait:hover .about-portrait__color,
+  .about-portrait:hover .about-portrait__spot {
+    opacity: 1;
+  }
+}
+
+/* Two lines of caption, anchored bottom right. */
+.about-portrait__spec {
+  position: absolute;
+  right: 6%;
+  bottom: 10%;
+  z-index: 1;
+  width: 34%;
+  margin: 0;
+}
+
+.about-portrait__row {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-portrait__row:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-portrait__row dt {
+  font-family: var(--dev-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+.about-portrait__row dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #fefefe;
+}
+
+/* Below lg the frame is too short for the card beside the photo, so the card
+   moves under it, still inside the same dark frame. */
+@media (max-width: 991px) {
+  .about-portrait {
+    aspect-ratio: auto;
+    border-radius: 24px;
+  }
+  .about-portrait__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+  }
+  .about-portrait__shift {
+    transform: none;
+  }
+  .about-portrait__grid,
+  .about-portrait__spot {
+    display: none;
+  }
+  .about-portrait__spec {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: auto;
+    padding: 8px 24px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-portrait__color,
+  .about-portrait__spot {
+    transition: none;
+  }
 }
 
 .about-portrait__placeholder {
@@ -536,9 +680,6 @@
   color: var(--at-neutral-900);
 }
 
-@media (max-width: 767px) {
-  .about-portrait { aspect-ratio: 4 / 3; border-radius: 24px; }
-}
 
 .now-list {
   margin: 0;
