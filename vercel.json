@@ -30,6 +30,13 @@
       "headers": [{ "key": "Content-Type", "value": "text/plain; charset=utf-8" }]
     },
     {
+      "source": "/indexnow.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
       "source": "/rss.xml",
       "headers": [{ "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }]
     }

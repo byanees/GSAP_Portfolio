@@ -7,6 +7,11 @@ export const SITE_URL = "https://byanees.com";
 
 export const SITE_NAME = "Muhammad Anees";
 
+/** IndexNow key. Public by design: the protocol proves ownership by serving
+ *  it at /<key>.txt, which the build writes. Rotating it means changing only
+ *  this value. */
+export const INDEXNOW_KEY = "e83d30d0e95ddf98f44152b439cd9f65";
+
 /** Fallback card for routes with no image of their own. Rename the file when
  *  the design changes: LinkedIn, WhatsApp, and X cache cards by URL, so an
  *  overwrite in place keeps showing the old one. */

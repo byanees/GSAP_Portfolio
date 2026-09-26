@@ -22,7 +22,7 @@ export { ROUTES } from "@/seo/routes";
 
 // Re-exported so scripts/generate-seo-assets.mjs can read the content without
 // needing its own TypeScript pipeline.
-export { SITE_URL } from "@/seo/siteConfig";
+export { SITE_URL, INDEXNOW_KEY } from "@/seo/siteConfig";
 export { PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE } from "@/data/profile";
 export { POSTS } from "@/data/posts";
 export { CASE_STUDIES } from "@/data/caseStudies";

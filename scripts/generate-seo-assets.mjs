@@ -14,7 +14,7 @@ const dist = path.join(root, "dist");
 const mod = await import(
   pathToFileURL(path.join(root, "dist-ssr", "entry-prerender.js")).href
 );
-const { ROUTES, SITE_URL, PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE, POSTS, CASE_STUDIES } = mod;
+const { ROUTES, SITE_URL, INDEXNOW_KEY, PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE, POSTS, CASE_STUDIES } = mod;
 
 const abs = (p) => `${SITE_URL}${p}`;
 const current = EXPERIENCE.find((e) => e.current) ?? EXPERIENCE[0];
@@ -319,5 +319,7 @@ await writeFile(path.join(dist, "sitemap.xml"), sitemap, "utf8");
 await writeFile(path.join(dist, "rss.xml"), rss, "utf8");
 await writeFile(path.join(dist, "llms.txt"), llms, "utf8");
 await writeFile(path.join(dist, "llms-full.txt"), llmsFull, "utf8");
+// IndexNow verifies a submission by fetching the key from the site itself.
+await writeFile(path.join(dist, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY, "utf8");
 
-console.log("wrote robots.txt, sitemap.xml, rss.xml, llms.txt, llms-full.txt");
+console.log("wrote robots.txt, sitemap.xml, rss.xml, llms.txt, llms-full.txt, IndexNow key");
