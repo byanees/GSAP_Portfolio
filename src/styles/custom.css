@@ -1466,53 +1466,6 @@
 }
 
 /* Blog */
-.post-row {
-  display: grid;
-  grid-template-columns: 200px 1fr 48px;
-  align-items: start;
-  gap: 32px;
-  padding: 36px 0;
-  border-bottom: 1px solid var(--at-neutral-100);
-}
-
-.post-row__meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 4px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--at-neutral-500);
-}
-
-.post-row__date {
-  font-weight: 600;
-  color: var(--at-neutral-900);
-}
-
-.post-row__title {
-  margin: 0 0 10px;
-}
-
-.post-row__title a {
-  color: var(--at-neutral-900);
-  text-decoration: none;
-}
-
-.post-row__title a:hover {
-  text-decoration: underline;
-}
-
-.post-row__excerpt {
-  max-width: 720px;
-  margin: 0 0 16px;
-  color: var(--at-neutral-500);
-}
-
-@media (max-width: 767px) {
-  .post-row { grid-template-columns: 1fr; gap: 12px; }
-}
-
 .post-title {
   margin-bottom: 24px;
   font-size: clamp(34px, 4.5vw, 62px);
@@ -3315,3 +3268,218 @@ header.is-stuck .at-header-area {
 .pf-fail { fill: var(--at-neutral-900); }
 .pf-dot { fill: var(--at-neutral-0); stroke: var(--at-neutral-900); stroke-width: 1.75; }
 .pf-dot--miss { fill: var(--at-neutral-900); }
+
+/* ---------------------------------------------------------------
+   Blog index and post page
+---------------------------------------------------------------- */
+
+/* Topic filters: the contact form's selectable pill, without its "+"
+   prefix. Pills filter; the underline tab bar switches sections. */
+.dev-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 28px 0 40px;
+  border-top: 1px solid var(--at-neutral-100);
+}
+
+.dev-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--at-neutral-700);
+  background: transparent;
+  border: 1px solid var(--at-neutral-100);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.dev-filter:hover {
+  border-color: var(--at-neutral-900);
+  color: var(--at-neutral-900);
+}
+
+.dev-filter.is-active {
+  background: var(--at-neutral-900);
+  border-color: var(--at-neutral-900);
+  color: var(--at-neutral-0);
+}
+
+.dev-filter:focus-visible {
+  outline: 2px solid var(--at-neutral-900);
+  outline-offset: 3px;
+}
+
+.dev-filter__count {
+  font-family: var(--dev-mono);
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.note-grid.is-filtered {
+  animation: dev-tabpanel-in 0.55s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Note cards: the case study card with the post's figure as thumbnail. */
+.note-card__inner {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.note-card__figure {
+  display: block;
+  background: var(--at-neutral-50);
+  border-bottom: 1px solid var(--at-neutral-100);
+}
+
+.note-card__title {
+  font-size: clamp(22px, 2vw, 26px);
+}
+
+.note-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--at-neutral-100);
+}
+
+.note-card__time {
+  font-family: var(--dev-mono);
+  font-size: 13px;
+  color: var(--at-neutral-500);
+}
+
+@media (min-width: 992px) {
+  .note-card--wide .note-card__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+
+  .note-card--wide .note-card__figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--at-neutral-100);
+    border-bottom: 0;
+  }
+
+  .note-card--wide .code-card__body {
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .note-card--wide .note-card__title {
+    font-size: clamp(28px, 2.6vw, 38px);
+    line-height: 1.1;
+  }
+
+  .note-card--wide .code-card__summary {
+    font-size: 17px;
+  }
+}
+
+/* A figure used as a thumbnail: no frame of its own, fits the card. */
+.post-figure--thumb {
+  width: 100%;
+  margin: 0;
+  pointer-events: none;
+}
+
+.post-figure--thumb .post-figure__canvas {
+  padding: 24px 20px;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.post-figure--thumb .post-figure__svg {
+  min-width: 0;
+}
+
+/* Post page */
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--at-neutral-500);
+}
+
+.post-meta > * + *::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-right: 14px;
+  vertical-align: middle;
+  background: var(--at-neutral-300);
+  border-radius: 50%;
+}
+
+.post-meta__topic {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--at-neutral-900);
+}
+
+.post-body h2 {
+  scroll-margin-top: 120px;
+}
+
+.post-toc {
+  position: sticky;
+  top: 120px;
+}
+
+.post-toc__list {
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--at-neutral-100);
+}
+
+.post-toc__link {
+  display: block;
+  margin-left: -1px;
+  padding: 7px 0 7px 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--at-neutral-500);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.post-toc__link:hover {
+  color: var(--at-neutral-900);
+}
+
+.post-toc__link.is-active {
+  color: var(--at-neutral-900);
+  font-weight: 500;
+  border-left-color: var(--at-neutral-900);
+}
+
+.post-toc__time {
+  font-family: var(--dev-mono);
+  font-size: 13px;
+  color: var(--at-neutral-500);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dev-filter, .post-toc__link { transition: none; }
+  .note-grid.is-filtered { animation: none; }
+}

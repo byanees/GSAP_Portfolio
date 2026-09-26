@@ -386,14 +386,18 @@ const FIGURES: Record<string, FigureDef> = {
     },
 };
 
-export default function PostFigure({ id, number }: { id: string; number: number }) {
+/**
+ * `thumb` renders the figure alone as a card thumbnail: no caption, no motion,
+ * and hidden from assistive tech, since the card's title already says it.
+ */
+export default function PostFigure({ id, number = 1, thumb = false }: { id: string; number?: number; thumb?: boolean }) {
     const ref = useRef<HTMLElement>(null);
     const arrowId = `pf-arrow-${useId().replace(/:/g, "")}`;
     const fig = FIGURES[id];
 
     useEffect(() => {
         const root = ref.current;
-        if (!root || !fig) return;
+        if (!root || !fig || thumb) return;
         if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
 
         let alive = true;
@@ -425,14 +429,19 @@ export default function PostFigure({ id, number }: { id: string; number: number 
             alive = false;
             revert?.();
         };
-    }, [fig]);
+    }, [fig, thumb]);
 
     if (!fig) return null;
 
     return (
-        <figure ref={ref} className="post-figure">
+        <figure ref={ref} className={thumb ? "post-figure post-figure--thumb" : "post-figure"} aria-hidden={thumb || undefined}>
             <div className="post-figure__canvas">
-                <svg viewBox={`0 0 ${fig.w} ${fig.h}`} className="post-figure__svg" role="img" aria-label={fig.label}>
+                <svg
+                    viewBox={`0 0 ${fig.w} ${fig.h}`}
+                    className="post-figure__svg"
+                    role={thumb ? undefined : "img"}
+                    aria-label={thumb ? undefined : fig.label}
+                >
                     <defs>
                         <marker id={arrowId} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                             <path d="M0 1 L9 5 L0 9 z" className="pf-arrow" />
@@ -441,10 +450,12 @@ export default function PostFigure({ id, number }: { id: string; number: number 
                     {fig.render(arrowId)}
                 </svg>
             </div>
-            <figcaption className="post-figure__caption">
-                <span className="post-figure__num">Fig. {number}</span>
-                {fig.caption}
-            </figcaption>
+            {!thumb && (
+                <figcaption className="post-figure__caption">
+                    <span className="post-figure__num">Fig. {number}</span>
+                    {fig.caption}
+                </figcaption>
+            )}
         </figure>
     );
 }

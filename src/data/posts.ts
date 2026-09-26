@@ -381,3 +381,29 @@ export function formatPostDate(date: string) {
     year: "numeric",
   });
 }
+
+const FIGURE_MARKER = /<figure data-figure="([\w-]+)"><\/figure>/;
+const H2 = /<h2>(.*?)<\/h2>/g;
+
+/** The first figure a post places, used as its thumbnail on cards. */
+export function postFigure(post: Post): string | undefined {
+  return FIGURE_MARKER.exec(post.bodyHtml)?.[1];
+}
+
+const slugify = (html: string) =>
+  html
+    .replace(/<[^>]+>/g, "")
+    .replace(/&[a-z]+;/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+/** The post's section headings, in order, with the ids the post page gives them. */
+export function postSections(post: Post): { id: string; title: string }[] {
+  return [...post.bodyHtml.matchAll(H2)].map((m) => ({ id: slugify(m[1]), title: m[1].replace(/<[^>]+>/g, "") }));
+}
+
+/** The body with an id on every section heading, so the contents rail can link to it. */
+export function postBodyWithIds(post: Post): string {
+  return post.bodyHtml.replace(H2, (_, inner: string) => `<h2 id="${slugify(inner)}">${inner}</h2>`);
+}
