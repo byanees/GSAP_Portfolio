@@ -89,6 +89,7 @@ export default function PageMeta({
       {description ? <meta property="og:description" content={description} /> : null}
       {canonical ? <meta property="og:url" content={canonical} /> : null}
       <meta property="og:image" content={cardImage} />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={IMAGE_ALT} />

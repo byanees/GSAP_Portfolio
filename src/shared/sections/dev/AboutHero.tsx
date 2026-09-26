@@ -37,7 +37,7 @@ export default function AboutHero() {
             {PROFILE.portrait ? (
                 <div className="container">
                     <div className="about-portrait">
-                        <img src={PROFILE.portrait} alt="Muhammad Anees" width={1600} height={700} loading="lazy" />
+                        <img src={PROFILE.portrait} alt={`Portrait of ${PROFILE.name}`} width={2400} height={1050} />
                     </div>
                 </div>
             ) : null}

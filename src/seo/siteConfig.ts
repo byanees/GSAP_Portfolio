@@ -7,8 +7,10 @@ export const SITE_URL = "https://byanees.com";
 
 export const SITE_NAME = "Muhammad Anees";
 
-/** Fallback card for routes with no image of their own. */
-export const OG_IMAGE = "/assets/imgs/og/og-default.png";
+/** Fallback card for routes with no image of their own. Rename the file when
+ *  the design changes: LinkedIn, WhatsApp, and X cache cards by URL, so an
+ *  overwrite in place keeps showing the old one. */
+export const OG_IMAGE = "/assets/imgs/og/og-card.png";
 
 /** Titles read "<page> — Muhammad Anees" everywhere. The home page is the one
  *  exception: it leads with the role, because that is the query it answers. */

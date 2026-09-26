@@ -13,8 +13,12 @@ export const PROFILE = {
   github: "https://github.com/byanees",
   upwork: "https://www.upwork.com/freelancers/~018e9a658c85846d75",
   cvUrl: "/assets/cv/Muhammad-Anees-Full-Stack-Engineer-CV.pdf",
-  /** Set to an image path (e.g. "/assets/imgs/me/portrait.webp") to replace the About page placeholder. */
-  portrait: null as string | null,
+  /** About page banner, 2400x1050 (16:7). The subject sits in the middle 58%
+   *  of the width, which is what survives the 4:3 crop on phones. */
+  portrait: "/assets/imgs/me/about-portrait.jpg" as string | null,
+  /** Square, 800x800. The Person schema's image, which search engines show
+   *  as the profile photo. */
+  headshot: "/assets/imgs/me/headshot.jpg",
   heroLead:
     "3+ years building fintech, telco, and enterprise platforms. Now on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.",
   /** About page opening line. Deliberately different from heroLead, which the

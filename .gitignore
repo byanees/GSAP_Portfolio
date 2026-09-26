@@ -10,3 +10,6 @@ dist/
 .claude/
 Profile.pdf
 dist-ssr/
+
+# Canva exports and source photos; the chosen files are copied into public/.
+portrait-exports/
