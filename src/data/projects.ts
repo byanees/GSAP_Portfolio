@@ -117,17 +117,4 @@ export const PROJECTS: Project[] = [
     results: [{ value: "40%", label: "shorter initial load with lazy loading" }],
     stack: ["MongoDB", "Express", "React", "Node.js"],
   },
-  {
-    slug: "payment-gateway-components",
-    title: "Payment Gateway Component Library",
-    meta: "LantroTech, 2023",
-    role: "Frontend",
-    description:
-      "A reusable React component set (forms, modals, tables) for a payment gateway platform, built with a two-person design team so screens could be assembled instead of rewritten.",
-    results: [
-      { value: "10+", label: "reusable components in the library" },
-      { value: "35%", label: "less UI development time" },
-    ],
-    stack: ["React", "TypeScript", "Bootstrap", "Sass"],
-  },
 ];

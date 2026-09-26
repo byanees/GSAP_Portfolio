@@ -248,27 +248,4 @@ export const DIAGRAMS: Record<string, Diagram> = {
             "Otherwise the backend makes the external system's API calls, combines them into one response, and caches it",
         ],
     },
-
-    "batch-payment-validation": {
-        title: "Validate every recipient before any money moves",
-        nodes: [
-            { id: "admin", x: 100, y: 230, w: 150, label: "Admin", sub: "uploads a file", kind: "actor" },
-            { id: "validator", x: 370, y: 230, w: 200, label: "Validation", sub: "scheduler · chunks", kind: "service", focus: true },
-            { id: "namecheck", x: 370, y: 450, w: 190, label: "Name check", sub: "+ other checks", kind: "external" },
-            { id: "db", x: 640, y: 230, w: 170, label: "Record status", sub: "in the DB", kind: "store" },
-            { id: "disburse", x: 880, y: 230, w: 170, label: "Disbursement", sub: "second scheduler", kind: "service" },
-        ],
-        edges: [
-            { from: "admin", to: "validator", step: 1, fan: 4 },
-            { from: "validator", to: "namecheck", step: 2, label: "each record" },
-            { from: "validator", to: "db", step: 3, label: "status" },
-            { from: "db", to: "disburse", step: 4, label: "passed" },
-        ],
-        steps: [
-            "The admin uploads a file of the people to be paid",
-            "The validation scheduler loads it in chunks and runs a name check and the other validations on each record",
-            "Each record's status is written to the database",
-            "A separate scheduler disburses only the records that passed",
-        ],
-    },
 };

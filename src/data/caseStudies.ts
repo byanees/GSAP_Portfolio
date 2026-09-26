@@ -191,24 +191,4 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     stack: [".NET 9", "ABP.io", "Caching", "Angular"],
   },
-  {
-    slug: "batch-payment-validation",
-    domain: "Payments",
-    title: "Validation Scheduler for Bulk Payments",
-    company: "DPL",
-    role: "Software Engineer",
-    period: "2024 - 2026",
-    summary:
-      "Built the scheduler that validates bulk payment files before any money moves: it name-checks every recipient in chunks and marks each record for the disbursement scheduler.",
-    problem:
-      "Admins upload files of people to be paid. Errors found during disbursement, after money has started moving, are the most expensive to unwind.",
-    built: [
-      "The admin uploads a file of the people to be paid",
-      "The validation scheduler loads the records in chunks rather than the whole file at once",
-      "Each record goes through a name check and the other validations",
-      "Every record's status is updated in the database, for a separate scheduler to pick up and disburse",
-    ],
-    results: [],
-    stack: [".NET", "Schedulers", "Microservices"],
-  },
 ];

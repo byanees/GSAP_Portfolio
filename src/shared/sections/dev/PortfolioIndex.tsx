@@ -4,13 +4,22 @@ import { CASE_STUDIES } from "@/data/caseStudies";
 import { PROFILE } from "@/data/profile";
 import { PROJECTS } from "@/data/projects";
 import CaseStudyCard from "./CaseStudyCard";
-import Eyebrow from "./Eyebrow";
 import StackTags from "./StackTags";
 import { ARROW_SVG } from "./icons";
 
 const TABS = [
-    { key: "case-studies", label: "Case studies", count: CASE_STUDIES.length },
-    { key: "projects", label: "Projects", count: PROJECTS.length },
+    {
+        key: "case-studies",
+        label: "Case studies",
+        hint: "Production systems, and how each one works",
+        count: CASE_STUDIES.length,
+    },
+    {
+        key: "projects",
+        label: "Projects",
+        hint: "Platforms, products, and client builds",
+        count: PROJECTS.length,
+    },
 ] as const;
 
 type TabKey = (typeof TABS)[number]["key"];
@@ -71,9 +80,9 @@ export default function PortfolioIndex() {
 
     return (
         <>
-            <section className="pt-150 pb-60">
+            <section className="pt-150">
                 <div className="container">
-                    <div className="row g-4 align-items-end pb-60 border-bottom-100">
+                    <div className="row g-4 align-items-end pb-60">
                         <div className="col-xxl-8 col-lg-7">
                             <h1 className="fz-ds-1 fw-500 lh-1">What I&apos;ve Built</h1>
                             <p className="fz-font-lg neutral-900 mb-0">
@@ -118,8 +127,11 @@ export default function PortfolioIndex() {
                                     onClick={() => select(t.key)}
                                     onKeyDown={(e) => onKeyDown(e, i)}
                                 >
-                                    {t.label}
-                                    <span className="dev-tab__count">{t.count}</span>
+                                    <span className="dev-tab__label">
+                                        {t.label}
+                                        <span className="dev-tab__count">{String(t.count).padStart(2, "0")}</span>
+                                    </span>
+                                    <span className="dev-tab__hint">{t.hint}</span>
                                 </button>
                             );
                         })}
@@ -127,7 +139,7 @@ export default function PortfolioIndex() {
                 </div>
             </section>
 
-            <section className="pb-120">
+            <section className="pt-50 pb-120">
                 <div className="container">
                     <div
                         role="tabpanel"
@@ -136,12 +148,7 @@ export default function PortfolioIndex() {
                         className={`dev-tabpanel${switched ? " is-switched" : ""}`}
                         hidden={tab !== "case-studies"}
                     >
-                        <div className="row pb-40">
-                            <div className="col-lg-6">
-                                <Eyebrow>case studies</Eyebrow>
-                                <h2 className="h3 mb-0">Production systems</h2>
-                            </div>
-                        </div>
+                        <h2 className="visually-hidden">Case studies</h2>
                         <div className="row g-4" data-reveal-group>
                             {CASE_STUDIES.map((cs) => (
                                 <div key={cs.slug} className="col-lg-6" data-reveal>
@@ -158,17 +165,7 @@ export default function PortfolioIndex() {
                         className={`dev-tabpanel${switched ? " is-switched" : ""}`}
                         hidden={tab !== "projects"}
                     >
-                        <div className="row pb-40 g-4 align-items-end">
-                            <div className="col-lg-6">
-                                <Eyebrow>projects</Eyebrow>
-                                <h2 className="h3 mb-0">Platforms and products</h2>
-                            </div>
-                            <div className="col-lg-5 ms-auto text-lg-end">
-                                <p className="neutral-500 mb-0">
-                                    Work beyond the case studies, from a telco agent platform and QR payments to SaaS and client sites.
-                                </p>
-                            </div>
-                        </div>
+                        <h2 className="visually-hidden">Projects</h2>
                         <div className="row g-4" data-reveal-group>
                             {PROJECTS.map((p) => (
                                 <div key={p.slug} className="col-lg-6" data-reveal>

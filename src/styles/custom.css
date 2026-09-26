@@ -3114,50 +3114,98 @@ header.is-stuck .at-header-area {
   display: block;
 }
 
-/* Portfolio tabs: case studies / projects. Same pill as the contact form's
-   topic buttons, so the site keeps one selectable-chip style. */
+/* Portfolio tabs: case studies / projects. An editorial tab bar rather than
+   chips: display-type labels on a full-width rule, with the site's heavy
+   neutral-900 underline marking the open tab. */
 .dev-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-bottom: 1px solid var(--at-neutral-100);
 }
 
 .dev-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 18px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--at-neutral-700);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 24px 26px 0;
+  text-align: left;
+  color: var(--at-neutral-500);
   background: transparent;
-  border: 1px solid var(--at-neutral-100);
-  border-radius: 50px;
+  border: 0;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.dev-tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: var(--at-neutral-900);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.215, 0.61, 0.355, 1), background-color 0.3s ease;
 }
 
 .dev-tab:hover {
-  border-color: var(--at-neutral-900);
   color: var(--at-neutral-900);
 }
 
+.dev-tab:hover::after {
+  background: var(--at-neutral-200);
+  transform: scaleX(1);
+}
+
 .dev-tab.is-active {
+  color: var(--at-neutral-900);
+  cursor: default;
+}
+
+.dev-tab.is-active::after {
   background: var(--at-neutral-900);
-  border-color: var(--at-neutral-900);
-  color: var(--at-neutral-0);
+  transform: scaleX(1);
 }
 
 .dev-tab:focus-visible {
   outline: 2px solid var(--at-neutral-900);
-  outline-offset: 3px;
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+.dev-tab__label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--at-ff-heading, inherit);
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .dev-tab__count {
+  padding-top: 0.2em;
   font-family: var(--dev-mono);
-  font-size: 13px;
-  opacity: 0.6;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--at-neutral-500);
+}
+
+.dev-tab__hint {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--at-neutral-500);
+}
+
+@media (max-width: 575px) {
+  .dev-tab { padding: 0 12px 18px 0; }
+  .dev-tab__label { gap: 6px; font-size: 22px; white-space: nowrap; }
+  .dev-tab__count { font-size: 12px; }
+  .dev-tab__hint { display: none; }
 }
 
 /* Matches the scroll reveal (RevealOnScroll): 20px lift, 0.55s, power3.out. */
@@ -3173,6 +3221,6 @@ header.is-stuck .at-header-area {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dev-tab { transition: none; }
+  .dev-tab, .dev-tab::after { transition: none; }
   .dev-tabpanel.is-switched:not([hidden]) { animation: none; }
 }

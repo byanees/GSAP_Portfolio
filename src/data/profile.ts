@@ -145,7 +145,7 @@ export const STACK_LAYERS = [
     name: "Services",
     role: "APIs and business rules, split into services.",
     items: [".NET 9", ".NET Core", "ABP.io", ".NET Aspire", "Node.js", "REST", "WebSockets"],
-    usedIn: ["request-to-pay", "bulk-push-notification-scheduler", "batch-payment-validation"],
+    usedIn: ["request-to-pay", "bulk-push-notification-scheduler", "otapp-bus-ticketing"],
   },
   {
     key: "data",
