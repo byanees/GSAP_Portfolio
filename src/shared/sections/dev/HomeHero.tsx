@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PROFILE } from "@/data/profile";
+import ReelReplayButton from "@/shared/motion/reel/ReelReplayButton";
 import HeroProof from "./HeroProof";
 import { ARROW_SVG } from "./icons";
 
@@ -43,6 +44,7 @@ export default function HomeHero() {
                                             {ARROW_SVG}
                                         </i>
                                     </a>
+                                    <ReelReplayButton />
                                 </div>
                             </div>
                         </div>

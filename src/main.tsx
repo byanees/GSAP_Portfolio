@@ -12,6 +12,7 @@ import "@/styles/vendor-spacing.css";
 import "@/styles/theme.css";
 import "@/styles/sticky-cards.css";
 import "@/styles/custom.css";
+import "@/styles/reel.css";
 
 import App from "@/App";
 

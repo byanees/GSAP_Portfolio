@@ -1,0 +1,713 @@
+/* ==========================================================================
+   Intro reel
+   A full-screen title sequence over the home page. Every scene starts hidden;
+   the GSAP timeline in ReelPlayer.tsx cuts between them on the beat. The first
+   painted frame is the site loader's own frame (ink, 56px grid), so the reel
+   takes over from the loader without a visible seam.
+   ========================================================================== */
+
+html.reel-lock,
+html.reel-lock body {
+  overflow: hidden;
+}
+
+.reel {
+  --reel-teal: #00d4aa;
+  --reel-ink: #0f0f0f;
+  --reel-paper: #fefefe;
+  --reel-grid: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+  color: var(--reel-paper);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+.reel-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: var(--reel-ink);
+  background-image: var(--reel-grid);
+  background-size: 56px 56px;
+  contain: strict;
+}
+
+/* Trails the frame as it lifts off the page. */
+.reel-curtain {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 18vh;
+  background: var(--reel-teal);
+}
+
+.reel-cam,
+.reel-scene {
+  position: absolute;
+  inset: 0;
+}
+
+.reel-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.reel-flash {
+  position: absolute;
+  inset: 0;
+  background: var(--reel-paper);
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Split text. Each line masks its own characters as they rise into place. */
+.reel-line {
+  display: block;
+  overflow: hidden;
+  padding: 0.06em 0.04em 0.04em;
+  white-space: nowrap;
+}
+
+.reel-ch {
+  display: inline-block;
+}
+
+.reel-word {
+  display: block;
+  font-size: var(--fs, 12vw);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---- 01 Hook ----------------------------------------------------------- */
+
+.reel-hook__stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4vh;
+  background: var(--reel-teal);
+  color: var(--reel-ink);
+  will-change: transform;
+}
+
+.reel-num {
+  display: flex;
+  align-items: baseline;
+  font-size: min(16.5vw, 40vh);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+/* The zeros are drawn, not set: the dive has to land dead centre in one. */
+.reel-num__ring {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 0.56em;
+  height: 0.72em;
+  margin: 0 0.02em;
+  border: 0.125em solid currentColor;
+  border-radius: 50%;
+}
+
+.reel-num__dash {
+  margin: 0 0.04em;
+  font-weight: 400;
+}
+
+.reel-hook__cap {
+  min-height: 1.4em;
+  margin: 0;
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  max-width: 90vw;
+  font-size: clamp(10px, 1.5vw, 20px);
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.reel-shutter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  background-color: var(--reel-ink);
+  background-image: var(--reel-grid);
+  background-size: 56px 56px;
+}
+
+.reel-shutter--top {
+  top: 0;
+  background-position: 0 0;
+}
+
+.reel-shutter--bottom {
+  bottom: 0;
+  background-position: 0 100%;
+}
+
+.reel-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--reel-teal);
+  box-shadow: 0 0 40px rgba(0, 212, 170, 0.55);
+}
+
+/* ---- 02 Type ------------------------------------------------------------ */
+
+.reel-card--teal {
+  background: var(--reel-teal);
+  color: var(--reel-ink);
+}
+
+.reel-card--ink {
+  background-color: var(--reel-ink);
+  background-image: var(--reel-grid);
+  background-size: 56px 56px;
+  color: var(--reel-paper);
+}
+
+.reel-card--paper {
+  background: var(--reel-paper);
+  color: var(--reel-ink);
+}
+
+.reel-line--outline {
+  color: transparent;
+  -webkit-text-stroke: max(1.5px, 0.012em) var(--reel-paper);
+}
+
+.reel-word--mono {
+  min-height: 1em;
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.reel-underline {
+  display: block;
+  width: min(70vw, 900px);
+  height: max(6px, 1.2vh);
+  margin-top: 3vh;
+  background: var(--reel-teal);
+}
+
+.reel-word--small {
+  margin-bottom: 1vh;
+  font-size: min(7vw, 9vh);
+  letter-spacing: -0.03em;
+}
+
+.reel-word--teal {
+  color: var(--reel-teal);
+}
+
+.reel-lanes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2vh;
+}
+
+.reel-lane {
+  font-size: min(10vh, 13vw);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--reel-paper);
+  will-change: transform;
+}
+
+.reel-lane:nth-child(odd) {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--reel-paper);
+}
+
+.reel-lane.reel-lane--accent {
+  color: var(--reel-teal);
+  -webkit-text-stroke: 0;
+}
+
+.reel-slam {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+}
+
+.reel-slam__kicker {
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  font-size: clamp(12px, 1.6vw, 22px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--reel-teal);
+}
+
+.reel-period {
+  display: inline-block;
+  width: 0.17em;
+  height: 0.17em;
+  margin-left: 0.06em;
+  border-radius: 50%;
+  background: var(--reel-teal);
+}
+
+/* ---- 03 Shape ----------------------------------------------------------- */
+
+.reel-tiles {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  place-items: center;
+  background: var(--reel-paper);
+}
+
+.reel-tile {
+  width: 76%;
+  aspect-ratio: 1;
+  background: var(--reel-ink);
+}
+
+/* ---- 04 Camera ---------------------------------------------------------- */
+
+.reel-set {
+  perspective: 1400px;
+  background: var(--reel-ink);
+}
+
+.reel-world {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 420vmin;
+  height: 320vmin;
+  margin: -160vmin 0 0 -210vmin;
+  /* No background grid here: a gradient across a layer this size, scaled up,
+     re-rasterises as the camera pans and drops frames. Crosshairs do the job. */
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.reel-tag,
+.reel-cross,
+.reel-stat,
+.reel-world-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.reel-tag {
+  transform: translate(-50%, -50%) translate(var(--x), var(--y)) rotate(var(--r));
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  font-size: 4.2vmin;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: rgba(254, 254, 254, 0.2);
+}
+
+.reel-cross {
+  transform: translate(-50%, -50%) translate(var(--x), var(--y));
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  font-size: 4vmin;
+  line-height: 1;
+  color: rgba(0, 212, 170, 0.45);
+}
+
+.reel-tag--big {
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 11vmin;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(254, 254, 254, 0.28);
+}
+
+.reel-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2vmin;
+  width: 62vmin;
+  padding: 5vmin;
+  transform: translate(-50%, -50%) translate(var(--x), var(--y)) rotate(var(--r));
+  border: 1px solid rgba(254, 254, 254, 0.16);
+  border-radius: 3vmin;
+  background: #151515;
+  box-shadow: 0 4vmin 10vmin rgba(0, 0, 0, 0.5);
+}
+
+.reel-stat__index {
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  font-size: 2.2vmin;
+  letter-spacing: 0.2em;
+  color: var(--reel-teal);
+}
+
+.reel-stat__value {
+  font-size: 15vmin;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+.reel-stat__label {
+  min-height: 2.6em;
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  font-size: 2.5vmin;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #b7b7b7;
+}
+
+.reel-world-dot {
+  width: 3vmin;
+  height: 3vmin;
+  margin: -1.5vmin 0 0 -1.5vmin;
+  border-radius: 50%;
+  background: var(--reel-teal);
+  box-shadow: 0 0 0 1.4vmin rgba(0, 212, 170, 0.18), 0 0 0 3.2vmin rgba(0, 212, 170, 0.07);
+}
+
+/* ---- 05 Frame ----------------------------------------------------------- */
+
+.reel-final {
+  background-color: var(--reel-ink);
+  background-image: var(--reel-grid);
+  background-size: 56px 56px;
+}
+
+.reel-final__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4vh;
+  padding: 0 16px;
+}
+
+.reel-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(56px, 9vmin, 96px);
+  height: clamp(56px, 9vmin, 96px);
+  border-radius: 26%;
+  background: var(--reel-paper);
+  color: var(--reel-ink);
+  font-size: clamp(18px, 2.9vmin, 30px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.reel-name {
+  font-size: min(9.6vw, 132px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.reel-role {
+  min-height: 1.4em;
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  font-size: clamp(10px, 1.3vw, 16px);
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+  color: #b7b7b7;
+}
+
+.reel-rule {
+  position: relative;
+  display: block;
+  width: 168px;
+  max-width: 60vw;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.reel-rule__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--reel-teal);
+}
+
+.reel-iris {
+  position: absolute;
+  inset: 0;
+  background: var(--reel-teal);
+}
+
+/* ---- HUD ---------------------------------------------------------------- */
+
+.reel-hud {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.reel-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(15, 15, 15, 0.72);
+  backdrop-filter: blur(8px);
+  color: var(--reel-paper);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.reel-hud__tl,
+.reel-hud__tr,
+.reel-hud__bl,
+.reel-hud__br {
+  position: absolute;
+}
+
+.reel-hud__tl {
+  top: 20px;
+  left: 20px;
+}
+
+.reel-hud__tr {
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.reel-hud__bl {
+  bottom: 24px;
+  left: 20px;
+}
+
+.reel-hud__br {
+  bottom: 24px;
+  right: 20px;
+}
+
+.reel-hud__time {
+  font-variant-numeric: tabular-nums;
+}
+
+.reel-hud__act {
+  color: var(--reel-teal);
+}
+
+.reel-hud__beats {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.reel-hud__beat {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.reel-hud__beat.is-on {
+  background: var(--reel-teal);
+  box-shadow: 0 0 8px var(--reel-teal);
+}
+
+.reel-hud__track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(15, 15, 15, 0.4);
+}
+
+.reel-hud__progress {
+  position: absolute;
+  inset: 0;
+  background: var(--reel-teal);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+.reel-btn {
+  pointer-events: auto;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.reel-btn:hover {
+  border-color: var(--reel-teal);
+  background: rgba(15, 15, 15, 0.9);
+}
+
+.reel-btn:focus-visible {
+  outline: 2px solid var(--reel-teal);
+  outline-offset: 3px;
+}
+
+.reel-btn kbd {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  font: inherit;
+  font-size: 10px;
+}
+
+/* A speaker drawn in CSS: a slash when off, two waves when on. */
+.reel-btn__icon {
+  position: relative;
+  width: 12px;
+  height: 12px;
+}
+
+.reel-btn__icon::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 5px;
+  height: 6px;
+  background: currentColor;
+  clip-path: polygon(0 20%, 45% 20%, 100% -40%, 100% 140%, 45% 80%, 0 80%);
+}
+
+.reel-btn__icon::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 6px;
+  height: 8px;
+  border: 1.5px solid currentColor;
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.reel-btn__icon[data-state="off"]::after,
+.reel-btn__icon[data-state="muted"]::after {
+  top: 5px;
+  width: 7px;
+  height: 0;
+  border: 0;
+  border-top: 1.5px solid currentColor;
+  border-radius: 0;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 575px) {
+  .reel-hud__tl,
+  .reel-hud__br {
+    display: none;
+  }
+
+  .reel-hud__tr {
+    top: 14px;
+    right: 14px;
+  }
+
+  .reel-hud__bl {
+    bottom: 18px;
+    left: 14px;
+  }
+}
+
+/* ---- Replay button in the home hero ------------------------------------ */
+
+.reel-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px 9px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #b7b7b7;
+  font-family: var(--dev-mono, "DM Mono", monospace);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.reel-replay:hover,
+.reel-replay:focus-visible {
+  border-color: #00d4aa;
+  color: #fefefe;
+}
+
+.reel-replay:focus-visible {
+  outline: 2px solid #00d4aa;
+  outline-offset: 3px;
+}
+
+.reel-replay__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #00d4aa;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reel-replay__play::before {
+  content: "";
+  margin-left: 2px;
+  border-top: 4.5px solid transparent;
+  border-bottom: 4.5px solid transparent;
+  border-left: 7px solid #0f0f0f;
+}
+
+.reel-replay:hover .reel-replay__play {
+  transform: scale(1.12);
+}
+
+/* The reel never plays under reduced motion, so neither is it offered. */
+@media (prefers-reduced-motion: reduce) {
+  .reel-replay {
+    display: none;
+  }
+}

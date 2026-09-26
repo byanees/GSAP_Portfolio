@@ -6,6 +6,7 @@ import HomeCta from "@/shared/sections/dev/HomeCta";
 import HomeHero from "@/shared/sections/dev/HomeHero";
 import HomeWhatIDo from "@/shared/sections/dev/HomeWhatIDo";
 import Recommendations from "@/shared/sections/dev/Recommendations";
+import MotionReel from "@/shared/motion/reel/MotionReel";
 
 export default function Home16Page() {
   return (
@@ -21,6 +22,7 @@ export default function Home16Page() {
       <HomeCaseStudies />
       <Recommendations muted />
       <HomeCta />
+      <MotionReel />
     </>
   );
 }
