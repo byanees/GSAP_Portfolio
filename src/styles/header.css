@@ -10,9 +10,19 @@
   --nav-blue: #0066ff;
   --nav-ink: #0f0f0f;
   --nav-paper: #fefefe;
-  --nav-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  /* Starts at speed and settles, with no stall at the start. */
+  --nav-ease: cubic-bezier(0.32, 0.72, 0, 1);
   --nav-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* The pill's own resize: a damped spring with a 3% overshoot. */
+  --nav-spring: var(--nav-ease);
   --nav-mono: var(--dev-mono, "DM Mono", ui-monospace, monospace);
+}
+
+@supports (transition-timing-function: linear(0, 1)) {
+  .site-nav {
+    --nav-spring: linear(0, 0.064, 0.21, 0.383, 0.552, 0.698, 0.815, 0.902, 0.961, 0.999, 1.02, 1.03, 1.031, 1.029,
+        1.024, 1.018, 1.013, 1.009, 1.005, 1.003, 1.001, 1, 0.999, 0.999, 1);
+  }
 }
 
 .site-nav kbd,
@@ -21,26 +31,27 @@
   box-shadow: none;
 }
 
-@keyframes site-nav-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(0, 212, 170, 0.55);
+/* Transform and opacity only, so both run on the compositor. */
+@keyframes site-nav-ping {
+  from {
+    opacity: 0.55;
+    transform: scale(1);
   }
-  60% {
-    box-shadow: 0 0 0 6px rgba(0, 212, 170, 0);
+  60%,
+  to {
+    opacity: 0;
+    transform: scale(2.7);
   }
 }
 
 @keyframes site-nav-rise {
   from {
     opacity: 0;
-    transform: translateY(60%);
-    filter: blur(4px);
+    transform: translateY(45%);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: none;
   }
 }
 
@@ -105,7 +116,24 @@
 .site-nav__fold {
   flex: none;
   overflow: hidden;
-  transition: width 0.65s var(--nav-ease);
+  transition: width 0.6s var(--nav-spring);
+}
+
+/* Open is the default: the full menu, which is also what the prerendered page
+   shows before any script runs. The pill folds only when the page has
+   scrolled, it isn't pinned open, and neither the pointer nor keyboard focus
+   is in it. Script measures the natural widths into the two variables.
+
+   Choreography. Outgoing content fades first and fast, before the edge
+   reaches it; incoming content waits until the pill has made room. Both move
+   toward or out of the mark, so the pill reads as one object. Unfolding
+   starts at once; folding waits a beat, so grazing the edge doesn't flicker. */
+.site-nav__links {
+  width: var(--site-nav-links-w, auto);
+}
+
+.site-nav__now {
+  width: 0;
 }
 
 .site-nav__now-inner,
@@ -114,9 +142,42 @@
   align-items: center;
   white-space: nowrap;
   transition:
-    opacity 0.35s ease,
-    filter 0.45s ease,
-    transform 0.6s var(--nav-ease);
+    opacity 0.16s ease,
+    transform 0.5s var(--nav-ease);
+}
+
+.site-nav__now-inner {
+  opacity: 0;
+  transform: translateX(-6px);
+}
+
+.site-nav__links-inner {
+  transition-duration: 0.3s, 0.5s;
+  transition-delay: 0.12s, 0.08s;
+}
+
+.site-nav:not([data-expanded], [data-pinned], [data-sheet]) .site-nav__pill:not(:hover, :focus-within) .site-nav__links {
+  width: 0;
+  transition-delay: 0.14s;
+}
+
+.site-nav:not([data-expanded], [data-pinned], [data-sheet]) .site-nav__pill:not(:hover, :focus-within) .site-nav__now {
+  width: var(--site-nav-now-w, auto);
+  transition-delay: 0.1s;
+}
+
+.site-nav:not([data-expanded], [data-pinned], [data-sheet]) .site-nav__pill:not(:hover, :focus-within) .site-nav__links-inner {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition-duration: 0.12s, 0.5s;
+  transition-delay: 0.06s, 0.06s;
+}
+
+.site-nav:not([data-expanded], [data-pinned], [data-sheet]) .site-nav__pill:not(:hover, :focus-within) .site-nav__now-inner {
+  opacity: 1;
+  transform: none;
+  transition-duration: 0.3s, 0.5s;
+  transition-delay: 0.24s, 0.2s;
 }
 
 .site-nav__now-inner {
@@ -127,28 +188,25 @@
 }
 
 .site-nav__pulse {
+  position: relative;
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: var(--nav-signal);
-  animation: site-nav-pulse 2.4s ease-out infinite;
+}
+
+.site-nav__pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: site-nav-ping 2.4s ease-out infinite;
 }
 
 .site-nav__now-label {
   display: inline-block;
-  animation: site-nav-rise 0.55s var(--nav-out);
-}
-
-.site-nav[data-expanded] .site-nav__now-inner {
-  opacity: 0;
-  filter: blur(4px);
-  transform: translateX(-12px);
-}
-
-.site-nav:not([data-expanded]) .site-nav__links-inner {
-  opacity: 0;
-  filter: blur(6px);
-  transform: translateX(18px);
+  animation: site-nav-rise 0.45s var(--nav-out);
 }
 
 .site-nav__links-inner {
@@ -167,8 +225,8 @@
   background: #262626;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
   transition:
-    transform 0.45s var(--nav-ease),
-    width 0.45s var(--nav-ease),
+    transform 0.4s var(--nav-ease),
+    width 0.4s var(--nav-ease),
     opacity 0.2s ease;
 }
 
@@ -247,21 +305,20 @@
 }
 
 .site-nav__glyph i:first-child {
-  transform: translateY(-3px);
-}
-
-.site-nav__glyph i:last-child {
-  width: 8px;
-  transform: translate(-2.5px, 3px);
-}
-
-.site-nav[data-expanded] .site-nav__glyph i:first-child {
   transform: translateY(-3px) scaleX(0.6);
 }
 
-.site-nav[data-expanded] .site-nav__glyph i:last-child {
-  width: 13px;
+.site-nav__glyph i:last-child {
   transform: translateY(3px) scaleX(0.6);
+}
+
+.site-nav:not([data-expanded], [data-pinned], [data-sheet]) .site-nav__pill:not(:hover, :focus-within) .site-nav__glyph i:first-child {
+  transform: translateY(-3px);
+}
+
+.site-nav:not([data-expanded], [data-pinned], [data-sheet]) .site-nav__pill:not(:hover, :focus-within) .site-nav__glyph i:last-child {
+  width: 8px;
+  transform: translate(-2.5px, 3px);
 }
 
 .site-nav[data-sheet] .site-nav__glyph i:first-child {
@@ -343,9 +400,8 @@
     width: auto !important;
   }
 
-  .site-nav[data-expanded] .site-nav__now-inner {
+  .site-nav .site-nav__now-inner {
     opacity: 1;
-    filter: none;
     transform: none;
   }
 
@@ -353,9 +409,8 @@
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(15, 15, 15, 0.35);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    /* A plain dim: blurring the whole page behind it costs phones a frame. */
+    background: rgba(15, 15, 15, 0.5);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s ease;

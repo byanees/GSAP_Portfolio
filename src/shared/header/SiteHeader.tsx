@@ -4,6 +4,12 @@
 // the page you're on and a ring that fills as you read; hovering or focusing it
 // unfolds it again. On phones the ring opens a sheet that drops out of the pill.
 //
+// React only tracks the rare changes: scrolled past the fold point, pinned open
+// from the ring, sheet or palette open. Hover and keyboard focus unfold the
+// pill in CSS (:hover, :focus-within), so moving the pointer over it costs no
+// renders. The folded widths are measured once and handed to CSS as custom
+// properties, since `width: auto` does not transition.
+//
 // ⌘K / Ctrl+K, or "/" outside a text field, opens the command palette, which
 // also reaches case studies, posts, and the contact actions.
 
@@ -15,6 +21,9 @@ import CommandPalette from "./CommandPalette";
 import { NAV_LINKS, activeIndex, useScrollLock, useScrollProgress, useScrolled } from "./nav";
 
 const RING = 2 * Math.PI * 15;
+/** Folds past this scroll depth, and unfolds again only above FOLD_EXIT. */
+const FOLD_AT = 120;
+const FOLD_EXIT = 48;
 /** Below this the pill never unfolds sideways; the ring opens the sheet instead. */
 const PHONE_QUERY = "(max-width: 991.98px)";
 
@@ -36,15 +45,17 @@ function SearchIcon() {
 export default function SiteHeader() {
   const { pathname } = useLocation();
   const active = activeIndex(pathname);
-  const scrolled = useScrolled(90);
-  const [engaged, setEngaged] = useState(false);
+  const scrolled = useScrolled(FOLD_AT, FOLD_EXIT);
+  const [pinned, setPinned] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   // "⌘" until we know the visitor isn't on a Mac; set after hydration so the
   // prerendered markup matches.
   const [modKey, setModKey] = useState("⌘");
-  const expanded = !scrolled || engaged;
+  /** Unfolded by scroll position alone; hover and focus are CSS's business. */
+  const expanded = !scrolled;
 
+  const headerRef = useRef<HTMLElement>(null);
   const nowRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
   const blobRef = useRef<HTMLSpanElement>(null);
@@ -55,8 +66,13 @@ export default function SiteHeader() {
   useEffect(() => {
     setSheetOpen(false);
     setPaletteOpen(false);
-    setEngaged(false);
+    setPinned(false);
   }, [pathname]);
+
+  // Back at the top the menu is open anyway, so a pin has nothing left to do.
+  useEffect(() => {
+    if (!scrolled) setPinned(false);
+  }, [scrolled]);
 
   useEffect(() => {
     if (!/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) setModKey("Ctrl");
@@ -78,17 +94,16 @@ export default function SiteHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // The two folding regions get explicit pixel widths so the pill can animate
-  // between them; `width: auto` does not transition.
+  // The natural width of each folding region, for CSS to animate between.
+  // Only the current-page label changes with the route; nothing else moves.
   const measure = useCallback(() => {
-    const now = nowRef.current;
-    const links = linksRef.current;
-    if (!now || !links) return;
-    const nowW = (now.firstElementChild as HTMLElement).scrollWidth;
-    const linksW = (links.firstElementChild as HTMLElement).scrollWidth;
-    now.style.width = expanded ? "0px" : `${nowW}px`;
-    links.style.width = expanded ? `${linksW}px` : "0px";
-  }, [expanded]);
+    const header = headerRef.current;
+    const now = nowRef.current?.firstElementChild as HTMLElement | undefined;
+    const links = linksRef.current?.firstElementChild as HTMLElement | undefined;
+    if (!header || !now || !links) return;
+    header.style.setProperty("--site-nav-now-w", `${now.scrollWidth}px`);
+    header.style.setProperty("--site-nav-links-w", `${links.scrollWidth}px`);
+  }, []);
 
   useLayoutEffect(() => {
     measure();
@@ -132,23 +147,23 @@ export default function SiteHeader() {
     setSheetOpen(false);
     setPaletteOpen(true);
   };
+  const closePalette = useCallback(() => setPaletteOpen(false), []);
 
   const current = NAV_LINKS[active] ?? NAV_LINKS[0];
-  const foldedTab = expanded ? undefined : -1;
 
   return (
     <>
-      <header className="site-nav" data-expanded={expanded || undefined} data-sheet={sheetOpen || undefined}>
+      <header
+        ref={headerRef}
+        className="site-nav"
+        data-expanded={expanded || undefined}
+        data-pinned={pinned || undefined}
+        data-sheet={sheetOpen || undefined}
+      >
         <div className="site-nav__scrim" onClick={() => setSheetOpen(false)} aria-hidden="true" />
 
         <div
           className="site-nav__pill"
-          onMouseEnter={() => setEngaged(true)}
-          onMouseLeave={() => setEngaged(false)}
-          onFocus={() => setEngaged(true)}
-          onBlur={(e) => {
-            if (!e.currentTarget.contains(e.relatedTarget as Node)) setEngaged(false);
-          }}
         >
           <div className="site-nav__row">
             <Link to="/" className="site-nav__mark" aria-label={`${PROFILE.name}, home`}>
@@ -173,7 +188,6 @@ export default function SiteHeader() {
                     to={l.to}
                     end={l.to === "/"}
                     className="site-nav__link"
-                    tabIndex={foldedTab}
                     onMouseEnter={(e) => moveBlob(e.currentTarget)}
                     onFocus={(e) => moveBlob(e.currentTarget)}
                   >
@@ -183,7 +197,6 @@ export default function SiteHeader() {
                 <button
                   type="button"
                   className="site-nav__search"
-                  tabIndex={foldedTab}
                   onClick={openPalette}
                   aria-label="Search the site"
                   aria-keyshortcuts="Meta+K Control+K /"
@@ -197,11 +210,11 @@ export default function SiteHeader() {
             <button
               type="button"
               className="site-nav__ring"
-              aria-label={sheetOpen ? "Close menu" : expanded ? "Menu" : "Open menu"}
-              aria-expanded={sheetOpen}
+              aria-label={sheetOpen ? "Close menu" : "Menu"}
+              aria-expanded={sheetOpen || pinned}
               onClick={() => {
                 if (window.matchMedia(PHONE_QUERY).matches) setSheetOpen((v) => !v);
-                else setEngaged((v) => !v);
+                else setPinned((v) => !v);
               }}
             >
               <svg viewBox="0 0 36 36" aria-hidden="true">
@@ -253,7 +266,7 @@ export default function SiteHeader() {
           </div>
         </div>
       </header>
-      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
+      <CommandPalette open={paletteOpen} onClose={closePalette} />
     </>
   );
 }
