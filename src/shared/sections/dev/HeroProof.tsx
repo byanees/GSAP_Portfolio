@@ -22,7 +22,7 @@ function keepRangesTogether(text: string) {
  * proof above the fold instead of a simulated screenshot.
  *
  * The figures and labels are HOME.hero.proof. They are revealed by the shared
- * [data-reveal] stagger, and deliberately not counted up: "700-800k" and
+ * [data-reveal] stagger, and deliberately not counted up: "700–800k" and
  * "4,000+" are a range and a floor, so a counter would display a smaller,
  * wrong number on every frame until it landed.
  */

@@ -571,6 +571,8 @@
   letter-spacing: -0.04em;
   overflow-wrap: break-word;
   color: var(--at-neutral-900);
+  /* A range like "700–800k" must not break after its dash. */
+  white-space: nowrap;
 }
 
 .code-card__result-label {
@@ -1771,6 +1773,8 @@
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.04em;
+  /* A range like "700–800k" must not break after its dash. */
+  white-space: nowrap;
 }
 
 .cs-result__label {
@@ -2492,6 +2496,8 @@ h4,
   letter-spacing: -0.04em;
   color: #fefefe;
   font-variant-numeric: tabular-nums;
+  /* A range like "700–800k" must not break after its dash. */
+  white-space: nowrap;
 }
 
 .hero-proof__label {

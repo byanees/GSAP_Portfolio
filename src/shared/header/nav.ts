@@ -24,15 +24,20 @@ export function activeIndex(pathname: string) {
   return NAV_LINKS.findIndex((l) => l.to !== "/" && (pathname === l.to || pathname.startsWith(`${l.to}/`)));
 }
 
-/** True once the page has scrolled past `threshold` pixels. */
-export function useScrolled(threshold: number) {
+/**
+ * True once the page has scrolled past `enterAt` pixels, and false again only
+ * back above `leaveAt`. The gap stops anything tied to it from flapping while
+ * someone scrolls slowly around a single threshold.
+ */
+export function useScrolled(enterAt: number, leaveAt = enterAt) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY >= threshold);
+    const onScroll = () =>
+      setScrolled((was) => (was ? window.scrollY > leaveAt : window.scrollY >= enterAt));
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [threshold]);
+  }, [enterAt, leaveAt]);
   return scrolled;
 }
 

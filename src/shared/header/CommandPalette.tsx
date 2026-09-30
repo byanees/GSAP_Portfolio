@@ -2,7 +2,7 @@
 // (copy the email, grab the CV, open WhatsApp), all behind one fuzzy filter.
 // Arrow keys move, Enter runs, Esc closes. On phones it fills the screen.
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import { POSTS } from "@/data/posts";
@@ -44,7 +44,7 @@ function score(query: string, text: string) {
 
 type Props = { open: boolean; onClose: () => void };
 
-export default function CommandPalette({ open, onClose }: Props) {
+function CommandPalette({ open, onClose }: Props) {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [cursor, setCursor] = useState(0);
@@ -239,3 +239,7 @@ export default function CommandPalette({ open, onClose }: Props) {
     </div>
   );
 }
+
+// Memoised: the header re-renders every time the pill folds or unfolds, and
+// the palette has no reason to follow it while closed.
+export default memo(CommandPalette);
