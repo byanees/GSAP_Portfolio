@@ -3,17 +3,9 @@ import { CTA } from "@/data/navigation";
 import { HOME } from "@/data/pages/home";
 import { PROFILE } from "@/data/profile";
 import ReelReplayButton from "@/shared/motion/reel/ReelReplayButton";
+import HeroButtonContent from "./HeroButton";
 import HeroProof from "./HeroProof";
-import { ARROW_SVG } from "./icons";
-
-function SwapLabel({ label }: { label: string }) {
-    return (
-        <span>
-            <span className="text-1">{label}</span>
-            <span className="text-2">{label}</span>
-        </span>
-    );
-}
+import { ARROW_SVG, DOWNLOAD_SVG } from "./icons";
 
 export default function HomeHero() {
     return (
@@ -29,20 +21,12 @@ export default function HomeHero() {
                                 </p>
                                 <h1 className="dev-hero__headline fw-600 text-white mb-30">{HOME.hero.headline}</h1>
                                 <p className="dev-hero__lead mb-40">{PROFILE.heroLead}</p>
-                                <div className="d-flex flex-wrap align-items-center gap-4">
-                                    <Link to="/portfolio" className="at-btn text-white rounded-0">
-                                        <SwapLabel label={CTA.viewCaseStudies} />
-                                        <i>
-                                            {ARROW_SVG}
-                                            {ARROW_SVG}
-                                        </i>
+                                <div className="hero-actions">
+                                    <Link to="/portfolio" className="hero-btn hero-btn--primary">
+                                        <HeroButtonContent label={CTA.viewCaseStudies} icon={ARROW_SVG} />
                                     </Link>
-                                    <a href={PROFILE.cvUrl} download className="at-btn text-white border-bottom-opacity bg-transparent rounded-0 p-0 pb-2">
-                                        <SwapLabel label={CTA.downloadCv} />
-                                        <i>
-                                            {ARROW_SVG}
-                                            {ARROW_SVG}
-                                        </i>
+                                    <a href={PROFILE.cvUrl} download className="hero-btn hero-btn--secondary">
+                                        <HeroButtonContent label={CTA.downloadCv} icon={DOWNLOAD_SVG} />
                                     </a>
                                     <ReelReplayButton />
                                 </div>

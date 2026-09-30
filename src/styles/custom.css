@@ -144,8 +144,215 @@
   color: #b7b7b7;
 }
 
-.dev-hero .border-bottom-opacity {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+/* Home hero actions: one pill family, ranked by fill alone. Primary is solid,
+   secondary is outlined, the ghost has neither. Same height, type, and icon
+   circle on all three, so they read as one row of choices. */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-btn {
+  --hero-btn-dx: 0px;
+  --hero-btn-dy: 0px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  height: 52px;
+  padding: 0 6px 0 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.hero-btn:focus-visible {
+  outline: 2px solid #00d4aa;
+  outline-offset: 3px;
+}
+
+.hero-btn__text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+/* The label rolls up and a copy rolls in, as elsewhere on the site. */
+.hero-btn__label {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.hero-btn__label > span {
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-btn__label > span + span {
+  position: absolute;
+  inset: 0;
+  transform: translateY(110%);
+}
+
+.hero-btn:hover .hero-btn__label > span:first-child {
+  transform: translateY(-110%);
+}
+
+.hero-btn:hover .hero-btn__label > span + span {
+  transform: none;
+}
+
+.hero-btn__note {
+  font-weight: 500;
+  color: #8a8a8a;
+  transition: color 0.3s ease;
+}
+
+/* Icon circle: the icon leaves in its own direction and a copy arrives. */
+.hero-btn__chip {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-btn__chip svg {
+  grid-area: 1 / 1;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-btn__chip svg + svg {
+  transform: translate(calc(var(--hero-btn-dx) * -1), calc(var(--hero-btn-dy) * -1));
+}
+
+.hero-btn:hover .hero-btn__chip svg:first-child {
+  transform: translate(var(--hero-btn-dx), var(--hero-btn-dy));
+}
+
+.hero-btn:hover .hero-btn__chip svg + svg {
+  transform: none;
+}
+
+/* Primary: solid. The arrow heads up and out. */
+.hero-btn--primary {
+  --hero-btn-dx: 28px;
+  --hero-btn-dy: -28px;
+  background: #fefefe;
+  color: #0f0f0f;
+}
+
+.hero-btn--primary:hover {
+  color: #0f0f0f;
+}
+
+.hero-btn--primary .hero-btn__chip {
+  background: #0f0f0f;
+  color: #fefefe;
+}
+
+.hero-btn--primary:hover .hero-btn__chip {
+  background: #00d4aa;
+  color: #0f0f0f;
+}
+
+/* Secondary: outlined. The arrow drops, since it downloads. */
+.hero-btn--secondary {
+  --hero-btn-dy: 30px;
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #fefefe;
+}
+
+.hero-btn--secondary:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fefefe;
+}
+
+.hero-btn--secondary .hero-btn__chip {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.24);
+}
+
+.hero-btn--secondary:hover .hero-btn__chip {
+  background: #fefefe;
+  box-shadow: none;
+  color: #0f0f0f;
+}
+
+/* Ghost: no fill, no border until hover. The play circle stays green. */
+.hero-btn--ghost {
+  padding-left: 18px;
+  color: #b7b7b7;
+}
+
+.hero-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fefefe;
+}
+
+.hero-btn--ghost:hover .hero-btn__note {
+  color: #a3a3a3;
+}
+
+.hero-btn--ghost .hero-btn__chip {
+  background: #00d4aa;
+  color: #0f0f0f;
+}
+
+.hero-btn--ghost .hero-btn__chip svg {
+  margin-left: 2px;
+}
+
+.hero-btn--ghost:hover .hero-btn__chip {
+  transform: scale(1.08);
+}
+
+/* Phones: the two main actions go full width, label left and icon right, so
+   they are easy to hit with a thumb. */
+@media (max-width: 575.98px) {
+  .hero-btn--primary,
+  .hero-btn--secondary {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-btn__label > span,
+  .hero-btn__chip,
+  .hero-btn__chip svg {
+    transition: none;
+  }
+
+  .hero-btn:hover .hero-btn__label > span:first-child,
+  .hero-btn:hover .hero-btn__chip svg:first-child {
+    transform: none;
+  }
+
+  .hero-btn__label > span + span,
+  .hero-btn__chip svg + svg {
+    display: none;
+  }
 }
 
 
@@ -2311,12 +2518,16 @@ h4,
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.hero-proof__cue::after {
-  content: "";
-  width: 14px;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.3s ease;
+/* The same ↗ as the hero's "View case studies": both lead to a case study. */
+.hero-proof__cue svg {
+  width: 9px;
+  height: 9px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-proof__link:hover .hero-proof__cue svg,
+.hero-proof__link:focus-visible .hero-proof__cue svg {
+  transform: translate(2px, -2px);
 }
 
 .hero-proof__link:hover .hero-proof__cue,

@@ -1,5 +1,20 @@
 import { Link } from "react-router-dom";
 import { HOME } from "@/data/pages/home";
+import { ARROW_SVG } from "./icons";
+
+/** Keeps a numeric range such as "6–8" on one line; a browser may otherwise
+ *  break after the dash and leave "6–" dangling at the end of a line. */
+function keepRangesTogether(text: string) {
+    return text.split(/(\d+[–-]\d+)/).map((part, i) =>
+        i % 2 ? (
+            <span key={i} className="text-nowrap">
+                {part}
+            </span>
+        ) : (
+            part
+        ),
+    );
+}
 
 /**
  * The three numbers worth leading with, each linked to the case study that
@@ -18,9 +33,10 @@ export default function HeroProof() {
                 <li key={item.slug} className="hero-proof__item" data-reveal>
                     <Link to={`/portfolio/${item.slug}`} className="hero-proof__link">
                         <span className="hero-proof__value">{item.figure}</span>
-                        <span className="hero-proof__label">{item.label}</span>
+                        <span className="hero-proof__label">{keepRangesTogether(item.label)}</span>
                         <span className="hero-proof__cue" aria-hidden="true">
                             {HOME.hero.proofCue}
+                            {ARROW_SVG}
                         </span>
                     </Link>
                 </li>
