@@ -9,15 +9,15 @@ const isProd = process.env.NODE_ENV === "production";
  * shipped CSS to what these five pages use.
  *
  * Anything applied at runtime rather than written in JSX has to be safelisted,
- * or it will be stripped: Bootstrap's JS state classes, the classes our own
- * effects toggle, and the nodes MenuClone builds imperatively.
+ * or it will be stripped: Bootstrap's JS state classes and the classes our own
+ * effects toggle.
  */
 const safelist = {
   standard: [
     "html", "body", "root", "active", "show", "showing", "hide", "hiding",
     "collapse", "collapsing", "collapsed", "fade", "modal-open", "modal-backdrop",
-    "offcanvas-backdrop", "header-sticky", "is-menu-open", "is-active",
-    "is-visible", "is-current", "at-menu-close", "at-magic-cursor",
+    "offcanvas-backdrop", "is-active",
+    "is-visible", "is-current", "at-magic-cursor",
     "dropdown-menu", "swiper-slide", "odometer",
   ],
   deep: [

@@ -15,10 +15,10 @@ export default function App() {
     <>
       <ScrollToTop />
       <Routes>
-        <Route element={<MainLayout headerStyle={1} footerStyle={1} />}>
+        <Route element={<MainLayout footerStyle={1} />}>
           <Route path="/" element={<Home16Page />} />
         </Route>
-        <Route element={<MainLayout headerStyle={2} footerStyle={2} />}>
+        <Route element={<MainLayout footerStyle={2} />}>
           <Route path="/about" element={<About3Page />} />
           <Route path="/services" element={<Navigate to="/about" replace />} />
           <Route path="/portfolio" element={<Portfolio3Page />} />

@@ -182,17 +182,23 @@ export default function SystemDiagram({ diagram, mini = false, className = "" }:
                     gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
                 });
 
+                // Not every diagram has zones, dashed wires, badges, or notes, and GSAP
+                // warns about a tween with nothing to animate, so a step is only added
+                // when it has targets.
                 const intro = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
-                intro
-                    .from(q(".dg-zone"), { opacity: 0, duration: 0.6 })
-                    .from(
-                        q(".dg-node"),
-                        { opacity: 0, scale: 0.92, transformOrigin: "50% 50%", duration: 0.5, stagger: 0.06 },
-                        0.1,
-                    )
-                    .to(solid, { strokeDashoffset: 0, duration: 0.7, stagger: 0.03, ease: "power2.inOut" }, 0.35)
-                    .from(q(".dg-wire.is-dashed"), { opacity: 0, duration: 0.5, stagger: 0.04 }, 0.6)
-                    .from(q(".dg-badge, .dg-note"), { opacity: 0, y: 6, duration: 0.4, stagger: 0.05 }, 0.8);
+                const step = (method: "from" | "to", targets: Element[], vars: GSAPTweenVars, at: number) => {
+                    if (targets.length) intro[method](targets, vars, at);
+                };
+                step("from", q(".dg-zone"), { opacity: 0, duration: 0.6 }, 0);
+                step(
+                    "from",
+                    q(".dg-node"),
+                    { opacity: 0, scale: 0.92, transformOrigin: "50% 50%", duration: 0.5, stagger: 0.06 },
+                    0.1,
+                );
+                step("to", solid, { strokeDashoffset: 0, duration: 0.7, stagger: 0.03, ease: "power2.inOut" }, 0.35);
+                step("from", q(".dg-wire.is-dashed"), { opacity: 0, duration: 0.5, stagger: 0.04 }, 0.6);
+                step("from", q(".dg-badge, .dg-note"), { opacity: 0, y: 6, duration: 0.4, stagger: 0.05 }, 0.8);
 
                 // The traffic loop: one segment per step, packets on every wire in it.
                 const loop = gsap.timeline({ paused: true, repeat: -1, repeatDelay: mini ? 0.4 : 1 });

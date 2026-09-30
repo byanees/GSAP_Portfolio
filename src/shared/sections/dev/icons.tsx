@@ -17,3 +17,15 @@ export const ARROW_CIRCLE_SVG = (
         />
     </svg>
 );
+
+export const DOWNLOAD_SVG = (
+    <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6 1v8.25M2.25 5.5 6 9.25 9.75 5.5M1 12h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const PLAY_SVG = (
+    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M1.5 1.2v8.6a.6.6 0 0 0 .9.52l7.1-4.3a.6.6 0 0 0 0-1.04L2.4.68a.6.6 0 0 0-.9.52Z" fill="currentColor" />
+    </svg>
+);
