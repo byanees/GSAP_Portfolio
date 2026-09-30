@@ -415,12 +415,15 @@ export default function PostFigure({ id, number = 1, thumb = false }: { id: stri
                     const len = el.getTotalLength();
                     gsap.set(el, { strokeDasharray: len, strokeDashoffset: len });
                 });
-                gsap.timeline({
+                const fadeIn = q("[data-pf-in], [data-pf-draw].is-dashed");
+                // Not every figure has both kinds, and GSAP warns about a tween
+                // with nothing to animate, so each is added only when present.
+                const tl = gsap.timeline({
                     defaults: { ease: "power3.out" },
                     scrollTrigger: { trigger: root, start: "top 80%", once: true },
-                })
-                    .to(draw, { strokeDashoffset: 0, duration: 0.9, stagger: 0.05, ease: "power2.inOut" }, 0)
-                    .from(q("[data-pf-in], [data-pf-draw].is-dashed"), { opacity: 0, y: 6, duration: 0.45, stagger: 0.025 }, 0.15);
+                });
+                if (draw.length) tl.to(draw, { strokeDashoffset: 0, duration: 0.9, stagger: 0.05, ease: "power2.inOut" }, 0);
+                if (fadeIn.length) tl.from(fadeIn, { opacity: 0, y: 6, duration: 0.45, stagger: 0.025 }, 0.15);
             }, root);
             revert = () => ctx.revert();
         })();

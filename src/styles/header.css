@@ -599,6 +599,10 @@
 }
 
 .cmdk__input input {
+  /* The theme gives every input `transition: all 0.3s`, visibility included,
+     so on the frame the palette opens the field would still be hidden, and
+     the focus call made on that frame would be dropped. */
+  transition: none;
   flex: 1;
   min-width: 0;
   border: 0;

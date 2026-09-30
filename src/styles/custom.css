@@ -1854,6 +1854,8 @@
   padding: 1px 6px;
   font-family: var(--dev-mono);
   font-size: 0.86em;
+  /* Bootstrap's default pink fails AA contrast on the chip, and is off-palette. */
+  color: var(--at-neutral-900);
   background: var(--at-neutral-50);
   border: 1px solid var(--at-neutral-100);
   border-radius: 5px;

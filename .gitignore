@@ -13,3 +13,8 @@ dist-ssr/
 
 # Canva exports and source photos; the chosen files are copied into public/.
 portrait-exports/
+
+# Playwright: test output, the HTML report, and the agent CLI's page snapshots.
+test-results/
+playwright-report/
+.playwright-cli/

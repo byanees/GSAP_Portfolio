@@ -87,7 +87,9 @@ export default function SiteHeader() {
         e.preventDefault();
         setPaletteOpen(true);
       } else if (e.key === "Escape") {
+        // Wherever focus is: the palette must never trap anyone.
         setSheetOpen(false);
+        setPaletteOpen(false);
       }
     };
     window.addEventListener("keydown", onKey);
