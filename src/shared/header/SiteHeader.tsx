@@ -6,8 +6,8 @@
 //
 // React only tracks the rare changes: scrolled past the fold point, pinned open
 // from the ring, sheet or palette open. Hover and keyboard focus unfold the
-// pill in CSS (:hover, :focus-within), so moving the pointer over it costs no
-// renders. The folded widths are measured once and handed to CSS as custom
+// pill in CSS (:hover, :has(:focus-visible)), so moving the pointer over it
+// costs no renders. The folded widths are measured once and handed to CSS as custom
 // properties, since `width: auto` does not transition.
 //
 // ⌘K / Ctrl+K, or "/" outside a text field, opens the command palette, which
