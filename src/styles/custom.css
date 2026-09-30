@@ -2413,47 +2413,6 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* ==========================================================================
-   Sticky header
-   The theme kept the nav in the flow and, once scrolled, replaced it with a
-   floating "MENU" chip that sat on top of body text. A persistent header is
-   both less intrusive and what a visitor scanning the site expects.
-
-   ========================================================================== */
-
-/* Fixed rather than sticky, so the bar is pinned regardless of what the page
-   below it does. The hero's own top padding clears it. */
-header:has(.at-header-area) {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-}
-
-header .at-header-area {
-  backdrop-filter: saturate(160%) blur(14px);
-  -webkit-backdrop-filter: saturate(160%) blur(14px);
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-/* Lifts off the page only once there is content underneath it. */
-header.is-stuck .at-header-area {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-}
-
-@media (prefers-reduced-transparency: reduce) {
-  header .at-header-area {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-}
-
-/* The floating chip is redundant now, and it overlapped body copy. */
-.hamburger-sticky-menu {
-  display: none !important;
-}
-
-/* ==========================================================================
    Education & credentials
    ========================================================================== */
 
