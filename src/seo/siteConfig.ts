@@ -1,11 +1,23 @@
 // One source of truth for anything that needs an absolute URL or page-level
 // copy: canonicals, Open Graph, the sitemap, robots.txt, and llms.txt all read
-// from here so they can never drift apart.
+// from here so they can never drift apart. Names, numbers, and availability in
+// the copy below come from src/data, so they change when the data does.
+//
+// Relative imports on purpose: vite.config.ts loads this file to fill in
+// index.html and the web manifest, and it runs without the "@" alias.
+
+import { AVAILABILITY } from "../data/availability";
+import { METRICS } from "../data/metrics";
+import { PROFILE } from "../data/profile";
 
 /** The canonical origin. Everything absolute is built from it. No trailing slash. */
 export const SITE_URL = "https://byanees.com";
 
-export const SITE_NAME = "Muhammad Anees";
+export const SITE_NAME = PROFILE.name;
+
+/** The installed-app card: the web manifest's name and description. */
+export const APP_NAME = `${PROFILE.name} — ${PROFILE.role}`;
+export const APP_DESCRIPTION = `Full stack engineer in ${PROFILE.city} building payment platforms and backend systems on .NET, ABP.io, and Angular.`;
 
 /** IndexNow key. Public by design: the protocol proves ownership by serving
  *  it at /<key>.txt, which the build writes. Rotating it means changing only
@@ -19,7 +31,7 @@ export const OG_IMAGE = "/assets/imgs/og/og-card.png";
 
 /** Titles read "<page> — Muhammad Anees" everywhere. The home page is the one
  *  exception: it leads with the role, because that is the query it answers. */
-export const TITLE_SUFFIX = " — Muhammad Anees";
+export const TITLE_SUFFIX = ` — ${PROFILE.name}`;
 
 /** Google cuts a title off at roughly 60 characters. A long post title is worth
  *  more whole than with the name tacked on and then truncated, so the suffix
@@ -43,14 +55,12 @@ type RouteMeta = { title: string; description: string };
 // this page can answer, so it reads as a direct answer when quoted.
 export const ROUTE_META: Record<string, RouteMeta> = {
   "/": {
-    title: "Muhammad Anees — Full Stack Engineer, .NET & Angular",
-    description:
-      "Full stack engineer in Islamabad building payment platforms on .NET 9, ABP.io, and Angular: Request to Pay for 4,000+ merchants, apps for 60,000+ agents.",
+    title: `${PROFILE.name} — ${PROFILE.role}, .NET & Angular`,
+    description: `Full stack engineer in ${PROFILE.city} building payment platforms on .NET 9, ABP.io, and Angular: Request to Pay for ${METRICS.merchants} merchants, apps for ${METRICS.agents} agents.`,
   },
   "/about": {
-    title: "About Muhammad Anees — Full Stack Engineer",
-    description:
-      "Muhammad Anees is a full stack engineer with 3+ years in fintech and telecom, at Systems Limited, DPL, and Axontick. Experience, stack, and credentials.",
+    title: `About ${PROFILE.name} — ${PROFILE.role}`,
+    description: `${PROFILE.name} is a full stack engineer with ${METRICS.years} years in fintech and telecom, at Systems Limited, DPL, and Axontick. Experience, stack, and credentials.`,
   },
   "/portfolio": {
     title: pageTitle("Case Studies in Payments & Backend"),
@@ -63,8 +73,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       "Engineering write-ups from production: idempotent payments, EMV QR encoding, Redis connection limits, bulk push scheduling, and CI/CD on .NET.",
   },
   "/contact": {
-    title: "Contact Muhammad Anees — Hire a Full Stack Engineer",
-    description:
-      "Hire or contact Muhammad Anees, full stack .NET and Angular engineer in Islamabad, Pakistan. Open to full-time, remote, and freelance work.",
+    title: `Contact ${PROFILE.name} — Hire a ${PROFILE.role}`,
+    description: `Hire or contact ${PROFILE.name}, full stack .NET and Angular engineer in ${PROFILE.location}. ${AVAILABILITY.metaLine}`,
   },
 };

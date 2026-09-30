@@ -1,15 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { PAGES } from "@/data/navigation";
 import { MainMenuRootList } from "@/shared/mobile-menu/MobileMenuCloneContext";
 
 type Item = { to: string; label: string };
 
-const MENU_LINKS: Item[] = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About Me" },
-  { to: "/portfolio", label: "Portfolio" },
-  { to: "/blog", label: "Blog" },
-  { to: "/contact", label: "Contact" },
-];
+const MENU_LINKS: Item[] = PAGES.map((p) => ({ to: p.to, label: p.menuLabel ?? p.label }));
 
 function LinkSwap({ label }: { label: string }) {
   return (

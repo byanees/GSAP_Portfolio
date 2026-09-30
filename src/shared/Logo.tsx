@@ -1,5 +1,7 @@
 // Text wordmark used in headers, menus, and footers.
 
+import { PROFILE } from "@/data/profile";
+
 type LogoProps = {
   /** "dark" = dark text for light backgrounds, "light" = white text for dark backgrounds */
   tone?: "dark" | "light";
@@ -11,9 +13,9 @@ export default function Logo({ tone = "dark", size = "md", className = "" }: Log
   return (
     <span className={`site-logo site-logo--${tone} site-logo--${size} ${className}`.trim()}>
       <span className="site-logo__mark" aria-hidden>
-        MA
+        {PROFILE.initials}
       </span>
-      <span className="site-logo__name">Muhammad Anees</span>
+      <span className="site-logo__name">{PROFILE.name}</span>
     </span>
   );
 }

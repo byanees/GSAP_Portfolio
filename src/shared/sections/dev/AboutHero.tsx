@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
+import { CTA } from "@/data/navigation";
+import { ABOUT } from "@/data/pages/about";
 import { PROFILE } from "@/data/profile";
 import AboutPortrait from "./AboutPortrait";
 import { ARROW_CIRCLE_SVG } from "./icons";
@@ -11,7 +13,7 @@ export default function AboutHero() {
                 <div className="row align-items-end g-4">
                     <div className="col-xxl-6 col-lg-7">
                         <h1 className="section-title fw-600 fz-ds-1 lh-1 reveal-text">
-                            <RevealText>About Me</RevealText>
+                            <RevealText>{ABOUT.hero.title}</RevealText>
                         </h1>
                         <p className="mb-0 fz-font-lg fw-600 neutral-900">{PROFILE.aboutLead}</p>
                     </div>
@@ -22,7 +24,7 @@ export default function AboutHero() {
                                     {ARROW_CIRCLE_SVG}
                                 </Link>
                                 <Link className="at-btn z-index-1" to="/portfolio">
-                                    View case studies
+                                    {CTA.viewCaseStudies}
                                 </Link>
                                 <Link className="at-btn-circle" to="/portfolio" aria-hidden tabIndex={-1}>
                                     {ARROW_CIRCLE_SVG}

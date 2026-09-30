@@ -1,3 +1,4 @@
+import { ABOUT } from "@/data/pages/about";
 import { CERTIFICATIONS, EDUCATION, LANGUAGES } from "@/data/profile";
 
 /**
@@ -13,11 +14,8 @@ export default function AboutCredentials() {
             <div className="container">
                 <div className="row g-5">
                     <div className="col-lg-4">
-                        <h2 className="h3 mb-20">Education &amp; credentials</h2>
-                        <p className="section-lead neutral-500 mb-0">
-                            Computer science degree, plus the security certifications that matter when you
-                            work on payment systems.
-                        </p>
+                        <h2 className="h3 mb-20">{ABOUT.credentials.title}</h2>
+                        <p className="section-lead neutral-500 mb-0">{ABOUT.credentials.lead}</p>
                     </div>
 
                     <div className="col-lg-7 ms-lg-auto">
@@ -27,13 +25,13 @@ export default function AboutCredentials() {
                                 <h3 className="h4 credential__title">{EDUCATION.degree}</h3>
                                 <p className="credential__where">{EDUCATION.school}</p>
                                 <p className="credential__detail mb-0">
-                                    <span className="credential__label">Coursework</span>
+                                    <span className="credential__label">{ABOUT.credentials.courseworkLabel}</span>
                                     {EDUCATION.coursework.join(", ")}
                                 </p>
                             </article>
 
                             <article className="credential" data-reveal>
-                                <h3 className="h4 credential__title">Certifications</h3>
+                                <h3 className="h4 credential__title">{ABOUT.credentials.certificationsTitle}</h3>
                                 <ul className="credential__list">
                                     {CERTIFICATIONS.map((c) => (
                                         <li key={c}>{c}</li>
@@ -42,7 +40,7 @@ export default function AboutCredentials() {
                             </article>
 
                             <article className="credential" data-reveal>
-                                <h3 className="h4 credential__title">Languages</h3>
+                                <h3 className="h4 credential__title">{ABOUT.credentials.languagesTitle}</h3>
                                 <ul className="credential__list credential__list--inline">
                                     {LANGUAGES.map((l) => (
                                         <li key={l.name}>

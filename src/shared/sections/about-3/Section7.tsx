@@ -1,6 +1,9 @@
+import { ABOUT, FAQ } from "@/data/pages/about";
 import RevealText from "@/shared/effects/RevealText";
+import { withBreaks } from "@/shared/utils/lines";
 
-// About 3 Section 7 - FAQ
+// About page FAQ. The questions are FAQ in src/data/pages/about.ts, which also
+// feeds the page's FAQPage structured data. The first one starts open.
 
 const ARROW_SVG = (
     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,51 +14,6 @@ const ARROW_SVG = (
     </svg>
 );
 
-const FAQ_ITEMS = [
-    {
-        id: "collapseOne",
-        num: "1",
-        question: "What technologies do you specialize in?",
-        answer: ".NET 9 and ABP.io on the backend, Angular and React on the frontend, and Docker, Kubernetes, and AWS for infrastructure, with most of my work in fintech and telecom payment systems.",
-        open: true,
-    },
-    {
-        id: "collapseTwo",
-        num: "2",
-        question: "What kind of projects have you worked on?",
-        answer: "Telco agent apps serving 60,000+ agents across Tanzania, Request to Pay adopted by 4,000+ merchants, EMV QR payments, an enterprise certificate workflow, and earlier client products like an AI assistant and a Dubai property platform.",
-        open: false,
-    },
-    {
-        id: "collapseThree",
-        num: "3",
-        question: "Do you work with AI tools?",
-        answer: "Yes. AI-assisted development with tools like Cursor and Claude is part of my daily workflow, and it helps me move faster on day-to-day development.",
-        open: false,
-    },
-    {
-        id: "collapseFour",
-        num: "4",
-        question: "Are you available for new opportunities?",
-        answer: "Yes. I'm open to full stack and backend roles, either on-site after relocation or fully remote. Relocation would need visa sponsorship.",
-        open: false,
-    },
-    {
-        id: "collapseFive",
-        num: "5",
-        question: "Can you handle both frontend and backend?",
-        answer: "Yes. I build Angular micro-frontends and React apps on the frontend and .NET microservices on the backend, and I've shipped features end to end across both.",
-        open: false,
-    },
-    {
-        id: "collapseSix",
-        num: "6",
-        question: "Do you take freelance or contract work?",
-        answer: "Yes, for well-scoped backend or full stack work. You can hire me through Upwork or contract directly, and we agree on the scope before any code is written.",
-        open: false,
-    },
-];
-
 export default function Section7({ classList = "" }: { classList?: string }) {
     return (
         <section className={`sec-7-about py-5 overflow-hidden ${classList ?? ""}`.trim()}>
@@ -64,8 +22,8 @@ export default function Section7({ classList = "" }: { classList?: string }) {
                     <div className="col-lg-4">
                         <span className="at-btn common-black text-uppercase bg-transparent mb-10 rounded-0 p-0">
                             <span className="text-uppercase">
-                                <span className="text-1">FAQ</span>
-                                <span className="text-2">FAQ</span>
+                                <span className="text-1">{ABOUT.faq.eyebrow}</span>
+                                <span className="text-2">{ABOUT.faq.eyebrow}</span>
                             </span>
                             <i>
                                 {ARROW_SVG}
@@ -73,40 +31,39 @@ export default function Section7({ classList = "" }: { classList?: string }) {
                             </i>
                         </span>
                         <h2 className="h3 section-title lh-1 reveal-text">
-                            <RevealText>
-                                Frequently <br />Asked Questions
-                            </RevealText>
+                            <RevealText>{withBreaks(ABOUT.faq.title)}</RevealText>
                         </h2>
-                        <p className="fz-font-lg fw-500 neutral-900">
-                            Your questions about my experience, skills, <br className="d-none d-xxl-block" />and availability, answered.
-                        </p>
+                        <p className="fz-font-lg fw-500 neutral-900">{withBreaks(ABOUT.faq.lead, "d-none d-xxl-block")}</p>
                     </div>
                     <div className="col-lg-7 ms-lg-auto">
                         <div className="accordion pt-80" id="accordionExample" data-reveal-group>
-                            {FAQ_ITEMS.map((item) => (
+                            {FAQ.map((item, i) => {
+                                const id = `faq-${i + 1}`;
+                                const open = i === 0;
+                                return (
                                 <div
-                                    key={item.id}
+                                    key={id}
                                     className="at-faq-item bg-neutral-0 border-100 rounded-4"
                                     data-reveal
                                 >
                                     <div className="at-faq-header d-flex gap-2">
                                         <div className="box-number">
-                                            <span className="at-faq-number">{item.num}</span>
+                                            <span className="at-faq-number">{i + 1}</span>
                                         </div>
                                         <button
-                                            className={`at-faq-button${item.open ? "" : " collapsed"}`}
+                                            className={`at-faq-button${open ? "" : " collapsed"}`}
                                             type="button"
                                             data-bs-toggle="collapse"
-                                            data-bs-target={`#${item.id}`}
-                                            aria-expanded={item.open}
-                                            aria-controls={item.id}
+                                            data-bs-target={`#${id}`}
+                                            aria-expanded={open}
+                                            aria-controls={id}
                                         >
                                             {item.question}
                                         </button>
                                     </div>
                                     <div
-                                        id={item.id}
-                                        className={`at-faq-collapse collapse${item.open ? " show" : ""}`}
+                                        id={id}
+                                        className={`at-faq-collapse collapse${open ? " show" : ""}`}
                                         data-bs-parent="#accordionExample"
                                     >
                                         <div className="at-faq-body">
@@ -114,7 +71,8 @@ export default function Section7({ classList = "" }: { classList?: string }) {
                                         </div>
                                     </div>
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,8 @@ const dist = path.join(root, "dist");
 const mod = await import(
   pathToFileURL(path.join(root, "dist-ssr", "entry-prerender.js")).href
 );
-const { ROUTES, SITE_URL, INDEXNOW_KEY, PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE, POSTS, CASE_STUDIES } = mod;
+const { ROUTES, SITE_URL, INDEXNOW_KEY, PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE, POSTS, CASE_STUDIES, METRICS, AVAILABILITY } =
+  mod;
 
 const abs = (p) => `${SITE_URL}${p}`;
 const current = EXPERIENCE.find((e) => e.current) ?? EXPERIENCE[0];
@@ -71,20 +72,31 @@ function gitDate(files) {
   }
 }
 
-/** The data each static route is rendered from. */
+/** The data each static route is rendered from. Every page also carries the
+ *  layout (layout.ts, navigation.ts) and the facts in profile.ts, metrics.ts,
+ *  and availability.ts. */
+const SHARED_SOURCES = [
+  "src/data/profile.ts",
+  "src/data/metrics.ts",
+  "src/data/availability.ts",
+  "src/data/navigation.ts",
+  "src/data/layout.ts",
+  "src/seo/siteConfig.ts",
+];
 const ROUTE_SOURCES = {
-  "/": ["src/data/profile.ts", "src/data/caseStudies.ts", "src/data/recommendations.ts", "src/seo/siteConfig.ts"],
-  "/about": ["src/data/profile.ts", "src/data/recommendations.ts"],
-  "/portfolio": ["src/data/caseStudies.ts", "src/data/projects.ts"],
-  "/contact": ["src/data/profile.ts"],
+  "/": [...SHARED_SOURCES, "src/data/pages/home.ts", "src/data/caseStudies.ts", "src/data/recommendations.ts"],
+  "/about": [...SHARED_SOURCES, "src/data/pages/about.ts", "src/data/caseStudies.ts"],
+  "/portfolio": [...SHARED_SOURCES, "src/data/pages/portfolio.ts", "src/data/pages/home.ts", "src/data/caseStudies.ts", "src/data/projects.ts"],
+  "/contact": [...SHARED_SOURCES, "src/data/pages/contact.ts"],
 };
+const CASE_STUDY_SOURCES = [...SHARED_SOURCES, "src/data/pages/portfolio.ts", "src/data/caseStudies.ts", "src/data/diagrams.ts"];
 
 const newestPost = POSTS.map((p) => p.updated ?? p.date).sort().at(-1);
 
 function lastmodFor({ path: p, lastmod }) {
   if (lastmod) return lastmod;
   if (p === "/blog") return newestPost;
-  if (p.startsWith("/portfolio/")) return gitDate(["src/data/caseStudies.ts", "src/data/diagrams.ts"]);
+  if (p.startsWith("/portfolio/")) return gitDate(CASE_STUDY_SOURCES);
   return ROUTE_SOURCES[p] ? gitDate(ROUTE_SOURCES[p]) : undefined;
 }
 
@@ -187,7 +199,7 @@ function htmlToMarkdown(html) {
 const faq = [
   [
     `Who is ${PROFILE.name}?`,
-    `${PROFILE.name} is a ${current.role.toLowerCase()} at ${current.company} in ${PROFILE.location}, with 3+ years building fintech, telecom, and enterprise platforms. ${PROFILE.summary}`,
+    `${PROFILE.name} is a ${current.role.toLowerCase()} at ${current.company} in ${PROFILE.location}, with ${METRICS.years} years building fintech, telecom, and enterprise platforms. ${PROFILE.summary}`,
   ],
   [
     `What technologies does ${PROFILE.shortName} work with?`,
@@ -199,7 +211,7 @@ const faq = [
   ],
   [
     `Is ${PROFILE.shortName} available for hire?`,
-    `Yes: open to full-time full stack or backend roles, fully remote or with relocation (visa sponsorship needed), and to freelance or contract work through Upwork or directly. Contact: ${PROFILE.email}, ${abs("/contact")}.`,
+    `${AVAILABILITY.assistantAnswer} Contact: ${PROFILE.email}, ${abs("/contact")}.`,
   ],
   [`Where is ${PROFILE.shortName} based?`, `${PROFILE.location}, ${PROFILE.timezone}.`],
 ];
@@ -210,6 +222,7 @@ const header = `# ${PROFILE.name}
 
 Site: ${SITE_URL}
 Contact: ${PROFILE.email}
+Phone: ${PROFILE.phone} (WhatsApp: ${PROFILE.whatsapp})
 LinkedIn: ${PROFILE.linkedin}
 GitHub: ${PROFILE.github}
 Upwork: ${PROFILE.upwork}

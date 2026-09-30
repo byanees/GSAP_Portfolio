@@ -1,5 +1,8 @@
 // Case studies from Anees' CV and his own write-ups of how each system works.
-// Only facts he has stated; no invented metrics.
+// Only facts he has stated; no invented metrics. Headline figures come from
+// ./metrics so they stay in step with the rest of the site.
+
+import { METRICS } from "./metrics";
 
 export type Result = { value: string; label: string };
 
@@ -42,7 +45,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Closed the USSD loop with a callback that updates the request record in the database once the USSD payment completes",
     ],
     results: [
-      { value: "4,000+", label: "merchants adopted Request to Pay" },
+      { value: METRICS.merchants, label: "merchants adopted Request to Pay" },
       { value: "Paid once", label: "whichever channel the customer uses" },
     ],
     stack: [".NET", "Microservices", "USSD", "Push notifications", "Idempotency"],
@@ -56,9 +59,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     period: "2024 - 2026",
     featured: true,
     summary:
-      "Built the scheduler behind bulk push campaigns: 700-800k notifications per run in 6-8 minutes, read in chunks and sent with controlled parallelism to Android (FCM) and Huawei devices.",
+      `Built the scheduler behind bulk push campaigns: ${METRICS.notificationsPerRun} notifications per run in ${METRICS.runMinutes} minutes, read in chunks and sent with controlled parallelism to Android (FCM) and Huawei devices.`,
     metaDescription:
-      "A .NET scheduler that sends 700-800k push notifications per run in 6-8 minutes: chunked reads, controlled parallelism, FCM and Huawei delivery.",
+      `A .NET scheduler that sends ${METRICS.notificationsPerRun} push notifications per run in ${METRICS.runMinutes} minutes: chunked reads, controlled parallelism, FCM and Huawei delivery.`,
     problem:
       "A campaign can target 800k or more MSISDNs. Loading that many recipients into memory at once would take the system down, and anything that fails to send still has to go out.",
     built: [
@@ -70,8 +73,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Sent records are marked processed, and anything that failed is retried once every chunk has been delivered",
     ],
     results: [
-      { value: "700-800k", label: "notifications per run" },
-      { value: "6-8 min", label: "to dispatch a full run" },
+      { value: METRICS.notificationsPerRun, label: "notifications per run" },
+      { value: `${METRICS.runMinutes} min`, label: "to dispatch a full run" },
     ],
     stack: [".NET", "Schedulers", "Semaphore", "FCM", "HMS Push"],
   },
@@ -97,7 +100,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Eliminated the timeout errors during peak traffic and made the platform noticeably more stable",
     ],
     results: [
-      { value: "600k+", label: "concurrent sessions without running out of connections" },
+      { value: METRICS.concurrentSessions, label: "concurrent sessions without running out of connections" },
       { value: "Zero", label: "Redis timeout errors at peak after the change" },
     ],
     stack: [".NET", "Redis", "Connection multiplexing"],

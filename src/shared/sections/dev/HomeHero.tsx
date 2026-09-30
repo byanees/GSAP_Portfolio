@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CTA } from "@/data/navigation";
+import { HOME } from "@/data/pages/home";
 import { PROFILE } from "@/data/profile";
 import ReelReplayButton from "@/shared/motion/reel/ReelReplayButton";
 import HeroProof from "./HeroProof";
@@ -23,22 +25,20 @@ export default function HomeHero() {
                             <div className="col-xl-10 col-lg-11">
                                 <p className="dev-hero__tagline d-inline-flex align-items-center gap-2 mb-30">
                                     <span className="contact-status__dot" aria-hidden />
-                                    {PROFILE.role}, based in Islamabad
+                                    {HOME.hero.tagline}
                                 </p>
-                                <h1 className="dev-hero__headline fw-600 text-white mb-30">
-                                    I build payment platforms and backend systems that hold up under real traffic.
-                                </h1>
+                                <h1 className="dev-hero__headline fw-600 text-white mb-30">{HOME.hero.headline}</h1>
                                 <p className="dev-hero__lead mb-40">{PROFILE.heroLead}</p>
                                 <div className="d-flex flex-wrap align-items-center gap-4">
                                     <Link to="/portfolio" className="at-btn text-white rounded-0">
-                                        <SwapLabel label="View case studies" />
+                                        <SwapLabel label={CTA.viewCaseStudies} />
                                         <i>
                                             {ARROW_SVG}
                                             {ARROW_SVG}
                                         </i>
                                     </Link>
                                     <a href={PROFILE.cvUrl} download className="at-btn text-white border-bottom-opacity bg-transparent rounded-0 p-0 pb-2">
-                                        <SwapLabel label="Download CV" />
+                                        <SwapLabel label={CTA.downloadCv} />
                                         <i>
                                             {ARROW_SVG}
                                             {ARROW_SVG}

@@ -1,14 +1,15 @@
 import { useState, type ChangeEvent, type FormEvent, type InputHTMLAttributes } from "react";
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
+import { AVAILABILITY } from "@/data/availability";
+import { CTA } from "@/data/navigation";
+import { CONTACT } from "@/data/pages/contact";
 import { PROFILE } from "@/data/profile";
+import { withBreaks } from "@/shared/utils/lines";
 
-// Contact page - editorial hero + "letter" style enquiry form
-
-/** Read from the profile so these live in exactly one place. */
-const EMAIL = PROFILE.email;
-/** "in/handle", derived rather than typed, so it cannot disagree with the link. */
-const LINKEDIN_HANDLE = `in/${PROFILE.linkedin.replace(/\/+$/, "").split("/").pop()}`;
+// Contact page - editorial hero + "letter" style enquiry form. The copy is
+// CONTACT in src/data/pages/contact.ts; the form's checks stay here, beside
+// the logic they mirror in api/contact.ts.
 
 const ARROW_SVG = (
     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -28,23 +29,7 @@ const ARROW_CIRCLE_SVG = (
     </svg>
 );
 
-const TOPICS = [
-    "Backend & APIs",
-    "Fintech & Payments",
-    "Full Stack Product",
-    "Angular / React",
-    "Cloud & DevOps",
-    "A full-time role",
-];
-
-const DETAILS = [
-    { label: "Email", value: EMAIL, href: `mailto:${EMAIL}` },
-    { label: "Phone", value: "+92 339 000 4208", href: "tel:+923390004208" },
-    { label: "LinkedIn", value: LINKEDIN_HANDLE, href: PROFILE.linkedin },
-    { label: "Upwork", value: "Hire on Upwork", href: PROFILE.upwork },
-    { label: "Based in", value: "Islamabad, Pakistan (PKT, UTC+5)" },
-    { label: "Open to", value: "Full-time roles & freelance projects" },
-];
+const EMAIL = PROFILE.email;
 
 /** Inline "fill in the blank" input that grows with its content. */
 function Blank({
@@ -87,18 +72,15 @@ export function ContactHero() {
                 <div className="row align-items-end g-4">
                     <div className="col-xxl-6 col-lg-7">
                         <h1 className="section-title fw-600 fz-ds-1 lh-1 reveal-text">
-                            <RevealText>Contact</RevealText>
+                            <RevealText>{CONTACT.title}</RevealText>
                         </h1>
-                        <p className="mb-0 fz-font-lg fw-600 neutral-900">
-                            Payment platform, enterprise system, or a backend that needs untangling. <br />
-                            Tell me what you&apos;re building and I&apos;ll tell you how I can help.
-                        </p>
+                        <p className="mb-0 fz-font-lg fw-600 neutral-900">{withBreaks(CONTACT.lead)}</p>
                     </div>
                     <div className="col-lg-5 ms-auto">
                         <div className="d-flex flex-column align-items-start align-items-lg-end gap-3">
                             <span className="contact-status neutral-500">
                                 <span className="contact-status__dot" aria-hidden />
-                                Open to full stack &amp; backend roles
+                                {AVAILABILITY.status}
                             </span>
                             <a
                                 href={`mailto:${EMAIL}`}
@@ -222,9 +204,9 @@ export function ContactForm() {
             <div className="container">
                 <div className="row g-5">
                     <div className="col-xl-4 col-lg-5">
-                        <h2 className="h3 mb-40">Direct lines</h2>
+                        <h2 className="h3 mb-40">{CONTACT.detailsTitle}</h2>
                         <ul className="contact-info" role="list" data-reveal-group>
-                            {DETAILS.map((d, i) => (
+                            {CONTACT.details.map((d, i) => (
                                 <li key={d.label} className="contact-info__item border-bottom-100" data-reveal>
                                     <span className="contact-info__index neutral-500">{String(i + 1).padStart(2, "0")}</span>
                                     <div>
@@ -248,7 +230,7 @@ export function ContactForm() {
                     </div>
 
                     <div className="col-xl-7 col-lg-7 ms-lg-auto">
-                        <h2 className="h3 mb-40">Write me a note</h2>
+                        <h2 className="h3 mb-40">{CONTACT.formTitle}</h2>
 
                         {send.status === "sent" ? (
                             /* The form is replaced rather than merely annotated. A cleared
@@ -260,11 +242,11 @@ export function ContactForm() {
                                         <path d="M4.5 11.5L9 16L17.5 6.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </span>
-                                <h3 className="contact-sent__title">Message sent.</h3>
+                                <h3 className="contact-sent__title">{CONTACT.sent.title}</h3>
                                 <p className="contact-sent__text">
-                                    It&apos;s in my inbox and I reply within 24 hours, usually sooner. If it&apos;s urgent,{" "}
+                                    {CONTACT.sent.text}{" "}
                                     <a href={`mailto:${EMAIL}`} className="neutral-900 text-decoration-underline">
-                                        email me directly
+                                        {CONTACT.sent.link}
                                     </a>
                                     .
                                 </p>
@@ -273,24 +255,24 @@ export function ContactForm() {
                                     className="contact-sent__again"
                                     onClick={() => setSend({ status: "idle" })}
                                 >
-                                    Send another message
+                                    {CONTACT.sent.again}
                                 </button>
                             </div>
                         ) : (
                         <form className="contact-letter" onSubmit={handleSubmit} noValidate>
                             <p className="contact-letter__text">
-                                Hi Anees, my name is{" "}
-                                <Blank label="Your name" name="name" placeholder="your name" value={form.name} onChange={update("name")} error={errors.name} autoComplete="name" />
-                                {" "}and I work at{" "}
+                                {CONTACT.letter.greeting}{" "}
+                                <Blank label="Your name" name="name" placeholder={CONTACT.letter.placeholders.name} value={form.name} onChange={update("name")} error={errors.name} autoComplete="name" />
+                                {" "}{CONTACT.letter.company}{" "}
                                 <span className="text-nowrap">
-                                    <Blank label="Company (optional)" name="company" placeholder="company, optional" value={form.company} onChange={update("company")} autoComplete="organization" />.
+                                    <Blank label="Company (optional)" name="company" placeholder={CONTACT.letter.placeholders.company} value={form.company} onChange={update("company")} autoComplete="organization" />.
                                 </span>{" "}
-                                I&apos;m reaching out about
+                                {CONTACT.letter.topic}
                             </p>
                             <FieldError id="name-error">{errors.name}</FieldError>
 
                             <div className="contact-letter__topics" role="group" aria-label="What is this about">
-                                {TOPICS.map((topic) => {
+                                {CONTACT.topics.map((topic) => {
                                     const active = topics.includes(topic);
                                     return (
                                         <button
@@ -307,11 +289,11 @@ export function ContactForm() {
                             </div>
 
                             <p className="contact-letter__text">
-                                You can reply to me at{" "}
+                                {CONTACT.letter.email}{" "}
                                 <span className="text-nowrap">
-                                    <Blank label="Your email" name="email" type="email" inputMode="email" spellCheck={false} placeholder="you@company.com" value={form.email} onChange={update("email")} error={errors.email} autoComplete="email" />.
+                                    <Blank label="Your email" name="email" type="email" inputMode="email" spellCheck={false} placeholder={CONTACT.letter.placeholders.email} value={form.email} onChange={update("email")} error={errors.email} autoComplete="email" />.
                                 </span>{" "}
-                                Here&apos;s what I have in mind:
+                                {CONTACT.letter.message}
                             </p>
                             <FieldError id="email-error">{errors.email}</FieldError>
 
@@ -321,7 +303,7 @@ export function ContactForm() {
                                 aria-label="Project details"
                                 aria-invalid={errors.message ? true : undefined}
                                 aria-describedby={errors.message ? "message-error" : undefined}
-                                placeholder="What you’re building, where it’s stuck, and the timeline you’re working with…"
+                                placeholder={CONTACT.letter.placeholders.message}
                                 rows={3}
                                 value={form.message}
                                 onChange={update("message")}
@@ -351,7 +333,7 @@ export function ContactForm() {
                                         {ARROW_CIRCLE_SVG}
                                     </button>
                                     <button type="submit" className="at-btn z-index-1" disabled={sending}>
-                                        {sending ? "Sending…" : "Send message"}
+                                        {sending ? CONTACT.sending : CONTACT.submit}
                                     </button>
                                     <button type="submit" className="at-btn-circle" aria-hidden tabIndex={-1} disabled={sending}>
                                         {ARROW_CIRCLE_SVG}
@@ -362,18 +344,22 @@ export function ContactForm() {
                                     aria-live="polite"
                                 >
                                     {sending
-                                        ? "[ Sending… ]"
+                                        ? `[ ${CONTACT.status.sending} ]`
                                         : send.status === "error"
                                           ? `[ ${send.message} ]`
                                           : hasErrors
-                                            ? "[ Check the highlighted fields above ]"
-                                            : "[ Goes straight to my inbox. I reply within 24 hours ]"}
+                                            ? `[ ${CONTACT.status.invalid} ]`
+                                            : `[ ${CONTACT.status.idle} ]`}
                                 </span>
                             </div>
                         </form>
                         )}
                         <p className="neutral-500 fz-font-md mt-30 mb-0">
-                            Prefer to skip the form? <Link to="/portfolio" className="neutral-900 text-decoration-underline">View case studies</Link> first.
+                            {CONTACT.skipForm.before}{" "}
+                            <Link to="/portfolio" className="neutral-900 text-decoration-underline">
+                                {CTA.viewCaseStudies}
+                            </Link>{" "}
+                            {CONTACT.skipForm.after}
                         </p>
                     </div>
                 </div>

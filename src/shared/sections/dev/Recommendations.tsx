@@ -1,4 +1,5 @@
 import RevealText from "@/shared/effects/RevealText";
+import { HOME } from "@/data/pages/home";
 import { PROFILE } from "@/data/profile";
 import { RECOMMENDATIONS } from "@/data/recommendations";
 import { ARROW_SVG } from "./icons";
@@ -16,7 +17,7 @@ export default function Recommendations({ muted = false }: { muted?: boolean }) 
                 <div className="row align-items-end g-4 pb-50">
                     <div className="col-lg-7">
                         <h2 className="h3 reveal-text mb-0">
-                            <RevealText>What colleagues say</RevealText>
+                            <RevealText>{HOME.recommendations.title}</RevealText>
                         </h2>
                     </div>
                     <div className="col-lg-4 ms-auto text-lg-end">
@@ -27,8 +28,8 @@ export default function Recommendations({ muted = false }: { muted?: boolean }) 
                             className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2"
                         >
                             <span>
-                                <span className="text-1">Read them on LinkedIn</span>
-                                <span className="text-2">Read them on LinkedIn</span>
+                                <span className="text-1">{HOME.recommendations.cta}</span>
+                                <span className="text-2">{HOME.recommendations.cta}</span>
                             </span>
                             <i>
                                 {ARROW_SVG}

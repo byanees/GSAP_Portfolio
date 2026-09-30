@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { POST_PAGE } from "@/data/pages/blog";
 import { formatPostDate, postFigure, type Post } from "@/data/posts";
 import PostFigure from "./PostFigure";
 import { ARROW_SVG } from "./icons";
@@ -37,7 +38,7 @@ export default function NoteCard({ post, wide = false, latest = false, level = 2
                     </Link>
                 )}
                 <div className="code-card__body">
-                    {latest && <span className="code-card__meta">Latest note</span>}
+                    {latest && <span className="code-card__meta">{POST_PAGE.latestBadge}</span>}
                     <Title className="code-card__title note-card__title">
                         <Link to={href}>{post.title}</Link>
                     </Title>

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
 import Logo from "@/shared/Logo";
-import { ELSEWHERE, PROFILE } from "@/data/profile";
+import { FOOTER } from "@/data/layout";
+import { ELSEWHERE, PAGES } from "@/data/navigation";
+import { PROFILE } from "@/data/profile";
+import { withBreaks } from "@/shared/utils/lines";
 
 const SOCIAL_ARROW = (
   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none" aria-hidden="true">
@@ -14,16 +17,6 @@ const SOCIAL_ARROW = (
 
 const SOCIAL_LINKS = [
   { label: "LinkedIn", href: PROFILE.linkedin },
-] as const;
-
-
-
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
 ] as const;
 
 
@@ -40,22 +33,20 @@ export default function Footer1() {
                 </Link>
                 <div>
                   <h3 className="h4 text-white reveal-text">
-                    <RevealText>
-                      Let&apos;s Build <br />
-                      What Scales
-                    </RevealText>
+                    <RevealText>{withBreaks(FOOTER.headline)}</RevealText>
                   </h3>
-                  <p className="footer-tagline mb-0">
-                    Full stack engineering, fintech solutions, <br />
-                    and scalable systems built with modern tools.
-                  </p>
+                  <p className="footer-tagline mb-0">{withBreaks(FOOTER.tagline)}</p>
                 </div>
               </div>
             </div>
             <div className="col-xxl-3 col-lg-5 col-md-8 ms-lg-auto text-lg-end">
               <div className="at-footer-title-wrap">
                 <p className="h6 text-white mb-0">
-                  <a href="tel:+923390004208" className="text-white">+92 339 000 4208</a>
+                  <a href={PROFILE.phoneHref} className="text-white">{PROFILE.phone}</a>
+                  {" · "}
+                  <a href={PROFILE.whatsapp} target="_blank" rel="noopener noreferrer" className="text-white">
+                    {FOOTER.whatsapp}
+                  </a>
                 </p>
                 <p className="h4 text-white text-decoration-underline footer-email mb-0">
                   <a href={`mailto:${PROFILE.email}`} className="text-white text-decoration-underline">
@@ -85,12 +76,12 @@ export default function Footer1() {
             <div className="row align-items-end g-5">
               <div className="col-xxl-3 col-lg-4 col-md-6">
                 <div className="at-footer-widget alt-footer-link-item-wrap row">
-                  <span className="d-block fz-font-label neutral-0 opacity-50 text-uppercase mb-3">Navigation</span>
+                  <span className="d-block fz-font-label neutral-0 opacity-50 text-uppercase mb-3">{FOOTER.navTitle}</span>
                   <div className="alt-footer-link-item col-6">
                     <ul>
-                      {NAV_LINKS.map(({ label, href }) => (
+                      {PAGES.map(({ label, to }) => (
                         <li key={label} className="mb-15">
-                          <Link to={href}>{label}</Link>
+                          <Link to={to}>{label}</Link>
                         </li>
                       ))}
                     </ul>
@@ -110,7 +101,7 @@ export default function Footer1() {
               </div>
               <div className="col-xxl-9 col-lg-8 col-12 text-lg-end">
                 <p className="fz-160 common-white mb-0 text-scale-anim" aria-hidden="true">
-                  Muhammad Anees
+                  {PROFILE.name}
                 </p>
               </div>
             </div>
@@ -120,12 +111,12 @@ export default function Footer1() {
             <div className="row align-items-center g-3">
               <div className="col-lg-6">
                 <div className="at-footer-copyright-wrap text">
-                  <span className="at-footer-copyright">Muhammad Anees © 2026</span>
+                  <span className="at-footer-copyright">{`${PROFILE.name} © ${__BUILD_YEAR__}`}</span>
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="at-footer-copyright-wrap text-lg-end">
-                  <span className="at-footer-copyright">Building since 2023</span>
+                  <span className="at-footer-copyright">{`${FOOTER.buildingSince} ${PROFILE.since}`}</span>
                 </div>
               </div>
             </div>

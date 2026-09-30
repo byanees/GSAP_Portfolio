@@ -18,7 +18,16 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const SITE = process.env.SITE_URL ?? "https://byanees.com";
+/** The workflow runs this without a build, so the origin is read straight
+ *  from siteConfig.ts rather than kept in a second copy here. */
+async function siteUrl() {
+  const config = await readFile(path.resolve("src", "seo", "siteConfig.ts"), "utf8");
+  const match = config.match(/export const SITE_URL = "([^"]+)"/);
+  if (!match) throw new Error("SITE_URL not found in src/seo/siteConfig.ts");
+  return match[1];
+}
+
+const SITE = process.env.SITE_URL ?? (await siteUrl());
 const EXPECTED_SHA = process.env.EXPECTED_SHA;
 const STATE = path.resolve(".indexnow", "manifest.json");
 const SUBMIT_ALL = process.argv.includes("--all");

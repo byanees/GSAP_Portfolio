@@ -1,14 +1,46 @@
 // Personal details, experience, and skills. Sourced from Anees' CV.
+//
+// Identity and contact details live here and nowhere else: the header, footers,
+// sidebar, contact page, structured data, index.html, the web manifest, and
+// llms.txt all read them from PROFILE.
+//
+// Import other data files with a relative path ("./metrics"), never "@/data/…":
+// vite.config.ts loads this file without the "@" alias.
+
+import { METRICS } from "./metrics";
+
+const CITY = "Islamabad";
+const COUNTRY = "Pakistan";
+const TIMEZONE_ABBR = "PKT";
+const UTC_OFFSET = "UTC+5";
+/** Written once, for people. The tel: and WhatsApp links are derived from it. */
+const PHONE = "+92 339 000 4208";
+const PHONE_DIGITS = PHONE.replace(/\D/g, "");
 
 export const PROFILE = {
   name: "Muhammad Anees",
   shortName: "Anees",
+  /** The mark in the logo, the loader, the reel, and the post byline. */
+  initials: "MA",
   role: "Full Stack Engineer",
-  location: "Islamabad, Pakistan",
-  timezone: "PKT (UTC+5)",
+  city: CITY,
+  country: COUNTRY,
+  /** ISO 3166 code, for the Person schema's address. */
+  countryCode: "PK",
+  location: `${CITY}, ${COUNTRY}`,
+  timezoneAbbr: TIMEZONE_ABBR,
+  utcOffset: UTC_OFFSET,
+  /** "PKT (UTC+5)". */
+  timezone: `${TIMEZONE_ABBR} (${UTC_OFFSET})`,
+  /** The IANA zone behind `timezone`, for the About page's live clock. */
+  timezoneId: "Asia/Karachi",
+  /** The year the career started. Footers and the About page count from it. */
+  since: 2023,
   email: "hello@byanees.com",
-  phone: "+92 339 000 4208",
-  phoneHref: "tel:+923390004208",
+  phone: PHONE,
+  phoneHref: `tel:+${PHONE_DIGITS}`,
+  /** Opens a WhatsApp chat with the same number. */
+  whatsapp: `https://wa.me/${PHONE_DIGITS}`,
   linkedin: "https://www.linkedin.com/in/byaneees/",
   github: "https://github.com/byanees",
   upwork: "https://www.upwork.com/freelancers/~018e9a658c85846d75",
@@ -21,22 +53,13 @@ export const PROFILE = {
   /** Square, 800x800. The Person schema's image, which search engines show
    *  as the profile photo. */
   headshot: "/assets/imgs/me/headshot.jpg",
-  heroLead:
-    "3+ years building fintech, telco, and enterprise platforms. Now on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.",
+  heroLead: `${METRICS.years} years building fintech, telco, and enterprise platforms. Now on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.`,
   /** About page opening line. Deliberately different from heroLead, which the
    *  home hero already prints. */
   aboutLead:
     "I work on the parts of a product that have to stay up: payment rails, schedulers, and the services behind them. Three years in, mostly fintech and telecom.",
-  summary:
-    "I've led the backend for telco agent apps serving 60,000+ agents across Tanzania, delivered Request to Pay to 4,000+ merchants, and built a scheduler that pushes 700-800k notifications per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.",
+  summary: `I've led the backend for telco agent apps serving ${METRICS.agents} agents across Tanzania, delivered Request to Pay to ${METRICS.merchants} merchants, and built a scheduler that pushes ${METRICS.notificationsPerRun} notifications per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.`,
 };
-
-export const ELSEWHERE = [
-  { label: "LinkedIn", href: PROFILE.linkedin },
-  { label: "GitHub", href: PROFILE.github },
-  { label: "Upwork", href: PROFILE.upwork },
-  { label: "Download CV", href: PROFILE.cvUrl, download: true },
-];
 
 type Highlight = { value: string; label: string };
 
@@ -74,9 +97,9 @@ export const EXPERIENCE: ExperienceItem[] = [
     summary:
       "Led development of enterprise telecom agent apps for Tanzania and Togo, managing a small engineering team, and built payment and messaging systems at scale.",
     highlights: [
-      { value: "4,000+", label: "merchants on Request to Pay" },
-      { value: "700-800k", label: "notifications per run" },
-      { value: "600k+", label: "concurrent sessions" },
+      { value: METRICS.merchants, label: "merchants on Request to Pay" },
+      { value: METRICS.notificationsPerRun, label: "notifications per run" },
+      { value: METRICS.concurrentSessions, label: "concurrent sessions" },
     ],
     stack: [".NET 8", "Microservices", "Redis", "EMV QR"],
   },

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
+import { ABOUT } from "@/data/pages/about";
 
-// Services 2 Section 2 - Ticker (tech stack labels scroll)
+// About page ticker: the tech stack as scrolling labels. The labels are
+// ABOUT.ticker in src/data/pages/about.ts.
 
 const DOT_SVG = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -11,23 +13,6 @@ const DOT_SVG = (
         />
     </svg>
 );
-
-const TICKER_ITEMS = [
-    ".NET 9",
-    "ABP.io",
-    "Microservices",
-    "Angular",
-    "React",
-    "TypeScript",
-    "PostgreSQL",
-    "Redis",
-    "Docker",
-    "Kubernetes",
-    "AWS",
-    "Clean Architecture",
-    "Domain-Driven Design",
-    "EMV QR",
-];
 
 export default function Section2() {
     // Motion that loops for more than five seconds needs a way to stop it, and
@@ -49,7 +34,7 @@ export default function Section2() {
 
     const items = (
         <ul className="d-flex align-items-center justify-content-center gap-4 carouselTicker__list fix">
-            {TICKER_ITEMS.map((label, i) => (
+            {ABOUT.ticker.items.map((label, i) => (
                 <li key={`${label}-${i}`} className="d-flex align-items-center gap-4 carouselTicker__item mx-0">
                     <span className="ticker-item__label fz-font-md fw-600 text-nowrap">{label}</span>
                     {DOT_SVG}
@@ -59,7 +44,7 @@ export default function Section2() {
     );
 
     return (
-        <section className="sec-2-services pt-30 pb-30" aria-label="Technologies I work with">
+        <section className="sec-2-services pt-30 pb-30" aria-label={ABOUT.ticker.label}>
             {reduced ? (
                 <div className="ticker-static container">{items}</div>
             ) : (

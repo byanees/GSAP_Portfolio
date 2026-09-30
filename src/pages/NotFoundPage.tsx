@@ -3,43 +3,36 @@ import PageMeta from "@/seo/PageMeta";
 import RevealText from "@/shared/effects/RevealText";
 import Eyebrow from "@/shared/sections/dev/Eyebrow";
 import { ARROW_CIRCLE_SVG, ARROW_SVG } from "@/shared/sections/dev/icons";
+import { PAGES } from "@/data/navigation";
+import { NOT_FOUND } from "@/data/pages/notFound";
 import { PROFILE } from "@/data/profile";
+import { TITLE_SUFFIX } from "@/seo/siteConfig";
 
-/** Every route this site actually serves, with a line on what is behind it.
- *  Mirrors MainMenu, plus the reason someone would pick each one. */
-const DESTINATIONS = [
-    { to: "/", label: "Home", desc: "The short version: what I build, and what it runs in production." },
-    { to: "/about", label: "About", desc: "Experience, the stack I work in, and how I approach a system." },
-    { to: "/portfolio", label: "Portfolio", desc: "Case studies: Request to Pay, the bulk notification scheduler, Redis multiplexing, and more." },
-    { to: "/blog", label: "Blog", desc: "Notes on backend work, payments, and .NET, written while building." },
-    { to: "/contact", label: "Contact", desc: "Email, LinkedIn, and what I'm currently open to." },
-];
+/** Every page this site serves, with a line on why someone would pick it. */
+const DESTINATIONS = PAGES.map((p) => ({ to: p.to, label: p.label, desc: NOT_FOUND.destinations[p.to] }));
 
 export default function NotFoundPage() {
     const { pathname } = useLocation();
-    const reportHref = `mailto:${PROFILE.email}?subject=${encodeURIComponent("Broken link on your site")}&body=${encodeURIComponent(
-        `I hit a 404 at: ${pathname}\n\nI got there from: `,
+    const reportHref = `mailto:${PROFILE.email}?subject=${encodeURIComponent(NOT_FOUND.report.subject)}&body=${encodeURIComponent(
+        NOT_FOUND.report.body(pathname),
     )}`;
 
     return (
         <>
             <PageMeta
-                title="Page not found — Muhammad Anees"
-                description="That page doesn't exist. Here's everything that does."
+                title={`${NOT_FOUND.title}${TITLE_SUFFIX}`}
+                description={NOT_FOUND.description}
                 noindex
             />
             <section className="nf sec-1-404 overflow-hidden pt-150 pb-120">
                 <div className="container">
                     <div className="row">
                         <div className="col-xxl-9 col-lg-10">
-                            <Eyebrow>404 error</Eyebrow>
+                            <Eyebrow>{NOT_FOUND.eyebrow}</Eyebrow>
                             <h1 className="section-title reveal-text fw-600 fz-ds-1 lh-1 mb-30">
-                                <RevealText>This page doesn&apos;t exist.</RevealText>
+                                <RevealText>{NOT_FOUND.heading}</RevealText>
                             </h1>
-                            <p className="nf__lead">
-                                Either the link is broken or the page moved when I rebuilt the site. Nothing is lost, and
-                                everything this site holds is one click below.
-                            </p>
+                            <p className="nf__lead">{NOT_FOUND.lead}</p>
                             <p className="nf-request" aria-label={`The address ${pathname} returned a 404 response`}>
                                 <span className="nf-request__method">GET</span>
                                 <span className="nf-request__path">{pathname}</span>
@@ -49,7 +42,7 @@ export default function NotFoundPage() {
                     </div>
 
                     <nav className="nf-links-wrap" aria-label="Pages on this site">
-                        <p className="nf-links__label">Where you probably meant to go</p>
+                        <p className="nf-links__label">{NOT_FOUND.linksLabel}</p>
                         <ul className="nf-links" data-reveal-group>
                             {DESTINATIONS.map((item) => (
                                 <li className="nf-link" data-reveal key={item.to}>
@@ -71,7 +64,7 @@ export default function NotFoundPage() {
                                 {ARROW_CIRCLE_SVG}
                             </Link>
                             <Link className="at-btn z-index-1" to="/">
-                                Back to home
+                                {NOT_FOUND.home}
                             </Link>
                             <Link className="at-btn-circle" to="/" aria-hidden tabIndex={-1}>
                                 {ARROW_CIRCLE_SVG}
@@ -79,8 +72,8 @@ export default function NotFoundPage() {
                         </div>
                         <a href={reportHref} className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
                             <span>
-                                <span className="text-1">Tell me what broke</span>
-                                <span className="text-2">Tell me what broke</span>
+                                <span className="text-1">{NOT_FOUND.report.label}</span>
+                                <span className="text-2">{NOT_FOUND.report.label}</span>
                             </span>
                             <i>
                                 {ARROW_SVG}

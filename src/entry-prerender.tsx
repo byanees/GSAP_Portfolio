@@ -24,5 +24,7 @@ export { ROUTES } from "@/seo/routes";
 // needing its own TypeScript pipeline.
 export { SITE_URL, INDEXNOW_KEY } from "@/seo/siteConfig";
 export { PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE } from "@/data/profile";
+export { METRICS } from "@/data/metrics";
+export { AVAILABILITY } from "@/data/availability";
 export { POSTS } from "@/data/posts";
 export { CASE_STUDIES } from "@/data/caseStudies";

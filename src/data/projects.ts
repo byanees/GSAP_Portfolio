@@ -3,6 +3,7 @@
 // Metrics come from the CV or Anees' own project write-ups.
 
 import type { Result } from "./caseStudies";
+import { METRICS } from "./metrics";
 
 export type Project = {
   slug: string;
@@ -29,9 +30,10 @@ export const PROJECTS: Project[] = [
     role: "Backend lead",
     owner: "Internal telco platform",
     description:
-      "Enterprise agent apps for telco operators, serving 60,000+ agents across Tanzania with nationwide coverage planned for both countries. I led backend development and the technical architecture: SIM registration, SIM swap, SIM stock, agent inventory, and airtime and bundle subscriptions, integrated with existing telco and legacy systems. I also built Tanzania's B2B and B2C onboarding, including Kinara, bulk, and enterprise registrations, and ran the backend team's code reviews and mentoring.",
+      `Enterprise agent apps for telco operators, serving ${METRICS.agents} agents across Tanzania with nationwide coverage planned for both countries. I led backend development and the technical architecture: SIM registration, SIM swap, SIM stock, agent inventory, and airtime and bundle subscriptions, integrated with existing telco and legacy systems. I also built Tanzania's B2B and B2C onboarding, including Kinara, bulk, and enterprise registrations, and ran the backend team's code reviews and mentoring.`,
+
     results: [
-      { value: "60,000+", label: "agents across Tanzania" },
+      { value: METRICS.agents, label: "agents across Tanzania" },
       { value: "2", label: "countries, with nationwide coverage planned" },
     ],
     stack: [".NET Core", "PostgreSQL", "Angular", "Jenkins"],

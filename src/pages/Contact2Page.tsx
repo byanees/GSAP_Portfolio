@@ -1,6 +1,7 @@
 import PageMeta from "@/seo/PageMeta";
 import { ROUTE_META } from "@/seo/siteConfig";
 import { breadcrumbSchema, contactPageSchema, graph } from "@/seo/schema";
+import { crumbFor } from "@/data/navigation";
 import { ContactForm, ContactHero } from "@/shared/sections/contact/ContactSections";
 
 export default function Contact2Page() {
@@ -10,7 +11,7 @@ export default function Contact2Page() {
         title={ROUTE_META["/contact"].title}
         description={ROUTE_META["/contact"].description}
         path="/contact"
-        jsonLd={graph(contactPageSchema(), breadcrumbSchema([{ name: "Contact", path: "/contact" }]))}
+        jsonLd={graph(contactPageSchema(), breadcrumbSchema([{ name: crumbFor("/contact"), path: "/contact" }]))}
       />
       <ContactHero />
       <div className="at-banner-thumb overflow-hidden scale-up-img">

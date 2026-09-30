@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { CONTACT_DOCK } from "@/data/layout";
 
 /**
  * Persistent route to the contact page, so someone who finds something
@@ -80,7 +81,7 @@ export default function ContactDock() {
                     />
                 </svg>
             </span>
-            <span className="contact-dock__label">Let&apos;s talk</span>
+            <span className="contact-dock__label">{CONTACT_DOCK.label}</span>
         </Link>
     );
 }

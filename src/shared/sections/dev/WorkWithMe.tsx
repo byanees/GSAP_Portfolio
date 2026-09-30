@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
+import { AVAILABILITY } from "@/data/availability";
+import { CTA } from "@/data/navigation";
+import { ABOUT } from "@/data/pages/about";
 import { PROFILE } from "@/data/profile";
 import Eyebrow from "./Eyebrow";
 import { ARROW_SVG } from "./icons";
@@ -43,9 +46,9 @@ export default function WorkWithMe() {
             <div className="container">
                 <div className="row pb-60 g-4 align-items-end">
                     <div className="col-lg-7">
-                        <Eyebrow>two ways to work together</Eyebrow>
+                        <Eyebrow>{ABOUT.workWithMe.eyebrow}</Eyebrow>
                         <h2 className="h3 reveal-text mb-0">
-                            <RevealText>Hire me full-time, or bring me in for a project</RevealText>
+                            <RevealText>{ABOUT.workWithMe.title}</RevealText>
                         </h2>
                     </div>
                 </div>
@@ -53,33 +56,30 @@ export default function WorkWithMe() {
                 <div className="row g-4" data-reveal-group>
                     <div className="col-lg-6">
                         <article className="engage-card" data-reveal>
-                            <h3 className="h4 mb-0">Full-time roles</h3>
-                            <p className="neutral-500 mb-0">
-                                Full stack or backend roles where reliability matters: fintech, telecom, and enterprise platforms.
-                            </p>
+                            <h3 className="h4 mb-0">{AVAILABILITY.fullTime.title}</h3>
+                            <p className="neutral-500 mb-0">{AVAILABILITY.fullTime.description}</p>
                             <ul className="engage-card__list">
-                                <li>Based in {PROFILE.location}, {PROFILE.timezone}</li>
-                                <li>Open to relocation or fully remote roles</li>
-                                <li>Visa sponsorship needed for relocation</li>
+                                {AVAILABILITY.fullTime.points.map((point) => (
+                                    <li key={point}>{point}</li>
+                                ))}
                             </ul>
                             <div className="engage-card__actions">
-                                <UnderlineLink href={PROFILE.cvUrl} label="Download CV" download />
-                                <UnderlineLink href="/contact" label="Get in touch" />
+                                <UnderlineLink href={PROFILE.cvUrl} label={CTA.downloadCv} download />
+                                <UnderlineLink href="/contact" label={CTA.getInTouch} />
                             </div>
                         </article>
                     </div>
                     <div className="col-lg-6">
                         <article className="engage-card" data-reveal>
-                            <h3 className="h4 mb-0">Freelance &amp; contract</h3>
-                            <p className="neutral-500 mb-0">
-                                Scoped backend or full stack work: APIs, payment integrations, dashboards, or moving an existing .NET or React codebase forward.
-                            </p>
+                            <h3 className="h4 mb-0">{AVAILABILITY.freelance.title}</h3>
+                            <p className="neutral-500 mb-0">{AVAILABILITY.freelance.description}</p>
                             <ul className="engage-card__list">
-                                <li>Hire through Upwork, or contract directly</li>
-                                <li>Scope agreed up front, before any code</li>
+                                {AVAILABILITY.freelance.points.map((point) => (
+                                    <li key={point}>{point}</li>
+                                ))}
                             </ul>
                             <div className="engage-card__actions">
-                                <UnderlineLink href={PROFILE.upwork} label="Hire on Upwork" external />
+                                <UnderlineLink href={PROFILE.upwork} label={CTA.hireOnUpwork} external />
                             </div>
                         </article>
                     </div>

@@ -2,7 +2,10 @@
 // data and the visible page always describe the same facts.
 
 import { SITE_NAME, SITE_URL, absoluteUrl, OG_IMAGE } from "./siteConfig";
-import { PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE, STACK_LAYERS } from "@/data/profile";
+import { PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE, LANGUAGES, STACK_LAYERS } from "@/data/profile";
+import { crumbFor } from "@/data/navigation";
+import { BLOG } from "@/data/pages/blog";
+import type { FaqItem } from "@/data/pages/about";
 import { POSTS, type Post } from "@/data/posts";
 import { CASE_STUDIES, type CaseStudy } from "@/data/caseStudies";
 
@@ -42,8 +45,8 @@ export function personSchema() {
     telephone: PROFILE.phone,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Islamabad",
-      addressCountry: "PK",
+      addressLocality: PROFILE.city,
+      addressCountry: PROFILE.countryCode,
     },
     worksFor: {
       "@type": "Organization",
@@ -59,12 +62,12 @@ export function personSchema() {
     })),
     hasOccupation: {
       "@type": "Occupation",
-      name: "Full Stack Engineer",
-      occupationLocation: { "@type": "City", name: "Islamabad" },
+      name: PROFILE.role,
+      occupationLocation: { "@type": "City", name: PROFILE.city },
       skills: knowsAbout().join(", "),
     },
     knowsAbout: knowsAbout(),
-    knowsLanguage: ["English", "Urdu"],
+    knowsLanguage: LANGUAGES.map((l) => l.name),
     sameAs: [PROFILE.linkedin, PROFILE.github, PROFILE.upwork],
   };
 }
@@ -84,7 +87,7 @@ export function websiteSchema() {
 export function breadcrumbSchema(crumbs: { name: string; path: string }[]) {
   return {
     "@type": "BreadcrumbList",
-    itemListElement: [{ name: "Home", path: "/" }, ...crumbs].map((c, i) => ({
+    itemListElement: [{ name: crumbFor("/"), path: "/" }, ...crumbs].map((c, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: c.name,
@@ -184,6 +187,8 @@ export function profilePageSchema() {
     inLanguage: "en",
     mainEntity: { "@id": PERSON_ID },
     isPartOf: { "@id": WEBSITE_ID },
+    // The FAQ at the foot of the page, published as its own FAQPage node.
+    hasPart: { "@id": `${SITE_URL}/about#faq` },
   };
 }
 
@@ -196,6 +201,24 @@ export function contactPageSchema() {
     inLanguage: "en",
     mainEntity: { "@id": PERSON_ID },
     isPartOf: { "@id": WEBSITE_ID },
+  };
+}
+
+/** Questions and answers shown on a page, for answer engines. The same strings
+ *  the page renders, so the markup never claims what the page does not say. */
+export function faqPageSchema(path: string, items: FaqItem[]) {
+  return {
+    "@type": "FAQPage",
+    "@id": `${absoluteUrl(path)}#faq`,
+    url: absoluteUrl(path),
+    inLanguage: "en",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": PERSON_ID },
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
   };
 }
 
@@ -217,7 +240,7 @@ export function portfolioListSchema() {
     "@type": "CollectionPage",
     "@id": PORTFOLIO_ID,
     url: absoluteUrl("/portfolio"),
-    name: "Work",
+    name: crumbFor("/portfolio"),
     inLanguage: "en",
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": PERSON_ID },
@@ -239,7 +262,7 @@ export function blogListSchema() {
     "@type": "Blog",
     "@id": BLOG_ID,
     url: absoluteUrl("/blog"),
-    name: "Notes from building systems",
+    name: BLOG.title,
     inLanguage: "en",
     isPartOf: { "@id": WEBSITE_ID },
     author: { "@id": PERSON_ID },

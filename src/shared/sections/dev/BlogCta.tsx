@@ -1,13 +1,7 @@
 import { Link } from "react-router-dom";
-import { PROFILE } from "@/data/profile";
+import { BLOG } from "@/data/pages/blog";
 import Eyebrow from "./Eyebrow";
 import { ARROW_SVG } from "./icons";
-
-const LINKS = [
-    { label: "Follow on LinkedIn", href: PROFILE.linkedin, external: true },
-    { label: "Suggest a topic", href: "/contact" },
-    { label: "View case studies", href: "/portfolio" },
-];
 
 /** Blog-only closing section: follow along, suggest a topic, or jump to the work. */
 export default function BlogCta() {
@@ -17,15 +11,13 @@ export default function BlogCta() {
                 <div className="blog-cta__panel changeless">
                     <div className="row g-5 align-items-center">
                         <div className="col-lg-7">
-                            <Eyebrow light>keep in touch</Eyebrow>
-                            <h2 className="blog-cta__title text-white mb-0">New notes go up here first, then on LinkedIn.</h2>
-                            <p className="blog-cta__lead mt-30 mb-0">
-                                Short write-ups on problems I run into while building payment and backend systems. Follow along, or tell me what you'd like me to write about next.
-                            </p>
+                            <Eyebrow light>{BLOG.cta.eyebrow}</Eyebrow>
+                            <h2 className="blog-cta__title text-white mb-0">{BLOG.cta.title}</h2>
+                            <p className="blog-cta__lead mt-30 mb-0">{BLOG.cta.lead}</p>
                         </div>
                         <div className="col-lg-4 ms-auto">
                             <ul className="blog-cta__links" data-reveal-group>
-                                {LINKS.map((link) => (
+                                {BLOG.cta.links.map((link) => (
                                     <li key={link.label} data-reveal>
                                         {link.external ? (
                                             <a href={link.href} target="_blank" rel="noopener noreferrer">

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "@/shared/Logo";
+import { SIDEBAR } from "@/data/layout";
+import { CTA } from "@/data/navigation";
 import { PROFILE } from "@/data/profile";
 import { OffcanvasMenuMount } from "@/shared/mobile-menu/MobileMenuCloneContext";
 import MenuClone from "@/shared/mobile-menu/MenuClone";
@@ -111,10 +113,8 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
           </div>
 
           <div className="at-offcanvas-content d-none d-xl-block">
-            <h3 className="at-offcanvas-title">Hey there!</h3>
-            <p className="fz-font-lg">
-              I build full stack applications, fintech solutions, and scalable systems - helping businesses operate faster and grow with confidence.
-            </p>
+            <h3 className="at-offcanvas-title">{SIDEBAR.greeting}</h3>
+            <p className="fz-font-lg">{SIDEBAR.intro}</p>
           </div>
 
           <div className="at-offcanvas-menu d-xl-none pb-50">
@@ -122,11 +122,16 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
           </div>
 
           <div className="at-offcanvas-contact">
-            <h5 className="at-offcanvas-title sm">Get in touch</h5>
+            <h5 className="at-offcanvas-title sm">{SIDEBAR.contactTitle}</h5>
             <ul>
               <li>
-                <a className="fz-font-lg" href="tel:+923390004208">
-                  +923390004208
+                <a className="fz-font-lg" href={PROFILE.phoneHref}>
+                  {PROFILE.phone}
+                </a>
+              </li>
+              <li>
+                <a className="fz-font-lg" href={PROFILE.whatsapp} target="_blank" rel="noopener noreferrer">
+                  {CTA.whatsapp}
                 </a>
               </li>
               <li>
@@ -136,20 +141,20 @@ export default function SideBar({ open, hamburgerOpen, onClose }: SideBarProps) 
               </li>
               <li>
                 <span className="fz-font-lg">
-                  Islamabad, <br />
-                  Pakistan
+                  {PROFILE.city}, <br />
+                  {PROFILE.country}
                 </span>
               </li>
               <li>
-                <a className="fz-font-lg text-decoration-underline" href="/assets/cv/Muhammad-Anees-Full-Stack-Engineer-CV.pdf" download>
-                  Download CV
+                <a className="fz-font-lg text-decoration-underline" href={PROFILE.cvUrl} download>
+                  {CTA.downloadCv}
                 </a>
               </li>
             </ul>
           </div>
 
           <div className="at-offcanvas-social">
-            <h3 className="at-offcanvas-title sm">Follow Me</h3>
+            <h3 className="at-offcanvas-title sm">{SIDEBAR.socialTitle}</h3>
             <SocialGrid />
           </div>
         </div>

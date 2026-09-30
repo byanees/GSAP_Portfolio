@@ -1,7 +1,10 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import Logo from "@/shared/Logo";
-import { ELSEWHERE, PROFILE } from "@/data/profile";
+import { AVAILABILITY } from "@/data/availability";
+import { FOOTER } from "@/data/layout";
+import { ELSEWHERE, PAGES } from "@/data/navigation";
+import { PROFILE } from "@/data/profile";
 
 const SOCIAL_ARROW = (
   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none" aria-hidden="true">
@@ -27,14 +30,18 @@ const Footer2 = forwardRef<HTMLElement, object>(function Footer2(_, ref) {
                 </div>
                 <div className="d-flex flex-column gap-3">
                   <p className="h6 text-white mb-2 fw-medium">
-                    <a href="tel:+923390004208" className="text-white text-decoration-none">+92 339 000 4208</a>
+                    <a href={PROFILE.phoneHref} className="text-white text-decoration-none">{PROFILE.phone}</a>
+                    {" · "}
+                    <a href={PROFILE.whatsapp} target="_blank" rel="noopener noreferrer" className="text-white">
+                      {FOOTER.whatsapp}
+                    </a>
                   </p>
                   <p className="h6 text-white mb-2 footer-email">
                     <a href={`mailto:${PROFILE.email}`} className="text-white text-decoration-none">
                       {PROFILE.email}
                     </a>
                   </p>
-                  <p className="h6 text-white mb-0">Islamabad, Pakistan</p>
+                  <p className="h6 text-white mb-0">{PROFILE.location}</p>
                 </div>
               </div>
             </div>
@@ -43,21 +50,11 @@ const Footer2 = forwardRef<HTMLElement, object>(function Footer2(_, ref) {
               <div className="at-footer-widget alt-footer-link-item-wrap row">
                 <div className="alt-footer-link-item col-6">
                   <ul>
-                    <li className="mb-15">
-                      <Link to="/">Home</Link>
-                    </li>
-                    <li className="mb-15">
-                      <Link to="/about">About</Link>
-                    </li>
-                    <li className="mb-15">
-                      <Link to="/portfolio">Portfolio</Link>
-                    </li>
-                    <li className="mb-15">
-                      <Link to="/blog">Blog</Link>
-                    </li>
-                    <li className="mb-15">
-                      <Link to="/contact">Contact</Link>
-                    </li>
+                    {PAGES.map(({ label, to }) => (
+                      <li key={label} className="mb-15">
+                        <Link to={to}>{label}</Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div className="alt-footer-link-item col-6">
@@ -75,15 +72,15 @@ const Footer2 = forwardRef<HTMLElement, object>(function Footer2(_, ref) {
             </div>
 
             <div className="col-lg-3 col-md-6 flex-column justify-content-lg-end d-none d-md-flex">
-              <p className="footer-2-follow-label text-white opacity-50 text-uppercase small mb-3">Status</p>
+              <p className="footer-2-follow-label text-white opacity-50 text-uppercase small mb-3">{FOOTER.statusTitle}</p>
               <p className="footer-status mb-3">
                 <span className="contact-status__dot" aria-hidden />
-                Open to full stack &amp; backend roles
+                {AVAILABILITY.status}
               </p>
               <div className="at-footer-widget at-footer-link">
                 <div className="at-hero-social">
                   <Link to="/contact">
-                    Start a conversation {SOCIAL_ARROW}
+                    {FOOTER.statusCta} {SOCIAL_ARROW}
                   </Link>
                 </div>
               </div>
@@ -93,16 +90,16 @@ const Footer2 = forwardRef<HTMLElement, object>(function Footer2(_, ref) {
           <div className="footer-2-border pt-40 pb-40">
             <div className="row align-items-end g-4">
               <div className="col-lg-10 col-md-8">
-                <span className="at-footer-copyright">Muhammad Anees © 2026</span>
+                <span className="at-footer-copyright">{`${PROFILE.name} © ${__BUILD_YEAR__}`}</span>
                 <div className="at-title-anim overflow-hidden">
-                  <h2 className="footer-2-connect-title text-white mb-0 at-title-text text-scale-anim">Let&apos;s Connect</h2>
+                  <h2 className="footer-2-connect-title text-white mb-0 at-title-text text-scale-anim">{FOOTER.connectTitle}</h2>
                 </div>
               </div>
               <div className="col-lg-2 col-md-4 text-end">
                 <div className="d-flex flex-wrap align-items-end gap-4 gap-md-5 mb-3">
                   <div className="footer-2-hours text-white">
-                    <span className="d-block fz-font-md opacity-50">Since</span>
-                    <h5 className="fw-400 common-white">2023</h5>
+                    <span className="d-block fz-font-md opacity-50">{FOOTER.sinceLabel}</span>
+                    <h5 className="fw-400 common-white">{PROFILE.since}</h5>
                   </div>
                 </div>
               </div>

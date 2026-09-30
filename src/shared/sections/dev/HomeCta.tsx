@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
+import { AVAILABILITY } from "@/data/availability";
+import { CTA } from "@/data/navigation";
+import { HOME } from "@/data/pages/home";
 import { PROFILE } from "@/data/profile";
 import { ARROW_CIRCLE_SVG, ARROW_SVG } from "./icons";
 
@@ -10,12 +13,13 @@ export default function HomeCta() {
                 <div className="row align-items-end g-5">
                     <div className="col-lg-8">
                         <h2 className="dev-cta__title reveal-text mb-0">
-                            <RevealText>Building something that has to work on the first attempt?</RevealText>
+                            <RevealText>{HOME.cta.title}</RevealText>
                         </h2>
                         <p className="availability mt-30 mb-0">
                             <span className="contact-status__dot" aria-hidden />
                             <span>
-                                Open to <strong>full stack &amp; backend roles</strong>, and to scoped freelance work.
+                                Open to <strong>{AVAILABILITY.roles}</strong>
+                                {AVAILABILITY.ctaTail}
                             </span>
                         </p>
                     </div>
@@ -26,7 +30,7 @@ export default function HomeCta() {
                                     {ARROW_CIRCLE_SVG}
                                 </Link>
                                 <Link className="at-btn z-index-1" to="/contact">
-                                    Get in touch
+                                    {CTA.getInTouch}
                                 </Link>
                                 <Link className="at-btn-circle" to="/contact" aria-hidden tabIndex={-1}>
                                     {ARROW_CIRCLE_SVG}
@@ -34,8 +38,8 @@ export default function HomeCta() {
                             </div>
                             <a href={PROFILE.cvUrl} download className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
                                 <span>
-                                    <span className="text-1">Download CV</span>
-                                    <span className="text-2">Download CV</span>
+                                    <span className="text-1">{CTA.downloadCv}</span>
+                                    <span className="text-2">{CTA.downloadCv}</span>
                                 </span>
                                 <i>
                                     {ARROW_SVG}

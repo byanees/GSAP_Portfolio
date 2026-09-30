@@ -2,6 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import PageMeta from "@/seo/PageMeta";
 import { TITLE_SUFFIX, pageTitle } from "@/seo/siteConfig";
 import { blogPostingSchema, breadcrumbSchema, graph } from "@/seo/schema";
+import { crumbFor } from "@/data/navigation";
+import { POST_PAGE as PAGE } from "@/data/pages/blog";
 import { PROFILE } from "@/data/profile";
 import { POSTS, formatPostDate, postBodyWithIds, postSections } from "@/data/posts";
 import Eyebrow from "./Eyebrow";
@@ -18,11 +20,11 @@ export default function BlogPost() {
     if (!post) {
         return (
             <section className="pt-150 pb-120">
-                <PageMeta title={`Post not found${TITLE_SUFFIX}`} noindex />
+                <PageMeta title={`${PAGE.notFound}${TITLE_SUFFIX}`} noindex />
                 <div className="container">
-                    <h1 className="fz-ds-1 fw-500 lh-1">Post not found</h1>
+                    <h1 className="fz-ds-1 fw-500 lh-1">{PAGE.notFound}</h1>
                     <Link to="/blog" className="cs-back mt-30">
-                        ← Back to the blog
+                        {PAGE.backToBlog}
                     </Link>
                 </div>
             </section>
@@ -53,7 +55,7 @@ export default function BlogPost() {
                 jsonLd={graph(
                     blogPostingSchema(post),
                     breadcrumbSchema([
-                        { name: "Notes", path: "/blog" },
+                        { name: crumbFor("/blog"), path: "/blog" },
                         { name: post.title, path: `/blog/${post.slug}` },
                     ]),
                 )}
@@ -63,7 +65,7 @@ export default function BlogPost() {
                     <div className="row">
                         <div className="col-lg-10 mx-auto mx-xl-0">
                             <Link to="/blog" className="cs-back">
-                                ← All notes
+                                {PAGE.back}
                             </Link>
                             <p className="post-meta">
                                 <span className="post-meta__topic">{post.category}</span>
@@ -72,7 +74,7 @@ export default function BlogPost() {
                             </p>
                             <h1 className="post-title">{post.title}</h1>
                             <p className="fz-font-lg neutral-500 mb-30">{post.excerpt}</p>
-                            <StackTags tags={post.tags} label="Filed under" />
+                            <StackTags tags={post.tags} label={PAGE.tagsLabel} />
                         </div>
                     </div>
 
@@ -92,10 +94,10 @@ export default function BlogPost() {
                             </div>
                             <div className="post-author border-top-100 mt-60 pt-40">
                                 <span className="site-logo__mark post-author__mark" aria-hidden>
-                                    MA
+                                    {PROFILE.initials}
                                 </span>
                                 <div>
-                                    <span className="d-block fw-600 neutral-900">Written by {PROFILE.name}</span>
+                                    <span className="d-block fw-600 neutral-900">{`${PAGE.writtenBy} ${PROFILE.name}`}</span>
                                     <span className="neutral-500">
                                         {PROFILE.role} ·{" "}
                                         <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" className="neutral-900 text-decoration-underline">
@@ -114,14 +116,14 @@ export default function BlogPost() {
                     <div className="container">
                         <div className="row g-4 align-items-end pb-40">
                             <div className="col-lg-8">
-                                <Eyebrow>keep reading</Eyebrow>
-                                <h2 className="h3 mb-0">More notes</h2>
+                                <Eyebrow>{PAGE.next.eyebrow}</Eyebrow>
+                                <h2 className="h3 mb-0">{PAGE.next.title}</h2>
                             </div>
                             <div className="col-lg-4 text-lg-end">
                                 <Link to="/blog" className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
                                     <span>
-                                        <span className="text-1">All notes</span>
-                                        <span className="text-2">All notes</span>
+                                        <span className="text-1">{PAGE.next.cta}</span>
+                                        <span className="text-2">{PAGE.next.cta}</span>
                                     </span>
                                     <i>
                                         {ARROW_SVG}

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { HOME } from "@/data/pages/home";
 import { PROFILE, STACK_LAYERS } from "@/data/profile";
 import { createReelAudio, type ReelAudio } from "./reelAudio";
 import { newAudioContext } from "./reelEvents";
@@ -17,12 +18,14 @@ export type ReelPlayerProps = {
 /* ------------------------------------------------------------------ copy */
 
 // Every figure here is one the site already publishes and links to a case study.
-const HOOK_CAPTION = "push notifications · one run · 6-8 min";
-const STATS = [
-  { value: "600k+", label: "concurrent sessions on one Redis connection", pos: [-95, -55, -4] },
-  { value: "4,000+", label: "merchants paid through Request to Pay", pos: [105, 12, 3] },
-  { value: "60,000+", label: "telco agents across Tanzania", pos: [-28, 92, -2] },
+// The copy is HOME.reel; where each stat sits in the camera world is set here.
+const HOOK_CAPTION = HOME.reel.hookCaption;
+const STAT_POSITIONS = [
+  [-95, -55, -4],
+  [105, 12, 3],
+  [-28, 92, -2],
 ] as const;
+const STATS = HOME.reel.stats.map((s, i) => ({ ...s, pos: STAT_POSITIONS[i % STAT_POSITIONS.length] }));
 const LANE_WORDS = ["traffic", "requests", "sessions", "pushes", "payments"];
 
 /** Stack names scattered across the camera world, placed on a fixed pseudo-random spiral. */
@@ -357,14 +360,14 @@ export default function ReelPlayer({ audioCtx, onDone }: ReelPlayerProps) {
           {/* 05 FRAME: the dot that opened the reel closes it, as a full stop. */}
           <section className="reel-scene reel-final">
             <div className="reel-final__inner">
-              <span className="reel-mark">MA</span>
+              <span className="reel-mark">{PROFILE.initials}</span>
               <span className="reel-name">
                 <span className="reel-line">
                   <Chars text={PROFILE.name} />
                   <span className="reel-period" data-period="final" />
                 </span>
               </span>
-              <span className="reel-role" data-text={`${PROFILE.role} · ${PROFILE.location.split(",")[0]}`} />
+              <span className="reel-role" data-text={`${PROFILE.role} · ${PROFILE.city}`} />
               <span className="reel-rule">
                 <span className="reel-rule__fill" />
               </span>

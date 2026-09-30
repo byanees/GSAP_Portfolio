@@ -1,4 +1,5 @@
 import { useEffect, useState, type MouseEvent } from "react";
+import { POST_PAGE } from "@/data/pages/blog";
 
 type Section = { id: string; title: string };
 
@@ -48,8 +49,8 @@ export default function PostToc({ sections, readTime }: { sections: Section[]; r
     if (sections.length < 2) return null;
 
     return (
-        <nav className="post-toc" aria-label="On this page">
-            <span className="code-card__meta d-block mb-20">On this page</span>
+        <nav className="post-toc" aria-label={POST_PAGE.tocTitle}>
+            <span className="code-card__meta d-block mb-20">{POST_PAGE.tocTitle}</span>
             <ol className="post-toc__list">
                 {sections.map((s) => (
                     <li key={s.id}>

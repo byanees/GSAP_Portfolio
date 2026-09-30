@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import RevealText from "@/shared/effects/RevealText";
 import { CASE_STUDIES } from "@/data/caseStudies";
+import { HOME } from "@/data/pages/home";
 import CaseStudyCard from "./CaseStudyCard";
 import Eyebrow from "./Eyebrow";
 import { ARROW_CIRCLE_SVG } from "./icons";
@@ -14,13 +15,11 @@ export default function HomeCaseStudies() {
                 <div className="container">
                     <div className="row align-items-end g-4">
                         <div className="col-lg-6">
-                            <Eyebrow>case studies</Eyebrow>
+                            <Eyebrow>{HOME.caseStudies.eyebrow}</Eyebrow>
                             <h2 className="h3 reveal-text mb-0">
-                                <RevealText>Production systems, with the numbers to show for it</RevealText>
+                                <RevealText>{HOME.caseStudies.title}</RevealText>
                             </h2>
-                            <p className="section-lead neutral-500 mt-30 mb-0">
-                                Three of {CASE_STUDIES.length}. The rest are on the work page.
-                            </p>
+                            <p className="section-lead neutral-500 mt-30 mb-0">{HOME.caseStudies.lead(CASE_STUDIES.length)}</p>
                         </div>
                         <div className="col-lg-3 ms-auto d-flex justify-content-lg-end">
                             <div className="at-btn-group at-btn-group-transparent">
@@ -28,7 +27,7 @@ export default function HomeCaseStudies() {
                                     {ARROW_CIRCLE_SVG}
                                 </Link>
                                 <Link className="at-btn z-index-1" to="/portfolio">
-                                    All work
+                                    {HOME.caseStudies.cta}
                                 </Link>
                                 <Link className="at-btn-circle" to="/portfolio" aria-hidden tabIndex={-1}>
                                     {ARROW_CIRCLE_SVG}

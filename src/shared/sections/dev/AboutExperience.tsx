@@ -1,3 +1,5 @@
+import { CTA } from "@/data/navigation";
+import { ABOUT } from "@/data/pages/about";
 import { EXPERIENCE, PROFILE } from "@/data/profile";
 import Eyebrow from "./Eyebrow";
 import StackTags from "./StackTags";
@@ -10,15 +12,13 @@ export default function AboutExperience() {
             <div className="container">
                 <div className="row g-5">
                     <div className="col-lg-4">
-                        <Eyebrow>my journey</Eyebrow>
-                        <h2 className="h3 mb-20">Experience</h2>
-                        <p className="neutral-500 fz-font-lg mb-30">
-                            Building fintech, telecom, and enterprise systems since 2023.
-                        </p>
+                        <Eyebrow>{ABOUT.experience.eyebrow}</Eyebrow>
+                        <h2 className="h3 mb-20">{ABOUT.experience.title}</h2>
+                        <p className="neutral-500 fz-font-lg mb-30">{ABOUT.experience.lead}</p>
                         <a href={PROFILE.cvUrl} download className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2">
                             <span>
-                                <span className="text-1">Download CV</span>
-                                <span className="text-2">Download CV</span>
+                                <span className="text-1">{CTA.downloadCv}</span>
+                                <span className="text-2">{CTA.downloadCv}</span>
                             </span>
                             <i>
                                 {ARROW_SVG}
@@ -39,7 +39,7 @@ export default function AboutExperience() {
                                     <div className="xp-item__head">
                                         <span className="xp-item__period">{item.period}</span>
                                         <span>{item.location}</span>
-                                        {item.current && <span className="xp-item__badge">Current role</span>}
+                                        {item.current && <span className="xp-item__badge">{ABOUT.experience.currentBadge}</span>}
                                     </div>
                                     <div className="xp-card">
                                         <div className="xp-card__title-row">
@@ -57,7 +57,7 @@ export default function AboutExperience() {
                                                 ))}
                                             </ul>
                                         )}
-                                        {item.stack.length > 0 && <StackTags tags={item.stack} label="Worked with" dark={item.current} />}
+                                        {item.stack.length > 0 && <StackTags tags={item.stack} label={ABOUT.experience.stackLabel} dark={item.current} />}
                                     </div>
                                 </li>
                             ))}

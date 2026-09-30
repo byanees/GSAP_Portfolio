@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { POSTS } from "@/data/posts";
+import { BLOG } from "@/data/pages/blog";
 import { PROFILE } from "@/data/profile";
 import NoteCard from "./NoteCard";
 import { ARROW_SVG } from "./icons";
 
-const ALL = "All";
+const ALL = BLOG.allTopics;
 
 /** Topics in the order they first appear, newest post first, each with its count. */
 const TOPICS = [ALL, ...new Set(POSTS.map((p) => p.category))].map((topic) => ({
@@ -34,16 +35,11 @@ export default function BlogIndex() {
             <div className="container">
                 <div className="row g-4 align-items-end pb-50">
                     <div className="col-xxl-8 col-lg-7">
-                        <h1 className="fz-ds-1 fw-500 lh-1">Notes from building systems</h1>
-                        <p className="fz-font-lg neutral-900 mb-0">
-                            Backend, payments, and scaling lessons from production work, each with a figure that
-                            shows the idea at a glance.
-                        </p>
+                        <h1 className="fz-ds-1 fw-500 lh-1">{BLOG.title}</h1>
+                        <p className="fz-font-lg neutral-900 mb-0">{BLOG.lead}</p>
                     </div>
                     <div className="col-xxl-3 col-lg-5 ms-lg-auto text-lg-end">
-                        <p className="dev-count mb-3">
-                            {POSTS.length} notes, {TOPICS.length - 1} topics
-                        </p>
+                        <p className="dev-count mb-3">{BLOG.count(POSTS.length, TOPICS.length - 1)}</p>
                         <a
                             href={PROFILE.linkedin}
                             target="_blank"
@@ -51,8 +47,8 @@ export default function BlogIndex() {
                             className="at-btn common-black border-bottom-900 bg-transparent rounded-0 p-0 pb-2"
                         >
                             <span>
-                                <span className="text-1">LinkedIn Updates</span>
-                                <span className="text-2">LinkedIn Updates</span>
+                                <span className="text-1">{BLOG.linkedinCta}</span>
+                                <span className="text-2">{BLOG.linkedinCta}</span>
                             </span>
                             <i>
                                 {ARROW_SVG}

@@ -4,6 +4,8 @@ import { TITLE_SUFFIX, pageTitle } from "@/seo/siteConfig";
 import { breadcrumbSchema, caseStudySchema, graph } from "@/seo/schema";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import { DIAGRAMS } from "@/data/diagrams";
+import { crumbFor } from "@/data/navigation";
+import { CASE_STUDY_PAGE as PAGE } from "@/data/pages/portfolio";
 import CaseStudyCard from "./CaseStudyCard";
 import Eyebrow from "./Eyebrow";
 import StackTags from "./StackTags";
@@ -17,11 +19,11 @@ export default function CaseStudyDetail() {
     if (!cs) {
         return (
             <section className="pt-150 pb-120">
-                <PageMeta title={`Case study not found${TITLE_SUFFIX}`} noindex />
+                <PageMeta title={`${PAGE.notFound}${TITLE_SUFFIX}`} noindex />
                 <div className="container">
-                    <h1 className="fz-ds-1 fw-500 lh-1">Case study not found</h1>
+                    <h1 className="fz-ds-1 fw-500 lh-1">{PAGE.notFound}</h1>
                     <Link to="/portfolio" className="cs-back mt-30">
-                        ← Back to all work
+                        {PAGE.backToAll}
                     </Link>
                 </div>
             </section>
@@ -31,10 +33,10 @@ export default function CaseStudyDetail() {
     const next = CASE_STUDIES[(index + 1) % CASE_STUDIES.length];
     const diagram = DIAGRAMS[cs.slug];
     const meta = [
-        { label: "Company", value: cs.company },
-        { label: "Role", value: cs.role },
-        { label: "Period", value: cs.period },
-        { label: cs.region ? "Region" : "Stack", value: cs.region ?? cs.stack.slice(0, 2).join(", ") },
+        { label: PAGE.labels.company, value: cs.company },
+        { label: PAGE.labels.role, value: cs.role },
+        { label: PAGE.labels.period, value: cs.period },
+        { label: cs.region ? PAGE.labels.region : PAGE.labels.stack, value: cs.region ?? cs.stack.slice(0, 2).join(", ") },
     ];
 
     return (
@@ -49,7 +51,7 @@ export default function CaseStudyDetail() {
                 jsonLd={graph(
                     caseStudySchema(cs),
                     breadcrumbSchema([
-                        { name: "Work", path: "/portfolio" },
+                        { name: crumbFor("/portfolio"), path: "/portfolio" },
                         { name: cs.title, path: `/portfolio/${cs.slug}` },
                     ]),
                 )}
@@ -58,7 +60,7 @@ export default function CaseStudyDetail() {
             <section className="pt-150 pb-80">
                 <div className="container">
                     <Link to="/portfolio" className="cs-back">
-                        ← All work
+                        {PAGE.back}
                     </Link>
                     <div className="row">
                         <div className="col-xl-9">
@@ -100,10 +102,10 @@ export default function CaseStudyDetail() {
                     <div className="container">
                         <div className="cs-how__head">
                             <div>
-                                <Eyebrow>how it works</Eyebrow>
+                                <Eyebrow>{PAGE.howItWorks}</Eyebrow>
                                 <h2 className="cs-how__title">{diagram.title}</h2>
                             </div>
-                            <p className="cs-how__hint">Pick a step to replay it</p>
+                            <p className="cs-how__hint">{PAGE.replayHint}</p>
                         </div>
                         <SystemDiagram diagram={diagram} />
                     </div>
@@ -114,18 +116,18 @@ export default function CaseStudyDetail() {
                 <div className="container">
                     <div className="row g-5">
                         <div className="col-lg-4">
-                            <h2 className="case-section__title">The problem</h2>
+                            <h2 className="case-section__title">{PAGE.problemTitle}</h2>
                             <p className="cs-problem mt-20 mb-0">{cs.problem}</p>
                         </div>
                         <div className="col-lg-7 ms-lg-auto">
-                            <h2 className="case-section__title">What I built</h2>
+                            <h2 className="case-section__title">{PAGE.builtTitle}</h2>
                             <ol className="build-list mt-20">
                                 {cs.built.map((item) => (
                                     <li key={item}>{item}</li>
                                 ))}
                             </ol>
                             <div className="pt-50">
-                                <StackTags tags={cs.stack} label="Stack" className="stack-line--lg" />
+                                <StackTags tags={cs.stack} label={PAGE.labels.stack} className="stack-line--lg" />
                             </div>
                         </div>
                     </div>

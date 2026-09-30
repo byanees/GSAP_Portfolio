@@ -3,6 +3,8 @@
 // Each one restates the flow its case study describes; nothing here adds a
 // claim the case study does not already make.
 
+import { METRICS } from "./metrics";
+
 export type NodeKind = "actor" | "service" | "store" | "external" | "channel";
 
 export type DiagramNode = {
@@ -106,7 +108,7 @@ export const DIAGRAMS: Record<string, Diagram> = {
             { from: "workers", to: "done", step: 5 },
             { from: "done", to: "sched", step: 5, dashed: true, label: "retry failed" },
         ],
-        notes: [{ x: 520, y: 60, text: "700-800k per run · 6-8 min", step: 3 }],
+        notes: [{ x: 520, y: 60, text: `${METRICS.notificationsPerRun} per run · ${METRICS.runMinutes} min`, step: 3 }],
         steps: [
             "The admin imports a file of MSISDNs and sets the body, type and time in the back office",
             "The scheduler picks up unprocessed notifications and reads their MSISDNs in chunks, never all at once",

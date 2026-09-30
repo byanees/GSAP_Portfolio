@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CASE_STUDIES } from "@/data/caseStudies";
+import { ABOUT } from "@/data/pages/about";
 import { STACK_LAYERS, STACK_PRINCIPLES } from "@/data/profile";
 import Eyebrow from "./Eyebrow";
 
@@ -29,13 +30,11 @@ export default function AboutStack() {
                 <div className="container">
                     <div className="row g-4 align-items-end pb-60">
                         <div className="col-lg-7">
-                            <Eyebrow light>my stack</Eyebrow>
-                            <h2 className="h3 text-white mb-0">From the screen to the server, what I use at every layer</h2>
+                            <Eyebrow light>{ABOUT.stack.eyebrow}</Eyebrow>
+                            <h2 className="h3 text-white mb-0">{ABOUT.stack.title}</h2>
                         </div>
                         <div className="col-lg-4 ms-auto text-lg-end">
-                            <p className="stack-panel__intro mb-0">
-                                Follow a request down through the systems I build. Hover a layer to see where it shows up in my work.
-                            </p>
+                            <p className="stack-panel__intro mb-0">{ABOUT.stack.intro}</p>
                         </div>
                     </div>
 
@@ -64,7 +63,7 @@ export default function AboutStack() {
                                             ))}
                                         </ul>
                                         <div className="arch-layer__used">
-                                            <span className="arch-layer__used-label">{used.length ? "Shows up in" : "Behind"}</span>
+                                            <span className="arch-layer__used-label">{used.length ? ABOUT.stack.usedInLabel : ABOUT.stack.everywhereLabel}</span>
                                             {used.length ? (
                                                 used.map((cs) => (
                                                     <Link key={cs.slug} to={`/portfolio/${cs.slug}`}>
@@ -72,7 +71,7 @@ export default function AboutStack() {
                                                     </Link>
                                                 ))
                                             ) : (
-                                                <span>every project I ship</span>
+                                                <span>{ABOUT.stack.everywhere}</span>
                                             )}
                                         </div>
                                     </li>
@@ -81,7 +80,7 @@ export default function AboutStack() {
                         </ol>
 
                         <aside className="arch__principles">
-                            <span className="arch__principles-label">Holding it together</span>
+                            <span className="arch__principles-label">{ABOUT.stack.principlesLabel}</span>
                             <ul>
                                 {STACK_PRINCIPLES.map((p) => (
                                     <li key={p}>{p}</li>

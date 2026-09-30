@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { ABOUT } from "@/data/pages/about";
 import { EXPERIENCE, PROFILE } from "@/data/profile";
 
 type Killable = { kill?: () => void };
@@ -6,10 +7,10 @@ type Killable = { kill?: () => void };
 const clock = new Intl.DateTimeFormat("en-GB", {
     hour: "2-digit",
     minute: "2-digit",
-    timeZone: "Asia/Karachi",
+    timeZone: PROFILE.timezoneId,
 });
 
-/** Local time in Islamabad. The prerendered HTML carries the plain timezone,
+/** Local time where Anees is. The prerendered HTML carries the plain timezone,
  *  since a build-time clock would be wrong by the time anyone reads it; the
  *  live time takes over after hydration. */
 function useLocalTime() {
@@ -130,13 +131,13 @@ export default function AboutPortrait({ src, colorSrc }: { src: string; colorSrc
 
             <dl className="about-portrait__spec">
                 <div className="about-portrait__row">
-                    <dt>Local time</dt>
+                    <dt>{ABOUT.portrait.localTimeLabel}</dt>
                     <dd>
-                        {PROFILE.location.split(",")[0]} · {time ? `${time} PKT (UTC+5)` : PROFILE.timezone}
+                        {PROFILE.city} · {time ? `${time} ${PROFILE.timezone}` : PROFILE.timezone}
                     </dd>
                 </div>
                 <div className="about-portrait__row">
-                    <dt>Currently</dt>
+                    <dt>{ABOUT.portrait.currentlyLabel}</dt>
                     <dd>
                         {current.company} · {current.stack.slice(0, 3).join(", ")}
                     </dd>
