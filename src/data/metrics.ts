@@ -11,9 +11,9 @@
 export const METRICS = {
   /** Years in the industry. Also written out in words in PROFILE.aboutLead. */
   years: "3+",
-  /** Push notifications sent by one scheduler run, and how long a run takes. */
-  notificationsPerRun: "700-800k",
-  /** En dash, as a range should be. */
+  /** Push notifications sent by one scheduler run, and how long a run takes.
+   *  Ranges take an en dash. */
+  notificationsPerRun: "700–800k",
   runMinutes: "6–8",
   /** Concurrent sessions held after the Redis multiplexing fix. */
   concurrentSessions: "600k+",
