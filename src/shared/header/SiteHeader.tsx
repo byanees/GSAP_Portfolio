@@ -191,9 +191,6 @@ export default function SiteHeader() {
                   <SearchIcon />
                   <kbd>{modKey} K</kbd>
                 </button>
-                <Link to="/contact" className="site-nav__cta" tabIndex={foldedTab}>
-                  {CTA.letsTalk}
-                </Link>
               </div>
             </nav>
 

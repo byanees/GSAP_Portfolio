@@ -31,8 +31,6 @@ export function crumbFor(path: string) {
 export const CTA = {
   downloadCv: "Download CV",
   getInTouch: "Get in touch",
-  /** The header's contact button and the floating contact dock. */
-  letsTalk: "Let's talk",
   viewCaseStudies: "View case studies",
   hireOnUpwork: "Hire on Upwork",
   whatsapp: "Chat on WhatsApp",

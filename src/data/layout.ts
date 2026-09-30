@@ -1,8 +1,6 @@
 // Copy in the parts of the layout that appear on every page: both footers and
 // the floating contact button. Contact details come from PROFILE.
 
-import { CTA } from "./navigation";
-
 export const FOOTER = {
   /** The large footer. Each entry in a list is one line. */
   headline: ["Let's Build", "What Scales"],
@@ -20,5 +18,5 @@ export const FOOTER = {
 };
 
 export const CONTACT_DOCK = {
-  label: CTA.letsTalk,
+  label: "Let's talk",
 };

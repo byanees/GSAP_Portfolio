@@ -154,7 +154,7 @@
 .site-nav__links-inner {
   position: relative;
   gap: 2px;
-  padding: 0 4px 0 10px;
+  padding: 0 8px 0 10px;
 }
 
 .site-nav__blob {
@@ -191,30 +191,10 @@
 }
 
 .site-nav__link:focus-visible,
-.site-nav__cta:focus-visible,
 .site-nav__ring:focus-visible,
 .site-nav__mark:focus-visible {
   outline: 2px solid var(--nav-signal);
   outline-offset: 2px;
-}
-
-.site-nav__cta {
-  position: relative;
-  z-index: 1;
-  margin-left: 10px;
-  padding: 9px 16px;
-  border-radius: 999px;
-  background: var(--nav-paper);
-  color: var(--nav-ink);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.25s ease;
-}
-
-.site-nav__cta:hover {
-  color: var(--nav-ink);
-  background: var(--nav-signal);
 }
 
 .site-nav__ring {
