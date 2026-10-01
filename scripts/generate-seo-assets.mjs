@@ -211,7 +211,7 @@ const faq = [
   ],
   [
     `Is ${PROFILE.shortName} available for hire?`,
-    `${AVAILABILITY.assistantAnswer} Contact: ${PROFILE.email}, ${abs("/contact")}.`,
+    `${AVAILABILITY.assistantAnswer} Contact: [${PROFILE.email}](mailto:${PROFILE.email}) or the [contact page](${abs("/contact")}).`,
   ],
   [`Where is ${PROFILE.shortName} based?`, `${PROFILE.location}, ${PROFILE.timezone}.`],
 ];
@@ -220,13 +220,13 @@ const header = `# ${PROFILE.name}
 
 > ${current.role} at ${current.company}, ${PROFILE.location}. ${PROFILE.summary}
 
-Site: ${SITE_URL}
-Contact: ${PROFILE.email}
-Phone: ${PROFILE.phone} (WhatsApp: ${PROFILE.whatsapp})
-LinkedIn: ${PROFILE.linkedin}
-GitHub: ${PROFILE.github}
-Upwork: ${PROFILE.upwork}
-CV: ${abs(PROFILE.cvUrl)}
+- Site: [${new URL(SITE_URL).host}](${SITE_URL})
+- Email: [${PROFILE.email}](mailto:${PROFILE.email})
+- Phone: ${PROFILE.phone} ([WhatsApp](${PROFILE.whatsapp}))
+- [LinkedIn](${PROFILE.linkedin})
+- [GitHub](${PROFILE.github})
+- [Upwork](${PROFILE.upwork})
+- [CV (PDF)](${abs(PROFILE.cvUrl)})
 
 ## Summary
 
@@ -259,7 +259,7 @@ const caseStudies = `## Case studies
 ${CASE_STUDIES.map(
   (c) => `### ${c.title}
 
-${abs(`/portfolio/${c.slug}`)}
+[Read the case study](${abs(`/portfolio/${c.slug}`)})
 
 - Domain: ${c.domain}
 - Company: ${c.company}${c.region ? `\n- Region: ${c.region}` : ""}
@@ -285,12 +285,21 @@ ${EDUCATION.degree}, ${EDUCATION.school} (${EDUCATION.period})
 
 Certifications: ${CERTIFICATIONS.join("; ")}`;
 
-const postMeta = (p) => `${abs(`/blog/${p.slug}`)}
+const postMeta = (p) => `[Read the post](${abs(`/blog/${p.slug}`)})
 
 - Author: ${PROFILE.name}
 - Published: ${p.date}${p.updated ? `\n- Updated: ${p.updated}` : ""}
 - Category: ${p.category}
 - Tags: ${p.tags.join(", ")}`;
+
+/** A label for every route, so the page list is Markdown links (what the
+ *  llms.txt convention expects) rather than bare URLs. */
+const PAGE_NAMES = { "/": "Home", "/about": "About", "/portfolio": "Portfolio", "/blog": "Blog", "/contact": "Contact" };
+const PAGE_TITLES = new Map([
+  ...CASE_STUDIES.map((c) => [`/portfolio/${c.slug}`, `Case study: ${c.title}`]),
+  ...POSTS.map((p) => [`/blog/${p.slug}`, `Post: ${p.title}`]),
+]);
+const pageName = (p) => PAGE_NAMES[p] ?? PAGE_TITLES.get(p) ?? p;
 
 const llms = `${header}
 
@@ -300,7 +309,7 @@ ${caseStudies}
 
 ## Writing
 
-Full text of every post: ${abs("/llms-full.txt")}
+Full text of every post: [llms-full.txt](${abs("/llms-full.txt")})
 
 ${byNewest.map((p) => `### ${p.title}\n\n${postMeta(p)}\n\n${p.excerpt}`).join("\n\n")}
 
@@ -308,8 +317,9 @@ ${education}
 
 ## Pages
 
-${ROUTES.map(({ path: p }) => `- ${abs(p)}`).join("\n")}
-- ${abs("/rss.xml")} (RSS feed of the notes)
+${ROUTES.map(({ path: p }) => `- [${pageName(p)}](${abs(p)})`).join("\n")}
+- [RSS feed](${abs("/rss.xml")}): the notes, newest first
+- [Full text](${abs("/llms-full.txt")}): this file with every post in full
 `;
 
 // The long form: the same document with every post in full, for engines that

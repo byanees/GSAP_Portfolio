@@ -26,6 +26,16 @@ const TYPES = {
   ".woff2": "font/woff2",
 };
 
+/** The headers vercel.json sends on every path (the Content-Security-Policy
+ *  among them), so a build served here runs under the same rules as in
+ *  production. Upgrading to HTTPS and HSTS are left out: this is plain HTTP. */
+const vercel = JSON.parse(await readFile(path.resolve(dist, "..", "vercel.json"), "utf8"));
+const GLOBAL_HEADERS = Object.fromEntries(
+  (vercel.headers.find((h) => h.source === "/(.*)")?.headers ?? [])
+    .filter(({ key }) => key.toLowerCase() !== "strict-transport-security")
+    .map(({ key, value }) => [key.toLowerCase(), value.replace(/;\s*upgrade-insecure-requests/, "")]),
+);
+
 const COMPRESSIBLE = /^(text\/|image\/svg|application\/(javascript|json|xml))/;
 
 /** Vercel resolves /about to about.html or about/index.html. Mirror that. */
@@ -49,7 +59,7 @@ async function resolveFile(pathname) {
 }
 
 function send(req, res, status, type, body) {
-  const headers = { "content-type": type };
+  const headers = { ...GLOBAL_HEADERS, "content-type": type };
   const accepts = String(req.headers["accept-encoding"] ?? "").includes("gzip");
 
   if (accepts && COMPRESSIBLE.test(type)) {

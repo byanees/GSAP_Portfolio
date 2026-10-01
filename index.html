@@ -79,6 +79,11 @@
       html.is-loading body {
         overflow: hidden;
       }
+      /* Holds the scrollbar's space while the loader (and the reel) lock
+         scrolling, so the page does not slide sideways when they let go. */
+      html {
+        scrollbar-gutter: stable;
+      }
       .sl-inner {
         display: flex;
         flex-direction: column;

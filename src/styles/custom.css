@@ -128,7 +128,10 @@
 
 .dev-hero__tagline .contact-status__dot {
   background: #00d4aa;
-  animation: none;
+}
+
+.dev-hero__tagline .contact-status__dot::after {
+  content: none;
 }
 
 .dev-hero__headline {
@@ -966,7 +969,10 @@
 
 .footer-status .contact-status__dot {
   background: #00d4aa;
-  animation: none;
+}
+
+.footer-status .contact-status__dot::after {
+  content: none;
 }
 
 /* About: experience timeline */
@@ -2031,16 +2037,35 @@
 }
 
 .contact-status__dot {
+  position: relative;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--at-neutral-900);
+}
+
+/* The pulse is a ring that scales and fades, rather than an animated
+   box-shadow: transform and opacity run on the compositor, a shadow repaints
+   every frame. */
+.contact-status__dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(var(--at-common-black-rgb), 0.35);
   animation: contact-status-pulse 2.4s ease-in-out infinite;
 }
 
 @keyframes contact-status-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--at-common-black-rgb), 0.35); }
-  50% { box-shadow: 0 0 0 7px rgba(var(--at-common-black-rgb), 0); }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(2.75); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-status__dot::after {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 .contact-info {
