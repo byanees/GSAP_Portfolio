@@ -64,3 +64,18 @@
   src: url(/assets/fonts/dm-sans-100-1000-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+/* Arial, resized to DM Sans's metrics, for the moment before DM Sans arrives.
+ * The page paints before the web font has loaded, and without this the swap
+ * reflowed the hero (its buttons moved by a line). The width ratio is measured
+ * across the hero copy at weights 400 and 600; the vertical metrics are DM
+ * Sans's own (ascender 992, descender 310 per 1000), divided by that ratio
+ * because size-adjust scales them too. */
+@font-face {
+  font-family: 'DM Sans Fallback';
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans');
+  size-adjust: 92%;
+  ascent-override: 107.83%;
+  descent-override: 33.7%;
+  line-gap-override: 0%;
+}

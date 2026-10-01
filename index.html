@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="light" class="cv-defer">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -83,6 +83,16 @@
          scrolling, so the page does not slide sideways when they let go. */
       html {
         scrollbar-gutter: stable;
+      }
+      /* Until the app takes over, everything below each page's first section
+         skips style and layout unless it is on screen, so the prerendered page
+         and the stylesheet that follows it only style what is visible.
+         main.tsx drops the class before hydrating, ahead of any scroll effect
+         measuring the page. */
+      html.cv-defer main > :not(:first-child),
+      html.cv-defer footer {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 900px;
       }
       .sl-inner {
         display: flex;

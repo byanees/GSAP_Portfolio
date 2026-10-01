@@ -27,6 +27,10 @@ const tree = (
   </React.StrictMode>
 );
 
+// Below-the-fold sections render normally from here on (see .cv-defer in
+// index.html), so the scroll effects measure the real page.
+document.documentElement.classList.remove("cv-defer");
+
 // The build prerenders every route, so in production the container already
 // holds the markup and React only needs to attach to it. The empty-container
 // path keeps `vite dev` working, where nothing is prerendered. (In a

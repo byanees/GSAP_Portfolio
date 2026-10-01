@@ -1090,8 +1090,8 @@ li,
   /**
   @font family declaration
   */
-  --at-ff-body: 'DM Sans', sans-serif;
-  --at-ff-heading: 'DM Sans', sans-serif;
+  --at-ff-body: 'DM Sans', 'DM Sans Fallback', sans-serif;
+  --at-ff-heading: 'DM Sans', 'DM Sans Fallback', sans-serif;
   /**
   @font size declaration
   */
