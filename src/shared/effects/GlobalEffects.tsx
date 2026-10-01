@@ -21,7 +21,7 @@ export default function GlobalEffects() {
   const key = useLocation().pathname;
 
   useDataBackground();
-  useCollapse();
+  useCollapse(key);
   useImageHoverEffects();
 
   return (

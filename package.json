@@ -31,6 +31,7 @@
     "@types/react-dom": "^19.0.0",
     "@vercel/node": "^13.0.1",
     "@vitejs/plugin-react": "^4.4.1",
+    "beasties": "^0.5.4",
     "cssnano": "^8.0.10",
     "eslint": "^9.27.0",
     "eslint-plugin-react-hooks": "^5.2.0",

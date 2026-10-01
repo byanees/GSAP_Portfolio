@@ -212,11 +212,13 @@ export const initCollapse = (): (() => void) => {
     };
 };
 
-const useCollapse = (): void => {
+/** Re-binds on every route: the layout stays mounted across client-side
+ *  navigation, so a page's accordion is new DOM that needs its own listeners. */
+const useCollapse = (pathname: string): void => {
     useEffect(() => {
         const cleanup = initCollapse();
         return cleanup;
-    }, []);
+    }, [pathname]);
 };
 
 export default useCollapse;

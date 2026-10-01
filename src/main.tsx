@@ -29,12 +29,8 @@ const tree = (
 
 // The build prerenders every route, so in production the container already
 // holds the markup and React only needs to attach to it. The empty-container
-// path keeps `vite dev` working, where nothing is prerendered.
+// path keeps `vite dev` working, where nothing is prerendered. (In a
+// prerendered page this module is only requested after the first paint; see
+// scripts/prerender.mjs.)
 if (container.firstChild) hydrateRoot(container, tree);
 else createRoot(container).render(tree);
-
-// Loaded after the tree is attached, not at module scope. Bootstrap's bundle
-// initialises itself against whatever markup it finds, and against the
-// prerendered HTML that runs before hydration and changes the DOM out from
-// under it.
-void import("bootstrap/dist/js/bootstrap.bundle.min.js");

@@ -103,8 +103,11 @@ export default function SiteHeader() {
     const now = nowRef.current?.firstElementChild as HTMLElement | undefined;
     const links = linksRef.current?.firstElementChild as HTMLElement | undefined;
     if (!header || !now || !links) return;
-    header.style.setProperty("--site-nav-now-w", `${now.scrollWidth}px`);
-    header.style.setProperty("--site-nav-links-w", `${links.scrollWidth}px`);
+    // Both reads before either write, so layout is computed once, not twice.
+    const nowWidth = now.scrollWidth;
+    const linksWidth = links.scrollWidth;
+    header.style.setProperty("--site-nav-now-w", `${nowWidth}px`);
+    header.style.setProperty("--site-nav-links-w", `${linksWidth}px`);
   }, []);
 
   useLayoutEffect(() => {
@@ -127,9 +130,10 @@ export default function SiteHeader() {
         blob.style.opacity = "0";
         return;
       }
+      const { offsetLeft, offsetWidth } = target;
       blob.style.opacity = "1";
-      blob.style.transform = `translateX(${target.offsetLeft}px)`;
-      blob.style.width = `${target.offsetWidth}px`;
+      blob.style.transform = `translateX(${offsetLeft}px)`;
+      blob.style.width = `${offsetWidth}px`;
     },
     [active],
   );
