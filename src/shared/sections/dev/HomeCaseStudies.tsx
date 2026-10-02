@@ -8,6 +8,7 @@ import { ARROW_CIRCLE_SVG } from "./icons";
 
 export default function HomeCaseStudies() {
     const featured = CASE_STUDIES.filter((cs) => cs.featured).slice(0, 3);
+    const more = CASE_STUDIES.filter((cs) => !featured.includes(cs));
 
     return (
         <div className="container-2200 bg-neutral-50 pt-30">
@@ -43,6 +44,21 @@ export default function HomeCaseStudies() {
                             </div>
                         ))}
                     </div>
+
+                    {more.length > 0 && (
+                        <nav className="pt-60" aria-label={HOME.caseStudies.moreLabel}>
+                            <p className="code-card__meta mb-20">{HOME.caseStudies.moreLabel}</p>
+                            <ul className="list-unstyled mb-0 d-flex flex-wrap gap-3">
+                                {more.map((cs) => (
+                                    <li key={cs.slug}>
+                                        <Link className="neutral-900 text-decoration-underline" to={`/portfolio/${cs.slug}`}>
+                                            {cs.title}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    )}
                 </div>
             </section>
         </div>

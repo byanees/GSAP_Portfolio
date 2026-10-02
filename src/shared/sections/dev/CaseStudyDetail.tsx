@@ -3,6 +3,9 @@ import PageMeta from "@/seo/PageMeta";
 import { TITLE_SUFFIX, pageTitle } from "@/seo/siteConfig";
 import { breadcrumbSchema, caseStudySchema, graph } from "@/seo/schema";
 import { CASE_STUDIES } from "@/data/caseStudies";
+import { postsForCaseStudy } from "@/data/related";
+import { POSTS } from "@/data/posts";
+import NoteCard from "./NoteCard";
 import { DIAGRAMS } from "@/data/diagrams";
 import { crumbFor } from "@/data/navigation";
 import { CASE_STUDY_PAGE as PAGE } from "@/data/pages/portfolio";
@@ -32,6 +35,9 @@ export default function CaseStudyDetail() {
 
     const next = CASE_STUDIES[(index + 1) % CASE_STUDIES.length];
     const diagram = DIAGRAMS[cs.slug];
+    const notes = postsForCaseStudy(cs.slug)
+        .map((s) => POSTS.find((p) => p.slug === s))
+        .filter((p) => p !== undefined);
     const meta = [
         { label: PAGE.labels.company, value: cs.company },
         { label: PAGE.labels.role, value: cs.role },
@@ -133,6 +139,22 @@ export default function CaseStudyDetail() {
                     </div>
                 </div>
             </section>
+
+            {notes.length > 0 && (
+                <section className="pt-80 pb-80">
+                    <div className="container">
+                        <Eyebrow>{PAGE.notes.eyebrow}</Eyebrow>
+                        <h2 className="h3 mb-40">{PAGE.notes.title}</h2>
+                        <div className="row g-4">
+                            {notes.map((p) => (
+                                <div key={p.slug} className="col-lg-6">
+                                    <NoteCard post={p} level={3} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {next && next.slug !== cs.slug && (
                 <section className="pt-100 pb-100 bg-neutral-50">

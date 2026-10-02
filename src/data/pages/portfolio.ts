@@ -19,6 +19,10 @@ export const PORTFOLIO = {
 export const CASE_STUDY_PAGE = {
     notFound: "Case study not found",
     backToAll: "← Back to all work",
+    notes: {
+        eyebrow: "written up",
+        title: "Read the engineering note",
+    },
     back: "← All work",
     labels: {
         company: "Company",

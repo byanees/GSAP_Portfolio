@@ -40,6 +40,12 @@ export const HOME = {
         title: "Production systems, with the numbers to show for it",
         lead: (total: number) => `Three of ${total}. The rest are on the work page.`,
         cta: "All work",
+        moreLabel: "More case studies",
+    },
+    notes: {
+        eyebrow: "notes",
+        title: "Latest from the blog",
+        cta: "All notes",
     },
     recommendations: {
         title: "What colleagues say",

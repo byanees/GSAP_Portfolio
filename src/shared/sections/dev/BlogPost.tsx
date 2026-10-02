@@ -5,6 +5,9 @@ import { blogPostingSchema, breadcrumbSchema, graph } from "@/seo/schema";
 import { crumbFor } from "@/data/navigation";
 import { POST_PAGE as PAGE } from "@/data/pages/blog";
 import { PROFILE } from "@/data/profile";
+import { CASE_STUDIES } from "@/data/caseStudies";
+import { caseStudiesForPost } from "@/data/related";
+import CaseStudyCard from "./CaseStudyCard";
 import { POSTS, formatPostDate, postBodyWithIds, postSections } from "@/data/posts";
 import Eyebrow from "./Eyebrow";
 import NoteCard from "./NoteCard";
@@ -37,6 +40,9 @@ export default function BlogPost() {
         ...others.filter((p) => p.category === post.category),
         ...others.filter((p) => p.category !== post.category),
     ].slice(0, 2);
+    const related = caseStudiesForPost(post.slug)
+        .map((s) => CASE_STUDIES.find((c) => c.slug === s))
+        .filter((c) => c !== undefined);
     const sections = postSections(post);
     // The body is HTML with figure markers in it: odd entries are figure ids.
     const parts = postBodyWithIds(post).split(/<figure data-figure="([\w-]+)"><\/figure>/);
@@ -110,6 +116,22 @@ export default function BlogPost() {
                     </div>
                 </div>
             </article>
+
+            {related.length > 0 && (
+                <section className="pt-80 pb-80">
+                    <div className="container">
+                        <Eyebrow>{PAGE.related.eyebrow}</Eyebrow>
+                        <h2 className="h3 mb-40">{PAGE.related.title}</h2>
+                        <div className="row g-4">
+                            {related.map((cs) => (
+                                <div key={cs.slug} className="col-lg-6">
+                                    <CaseStudyCard cs={cs} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {next.length > 0 && (
                 <section className="pt-100 pb-120 bg-neutral-50">

@@ -2,6 +2,7 @@ import PageMeta from "@/seo/PageMeta";
 import { ROUTE_META } from "@/seo/siteConfig";
 import { graph, homePageSchema } from "@/seo/schema";
 import HomeCaseStudies from "@/shared/sections/dev/HomeCaseStudies";
+import HomeNotes from "@/shared/sections/dev/HomeNotes";
 import HomeCta from "@/shared/sections/dev/HomeCta";
 import HomeHero from "@/shared/sections/dev/HomeHero";
 import HomeWhatIDo from "@/shared/sections/dev/HomeWhatIDo";
@@ -20,6 +21,7 @@ export default function Home16Page() {
       <HomeHero />
       <HomeWhatIDo />
       <HomeCaseStudies />
+      <HomeNotes />
       <Recommendations muted />
       <HomeCta />
       <MotionReel />
