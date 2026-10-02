@@ -12,7 +12,8 @@
     { "source": "/blog-details/:slug", "destination": "/blog/:slug", "permanent": true },
     { "source": "/contact-2", "destination": "/contact", "permanent": true },
     { "source": "/portfolio/emv-qr-request-to-pay", "destination": "/portfolio/request-to-pay", "permanent": true },
-    { "source": "/portfolio/telecom-agent-apps", "destination": "/portfolio#projects", "permanent": true },
+    { "source": "/portfolio/telecom-agent-apps", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/batch-payment-validation", "destination": "/portfolio", "permanent": true },
     { "source": "/feed", "destination": "/rss.xml", "permanent": true },
     { "source": "/feed.xml", "destination": "/rss.xml", "permanent": true }
   ],

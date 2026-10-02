@@ -6,6 +6,8 @@ import { PROFILE } from "../profile";
 export const BLOG = {
     /** Also the Blog's name in the structured data. */
     title: "Notes from building systems",
+    intro:
+        "Short engineering write-ups from production work on .NET, ABP.io, Redis, and payment systems: idempotent Request to Pay flows, Redis connection pool exhaustion, EMV QR TLV encoding, bulk push notification scheduling, and CI/CD that promotes one image from UAT to production. Each note ties back to a case study on the work page.",
     lead: "Backend, payments, and scaling lessons from production work, each with a figure that shows the idea at a glance.",
     count: (notes: number, topics: number) => `${notes} notes, ${topics} topics`,
     linkedinCta: "LinkedIn Updates",
@@ -32,6 +34,10 @@ export const POST_PAGE = {
     writtenBy: "Written by",
     tocTitle: "On this page",
     latestBadge: "Latest note",
+    related: {
+        eyebrow: "the project behind it",
+        title: "Read the case study",
+    },
     next: {
         eyebrow: "keep reading",
         title: "More notes",

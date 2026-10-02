@@ -37,6 +37,7 @@ export default function BlogIndex() {
                     <div className="col-xxl-8 col-lg-7">
                         <h1 className="fz-ds-1 fw-500 lh-1">{BLOG.title}</h1>
                         <p className="fz-font-lg neutral-900 mb-0">{BLOG.lead}</p>
+                        <p className="neutral-500 mt-20 mb-0">{BLOG.intro}</p>
                     </div>
                     <div className="col-xxl-3 col-lg-5 ms-lg-auto text-lg-end">
                         <p className="dev-count mb-3">{BLOG.count(POSTS.length, TOPICS.length - 1)}</p>
