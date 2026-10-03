@@ -1594,6 +1594,21 @@
   padding-top: 10px;
 }
 
+/* Single full-width card: copy and actions left, points right. */
+@media (min-width: 992px) {
+  .engage-card--wide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto 1fr;
+    column-gap: 72px;
+    align-items: start;
+  }
+  .engage-card--wide > h3 { grid-column: 1; grid-row: 1; }
+  .engage-card--wide > p { grid-column: 1; grid-row: 2; }
+  .engage-card--wide > .engage-card__list { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
+  .engage-card--wide > .engage-card__actions { grid-column: 1; grid-row: 3; align-self: end; }
+}
+
 @media (max-width: 575px) {
   .engage-card { padding: 28px; }
 }

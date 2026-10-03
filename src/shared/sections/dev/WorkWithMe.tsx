@@ -54,8 +54,10 @@ export default function WorkWithMe() {
                 </div>
 
                 <div className="row g-4" data-reveal-group>
-                    <div className="col-lg-6">
-                        <article className="engage-card" data-reveal>
+                    {/* <div className="col-lg-6"> */}
+                    <div className="col-12">
+                        {/* <article className="engage-card" data-reveal> */}
+                        <article className="engage-card engage-card--wide" data-reveal>
                             <h3 className="h4 mb-0">{AVAILABILITY.fullTime.title}</h3>
                             <p className="neutral-500 mb-0">{AVAILABILITY.fullTime.description}</p>
                             <ul className="engage-card__list">
