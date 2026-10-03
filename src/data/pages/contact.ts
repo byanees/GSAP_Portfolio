@@ -23,7 +23,7 @@ export const CONTACT = {
         { label: "Phone", value: PROFILE.phone, href: PROFILE.phoneHref },
         { label: "WhatsApp", value: CTA.whatsapp, href: PROFILE.whatsapp },
         { label: "LinkedIn", value: LINKEDIN_HANDLE, href: PROFILE.linkedin },
-        { label: "Upwork", value: CTA.hireOnUpwork, href: PROFILE.upwork },
+        // { label: "Upwork", value: CTA.hireOnUpwork, href: PROFILE.upwork },
         { label: "Based in", value: `${PROFILE.location} (${PROFILE.timezoneAbbr}, ${PROFILE.utcOffset})` },
         { label: "Open to", value: AVAILABILITY.contactSummary },
     ] as { label: string; value: string; href?: string }[],

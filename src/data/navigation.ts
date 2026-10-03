@@ -32,7 +32,7 @@ export const CTA = {
   downloadCv: "Download CV",
   getInTouch: "Get in touch",
   viewCaseStudies: "View case studies",
-  hireOnUpwork: "Hire on Upwork",
+  // hireOnUpwork: "Hire on Upwork",
   whatsapp: "Chat on WhatsApp",
 };
 
@@ -40,6 +40,6 @@ export const CTA = {
 export const ELSEWHERE = [
   { label: "LinkedIn", href: PROFILE.linkedin },
   { label: "GitHub", href: PROFILE.github },
-  { label: "Upwork", href: PROFILE.upwork },
+  // { label: "Upwork", href: PROFILE.upwork },
   { label: CTA.downloadCv, href: PROFILE.cvUrl, download: true },
 ];

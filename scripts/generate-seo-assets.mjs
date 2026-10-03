@@ -224,8 +224,8 @@ const header = `# ${PROFILE.name}
 - Email: [${PROFILE.email}](mailto:${PROFILE.email})
 - Phone: ${PROFILE.phone} ([WhatsApp](${PROFILE.whatsapp}))
 - [LinkedIn](${PROFILE.linkedin})
-- [GitHub](${PROFILE.github})
-- [Upwork](${PROFILE.upwork})
+- [GitHub](${PROFILE.github})${/* 
+- [Upwork](${PROFILE.upwork}) */ ""}
 - [CV (PDF)](${abs(PROFILE.cvUrl)})
 
 ## Summary

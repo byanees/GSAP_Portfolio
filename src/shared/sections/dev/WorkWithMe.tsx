@@ -78,9 +78,9 @@ export default function WorkWithMe() {
                                     <li key={point}>{point}</li>
                                 ))}
                             </ul>
-                            <div className="engage-card__actions">
+                            {/* <div className="engage-card__actions">
                                 <UnderlineLink href={PROFILE.upwork} label={CTA.hireOnUpwork} external />
-                            </div>
+                            </div> */}
                         </article>
                     </div>
                 </div>

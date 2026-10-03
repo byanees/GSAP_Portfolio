@@ -43,7 +43,7 @@ export const PROFILE = {
   whatsapp: `https://wa.me/${PHONE_DIGITS}`,
   linkedin: "https://www.linkedin.com/in/byaneees/",
   github: "https://github.com/byanees",
-  upwork: "https://www.upwork.com/freelancers/~018e9a658c85846d75",
+  // upwork: "https://www.upwork.com/freelancers/~018e9a658c85846d75",
   cvUrl: "/assets/cv/Muhammad-Anees-Full-Stack-Engineer-CV.pdf",
   /** About page banner, 2400x1050 (16:7). The subject sits in the middle 58%
    *  of the width, which is what survives the 4:3 crop on phones. */

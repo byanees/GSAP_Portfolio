@@ -68,7 +68,8 @@ export function personSchema() {
     },
     knowsAbout: knowsAbout(),
     knowsLanguage: LANGUAGES.map((l) => l.name),
-    sameAs: [PROFILE.linkedin, PROFILE.github, PROFILE.upwork],
+    // sameAs: [PROFILE.linkedin, PROFILE.github, PROFILE.upwork],
+    sameAs: [PROFILE.linkedin, PROFILE.github],
   };
 }
 
