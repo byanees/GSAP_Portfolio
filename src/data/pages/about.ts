@@ -31,10 +31,10 @@ export const FAQ: FaqItem[] = [
         question: "Can you handle both frontend and backend?",
         answer: "Yes. I build Angular micro-frontends and React apps on the frontend and .NET microservices on the backend, and I've shipped features end to end across both.",
     },
-    {
-        question: "Do you take freelance or contract work?",
-        answer: AVAILABILITY.faq.freelance,
-    },
+    // {
+    //     question: "Do you take freelance or contract work?",
+    //     answer: AVAILABILITY.faq.freelance,
+    // },
 ];
 
 export const ABOUT = {
@@ -91,8 +91,10 @@ export const ABOUT = {
     },
     /** The cards themselves are AVAILABILITY.fullTime and AVAILABILITY.freelance. */
     workWithMe: {
-        eyebrow: "two ways to work together",
-        title: "Hire me full-time, or bring me in for a project",
+        // eyebrow: "two ways to work together",
+        // title: "Hire me full-time, or bring me in for a project",
+        eyebrow: "work together",
+        title: "Hire me full-time",
     },
     faq: {
         eyebrow: "FAQ",

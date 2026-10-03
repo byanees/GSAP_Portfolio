@@ -15,15 +15,19 @@ export const AVAILABILITY = {
   /** The status line beside the green dot, in the footer and the contact hero. */
   status: `Open to ${ROLES}`,
   /** Home and portfolio CTA, after the bolded roles. */
-  ctaTail: ", and to scoped freelance work.",
+  // ctaTail: ", and to scoped freelance work.",
+  ctaTail: ".",
   /** The contact page's "Open to" row. */
-  contactSummary: "Full-time roles & freelance projects",
+  // contactSummary: "Full-time roles & freelance projects",
+  contactSummary: "Full-time roles",
   /** Closes the contact page's meta description. */
-  metaLine: "Open to full-time, remote, and freelance work.",
+  // metaLine: "Open to full-time, remote, and freelance work.",
+  metaLine: "Open to full-time and remote work.",
   /** The answer llms.txt gives an assistant asked whether Anees is for hire. */
   assistantAnswer:
     // "Yes: open to full-time full stack or backend roles, fully remote or with relocation (visa sponsorship needed), and to freelance or contract work through Upwork or directly.",
-    "Yes: open to full-time full stack or backend roles, fully remote or with relocation (visa sponsorship needed), and to freelance or contract work.",
+    // "Yes: open to full-time full stack or backend roles, fully remote or with relocation (visa sponsorship needed), and to freelance or contract work.",
+    "Yes: open to full-time full stack or backend roles, fully remote or with relocation (visa sponsorship needed).",
 
   /** The two "work with me" cards on the About page. */
   fullTime: {
@@ -35,20 +39,20 @@ export const AVAILABILITY = {
       "Visa sponsorship needed for relocation",
     ],
   },
-  freelance: {
-    title: "Freelance & contract",
-    description:
-      "Scoped backend or full stack work: APIs, payment integrations, dashboards, or moving an existing .NET or React codebase forward.",
-    // points: ["Hire through Upwork, or contract directly", "Scope agreed up front, before any code"],
-    points: ["Contract directly", "Scope agreed up front, before any code"],
-  },
+  // freelance: {
+  //   title: "Freelance & contract",
+  //   description:
+  //     "Scoped backend or full stack work: APIs, payment integrations, dashboards, or moving an existing .NET or React codebase forward.",
+  //   // points: ["Hire through Upwork, or contract directly", "Scope agreed up front, before any code"],
+  //   points: ["Contract directly", "Scope agreed up front, before any code"],
+  // },
 
   /** About page FAQ answers on availability. */
   faq: {
     roles:
       "Yes. I'm open to full stack and backend roles, either on-site after relocation or fully remote. Relocation would need visa sponsorship.",
-    freelance:
-      // "Yes, for well-scoped backend or full stack work. You can hire me through Upwork or contract directly, and we agree on the scope before any code is written.",
-      "Yes, for well-scoped backend or full stack work. You can contract me directly, and we agree on the scope before any code is written.",
+    // freelance:
+    //   // "Yes, for well-scoped backend or full stack work. You can hire me through Upwork or contract directly, and we agree on the scope before any code is written.",
+    //   "Yes, for well-scoped backend or full stack work. You can contract me directly, and we agree on the scope before any code is written.",
   },
 };

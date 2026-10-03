@@ -69,7 +69,7 @@ export default function WorkWithMe() {
                             </div>
                         </article>
                     </div>
-                    <div className="col-lg-6">
+                    {/* <div className="col-lg-6">
                         <article className="engage-card" data-reveal>
                             <h3 className="h4 mb-0">{AVAILABILITY.freelance.title}</h3>
                             <p className="neutral-500 mb-0">{AVAILABILITY.freelance.description}</p>
@@ -78,11 +78,11 @@ export default function WorkWithMe() {
                                     <li key={point}>{point}</li>
                                 ))}
                             </ul>
-                            {/* <div className="engage-card__actions">
+                            <div className="engage-card__actions">
                                 <UnderlineLink href={PROFILE.upwork} label={CTA.hireOnUpwork} external />
-                            </div> */}
+                            </div>
                         </article>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>
