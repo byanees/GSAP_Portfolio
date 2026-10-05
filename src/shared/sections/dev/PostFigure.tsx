@@ -438,7 +438,8 @@ export default function PostFigure({ id, number = 1, thumb = false }: { id: stri
 
     return (
         <figure ref={ref} className={thumb ? "post-figure post-figure--thumb" : "post-figure"} aria-hidden={thumb || undefined}>
-            <div className="post-figure__canvas">
+            {/* Scrolls sideways on phones, so it has to be reachable by keyboard. */}
+            <div className="post-figure__canvas" tabIndex={thumb ? undefined : 0}>
                 <svg
                     viewBox={`0 0 ${fig.w} ${fig.h}`}
                     className="post-figure__svg"

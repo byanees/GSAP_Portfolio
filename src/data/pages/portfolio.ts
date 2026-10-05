@@ -31,6 +31,7 @@ export const CASE_STUDY_PAGE = {
         region: "Region",
         stack: "Stack",
     },
+    next: "next case study",
     howItWorks: "how it works",
     replayHint: "Pick a step to replay it",
     problemTitle: "The problem",

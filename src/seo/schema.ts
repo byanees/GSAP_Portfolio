@@ -135,7 +135,7 @@ export function blogPostingSchema(post: Post) {
 /** "2024 - 2026" becomes the ISO 8601 interval "2024/2026"; an open-ended
  *  "2026 - Present" becomes "2026/..". */
 function temporalCoverage(period: string) {
-  const [from, to] = period.split("-").map((p) => p.trim());
+  const [from, to] = period.split(/[-–]/).map((p) => p.trim());
   return `${from}/${!to || /present/i.test(to) ? ".." : to}`;
 }
 
