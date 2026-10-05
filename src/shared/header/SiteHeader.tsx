@@ -18,6 +18,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { PROFILE } from "@/data/profile";
 import { CTA } from "@/data/navigation";
 import CommandPalette from "./CommandPalette";
+import { NOT_FOUND } from "@/data/pages/notFound";
 import { NAV_LINKS, activeIndex, useScrollLock, useScrollProgress, useScrolled } from "./nav";
 
 const RING = 2 * Math.PI * 15;
@@ -155,7 +156,8 @@ export default function SiteHeader() {
   };
   const closePalette = useCallback(() => setPaletteOpen(false), []);
 
-  const current = NAV_LINKS[active] ?? NAV_LINKS[0];
+  // An unknown route (the 404 page) belongs to no link, so say so rather than "Home".
+  const current = NAV_LINKS[active] ?? { to: "*", label: NOT_FOUND.navLabel };
 
   return (
     <>

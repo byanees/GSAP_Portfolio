@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CONTACT_DOCK } from "@/data/layout";
+import { useBackToTop } from "@/shared/hooks/useBackToTop";
 
 /**
  * Persistent route to the contact page, so someone who finds something
@@ -10,7 +11,8 @@ import { CONTACT_DOCK } from "@/data/layout";
  * icon so it covers as little of the page as possible, and it expands to show
  * the label on hover or keyboard focus. It also retreats while the visitor is
  * scrolling down and comes back the moment they stop or scroll up, so it never
- * sits on top of something being read.
+ * sits on top of something being read. At the very top of a page it waits for
+ * back-to-top, so the pair arrive together and neither covers the hero's CTAs.
  *
  * The icon is inline SVG to match every other icon in this project (the arrows,
  * the back-to-top chevron). Pulling in an icon package for one glyph would add
@@ -22,6 +24,7 @@ const DOWN_THRESHOLD = 8;
 export default function ContactDock() {
     const { pathname } = useLocation();
     const [hidden, setHidden] = useState(false);
+    const { isVisible: pastTop } = useBackToTop();
     const lastY = useRef(0);
     const idleTimer = useRef(0);
     const frame = useRef(0);
@@ -67,7 +70,7 @@ export default function ContactDock() {
     return (
         <Link
             to="/contact"
-            className={`contact-dock${hidden ? " is-tucked" : ""}`}
+            className={`contact-dock${hidden ? " is-tucked" : ""}${pastTop ? "" : " is-resting"}`}
             aria-label="Go to the contact page"
         >
             <span className="contact-dock__icon" aria-hidden="true">

@@ -36,7 +36,7 @@ export default function Section7({ classList = "" }: { classList?: string }) {
                         <p className="fz-font-lg fw-500 neutral-900">{withBreaks(ABOUT.faq.lead, "d-none d-xxl-block")}</p>
                     </div>
                     <div className="col-lg-7 ms-lg-auto">
-                        <div className="accordion pt-80" id="accordionExample" data-reveal-group>
+                        <div className="accordion faq-list pt-80" id="accordionExample" data-reveal-group>
                             {FAQ.map((item, i) => {
                                 const id = `faq-${i + 1}`;
                                 const open = i === 0;

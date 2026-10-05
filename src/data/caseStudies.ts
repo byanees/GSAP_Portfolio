@@ -32,7 +32,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Request to Pay over App and USSD",
     company: "DPL",
     role: "Software Engineer, led Request to Pay delivery",
-    period: "2024 - 2026",
+    period: "2024 – 2026",
     featured: true,
     summary:
       "Led delivery of Request to Pay: a merchant requests money from a customer, who can pay from a push notification or a USSD prompt, and can never pay twice.",
@@ -56,7 +56,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Bulk Push Notification Scheduler",
     company: "DPL",
     role: "Software Engineer",
-    period: "2024 - 2026",
+    period: "2024 – 2026",
     featured: true,
     summary:
       `Built the scheduler behind bulk push campaigns: ${METRICS.notificationsPerRun} notifications per run in ${METRICS.runMinutes} minutes, read in chunks and sent with controlled parallelism to Android (FCM) and Huawei devices.`,
@@ -84,7 +84,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Redis Connection Multiplexing",
     company: "DPL",
     role: "Software Engineer, Mixx Tanzania app",
-    period: "2024 - 2026",
+    period: "2024 – 2026",
     region: "Tanzania",
     featured: true,
     summary:
@@ -111,7 +111,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Build Once, Promote to Production",
     company: "DPL",
     role: "Backend lead, telco agent apps",
-    period: "2025 - 2026",
+    period: "2025 – 2026",
     summary:
       "Automated CI/CD for the telco agent apps with Docker and Jenkins. The image signed off in UAT on PreProd is the exact image that goes to production, under a new tag, which cut deployment errors by 99%.",
     metaDescription:
@@ -136,7 +136,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Bus Ticketing Inside the Mixx Tanzania App",
     company: "DPL",
     role: "Software Engineer",
-    period: "2024 - 2026",
+    period: "2024 – 2026",
     region: "Tanzania",
     summary:
       "Built bus ticketing into the Mixx Tanzania wallet app: pick a route, a bus and a seat, pay from the Mixx wallet, and get the ticket by email.",
@@ -160,7 +160,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Qualification Certificate Workflow",
     company: "Systems Limited",
     role: "Full Stack Engineer",
-    period: "2026 - Present",
+    period: "2026 – Present",
     summary:
       "Built the Qualification Certificate workflow end to end: an investor applies, an admin reviews, an approver decides, and an approved QC is reported to an external system and announced.",
     metaDescription:
@@ -187,7 +187,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Visa by Package Dashboards: One API per Dashboard",
     company: "Systems Limited",
     role: "Full Stack Engineer",
-    period: "2026 - Present",
+    period: "2026 – Present",
     summary:
       "Nine dashboards, 4 for investors and 5 for admins, draw their data from another system's APIs. I centralised those calls in our ABP.io backend, so each dashboard makes one call, with a short-TTL cache in front.",
     metaDescription:

@@ -2,6 +2,8 @@
 
 export const NOT_FOUND = {
     title: "Page not found",
+    /** The header's current-page label on an unknown route. */
+    navLabel: "Not found",
     description: "That page doesn't exist. Here's everything that does.",
     eyebrow: "404 error",
     heading: "This page doesn't exist.",

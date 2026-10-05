@@ -161,6 +161,7 @@ export default function CaseStudyDetail() {
                     <div className="container">
                         <div className="row g-4 align-items-center">
                             <div className="col-lg-5">
+                                <Eyebrow>{PAGE.next}</Eyebrow>
                                 <h3 className="h3 mb-0">{next.title}</h3>
                             </div>
                             <div className="col-lg-6 ms-auto">

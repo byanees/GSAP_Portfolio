@@ -95,7 +95,7 @@ const Footer2 = forwardRef<HTMLElement, object>(function Footer2(_, ref) {
                   <h2 className="footer-2-connect-title text-white mb-0 at-title-text text-scale-anim">{FOOTER.connectTitle}</h2>
                 </div>
               </div>
-              <div className="col-lg-2 col-md-4 text-end">
+              <div className="col-lg-2 col-md-4 text-md-end">
                 <div className="d-flex flex-wrap align-items-end gap-4 gap-md-5 mb-3">
                   <div className="footer-2-hours text-white">
                     <span className="d-block fz-font-md opacity-50">{FOOTER.sinceLabel}</span>

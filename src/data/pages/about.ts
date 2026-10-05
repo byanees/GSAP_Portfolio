@@ -75,7 +75,7 @@ export const ABOUT = {
     stack: {
         eyebrow: "my stack",
         title: "From the screen to the server, what I use at every layer",
-        intro: "Follow a request down through the systems I build. Hover a layer to see where it shows up in my work.",
+        intro: "Follow a request down through the systems I build. Hover or tap a layer to see where it shows up in my work.",
         usedInLabel: "Shows up in",
         /** For a layer no single case study is about. */
         everywhereLabel: "Behind",

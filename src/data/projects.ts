@@ -26,7 +26,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "telco-agent-apps",
     title: "Telco Agent Apps: Tanzania & Togo",
-    meta: "DPL, Aug 2025 - Jan 2026",
+    meta: "DPL, Aug 2025 – Jan 2026",
     role: "Backend lead",
     owner: "Internal telco platform",
     description:
@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "emv-qr-p2p-payments",
     title: "EMV QR Peer-to-Peer Payments",
-    meta: "DPL, 2024 - 2026",
+    meta: "DPL, 2024 – 2026",
     role: "Backend",
     owner: "Internal fintech platform",
     description:
@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "dooattend",
     title: "DooAttend",
-    meta: "Mar 2025 - Jul 2025",
+    meta: "Mar 2025 – Jul 2025",
     role: "Backend",
     owner: "Private build",
     description:

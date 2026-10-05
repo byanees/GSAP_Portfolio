@@ -76,7 +76,7 @@ export type ExperienceItem = {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    period: "Jan 2026 - Present",
+    period: "Jan 2026 – Present",
     company: "Systems Limited",
     role: "Full Stack Engineer",
     location: "Islamabad, PK",
@@ -90,7 +90,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: [".NET 9", "ABP.io", "Angular", "DDD", "HyperPay"],
   },
   {
-    period: "Aug 2024 - Jan 2026",
+    period: "Aug 2024 – Jan 2026",
     company: "DPL",
     role: "Software Engineer",
     location: "Islamabad, PK",
@@ -104,7 +104,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: [".NET 8", "Microservices", "Redis", "EMV QR"],
   },
   {
-    period: "Dec 2023 - Aug 2024",
+    period: "Dec 2023 – Aug 2024",
     company: "Axontick Technologies",
     role: "Full Stack Developer",
     location: "Remote",
@@ -118,7 +118,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     stack: ["React", ".NET Core", "Stripe", "PassportJS"],
   },
   {
-    period: "Mar 2023 - Aug 2023",
+    period: "Mar 2023 – Aug 2023",
     company: "LantroTech & Bytewise",
     role: "Web Developer & MERN Stack Fellow",
     location: "Islamabad, PK",
@@ -205,7 +205,7 @@ export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "
 export const EDUCATION = {
   degree: "BS Computer Science",
   school: "COMSATS University Islamabad",
-  period: "Sept 2020 - June 2024",
+  period: "Sept 2020 – June 2024",
   coursework: [
     "Data Structures & Algorithms",
     "Database Systems",

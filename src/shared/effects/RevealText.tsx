@@ -12,14 +12,10 @@ export default function RevealText({ children }: { children: ReactNode }) {
 
     tokens.forEach((token) => {
       if (/^\s+$/.test(token)) {
-        for (let s = 0; s < token.length; s++) {
-          out.push(
-            <span key={`${keyPrefix}-${keyStart.current++}`} className="split-char" style={{ display: "inline-block" }}>
-              {"\u00A0"}
-            </span>,
-          );
-        }
-      } else {
+        // A plain, collapsible space: an inline-block NBSP never collapses, so
+        // every wrapped line would start one space in from the line above.
+        out.push(" ");
+      } else if (token) {
         out.push(
           <span
             key={`${keyPrefix}-${keyStart.current++}`}

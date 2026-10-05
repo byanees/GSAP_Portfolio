@@ -39,7 +39,7 @@ export default function Footer1() {
                 </div>
               </div>
             </div>
-            <div className="col-xxl-3 col-lg-5 col-md-8 ms-lg-auto text-lg-end">
+            <div className="col-xxl-4 col-lg-5 col-md-8 ms-lg-auto text-lg-end">
               <div className="at-footer-title-wrap">
                 <p className="h6 text-white mb-0">
                   <a href={PROFILE.phoneHref} className="text-white">{PROFILE.phone}</a>
@@ -100,7 +100,7 @@ export default function Footer1() {
                 </div>
               </div>
               <div className="col-xxl-9 col-lg-8 col-12 text-lg-end">
-                <p className="fz-160 common-white mb-0 text-scale-anim" aria-hidden="true">
+                <p className="footer-name common-white mb-0 text-scale-anim" aria-hidden="true">
                   {PROFILE.name}
                 </p>
               </div>

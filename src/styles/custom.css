@@ -2834,10 +2834,31 @@ h1, h2, h3, h4, h5, h6,
   transition-delay: 0.08s;
 }
 
+/* At the top of the page, until back-to-top joins it. Fades rather than slides,
+   and stays hidden under reduced motion too (unlike .is-tucked). */
+.contact-dock.is-resting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Phones: both buttons tighter into the corner, 12px apart, so they cover
+   less of the column they float over. The theme's 20px phone offset for
+   back-to-top was overridden by its own 50px "shown" rule. */
 @media (max-width: 575.98px) {
   .contact-dock {
-    right: 20px;
-    right: max(20px, env(safe-area-inset-right));
+    right: 16px;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: 76px;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+
+  .back-to-top-wrapper,
+  .back-to-top-wrapper.back-to-top-btn-show {
+    right: 16px;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom));
   }
 }
 
@@ -3841,4 +3862,100 @@ h1, h2, h3, h4, h5, h6,
 @media (prefers-reduced-motion: reduce) {
   .dev-filter, .post-toc__link { transition: none; }
   .note-grid.is-filtered { animation: none; }
+}
+
+/* ==========================================================================
+   UI audit fixes (Oct 2026)
+   ========================================================================== */
+
+/* The theme capitalized every .at-btn, so sentence-case copy in src/data
+   ("Get in touch", "Read them on LinkedIn") rendered as Title Case next to
+   buttons that are not .at-btn. Copy decides the case; eyebrows still opt
+   into uppercase with .text-uppercase. */
+.at-btn {
+  text-transform: none;
+}
+
+/* Phones: 16px side gutters instead of Bootstrap's 12px, the usual minimum for
+   text against a screen edge. Rows set their own gutter, so only the
+   container's padding changes. */
+@media (max-width: 575.98px) {
+  .container,
+  .container-fluid {
+    --bs-gutter-x: 2rem;
+  }
+}
+
+/* FAQ answers start under the question text: 30px number + 8px gap. The theme
+   used 45px, leaving every answer 7px to the right of its question. */
+.at-faq-body {
+  padding-left: 38px;
+}
+
+/* Below 1400px the theme zeroes this row's negative margins, which pushed the
+   footer nav 12px in from every other footer column. */
+.at-footer-widget.alt-footer-link-item-wrap {
+  margin-left: calc(var(--bs-gutter-x) * -0.5);
+  margin-right: calc(var(--bs-gutter-x) * -0.5);
+}
+
+/* Social pills in both footers: room between label and arrow, and a tap target
+   that is not 26px tall. */
+.mp-footer-style .at-hero-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+}
+
+/* The large footer's display name. It used an fz-160 class that was never
+   defined, so it rendered as a stray line of 16px body text. */
+.footer-name {
+  font-size: clamp(44px, 8vw, 128px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* Blog prose: the theme's global p rule (16px, weight 500, grey, line-height
+   1.2) beat .post-body's 18px/1.75, so paragraphs read smaller and greyer than
+   the lists between them. */
+.post-body p {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+@media (max-width: 575.98px) {
+  .post-body {
+    font-size: 17px;
+  }
+}
+
+/* Case study "The problem" / "What I built": the headings were the same size
+   as the 22px lede under them. */
+.case-section__title {
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+@media (max-width: 575.98px) {
+  .cs-problem {
+    font-size: 19px;
+  }
+}
+
+/* Stacked under the FAQ intro (below lg), the 80px lead-in that lines the
+   list up with the heading beside it is just a gap. */
+@media (max-width: 991.98px) {
+  .accordion.faq-list {
+    padding-top: 24px;
+  }
+}
+
+.post-figure__canvas:focus-visible {
+  outline: 2px solid var(--at-neutral-900);
+  outline-offset: 3px;
 }
