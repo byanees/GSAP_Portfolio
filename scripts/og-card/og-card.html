@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>OG card</title>
+<!--
+  Source for public/assets/imgs/og/og-card-v2.png (1200x630).
+  Render with: node scripts/og-card/render.mjs
+
+  Safe zone: LinkedIn's mobile Featured card and several chat apps
+  centre-crop the image to roughly 1.45:1, which drops about 140px on
+  each side. Everything readable sits inside x 170..1030 so nothing is
+  cut. The background grid and glow bleed to the edges on purpose.
+-->
+<style>
+  @font-face {
+    font-family: "DM Sans";
+    src: url("../../public/assets/fonts/dm-sans-100-1000-latin.woff2") format("woff2");
+    font-weight: 100 1000;
+  }
+  @font-face {
+    font-family: "DM Mono";
+    src: url("../../public/assets/fonts/dm-mono-400-latin.woff2") format("woff2");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "DM Mono";
+    src: url("../../public/assets/fonts/dm-mono-500-latin.woff2") format("woff2");
+    font-weight: 500;
+  }
+
+  :root {
+    --bg: #0f0f0f;
+    --fg: #fefefe;
+    --muted: #8a8a8a;
+    --accent: #00d4aa;
+    --line: #262626;
+    --safe-x: 170px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { width: 1200px; height: 630px; }
+
+  body {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "DM Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Full-bleed texture, so the cropped edges never look empty. */
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 75% 85% at 50% 45%, #000 40%, transparent 100%);
+  }
+  .glow {
+    position: absolute;
+    width: 620px; height: 620px;
+    right: 40px; top: -180px;
+    background: radial-gradient(circle, rgba(0,212,170,.10), transparent 65%);
+  }
+
+  .safe {
+    position: absolute;
+    left: var(--safe-x); right: var(--safe-x);
+    top: 62px; bottom: 58px;
+    display: flex; flex-direction: column;
+  }
+
+  .main { display: flex; gap: 40px; flex: 1; }
+  .copy { flex: 1; display: flex; flex-direction: column; }
+
+  .id { display: flex; align-items: center; gap: 16px; }
+  .badge {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: var(--fg); color: var(--bg);
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 20px; letter-spacing: -.01em;
+  }
+  .name { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+  .role { font-size: 16px; color: var(--muted); margin-top: 4px; }
+
+  h1 {
+    margin-top: auto;
+    font-size: 50px; line-height: 1.1; font-weight: 600;
+    letter-spacing: -.025em;
+  }
+  h1 em { font-style: normal; color: var(--accent); white-space: nowrap; }
+
+  .photo {
+    width: 252px; flex: none;
+    border-radius: 20px; overflow: hidden;
+    background: #161616 url("../../public/assets/imgs/me/headshot.jpg") 50% 100% / auto 112% no-repeat;
+    border: 1px solid #1f1f1f;
+  }
+
+  .rule {
+    position: relative; height: 1px; background: var(--line);
+    margin: 34px 0 26px;
+  }
+  .rule::before {
+    content: ""; position: absolute; left: 0; top: 0;
+    width: 160px; height: 2px; margin-top: -.5px; background: var(--accent);
+  }
+
+  .foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .tags { display: flex; gap: 8px; }
+  .tag {
+    font-family: "DM Mono", monospace; font-size: 14px; color: #a3a3a3;
+    padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px;
+    white-space: nowrap;
+  }
+  .url { font-family: "DM Mono", monospace; font-size: 18px; font-weight: 500; color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+
+  <div class="safe">
+    <div class="main">
+      <div class="copy">
+        <div class="id">
+          <div class="badge">MA</div>
+          <div>
+            <div class="name">Muhammad Anees</div>
+            <div class="role">Full Stack Engineer · Islamabad</div>
+          </div>
+        </div>
+        <h1>Payment platforms and backend systems that hold up under <em>real traffic.</em></h1>
+      </div>
+      <div class="photo" role="img" aria-label="Portrait"></div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="foot">
+      <div class="tags">
+        <span class="tag">.NET 9</span>
+        <span class="tag">ABP.io</span>
+        <span class="tag">Angular</span>
+        <span class="tag">React</span>
+        <span class="tag">EMV QR</span>
+        <span class="tag">Microservices</span>
+      </div>
+      <div class="url">byanees.com</div>
+    </div>
+  </div>
+</body>
+</html>
