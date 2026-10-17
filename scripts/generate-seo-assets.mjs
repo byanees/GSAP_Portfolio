@@ -199,7 +199,7 @@ function htmlToMarkdown(html) {
 const faq = [
   [
     `Who is ${PROFILE.name}?`,
-    `${PROFILE.name} is a ${current.role.toLowerCase()} at ${current.company} in ${PROFILE.location}, with ${METRICS.years} years building fintech, telecom, and enterprise platforms. ${PROFILE.summary}`,
+    `${PROFILE.name} is ${/^[AEIOU]/.test(current.role) ? "an" : "a"} ${current.role} at ${current.company} in ${PROFILE.location}, with ${METRICS.years} years building fintech, telecom, and government platforms. ${PROFILE.summary}`,
   ],
   [
     `What technologies does ${PROFILE.shortName} work with?`,

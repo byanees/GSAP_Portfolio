@@ -159,7 +159,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     domain: "Enterprise workflow",
     title: "Qualification Certificate Workflow",
     company: "Systems Limited",
-    role: "Full Stack Engineer",
+    role: "AI-Native Full Stack Engineer",
     period: "2026 – Present",
     summary:
       "Built the Qualification Certificate workflow end to end: an investor applies, an admin reviews, an approver decides, and an approved QC is reported to an external system and announced.",
@@ -186,7 +186,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     domain: "Platform & analytics",
     title: "Visa by Package Dashboards: One API per Dashboard",
     company: "Systems Limited",
-    role: "Full Stack Engineer",
+    role: "AI-Native Full Stack Engineer",
     period: "2026 – Present",
     summary:
       "Nine dashboards, 4 for investors and 5 for admins, draw their data from another system's APIs. I centralised those calls in our ABP.io backend, so each dashboard makes one call, with a short-TTL cache in front.",

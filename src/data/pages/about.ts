@@ -13,15 +13,15 @@ export type FaqItem = { question: string; answer: string };
 export const FAQ: FaqItem[] = [
     {
         question: "What technologies do you specialize in?",
-        answer: ".NET 9 and ABP.io on the backend, Angular and React on the frontend, and Docker, Kubernetes, and AWS for infrastructure, with most of my work in fintech and telecom payment systems.",
+        answer: ".NET 9 and ABP.io on the backend, Angular and React on the frontend, and Docker, Kubernetes, and AWS for infrastructure, with most of my work in fintech, telecom, and government platforms.",
     },
     {
         question: "What kind of projects have you worked on?",
-        answer: `Telco agent apps serving ${METRICS.agents} agents across Tanzania, Request to Pay adopted by ${METRICS.merchants} merchants, EMV QR payments, an enterprise certificate workflow, and earlier client products like an AI assistant and a Dubai property platform.`,
+        answer: `Saudi tourism licensing and visa platforms with 10+ government integrations, telco agent apps serving ${METRICS.agents} agents across Tanzania, Request to Pay adopted by ${METRICS.merchants} merchants, EMV QR payments, and earlier client products like an AI assistant and a Dubai property platform.`,
     },
     {
         question: "Do you work with AI tools?",
-        answer: "Yes. AI-assisted development with tools like Cursor and Claude is part of my daily workflow, and it helps me move faster on day-to-day development.",
+        answer: "Yes, every day. I work in a multi-agent Cursor workflow, with orchestrator, backend, frontend, code-review, and security agents, and write structured prompts with file-scoped context and explicit acceptance criteria. I also use agents for root-cause analysis on production incidents.",
     },
     {
         question: "Are you available for new opportunities?",
@@ -68,7 +68,7 @@ export const ABOUT = {
     experience: {
         eyebrow: "my journey",
         title: "Experience",
-        lead: `Building fintech, telecom, and enterprise systems since ${PROFILE.since}.`,
+        lead: `Building fintech, telecom, and government systems since ${PROFILE.since}.`,
         currentBadge: "Current role",
         stackLabel: "Worked with",
     },

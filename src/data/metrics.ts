@@ -14,7 +14,7 @@ export const METRICS = {
   /** Push notifications sent by one scheduler run, and how long a run takes.
    *  Ranges take an en dash. */
   notificationsPerRun: "700–800k",
-  runMinutes: "6–8",
+  runMinutes: "7–8",
   /** Concurrent sessions held after the Redis multiplexing fix. */
   concurrentSessions: "600k+",
   /** Merchants that adopted Request to Pay. */
