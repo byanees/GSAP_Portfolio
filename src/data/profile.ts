@@ -53,12 +53,12 @@ export const PROFILE = {
   /** Square, 800x800. The Person schema's image, which search engines show
    *  as the profile photo. */
   headshot: "/assets/imgs/me/headshot.jpg",
-  heroLead: `${METRICS.years} years building fintech, telco, and enterprise platforms. Now on .NET 9, ABP.io, and Angular micro-frontends at Systems Limited.`,
+  heroLead: `${METRICS.years} years building fintech, telecom, and government platforms. Now on Saudi tourism licensing and visa platforms at Systems Limited, with .NET 9, ABP.io, and Angular micro-frontends.`,
   /** About page opening line. Deliberately different from heroLead, which the
    *  home hero already prints. */
   aboutLead:
-    "I work on the parts of a product that have to stay up: payment rails, schedulers, and the services behind them. Three years in, mostly fintech and telecom.",
-  summary: `I've led the backend for telco agent apps serving ${METRICS.agents} agents across Tanzania, delivered Request to Pay to ${METRICS.merchants} merchants, and built a scheduler that pushes ${METRICS.notificationsPerRun} notifications per run. Today I build enterprise-grade distributed systems on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design and clean architecture, with AI-assisted development as part of my daily workflow.`,
+    "I work on the parts of a product that have to stay up: payment rails, schedulers, and the services behind them. Three years in, across fintech, telecom, and government platforms.",
+  summary: `I've led the backend for telco agent apps serving ${METRICS.agents} agents across Tanzania, delivered Request to Pay to ${METRICS.merchants} merchants, and built a scheduler that pushes ${METRICS.notificationsPerRun} notifications per run. Today I build Saudi tourism licensing and visa platforms on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design across a microservices architecture, in a multi-agent AI workflow with Cursor.`,
 };
 
 type Highlight = { value: string; label: string };
@@ -78,16 +78,17 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     period: "Jan 2026 – Present",
     company: "Systems Limited",
-    role: "Full Stack Engineer",
+    role: "AI-Native Full Stack Engineer",
     location: "Islamabad, PK",
     current: true,
     summary:
-      "Building REST APIs on .NET 9 and ABP.io with domain-driven design across a microservices architecture, and Angular micro-frontend features for multiple product teams.",
+      "Building Saudi tourism licensing and visa platforms on .NET 9, ABP.io, and Angular micro-frontends in a multi-agent Cursor workflow: government integrations, bilingual notifications, analytics dashboards, and L3 hypercare after go-live.",
     highlights: [
-      { value: "40", label: "person delivery team, coordinated daily" },
+      { value: "10+", label: "government and third-party systems integrated" },
+      { value: "20+", label: "production incidents fixed within an 8–10 hour SLA" },
       { value: "9", label: "dashboards, each served by one cached API" },
     ],
-    stack: [".NET 9", "ABP.io", "Angular", "DDD", "HyperPay"],
+    stack: [".NET 9", "ABP.io", "Angular 20", "DDD", "HyperPay", "Cursor"],
   },
   {
     period: "Aug 2024 – Jan 2026",
@@ -95,7 +96,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     role: "Software Engineer",
     location: "Islamabad, PK",
     summary:
-      "Led development of enterprise telecom agent apps for Tanzania and Togo, managing a small engineering team, and built payment and messaging systems at scale.",
+      "Led development of enterprise telecom agent apps for Tanzania and Togo, managing a small engineering team: SIM registration, SIM swap, re-identification, and airtime and bundle subscriptions, plus the payment and messaging systems behind them.",
     highlights: [
       { value: METRICS.merchants, label: "merchants on Request to Pay" },
       { value: METRICS.notificationsPerRun, label: "notifications per run" },
@@ -134,7 +135,7 @@ export const EXPERTISE = [
     key: "backend",
     title: "Backend Engineering",
     description:
-      "REST APIs and microservices in C# on .NET 9 and ABP.io, shaped with domain-driven design and clean architecture.",
+      "REST APIs and microservices in C# on .NET 9 and ABP.io, shaped with domain-driven design and clean architecture, and integrations with government and third-party systems built on retries, timeouts, and idempotent writes.",
     tags: [".NET 9", "ABP.io", "EF Core", "PostgreSQL", "Redis"],
   },
   {
@@ -199,7 +200,7 @@ export const STACK_LAYERS = [
   },
 ];
 
-export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "QR / TLV encoding", "AI-assisted development"];
+export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "QR / TLV encoding", "Multi-agent AI workflows"];
 
 /** Education and certifications, from the CV. */
 export const EDUCATION = {

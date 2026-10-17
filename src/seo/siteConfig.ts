@@ -60,7 +60,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   },
   "/about": {
     title: `About ${PROFILE.name} — ${PROFILE.role}`,
-    description: `${PROFILE.name} is a full stack engineer with ${METRICS.years} years in fintech and telecom, at Systems Limited, DPL, and Axontick. Experience, stack, and credentials.`,
+    description: `${PROFILE.name} is a full stack engineer with ${METRICS.years} years in fintech, telecom, and government platforms at Systems Limited, DPL, and Axontick. Experience and stack.`,
   },
   "/portfolio": {
     title: pageTitle("Case Studies in Payments & Backend"),
