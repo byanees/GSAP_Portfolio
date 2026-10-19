@@ -65,20 +65,16 @@ export const ABOUT = {
             "EMV QR",
         ],
     },
-    /** Each role is drawn as a release card in a deck, newest on top. */
+    /** Each role is a card in a deck, newest on top. */
     experience: {
-        eyebrow: "career changelog",
+        eyebrow: "my journey",
         title: "Experience",
-        lead: `Building fintech, telecom, and government systems since ${PROFILE.since}. Every role, shipped as a release.`,
-        currentBadge: "Now shipping",
+        lead: `Building fintech, telecom, and government systems since ${PROFILE.since}.`,
         stackLabel: "Worked with",
         deckLabel: "Roles, newest first",
         indexLabel: "Jump to a role",
-        timelineLabel: "Time spent in each role",
         prevLabel: "Newer role",
         nextLabel: "Older role",
-        hint: "Drag, swipe, or use the arrow keys",
-        now: "now",
     },
     stack: {
         eyebrow: "my stack",

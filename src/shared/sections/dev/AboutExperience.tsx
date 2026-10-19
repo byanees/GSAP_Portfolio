@@ -36,50 +36,31 @@ function formatDuration(months: number) {
     return parts.join(" ");
 }
 
-/** "2024–26", "2026–now", or "2023" for a role inside one year. */
-function shortYears(period: string) {
+/** "2024 – 2026", "2026 – Present", or "2023" for a role inside one year. */
+function yearRange(period: string) {
     const { start, end } = parsePeriod(period);
     if (start == null) return period;
     const from = Math.floor(start / 12);
-    if (end == null) return `${from}–${COPY.now}`;
+    if (end == null) return `${from} – ${period.split(/\s+[–-]\s+/)[1] ?? ""}`.trim();
     const to = Math.floor(end / 12);
-    return from === to ? `${from}` : `${from}–${String(to).slice(2)}`;
+    return from === to ? `${from}` : `${from} – ${to}`;
 }
 
-const ROLES = EXPERIENCE.map((item, i) => ({
+const ROLES = EXPERIENCE.map((item) => ({
     ...item,
-    /** The first job is v1.0, the current one the highest release. */
-    version: COUNT - i,
-    years: shortYears(item.period),
+    years: yearRange(item.period),
     span: parsePeriod(item.period),
 }));
-
-/** Counts a figure like "4,000+" or "30%" up from zero. Ranges such as "700–800k" are left as written. */
-function countUp(el: HTMLElement, frames: number[]) {
-    const final = el.dataset.value ?? "";
-    const m = final.match(/^(\d[\d,]*)(\D*)$/);
-    if (!m) return;
-    const target = Number(m[1].replace(/,/g, ""));
-    const grouped = m[1].includes(",");
-    const t0 = performance.now();
-    const tick = (t: number) => {
-        const p = Math.min((t - t0) / 900, 1);
-        const v = Math.round(target * (1 - Math.pow(1 - p, 3)));
-        el.textContent = (grouped ? v.toLocaleString("en-US") : String(v)) + m[2];
-        if (p < 1) frames.push(requestAnimationFrame(tick));
-    };
-    frames.push(requestAnimationFrame(tick));
-}
 
 const reducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
 
 type Drag = { id: number; x: number; y: number; dx: number; lastX: number; lastT: number; v: number; on: boolean };
 
 /**
- * Career as a deck of release cards, newest on top. Drag or swipe the front card
- * away (or use the buttons, arrow keys, the index, or the tenure ruler) to deal
- * the next role. Every card is in the markup, so the full history is prerendered
- * and indexable; only the front one is interactive to assistive tech.
+ * Career as a deck of cards, newest on top. Drag or swipe the front card away (or
+ * use the buttons, arrow keys, or the index) to bring up the next role. Every card
+ * is in the markup, so the full history is prerendered and indexable; only the
+ * front one is interactive to assistive tech.
  */
 export default function AboutExperience() {
     const [active, setActive] = useState(0);
@@ -92,52 +73,34 @@ export default function AboutExperience() {
     const drag = useRef<Drag | null>(null);
     const cards = useRef<(HTMLElement | null)[]>([]);
     const stackRef = useRef<HTMLDivElement>(null);
-    const seen = useRef(false);
-    const frames = useRef<number[]>([]);
 
     useEffect(() => {
         const d = new Date();
         setNowMonth(d.getFullYear() * 12 + d.getMonth());
     }, []);
 
-    const runCounters = useCallback((index: number) => {
-        frames.current.forEach(cancelAnimationFrame);
-        frames.current = [];
-        if (reducedMotion()) return;
-        cards.current[index]?.querySelectorAll<HTMLElement>("[data-value]").forEach((el) => countUp(el, frames.current));
-    }, []);
-
-    // First sight of the deck: count the front card's numbers up and nudge it, hinting that it moves.
+    // On first sight, nudge the front card once so it reads as something that moves.
     useEffect(() => {
         const stack = stackRef.current;
-        if (!stack) return;
+        if (!stack || reducedMotion()) return;
         const io = new IntersectionObserver(
             ([entry]) => {
                 if (!entry.isIntersecting) return;
                 io.disconnect();
-                seen.current = true;
-                runCounters(activeRef.current);
-                if (!reducedMotion()) stack.dataset.nudge = "";
+                stack.dataset.nudge = "";
             },
             { threshold: 0.45 },
         );
         io.observe(stack);
-        return () => {
-            io.disconnect();
-            frames.current.forEach(cancelAnimationFrame);
-        };
-    }, [runCounters]);
+        return () => io.disconnect();
+    }, []);
 
-    const commit = useCallback(
-        (next: number) => {
-            activeRef.current = next;
-            flushSync(() => setActive(next));
-            if (seen.current) runCounters(next);
-        },
-        [runCounters],
-    );
+    const commit = useCallback((next: number) => {
+        activeRef.current = next;
+        flushSync(() => setActive(next));
+    }, []);
 
-    /** Deals the deck one card: 1 sends the front card to the back, -1 pulls the back card to the front. */
+    /** 1 sends the front card to the back of the deck, -1 pulls the back card to the front. */
     const deal = useCallback(
         (dir: 1 | -1) => {
             if (busy.current) return;
@@ -260,13 +223,6 @@ export default function AboutExperience() {
         }
     };
 
-    // The ruler spans the first start to this month, and is drawn only once the month is known.
-    const first = Math.min(...ROLES.map((r) => r.span.start ?? Infinity));
-    const last = nowMonth != null ? nowMonth + 1 : null;
-    const total = last != null ? last - first : 0;
-    const ticks =
-        last != null ? Array.from({ length: Math.floor((last - 1) / 12) - Math.floor(first / 12) + 1 }, (_, k) => Math.floor(first / 12) + k) : [];
-
     const durationOf = (span: { start: number | null; end: number | null }) => {
         if (span.start == null) return null;
         const end = span.end ?? nowMonth;
@@ -297,7 +253,6 @@ export default function AboutExperience() {
                                                 aria-current={i === active ? "true" : undefined}
                                                 onClick={() => jump(i)}
                                             >
-                                                <span className="xp-index__ver">v{role.version}.0</span>
                                                 <span className="xp-index__name">
                                                     <span className="xp-index__company">{role.company}</span>
                                                     <span className="xp-index__role">{role.role}</span>
@@ -323,50 +278,6 @@ export default function AboutExperience() {
                     </div>
 
                     <div className="col-lg-8">
-                        <div className="xp-ruler" aria-label={COPY.timelineLabel} role="group">
-                            <div className={`xp-ruler__track${last != null ? " is-ready" : ""}`}>
-                                {last != null &&
-                                    ROLES.map((role, i) => {
-                                        if (role.span.start == null) return null;
-                                        // Closed roles end where the next one begins, so bars that share a month don't overlap.
-                                        const end = role.span.end ?? nowMonth! + 1;
-                                        const style = {
-                                            "--left": `${((role.span.start - first) / total) * 100}%`,
-                                            "--width": `${((end - role.span.start) / total) * 100}%`,
-                                            "--i": role.version - 1,
-                                        } as CSSProperties;
-                                        return (
-                                            <button
-                                                key={role.period}
-                                                type="button"
-                                                tabIndex={-1}
-                                                className={`xp-ruler__seg${i === active ? " is-active" : ""}${role.current ? " is-live" : ""}`}
-                                                style={style}
-                                                onClick={() => jump(i)}
-                                                aria-label={`${role.company}, ${durationOf(role.span)}`}
-                                            >
-                                                <span className="xp-ruler__ver">v{role.version}</span>
-                                            </button>
-                                        );
-                                    })}
-                                {ticks.map((year) => (
-                                    <span
-                                        key={year}
-                                        className="xp-ruler__tick"
-                                        style={{ "--left": `${(Math.max(year * 12 - first, 0) / total) * 100}%` } as CSSProperties}
-                                        aria-hidden
-                                    >
-                                        {year}
-                                    </span>
-                                ))}
-                                {last != null && (
-                                    <span className="xp-ruler__now" aria-hidden>
-                                        {COPY.now}
-                                    </span>
-                                )}
-                            </div>
-                        </div>
-
                         <div
                             className="xp-deck"
                             role="region"
@@ -391,7 +302,7 @@ export default function AboutExperience() {
                                             ref={(el) => {
                                                 cards.current[i] = el;
                                             }}
-                                            className={`xp-slide${isFront ? " is-front" : ""}${role.current ? " is-live" : ""}`}
+                                            className={`xp-slide${isFront ? " is-front" : ""}${role.current ? " is-current" : ""}`}
                                             style={style}
                                             aria-roledescription="slide"
                                             aria-label={`${i + 1} of ${COUNT}`}
@@ -402,32 +313,23 @@ export default function AboutExperience() {
                                             onPointerCancel={isFront ? onPointerUp : undefined}
                                         >
                                             <div className="xp-slide__inner">
-                                                <header className="xp-slide__meta">
-                                                    <span className="xp-slide__ver">v{role.version}.0</span>
-                                                    {role.current && (
-                                                        <span className="xp-slide__live">
-                                                            <span className="xp-slide__pulse" aria-hidden />
-                                                            {COPY.currentBadge}
-                                                        </span>
-                                                    )}
+                                                <div className="xp-slide__meta">
                                                     <span className="xp-slide__period">
                                                         {role.period}
-                                                        {duration && <span className="xp-slide__duration"> · {duration}</span>}
+                                                        {duration && <span className="xp-slide__duration">{duration}</span>}
                                                     </span>
-                                                </header>
+                                                    <span className="xp-slide__location">{role.location}</span>
+                                                </div>
 
                                                 <h3 className="xp-slide__company">{role.company}</h3>
-                                                <p className="xp-slide__role">
-                                                    {role.role}
-                                                    <span>{role.location}</span>
-                                                </p>
+                                                <p className="xp-slide__role">{role.role}</p>
                                                 <p className="xp-slide__summary">{role.summary}</p>
 
                                                 {role.highlights.length > 0 && (
                                                     <ul className="xp-slide__stats">
                                                         {role.highlights.map((h) => (
                                                             <li key={h.label}>
-                                                                <strong data-value={h.value}>{h.value}</strong>
+                                                                <strong>{h.value}</strong>
                                                                 <span>{h.label}</span>
                                                             </li>
                                                         ))}
@@ -445,9 +347,6 @@ export default function AboutExperience() {
                                                     </div>
                                                 )}
                                             </div>
-                                            <span className="xp-slide__mark" aria-hidden>
-                                                v{role.version}
-                                            </span>
                                         </article>
                                     );
                                 })}
@@ -459,15 +358,14 @@ export default function AboutExperience() {
                                         <path d="M10 3 5 8l5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </button>
-                                <span className="xp-deck__count" aria-hidden>
-                                    <strong>{String(active + 1).padStart(2, "0")}</strong> / {String(COUNT).padStart(2, "0")}
-                                </span>
                                 <button type="button" className="xp-deck__btn" onClick={() => deal(1)} aria-label={COPY.nextLabel}>
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                                         <path d="m6 3 5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </button>
-                                <span className={`xp-deck__hint${touched ? " is-hidden" : ""}`}>{COPY.hint}</span>
+                                <span className="xp-deck__count" aria-hidden>
+                                    {active + 1} / {COUNT}
+                                </span>
                             </div>
 
                             <p className="visually-hidden" aria-live="polite">

@@ -975,13 +975,13 @@
   content: none;
 }
 
-/* About: experience, drawn as a deck of release cards (newest on top) */
+/* About: experience, drawn as a deck of cards (newest on top) */
 .xp-intro {
   position: sticky;
   top: 120px;
 }
 
-/* Index of every role, so the whole history scans without dealing a card */
+/* Index of every role, so the whole history scans without flipping a card */
 .xp-index {
   margin: 0 0 36px;
 }
@@ -999,12 +999,12 @@
 
 .xp-index__row {
   position: relative;
-  display: grid;
-  grid-template-columns: 46px 1fr auto;
+  display: flex;
   align-items: baseline;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 16px;
   width: 100%;
-  padding: 15px 0;
+  padding: 16px 0;
   text-align: left;
   color: var(--at-neutral-500);
   background: none;
@@ -1037,16 +1037,9 @@
   outline-offset: 2px;
 }
 
-.xp-index__ver,
-.xp-index__years {
-  font-family: var(--dev-mono);
-  font-size: 12px;
-  letter-spacing: 0.02em;
-}
-
 .xp-index__company {
   display: block;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.02em;
@@ -1055,101 +1048,15 @@
 .xp-index__role {
   display: block;
   margin-top: 2px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.4;
   color: var(--at-neutral-500);
 }
 
-/* Tenure ruler: each role as a bar sized by the months it lasted */
-.xp-ruler {
-  margin: 0 0 44px;
-  padding: 30px 0 24px;
-}
-
-.xp-ruler__track {
-  position: relative;
-  height: 8px;
-  background: var(--at-neutral-50);
-  border-radius: 8px;
-}
-
-.xp-ruler__seg {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--left);
-  width: calc(var(--width) - 3px);
-  padding: 0;
-  background: var(--at-neutral-200);
-  border: 0;
-  border-radius: 8px;
-  transform-origin: 0 50%;
-  animation: xp-grow 1s calc(var(--i, 0) * 90ms) cubic-bezier(0.2, 0.85, 0.25, 1) both;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.xp-ruler__seg:hover {
-  background: var(--at-neutral-500);
-}
-
-.xp-ruler__seg.is-active {
-  background: var(--at-neutral-900);
-}
-
-.xp-ruler__ver {
-  position: absolute;
-  top: 16px;
-  left: 0;
-  font-family: var(--dev-mono);
-  font-size: 11px;
-  line-height: 1;
-  color: var(--at-neutral-500);
-  transition: color 0.3s ease;
-}
-
-.xp-ruler__seg.is-active .xp-ruler__ver {
-  color: var(--at-neutral-900);
-}
-
-.xp-ruler__tick {
-  position: absolute;
-  bottom: 14px;
-  left: var(--left);
-  padding-left: 6px;
-  font-family: var(--dev-mono);
-  font-size: 11px;
-  line-height: 1;
-  color: var(--at-neutral-500);
-  border-left: 1px solid var(--at-neutral-200);
-}
-
-.xp-ruler__now {
-  position: absolute;
-  right: 0;
-  bottom: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--dev-mono);
-  font-size: 11px;
-  line-height: 1;
-  color: var(--at-neutral-900);
-}
-
-.xp-ruler__now::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  background: #00d4aa;
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
-}
-
-@keyframes xp-grow {
-  from {
-    transform: scaleX(0);
-  }
+.xp-index__years {
+  flex-shrink: 0;
+  font-size: 15px;
+  white-space: nowrap;
 }
 
 /* The deck. Every card sits in the same grid cell, so the stack is as tall as
@@ -1234,9 +1141,7 @@
 }
 
 .xp-slide__inner {
-  position: relative;
-  z-index: 1;
-  padding: 40px;
+  padding: 44px;
   transition: opacity 0.35s ease;
 }
 
@@ -1247,137 +1152,86 @@
 .xp-slide__meta {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 12px;
-  margin-bottom: 30px;
-}
-
-.xp-slide__ver {
-  padding: 5px 11px;
-  font-family: var(--dev-mono);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
-  border: 1px solid var(--at-neutral-200);
-  border-radius: 50px;
-}
-
-.xp-slide__live {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 11px 5px 9px;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #00d4aa;
-  background: rgba(0, 212, 170, 0.12);
-  border-radius: 50px;
-}
-
-.xp-slide__pulse {
-  position: relative;
-  width: 7px;
-  height: 7px;
-  background: #00d4aa;
-  border-radius: 50%;
-}
-
-.xp-slide__pulse::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: #00d4aa;
-  animation: xp-pulse 1.8s ease-out infinite;
-}
-
-@keyframes xp-pulse {
-  to {
-    transform: scale(3);
-    opacity: 0;
-  }
-}
-
-.xp-slide__period {
-  margin-left: auto;
-  font-family: var(--dev-mono);
-  font-size: 13px;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 24px;
+  margin-bottom: 28px;
+  font-size: 16px;
   color: var(--at-neutral-500);
 }
 
-.xp-slide__company {
-  margin: 0 0 12px;
-  font-size: clamp(36px, 4.2vw, 58px);
+.xp-slide__period {
   font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.05em;
+  color: var(--at-neutral-900);
+}
+
+.xp-slide__duration {
+  font-weight: 400;
+  color: var(--at-neutral-500);
+}
+
+.xp-slide__duration::before {
+  content: "\00a0\00b7\00a0";
+}
+
+.xp-slide__company {
+  margin: 0 0 10px;
+  font-size: clamp(36px, 4.2vw, 56px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
   color: inherit;
 }
 
 .xp-slide__role {
   margin: 0;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 500;
   color: inherit;
 }
 
-.xp-slide__role span {
-  color: var(--at-neutral-500);
-}
-
-.xp-slide__role span::before {
-  content: "\00a0\00b7\00a0";
-}
-
 .xp-slide__summary {
-  margin: 20px 0 30px;
+  margin: 20px 0 32px;
+  font-size: 17px;
   line-height: 1.65;
   color: var(--at-neutral-500);
 }
 
 .xp-slide__stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 18px 28px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px 32px;
   margin: 0;
-  padding: 24px 0 0;
+  padding: 28px 0 0;
   list-style: none;
   border-top: 1px solid var(--at-neutral-200);
 }
 
 .xp-slide__stats strong {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-size: clamp(30px, 3vw, 40px);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.045em;
-  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
 }
 
 .xp-slide__stats span {
   display: block;
-  font-size: 13.5px;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 1.45;
   color: var(--at-neutral-500);
 }
 
 .xp-slide__stack {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 14px;
-  margin-top: 30px;
+  margin-top: 32px;
 }
 
 .xp-slide__stack-label {
-  font-family: var(--dev-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--at-neutral-500);
 }
 
@@ -1391,33 +1245,17 @@
 }
 
 .xp-slide__stack li {
-  padding: 6px 12px;
-  font-size: 13px;
+  padding: 7px 14px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.2;
   border: 1px solid var(--at-neutral-200);
   border-radius: 50px;
 }
 
-/* Oversized outlined version number behind the content */
-.xp-slide__mark {
-  position: absolute;
-  right: 18px;
-  bottom: -0.2em;
-  z-index: 0;
-  font-size: clamp(150px, 20vw, 280px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.07em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(29, 29, 29, 0.09);
-  pointer-events: none;
-  user-select: none;
-}
-
 /* The current role is the dark card, on the hero's grid */
-.xp-slide.is-live,
-.xp-slide.is-live:not(.is-front) {
+.xp-slide.is-current,
+.xp-slide.is-current:not(.is-front) {
   color: #fefefe;
   background-color: #0f0f0f;
   background-image:
@@ -1427,32 +1265,28 @@
   border-color: #0f0f0f;
 }
 
-.xp-slide.is-live .xp-slide__ver {
-  border-color: rgba(255, 255, 255, 0.24);
+.xp-slide.is-current .xp-slide__period {
+  color: #fefefe;
 }
 
-.xp-slide.is-live .xp-slide__period,
-.xp-slide.is-live .xp-slide__role span,
-.xp-slide.is-live .xp-slide__stats span,
-.xp-slide.is-live .xp-slide__stack-label {
-  color: #8a8a8a;
+.xp-slide.is-current .xp-slide__meta,
+.xp-slide.is-current .xp-slide__duration,
+.xp-slide.is-current .xp-slide__stats span,
+.xp-slide.is-current .xp-slide__stack-label {
+  color: #9a9a9a;
 }
 
-.xp-slide.is-live .xp-slide__summary {
+.xp-slide.is-current .xp-slide__summary {
   color: #b7b7b7;
 }
 
-.xp-slide.is-live .xp-slide__stats {
+.xp-slide.is-current .xp-slide__stats {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-.xp-slide.is-live .xp-slide__stack li {
+.xp-slide.is-current .xp-slide__stack li {
   color: #e6e6e6;
-  border-color: rgba(255, 255, 255, 0.16);
-}
-
-.xp-slide.is-live .xp-slide__mark {
-  -webkit-text-stroke-color: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 /* Controls under the deck */
@@ -1460,17 +1294,16 @@
   position: relative;
   z-index: 10;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 12px 14px;
+  gap: 12px;
 }
 
 .xp-deck__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   padding: 0;
   color: var(--at-neutral-900);
   background: var(--at-neutral-0);
@@ -1487,28 +1320,11 @@
 }
 
 .xp-deck__count {
-  min-width: 64px;
-  font-family: var(--dev-mono);
-  font-size: 13px;
-  text-align: center;
-  color: var(--at-neutral-500);
-}
-
-.xp-deck__count strong {
+  margin-left: 8px;
+  font-size: 16px;
   font-weight: 500;
-  color: var(--at-neutral-900);
-}
-
-.xp-deck__hint {
-  margin-left: auto;
-  font-family: var(--dev-mono);
-  font-size: 12px;
+  font-variant-numeric: tabular-nums;
   color: var(--at-neutral-500);
-  transition: opacity 0.4s ease;
-}
-
-.xp-deck__hint.is-hidden {
-  opacity: 0;
 }
 
 @media (max-width: 991.98px) {
@@ -1532,34 +1348,29 @@
   }
 
   .xp-slide__inner {
-    padding: 26px 22px;
+    padding: 28px 22px;
   }
 
   .xp-slide__meta {
-    margin-bottom: 22px;
+    flex-direction: column;
+    margin-bottom: 20px;
   }
 
-  .xp-slide__period {
-    flex-basis: 100%;
-    margin-left: 0;
+  .xp-slide__role {
+    font-size: 17px;
   }
 
-  .xp-slide__role span {
-    display: block;
-    margin-top: 2px;
-  }
-
-  .xp-slide__role span::before {
-    content: none;
+  .xp-slide__summary {
+    font-size: 16px;
   }
 
   .xp-slide__stats {
     grid-template-columns: 1fr 1fr;
   }
 
-  .xp-deck__hint {
-    flex-basis: 100%;
-    margin-left: 0;
+  /* A third figure takes the whole row instead of sitting alone in half of it. */
+  .xp-slide__stats li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 }
 
@@ -1568,11 +1379,6 @@
   .xp-slide__inner,
   .xp-index__row::after {
     transition: none;
-  }
-
-  .xp-ruler__seg,
-  .xp-slide__pulse::after {
-    animation: none;
   }
 }
 
