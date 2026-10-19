@@ -65,12 +65,16 @@ export const ABOUT = {
             "EMV QR",
         ],
     },
+    /** Each role is a card in a deck, newest on top. */
     experience: {
         eyebrow: "my journey",
         title: "Experience",
         lead: `Building fintech, telecom, and government systems since ${PROFILE.since}.`,
-        currentBadge: "Current role",
         stackLabel: "Worked with",
+        deckLabel: "Roles, newest first",
+        indexLabel: "Jump to a role",
+        prevLabel: "Newer role",
+        nextLabel: "Older role",
     },
     stack: {
         eyebrow: "my stack",

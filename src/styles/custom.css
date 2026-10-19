@@ -975,202 +975,411 @@
   content: none;
 }
 
-/* About: experience timeline */
-.xp-facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 36px;
-  margin: 0 0 32px;
-  padding: 24px 0;
+/* About: experience, drawn as a deck of cards (newest on top) */
+.xp-intro {
+  position: sticky;
+  top: 120px;
+}
+
+/* Index of every role, so the whole history scans without flipping a card */
+.xp-index {
+  margin: 0 0 36px;
+}
+
+.xp-index ol {
+  margin: 0;
+  padding: 0;
   list-style: none;
-  font-size: 14px;
-  color: var(--at-neutral-500);
   border-top: 1px solid var(--at-neutral-100);
+}
+
+.xp-index li {
   border-bottom: 1px solid var(--at-neutral-100);
 }
 
-.xp-facts__value {
-  display: block;
-  margin-bottom: 6px;
-  font-family: var(--at-ff-heading, inherit);
-  font-size: 44px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.04em;
+.xp-index__row {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 0;
+  text-align: left;
+  color: var(--at-neutral-500);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.xp-index__row::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: var(--at-neutral-900);
+  transition: width 0.6s cubic-bezier(0.2, 0.85, 0.25, 1);
+}
+
+.xp-index__row.is-active::after {
+  width: 100%;
+}
+
+.xp-index__row:hover,
+.xp-index__row.is-active {
   color: var(--at-neutral-900);
 }
 
-.xp-list {
+.xp-index__row:focus-visible {
+  outline: 2px solid var(--at-neutral-900);
+  outline-offset: 2px;
+}
+
+.xp-index__company {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.xp-index__role {
+  display: block;
+  margin-top: 2px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--at-neutral-500);
+}
+
+.xp-index__years {
+  flex-shrink: 0;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* The deck. Every card sits in the same grid cell, so the stack is as tall as
+   its tallest card and the cards behind peek out below, each a little smaller
+   and tilted, like a hand-held deck. */
+.xp-deck {
   position: relative;
+  outline: none;
+}
+
+.xp-deck__stack {
+  --spread: 1;
+  display: grid;
+  padding-bottom: 84px;
+}
+
+@media (hover: hover) {
+  .xp-deck__stack:hover {
+    --spread: 1.3;
+  }
+}
+
+.xp-slide {
+  position: relative;
+  grid-area: 1 / 1;
+  overflow: hidden;
+  color: var(--at-neutral-900);
+  background: var(--at-neutral-50);
+  border: 1px solid var(--at-neutral-100);
+  border-radius: 28px;
+  box-shadow: 0 30px 60px -36px rgba(15, 15, 15, 0.35);
+  transform-origin: 50% 100%;
+  transform:
+    translate3d(0, calc(var(--depth) * var(--spread) * 12px), 0)
+    rotate(calc(var(--tilt) * var(--spread) * 1deg))
+    scale(calc(1 - var(--depth) * 0.05));
+  transition:
+    transform 0.7s cubic-bezier(0.2, 0.85, 0.25, 1),
+    background-color 0.4s ease;
+  will-change: transform;
+}
+
+.xp-slide:not(.is-front) {
+  background-color: var(--at-neutral-100);
+}
+
+.xp-slide.is-front {
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.xp-slide[data-motion="drag"] {
+  cursor: grabbing;
+  user-select: none;
+  transition: none;
+}
+
+.xp-slide[data-motion="fling"] {
+  transition: transform 0.32s cubic-bezier(0.55, 0, 0.8, 0.3);
+}
+
+.xp-deck:focus-visible .xp-slide.is-front {
+  outline: 2px solid var(--at-neutral-900);
+  outline-offset: 4px;
+}
+
+.xp-deck__stack[data-nudge] .xp-slide.is-front {
+  animation: xp-nudge 1.3s 0.4s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+
+@keyframes xp-nudge {
+  0%,
+  100% {
+    transform: none;
+  }
+  30% {
+    transform: translate3d(-36px, -4px, 0) rotate(-2.6deg);
+  }
+  62% {
+    transform: translate3d(8px, 0, 0) rotate(0.6deg);
+  }
+}
+
+.xp-slide__inner {
+  padding: 44px;
+  transition: opacity 0.35s ease;
+}
+
+.xp-slide:not(.is-front) .xp-slide__inner {
+  opacity: 0;
+}
+
+.xp-slide__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 24px;
+  margin-bottom: 28px;
+  font-size: 16px;
+  color: var(--at-neutral-500);
+}
+
+.xp-slide__period {
+  font-weight: 600;
+  color: var(--at-neutral-900);
+}
+
+.xp-slide__duration {
+  font-weight: 400;
+  color: var(--at-neutral-500);
+}
+
+.xp-slide__duration::before {
+  content: "\00a0\00b7\00a0";
+}
+
+.xp-slide__company {
+  margin: 0 0 10px;
+  font-size: clamp(36px, 4.2vw, 56px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  color: inherit;
+}
+
+.xp-slide__role {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 500;
+  color: inherit;
+}
+
+.xp-slide__summary {
+  margin: 20px 0 32px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--at-neutral-500);
+}
+
+.xp-slide__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px 32px;
+  margin: 0;
+  padding: 28px 0 0;
+  list-style: none;
+  border-top: 1px solid var(--at-neutral-200);
+}
+
+.xp-slide__stats strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.xp-slide__stats span {
+  display: block;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--at-neutral-500);
+}
+
+.xp-slide__stack {
+  margin-top: 32px;
+}
+
+.xp-slide__stack-label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--at-neutral-500);
+}
+
+.xp-slide__stack ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.xp-list::before {
-  content: "";
-  position: absolute;
-  top: 12px;
-  bottom: 12px;
-  left: 7px;
-  width: 1px;
-  background: var(--at-neutral-100);
-}
-
-.xp-item {
-  position: relative;
-  padding: 0 0 48px 48px;
-}
-
-.xp-item:last-child {
-  padding-bottom: 0;
-}
-
-.xp-item__node {
-  position: absolute;
-  top: 3px;
-  left: 0;
-  width: 15px;
-  height: 15px;
-  background: var(--at-neutral-0);
-  border: 2px solid var(--at-neutral-900);
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-}
-
-.xp-item:hover .xp-item__node,
-.xp-item.is-current .xp-item__node {
-  background: var(--at-neutral-900);
-}
-
-.xp-item--edu .xp-item__node {
-  border-style: dashed;
-}
-
-.xp-item__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 18px;
-  margin-bottom: 14px;
+.xp-slide__stack li {
+  padding: 7px 14px;
   font-size: 15px;
-  color: var(--at-neutral-500);
-}
-
-.xp-item__period {
-  font-weight: 600;
-  color: var(--at-neutral-900);
-}
-
-.xp-item__badge {
-  padding: 4px 12px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--at-neutral-0);
-  background: var(--at-neutral-900);
+  font-weight: 500;
+  line-height: 1.2;
+  border: 1px solid var(--at-neutral-200);
   border-radius: 50px;
 }
 
-.xp-card {
-  padding: 32px;
-  background: var(--at-neutral-50);
-  border: 1px solid var(--at-neutral-100);
-  border-radius: 24px;
-  transition: border-color 0.3s ease;
-}
-
-.xp-item:hover .xp-card {
-  border-color: var(--at-neutral-900);
-}
-
-.xp-card__title-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 6px 20px;
-  margin-bottom: 12px;
-}
-
-.xp-card__company {
-  margin: 0;
-  font-size: 28px;
-  letter-spacing: -0.03em;
-}
-
-.xp-card__role {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--at-neutral-500);
-}
-
-.xp-card__summary {
-  margin: 0 0 24px;
-  line-height: 1.65;
-  color: var(--at-neutral-500);
-}
-
-.xp-item--edu .xp-card__summary {
-  margin-bottom: 0;
-}
-
-.xp-card__highlights {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 18px 24px;
-  margin: 0 0 24px;
-  padding: 20px 0;
-  list-style: none;
-  border-top: 1px solid var(--at-neutral-100);
-  border-bottom: 1px solid var(--at-neutral-100);
-}
-
-.xp-card__highlights strong {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 26px;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--at-neutral-900);
-}
-
-.xp-card__highlights span {
-  font-size: 13.5px;
-  line-height: 1.4;
-  color: var(--at-neutral-500);
-}
-
-/* Current role reads as the dark anchor of the timeline */
-.xp-item.is-current .xp-card {
-  background: #0f0f0f;
+/* The current role is the dark card, on the hero's grid */
+.xp-slide.is-current,
+.xp-slide.is-current:not(.is-front) {
+  color: #fefefe;
+  background-color: #0f0f0f;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
   border-color: #0f0f0f;
 }
 
-.xp-item.is-current .xp-card__company,
-.xp-item.is-current .xp-card__highlights strong {
+.xp-slide.is-current .xp-slide__period {
   color: #fefefe;
 }
 
-.xp-item.is-current .xp-card__role,
-.xp-item.is-current .xp-card__summary {
+.xp-slide.is-current .xp-slide__meta,
+.xp-slide.is-current .xp-slide__duration,
+.xp-slide.is-current .xp-slide__stats span,
+.xp-slide.is-current .xp-slide__stack-label {
+  color: #9a9a9a;
+}
+
+.xp-slide.is-current .xp-slide__summary {
   color: #b7b7b7;
 }
 
-.xp-item.is-current .xp-card__highlights {
+.xp-slide.is-current .xp-slide__stats {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-.xp-item.is-current .xp-card__highlights span {
-  color: #8a8a8a;
+.xp-slide.is-current .xp-slide__stack li {
+  color: #e6e6e6;
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
-@media (max-width: 575px) {
-  .xp-item { padding-left: 32px; }
-  .xp-card { padding: 24px; }
-  .xp-card__company { font-size: 23px; }
+/* Controls under the deck */
+.xp-deck__controls {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.xp-deck__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  color: var(--at-neutral-900);
+  background: var(--at-neutral-0);
+  border: 1px solid var(--at-neutral-200);
+  border-radius: 50%;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.xp-deck__btn:hover,
+.xp-deck__btn:focus-visible {
+  color: var(--at-neutral-0);
+  background: var(--at-neutral-900);
+  border-color: var(--at-neutral-900);
+}
+
+.xp-deck__count {
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--at-neutral-500);
+}
+
+@media (max-width: 991.98px) {
+  .xp-intro {
+    position: static;
+  }
+
+  .xp-index {
+    display: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .xp-deck__stack {
+    --spread: 0.6;
+    padding-bottom: 44px;
+  }
+
+  .xp-slide {
+    border-radius: 22px;
+  }
+
+  .xp-slide__inner {
+    padding: 28px 22px;
+  }
+
+  .xp-slide__meta {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .xp-slide__role {
+    font-size: 17px;
+  }
+
+  .xp-slide__summary {
+    font-size: 16px;
+  }
+
+  .xp-slide__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* A third figure takes the whole row instead of sitting alone in half of it. */
+  .xp-slide__stats li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xp-slide,
+  .xp-slide__inner,
+  .xp-index__row::after {
+    transition: none;
+  }
 }
 
 /* About: stack panel, drawn as the layers a request passes through */
@@ -2647,7 +2856,7 @@ p {
 .case-body p,
 .post-body p,
 .about-summary,
-.xp-card__summary,
+.xp-slide__summary,
 .reco-card__quote p {
   max-width: 68ch;
 }
