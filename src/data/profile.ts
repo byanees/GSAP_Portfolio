@@ -184,7 +184,7 @@ export const STACK_LAYERS = [
     lead: "back them with services on",
     featured: [".NET 9", "ABP.io"],
     after: ",",
-    items: [".NET 9", "ABP.io", ".NET Core", ".NET Aspire", "Node.js", "REST", "WebSockets"],
+    items: [".NET 9", "ABP.io", "NestJS", "Node.js", "GraphQL", "REST", "WebSockets"],
     usedIn: ["request-to-pay", "bulk-push-notification-scheduler", "otapp-bus-ticketing"],
   },
   {

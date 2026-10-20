@@ -1862,24 +1862,31 @@
 }
 
 .stack-principles ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  min-width: 0;
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 15px;
   font-weight: 500;
-  line-height: 1.7;
+  line-height: 1.6;
   color: #dfdfdf;
 }
 
 .stack-principles li {
-  display: inline;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
 }
 
-.stack-principles li:not(:last-child)::after {
-  content: "·";
-  margin: 0 10px;
-  color: #8a8a8a;
+.stack-principles li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: #00d4aa;
+  border-radius: 50%;
 }
 
 @media (min-width: 768px) {
@@ -1903,6 +1910,381 @@
 @media (prefers-reduced-motion: reduce) {
   .stack-sentence__caret { animation: none; }
   .stack-note { transform: none; transition: none; }
+}
+
+/* About stack: review switcher, shown with ?stack= in the URL */
+.stack-review {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 32px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50px;
+}
+
+.stack-review button {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #b7b7b7;
+  background: none;
+  border: 0;
+  border-radius: 50px;
+}
+
+.stack-review button[aria-pressed="true"] {
+  color: #0f0f0f;
+  background: #00d4aa;
+}
+
+.stack-review button:focus-visible,
+.stack-q__ask button:focus-visible {
+  outline: 2px solid #00d4aa;
+  outline-offset: 2px;
+}
+
+/* About stack, version B: one request as a distributed trace */
+.stack-trace {
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+}
+
+.stack-trace__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  padding: 16px 18px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.stack-trace__method {
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #0f0f0f;
+  background: #00d4aa;
+  border-radius: 6px;
+}
+
+.stack-trace__path {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #fefefe;
+  overflow-wrap: anywhere;
+}
+
+.stack-trace__status { color: #00d4aa; }
+.stack-trace__total { margin-left: auto; color: #8a8a8a; }
+
+.stack-trace__scale {
+  display: none;
+}
+
+.stack-trace__spans {
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+}
+
+.stack-span {
+  display: grid;
+  gap: 8px;
+  padding: 12px 18px;
+  transition: background-color 0.2s ease;
+}
+
+.stack-span:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.stack-span__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+  padding-left: calc(var(--depth) * 14px);
+}
+
+.stack-span__name {
+  position: relative;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: #fefefe;
+}
+
+/* The elbow joining a span to its parent */
+.stack-span:not([data-depth="0"]) .stack-span__name::before {
+  content: "";
+  position: absolute;
+  top: -0.35em;
+  left: -11px;
+  width: 7px;
+  height: 0.95em;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.stack-span__tools {
+  font-size: 15px;
+  font-weight: 500;
+  color: #b7b7b7;
+}
+
+.stack-span__track {
+  position: relative;
+  height: 22px;
+}
+
+.stack-span__fill {
+  position: absolute;
+  top: 3px;
+  left: calc(var(--start) * 100%);
+  width: max(3px, calc(var(--width) * 100%));
+  height: 16px;
+  background: #00d4aa;
+  border-radius: 3px;
+  transform-origin: left center;
+  opacity: calc(1 - var(--depth) * 0.16);
+}
+
+.stack-span__ms {
+  position: absolute;
+  top: 3px;
+  left: calc((var(--start) + var(--width)) * 100% + 8px);
+  font-size: 12px;
+  line-height: 16px;
+  color: #8a8a8a;
+  white-space: nowrap;
+}
+
+/* Spans past the middle put their duration on the left of the bar */
+.stack-span.is-late .stack-span__ms {
+  left: auto;
+  right: calc((1 - var(--start)) * 100% + 8px);
+}
+
+/* Spans as long as the request carry their duration inside the bar */
+.stack-span.is-long .stack-span__ms {
+  left: calc(var(--start) * 100% + 8px);
+  color: #0f0f0f;
+  font-weight: 600;
+}
+
+.stack-trace.is-armed .stack-span__fill {
+  transform: scaleX(0);
+}
+
+.stack-trace.is-armed .stack-span__ms {
+  opacity: 0;
+}
+
+.stack-trace.is-playing .stack-span__fill {
+  animation: stack-span-draw 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+
+.stack-trace.is-playing .stack-span__ms {
+  animation: stack-span-ms 0.3s ease both;
+  animation-delay: calc(var(--i) * 0.12s + 0.45s);
+}
+
+@keyframes stack-span-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes stack-span-ms {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.stack-around {
+  display: grid;
+  gap: 18px;
+  margin: 32px 0 0;
+}
+
+.stack-around .stack-note__label { margin-bottom: 6px; }
+
+.stack-around dd {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #dfdfdf;
+}
+
+/* About stack, version C: pick a problem, see the system and its tools */
+.stack-q {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.stack-q__item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.stack-q__ask {
+  margin: 0;
+  font-size: inherit;
+}
+
+.stack-q__ask button {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  width: 100%;
+  padding: 20px 0;
+  font-size: clamp(19px, 1vw + 14px, 26px);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-align: left;
+  color: #8a8a8a;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  transition: color 0.2s ease;
+}
+
+.stack-q__ask button:hover,
+.stack-q__item.is-active .stack-q__ask button {
+  color: #fefefe;
+}
+
+.stack-q__num {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: #8a8a8a;
+}
+
+.stack-q__item.is-active .stack-q__num { color: #00d4aa; }
+
+.stack-q__answer {
+  padding: 0 0 26px 34px;
+}
+
+.stack-q__item:not(.is-active) .stack-q__answer {
+  display: none;
+}
+
+.stack-q__domain {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #00d4aa;
+}
+
+.stack-q__title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fefefe;
+}
+
+.stack-q__summary {
+  margin: 0 0 22px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #b7b7b7;
+}
+
+.stack-q__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fefefe;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 4px;
+}
+
+.stack-q__link:hover { color: #fefefe; text-decoration-color: #fefefe; }
+.stack-q__link svg { width: 12px; height: 12px; }
+
+@media (min-width: 768px) {
+  .stack-trace__bar { padding: 18px 24px; }
+  .stack-trace__scale {
+    display: grid;
+    grid-template-columns: 34% 1fr;
+    gap: 16px;
+    padding: 12px 24px 4px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a8a8a;
+  }
+  .stack-trace__ticks { position: relative; height: 14px; }
+  .stack-trace__ticks span {
+    position: absolute;
+    transform: translateX(-50%);
+    letter-spacing: 0;
+    text-transform: none;
+    white-space: nowrap;
+  }
+  .stack-trace__ticks span:first-child { transform: none; }
+  .stack-trace__ticks span:last-child { transform: translateX(-100%); }
+  .stack-span {
+    grid-template-columns: 34% 1fr;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 24px;
+  }
+  .stack-span__label { flex-direction: column; gap: 2px; }
+  .stack-around { grid-template-columns: 1fr 1fr 2fr; gap: 32px; }
+}
+
+@media (min-width: 992px) {
+  .stack-q {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    column-gap: 64px;
+    align-items: start;
+    border-top: 0;
+  }
+  .stack-q__item { display: contents; }
+  .stack-q__ask {
+    grid-column: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .stack-q__ask button { padding: 18px 0; }
+  .stack-q__item .stack-q__answer,
+  .stack-q__item:not(.is-active) .stack-q__answer {
+    display: block;
+    grid-column: 2;
+    grid-row: 1 / span var(--rows);
+    padding: 34px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+  }
+  .stack-q__item.is-active .stack-q__answer {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+  .stack-q__title { font-size: 26px; }
+  .stack-q__summary { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-q__item .stack-q__answer { transition: none !important; }
 }
 
 /* Portfolio: earlier client work as browser-window cards */
