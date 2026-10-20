@@ -83,6 +83,9 @@ export default function AboutExperience() {
         const dialog = sheetRef.current;
         if (sheet == null || !dialog) return;
         if (!dialog.open) dialog.showModal();
+        // Start on the heading, not Close: readers hear the role first, and Close
+        // doesn't open looking pressed.
+        dialog.querySelector<HTMLElement>("#xp-sheet-title")?.focus();
         const root = document.documentElement;
         const overflow = root.style.overflow;
         root.style.overflow = "hidden";
@@ -419,58 +422,63 @@ export default function AboutExperience() {
                 }}
             >
                 {open && (
-                    <div className="xp-sheet__panel">
+                    <>
+                        {/* Sticky, so Close stays in reach however far the sheet scrolls. */}
                         <div className="xp-sheet__head">
                             <span className="xp-sheet__grip" aria-hidden="true" />
-                            <button type="button" className="xp-sheet__close" onClick={() => sheetRef.current?.close()} aria-label={COPY.closeLabel}>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                                    <path d="m4 4 8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                                </svg>
-                            </button>
+                            <div className="xp-sheet__bar">
+                                <p className="xp-sheet__meta">
+                                    <span className="xp-sheet__period">
+                                        {open.period}
+                                        {openDuration && <span className="xp-slide__duration">{openDuration}</span>}
+                                    </span>
+                                    <span>{open.location}</span>
+                                </p>
+                                <button type="button" className="xp-sheet__close" onClick={() => sheetRef.current?.close()} aria-label={COPY.closeLabel}>
+                                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                        <path d="m4 4 8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
 
-                        <div className="xp-slide__meta">
-                            <span className="xp-slide__period">
-                                {open.period}
-                                {openDuration && <span className="xp-slide__duration">{openDuration}</span>}
-                            </span>
-                            <span className="xp-slide__location">{open.location}</span>
+                        <div className="xp-sheet__panel">
+                            <h2 id="xp-sheet-title" className="xp-slide__company" tabIndex={-1}>
+                                {open.company}
+                            </h2>
+                            <p className="xp-slide__role">{open.role}</p>
+                            <p className="xp-sheet__summary">{open.summary}</p>
+
+                            {open.highlights.length > 0 && (
+                                <section className="xp-sheet__group" aria-labelledby="xp-sheet-impact">
+                                    <h3 id="xp-sheet-impact" className="xp-slide__stack-label">
+                                        {COPY.impactLabel}
+                                    </h3>
+                                    <ul className="xp-sheet__stats">
+                                        {open.highlights.map((h) => (
+                                            <li key={h.label}>
+                                                <strong>{h.value}</strong>
+                                                <span>{h.label}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </section>
+                            )}
+
+                            {open.stack.length > 0 && (
+                                <section className="xp-sheet__group xp-slide__stack" aria-labelledby="xp-sheet-stack">
+                                    <h3 id="xp-sheet-stack" className="xp-slide__stack-label">
+                                        {COPY.stackLabel}
+                                    </h3>
+                                    <ul>
+                                        {open.stack.map((tag) => (
+                                            <li key={tag}>{tag}</li>
+                                        ))}
+                                    </ul>
+                                </section>
+                            )}
                         </div>
-                        <h2 id="xp-sheet-title" className="xp-slide__company">
-                            {open.company}
-                        </h2>
-                        <p className="xp-slide__role">{open.role}</p>
-                        <p className="xp-sheet__summary">{open.summary}</p>
-
-                        {open.highlights.length > 0 && (
-                            <section className="xp-sheet__group" aria-labelledby="xp-sheet-impact">
-                                <h3 id="xp-sheet-impact" className="xp-slide__stack-label">
-                                    {COPY.impactLabel}
-                                </h3>
-                                <ul className="xp-sheet__stats">
-                                    {open.highlights.map((h) => (
-                                        <li key={h.label}>
-                                            <strong>{h.value}</strong>
-                                            <span>{h.label}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </section>
-                        )}
-
-                        {open.stack.length > 0 && (
-                            <section className="xp-sheet__group xp-slide__stack" aria-labelledby="xp-sheet-stack">
-                                <h3 id="xp-sheet-stack" className="xp-slide__stack-label">
-                                    {COPY.stackLabel}
-                                </h3>
-                                <ul>
-                                    {open.stack.map((tag) => (
-                                        <li key={tag}>{tag}</li>
-                                    ))}
-                                </ul>
-                            </section>
-                        )}
-                    </div>
+                    </>
                 )}
             </dialog>
         </section>
