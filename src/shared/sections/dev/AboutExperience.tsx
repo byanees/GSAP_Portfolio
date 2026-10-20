@@ -74,6 +74,26 @@ export default function AboutExperience() {
     const cards = useRef<(HTMLElement | null)[]>([]);
     const stackRef = useRef<HTMLDivElement>(null);
 
+    /** Role open in the details sheet. Its content renders only while open, so the
+     *  prerendered page carries each role's text once, on its card. */
+    const [sheet, setSheet] = useState<number | null>(null);
+    const sheetRef = useRef<HTMLDialogElement>(null);
+
+    useEffect(() => {
+        const dialog = sheetRef.current;
+        if (sheet == null || !dialog) return;
+        if (!dialog.open) dialog.showModal();
+        // Start on the heading, not Close: readers hear the role first, and Close
+        // doesn't open looking pressed.
+        dialog.querySelector<HTMLElement>("#xp-sheet-title")?.focus();
+        const root = document.documentElement;
+        const overflow = root.style.overflow;
+        root.style.overflow = "hidden";
+        return () => {
+            root.style.overflow = overflow;
+        };
+    }, [sheet]);
+
     useEffect(() => {
         const d = new Date();
         setNowMonth(d.getFullYear() * 12 + d.getMonth());
@@ -230,6 +250,8 @@ export default function AboutExperience() {
     };
 
     const current = ROLES[active];
+    const open = sheet == null ? null : ROLES[sheet];
+    const openDuration = open ? durationOf(open.span) : null;
 
     return (
         <section className="xp-section pt-120 pb-120" aria-labelledby="xp-title">
@@ -346,6 +368,19 @@ export default function AboutExperience() {
                                                         </ul>
                                                     </div>
                                                 )}
+
+                                                <button
+                                                    type="button"
+                                                    className="xp-slide__more"
+                                                    aria-haspopup="dialog"
+                                                    onClick={() => setSheet(i)}
+                                                >
+                                                    {COPY.moreLabel}
+                                                    <span className="visually-hidden">: {role.company}</span>
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </button>
                                             </div>
                                         </article>
                                     );
@@ -375,6 +410,77 @@ export default function AboutExperience() {
                     </div>
                 </div>
             </div>
+
+            <dialog
+                ref={sheetRef}
+                className="xp-sheet"
+                aria-labelledby="xp-sheet-title"
+                onClose={() => setSheet(null)}
+                onClick={(e) => {
+                    // A click on the backdrop lands on the dialog itself, not its panel.
+                    if (e.target === e.currentTarget) e.currentTarget.close();
+                }}
+            >
+                {open && (
+                    <>
+                        {/* Sticky, so Close stays in reach however far the sheet scrolls. */}
+                        <div className="xp-sheet__head">
+                            <span className="xp-sheet__grip" aria-hidden="true" />
+                            <div className="xp-sheet__bar">
+                                <p className="xp-sheet__meta">
+                                    <span className="xp-sheet__period">
+                                        {open.period}
+                                        {openDuration && <span className="xp-slide__duration">{openDuration}</span>}
+                                    </span>
+                                    <span>{open.location}</span>
+                                </p>
+                                <button type="button" className="xp-sheet__close" onClick={() => sheetRef.current?.close()} aria-label={COPY.closeLabel}>
+                                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                        <path d="m4 4 8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="xp-sheet__panel">
+                            <h2 id="xp-sheet-title" className="xp-slide__company" tabIndex={-1}>
+                                {open.company}
+                            </h2>
+                            <p className="xp-slide__role">{open.role}</p>
+                            <p className="xp-sheet__summary">{open.summary}</p>
+
+                            {open.highlights.length > 0 && (
+                                <section className="xp-sheet__group" aria-labelledby="xp-sheet-impact">
+                                    <h3 id="xp-sheet-impact" className="xp-slide__stack-label">
+                                        {COPY.impactLabel}
+                                    </h3>
+                                    <ul className="xp-sheet__stats">
+                                        {open.highlights.map((h) => (
+                                            <li key={h.label}>
+                                                <strong>{h.value}</strong>
+                                                <span>{h.label}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </section>
+                            )}
+
+                            {open.stack.length > 0 && (
+                                <section className="xp-sheet__group xp-slide__stack" aria-labelledby="xp-sheet-stack">
+                                    <h3 id="xp-sheet-stack" className="xp-slide__stack-label">
+                                        {COPY.stackLabel}
+                                    </h3>
+                                    <ul>
+                                        {open.stack.map((tag) => (
+                                            <li key={tag}>{tag}</li>
+                                        ))}
+                                    </ul>
+                                </section>
+                            )}
+                        </div>
+                    </>
+                )}
+            </dialog>
         </section>
     );
 }
