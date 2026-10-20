@@ -554,7 +554,7 @@
 .code-card__result {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: 4px 12px;
   margin-top: auto;
   padding: 16px 0;
@@ -4834,33 +4834,23 @@ h1.fz-ds-1.lh-1 + p {
     padding: 12px 0;
   }
 
-  /* Hero proof: value beside its label, one compact row per figure. */
+  /* Hero proof: the stacked figure, label and cue, with tighter spacing. */
   .hero-proof {
     margin-top: 40px;
   }
 
   .hero-proof__link,
   .hero-proof__item:first-child .hero-proof__link {
-    display: grid;
-    /* Fixed value column so the three labels line up. */
-    grid-template-columns: minmax(148px, auto) minmax(0, 1fr);
-    align-items: center;
-    gap: 6px 16px;
+    gap: 8px;
     padding: 20px 0;
   }
 
   .hero-proof__value {
-    font-size: 30px;
-  }
-
-  .hero-proof__label {
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 32px;
   }
 
   .hero-proof__cue {
-    grid-column: 1 / -1;
-    padding-top: 2px;
+    padding-top: 6px;
   }
 
   /* Blog closing panel. */
