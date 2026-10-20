@@ -50,6 +50,9 @@ export const HOME = {
     recommendations: {
         title: "What colleagues say",
         cta: "Read them on LinkedIn",
+        /** Toggle on long quotes, phones only. */
+        more: "Read full recommendation",
+        less: "Show less",
     },
     /** Also closes the portfolio page. The availability line is AVAILABILITY. */
     cta: {

@@ -116,8 +116,11 @@ export default function RevealTextEffect() {
 
       const elements = document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR);
       const triggers: ScrollTriggerInstance[] = [];
+      // Reduced motion: headings render at full strength, no fade-in.
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       elements.forEach((el) => {
+        if (reduceMotion) return;
         if (el.hasAttribute("data-reveal-text-done")) return;
         const chars = Array.from(el.querySelectorAll<HTMLElement>(CHAR_SELECTOR));
         if (chars.length === 0) return;
@@ -132,7 +135,9 @@ export default function RevealTextEffect() {
           opacity: 1,
           duration: 0.7,
           stagger: 0.02,
-          scrollTrigger: { trigger: el, start: "top 80%", end: "top 20%", scrub: 1 },
+          // Fully legible by the time the heading is mid-screen. clamp() on the end keeps
+          // headings near the page end (CTA, footer) from stalling half-faded.
+          scrollTrigger: { trigger: el, start: "top 85%", end: "clamp(top 55%)", scrub: 1 },
         });
 
         if (anim.scrollTrigger) triggers.push(anim.scrollTrigger);

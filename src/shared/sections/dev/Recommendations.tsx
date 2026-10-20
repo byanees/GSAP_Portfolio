@@ -1,3 +1,4 @@
+import { useId, useState } from "react";
 import RevealText from "@/shared/effects/RevealText";
 import { HOME } from "@/data/pages/home";
 import { PROFILE } from "@/data/profile";
@@ -7,6 +8,37 @@ import { ARROW_SVG } from "./icons";
 function initials(name: string) {
     const parts = name.split(" ").filter(Boolean);
     return `${parts[0]?.[0] ?? ""}${parts[parts.length - 1]?.[0] ?? ""}`.toUpperCase();
+}
+
+/** Past this many characters (about twelve lines on a phone) a quote is
+ *  clamped there, where one long recommendation would otherwise fill more
+ *  than a screen on its own. Shorter ones show in full. */
+const CLAMP_AT = 420;
+
+function Quote({ text }: { text: string }) {
+    const [open, setOpen] = useState(false);
+    const id = useId();
+    const long = text.length > CLAMP_AT;
+    return (
+        <>
+            <blockquote id={id} className={`reco-card__quote${long && !open ? " is-clamped" : ""}`}>
+                {text.split("\n\n").map((paragraph, i) => (
+                    <p key={i}>{paragraph}</p>
+                ))}
+            </blockquote>
+            {long && (
+                <button
+                    type="button"
+                    className="reco-card__more"
+                    aria-expanded={open}
+                    aria-controls={id}
+                    onClick={() => setOpen((v) => !v)}
+                >
+                    {open ? HOME.recommendations.less : HOME.recommendations.more}
+                </button>
+            )}
+        </>
+    );
 }
 
 /** Real LinkedIn recommendations, shown as a masonry of quote cards. */
@@ -42,11 +74,7 @@ export default function Recommendations({ muted = false }: { muted?: boolean }) 
                 <div className="reco-grid" data-reveal-group>
                     {RECOMMENDATIONS.map((r) => (
                         <figure key={r.name} className={`reco-card${muted ? " reco-card--light" : ""}`} data-reveal>
-                            <blockquote className="reco-card__quote">
-                                {r.text.split("\n\n").map((paragraph, i) => (
-                                    <p key={i}>{paragraph}</p>
-                                ))}
-                            </blockquote>
+                            <Quote text={r.text} />
                             <figcaption className="reco-card__author">
                                 <span className="reco-card__initials" aria-hidden>
                                     {initials(r.name)}

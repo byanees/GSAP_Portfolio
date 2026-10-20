@@ -554,7 +554,7 @@
 .code-card__result {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: 4px 12px;
   margin-top: auto;
   padding: 16px 0;
@@ -4667,4 +4667,283 @@ h1, h2, h3, h4, h5, h6,
 .post-figure__canvas:focus-visible {
   outline: 2px solid var(--at-neutral-900);
   outline-offset: 3px;
+}
+
+/* ==========================================================================
+   UI/UX audit pass 2 - readability and spacing
+   ========================================================================== */
+
+/* Page titles sat on the lede with no gap (lh-1 plus a zero top margin). */
+h1.fz-ds-1.lh-1 + p {
+  margin-top: 20px;
+}
+
+/* The fixed bottom blur smeared the last line of whatever was being read,
+   and the footer copyright under the floating buttons. Keep a thin hint on
+   desktop; on touch screens the viewport is too short to give 80px away. */
+.px-blur-bottom {
+  height: 40px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+@media (max-width: 991.98px) {
+  .px-blur-bottom {
+    display: none;
+  }
+}
+
+/* Contact letter: the blanks read as plain text. A darker rule and a
+   placeholder that passes 4.5:1 make them look like fields. */
+.contact-letter .contact-letter__blank {
+  border-bottom-color: var(--at-neutral-500);
+}
+
+.contact-letter .contact-letter__blank::placeholder,
+.contact-letter .contact-letter__message::placeholder {
+  color: #767676;
+}
+
+/* Footer: back-to-top and the contact dock covered "Building since". */
+@media (min-width: 992px) {
+  .at-footer-copyright-wrap.text-lg-end {
+    padding-right: 80px;
+  }
+}
+
+/* Phones: the hero eyebrow wrapped to two lines below ~380px, and the hero
+   opened with 110px of empty card above it. */
+@media (max-width: 575.98px) {
+  .dev-hero {
+    padding-top: 56px;
+  }
+
+  .dev-hero__tagline {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* About, stacked: "Hire me" to FAQ was 178px (pb-80 + two py-5 layers),
+   and the FAQ lead sat ~107px above the first question. */
+@media (max-width: 991.98px) {
+  .work-with-me {
+    padding-bottom: 48px !important;
+  }
+
+  .sec-7-about {
+    padding-top: 0 !important;
+  }
+
+  .sec-7-about > .container > .row > * + * {
+    margin-top: 32px;
+  }
+
+  .accordion.faq-list {
+    padding-top: 0;
+  }
+}
+
+/* ==========================================================================
+   UI/UX audit pass 3 - mobile density
+   On a 360-780px phone no card should need more than one screen, and
+   sections should not be separated by a screen-third of nothing.
+   ========================================================================== */
+
+/* Section rhythm. The spacing utilities had no breakpoints, so a 120 + 120
+   desktop gap between sections stayed 240px on a phone. */
+@media (max-width: 767.98px) {
+  .pt-120 { padding-top: 72px; }
+  .pb-120 { padding-bottom: 72px; }
+  .pt-100 { padding-top: 64px; }
+  .pb-100 { padding-bottom: 64px; }
+  .pt-80 { padding-top: 56px; }
+  .pb-80 { padding-bottom: 56px; }
+  .pb-70 { padding-bottom: 48px; }
+}
+
+/* Testimonials: long quotes clamp on phones behind a toggle. */
+.reco-card__more {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .reco-card {
+    padding: 24px;
+  }
+
+  .reco-card__quote p {
+    font-size: 16px;
+  }
+
+  .reco-card__quote.is-clamped {
+    max-height: calc(16px * 1.65 * 8);
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent);
+            mask-image: linear-gradient(180deg, #000 70%, transparent);
+  }
+
+  .reco-card__more {
+    display: inline-block;
+    margin: -12px 0 24px;
+    padding: 6px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--at-neutral-900);
+    background: none;
+    border: 0;
+    border-bottom: 1px solid var(--at-neutral-900);
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Case study and note cards: ~720px tall on a 360px phone. Smaller
+     figure, tighter body, and a four-line teaser (the full text is one
+     tap away). */
+  .code-card__bar {
+    padding: 12px 18px;
+  }
+
+  .code-card__figure .dg-svg {
+    max-height: 150px;
+  }
+
+  .note-card__figure .post-figure--thumb .post-figure__canvas {
+    padding: 16px;
+  }
+
+  .note-card__figure svg {
+    display: block;
+    max-height: 140px;
+    margin: 0 auto;
+  }
+
+  .code-card__body {
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .code-card__summary {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+
+  .code-card__result {
+    padding: 12px 0;
+  }
+
+  /* Hero proof: the stacked figure, label and cue, with tighter spacing. */
+  .hero-proof {
+    margin-top: 40px;
+  }
+
+  .hero-proof__link,
+  .hero-proof__item:first-child .hero-proof__link {
+    gap: 8px;
+    padding: 20px 0;
+  }
+
+  .hero-proof__value {
+    font-size: 32px;
+  }
+
+  .hero-proof__cue {
+    padding-top: 6px;
+  }
+
+  /* Blog closing panel. */
+  .blog-cta__panel {
+    padding: 36px 22px;
+  }
+
+  .blog-cta__links a {
+    padding: 16px 0;
+    font-size: 18px;
+  }
+
+  /* Contact topics: two per row instead of one. */
+  .contact-letter__topic {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  /* FAQ: give the question the width the padding was taking. */
+  .sec-7-about .at-faq-item {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+/* Case study system diagram: on phones the step list stacked five full-width
+   rows under the canvas (~1,050px in all). It becomes a swipeable row, with
+   the next step peeking in so the swipe is discoverable. */
+@media (max-width: 767.98px) {
+  .dg-steps {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .dg-steps::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dg-steps > li {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+}
+
+/* Labels that fell under 12px. */
+.about-portrait__row dt,
+.stack-note__label {
+  font-size: 12px;
+}
+
+/* Footer on phones: 1,100px of panel, mostly gutters. */
+@media (max-width: 767.98px) {
+  .at-footer-area .row.g-5 {
+    --bs-gutter-y: 1.75rem;
+  }
+
+  .at-footer-area .at-footer-link.pt-50 {
+    padding-top: 24px !important;
+  }
+
+  .at-footer-area .at-about {
+    padding-bottom: 32px !important;
+  }
+
+  .at-footer-area .at-footer-copyright-area {
+    padding-top: 24px !important;
+    padding-bottom: 28px !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Case study hero: the 22px summary ran seven lines under the title. */
+  h1.fz-ds-1 + p.fz-font-3xl {
+    font-size: 19px !important;
+    line-height: 1.55;
+  }
+
+  /* "What I built": a 56px number column left the text a narrow strip. */
+  .build-list li {
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    font-size: 17px;
+  }
+}
+
+/* The system diagram canvas scrolls sideways on phones; fade its right edge
+   so it reads as "more this way" rather than as a clipped drawing. */
+@media (max-width: 767.98px) {
+  .dg-scroll {
+    -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, #000 92%, transparent);
+  }
 }

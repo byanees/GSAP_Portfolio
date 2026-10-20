@@ -28,6 +28,11 @@ const safelist = {
     /^stat-figure/, /^section-lead/, /^footer-email/, /^dg-/, /^cs-how/, /^pf-/, /^note-/, /^reel/,
   ],
   greedy: [/^is-/, /^has-/, /^js-/, /^data-/],
+  // Theme tokens are declared in theme.css but often only used in custom.css.
+  // Each file is purged on its own, so without this a token used nowhere in
+  // theme.css (--at-neutral-200, for one) is dropped and every var() that
+  // reads it falls back to nothing: borders and strokes silently vanish.
+  variables: [/^--at-/, /^--bs-gutter/],
 };
 
 export default {
