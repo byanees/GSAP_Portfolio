@@ -194,7 +194,7 @@ export const STACK_LAYERS = [
     lead: "keep state in",
     featured: ["PostgreSQL", "SQL Server"],
     after: ",",
-    items: ["PostgreSQL", "SQL Server", "MongoDB", "Redis", "EF Core", "AWS SQS"],
+    items: ["PostgreSQL", "SQL Server", "MongoDB", "Redis", "RabbitMQ", "EF Core", "AWS SQS"],
     usedIn: ["redis-connection-multiplexing"],
   },
   {

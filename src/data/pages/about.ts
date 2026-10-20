@@ -65,6 +65,7 @@ export const ABOUT = {
             "sqlserver",
             "redis",
             "mongodb",
+            "rabbitmq",
             "docker",
             "kubernetes",
             "aws",

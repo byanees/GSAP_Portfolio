@@ -3012,10 +3012,22 @@ h4,
   animation-direction: reverse;
 }
 
-.tool-rail.is-paused .tool-rail__track,
-.tool-rail:hover .tool-rail__track,
-.tool-rail:focus-within .tool-rail__track {
+.tool-rail.is-paused .tool-rail__track {
   animation-play-state: paused;
+}
+
+/* Hover pauses only where hover is real. On touch a tap leaves :hover stuck
+   on the last chip, which used to hold the rails still until the next tap
+   somewhere else. Focus is not a pause trigger either: the Play button keeps
+   focus after a click, so it held the rails paused right after resuming. */
+@media (hover: hover) and (pointer: fine) {
+  .tool-rail:hover .tool-rail__track {
+    animation-play-state: paused;
+  }
+
+  .tool-rail:hover .tool-rail__toggle {
+    opacity: 1;
+  }
 }
 
 @keyframes tool-rail-scroll {
@@ -3062,13 +3074,15 @@ h4,
   color: var(--at-neutral-900);
 }
 
-.tool-rail__chip:hover {
-  border-color: var(--at-neutral-900);
-  transform: translateY(-2px);
-}
+@media (hover: hover) and (pointer: fine) {
+  .tool-rail__chip:hover {
+    border-color: var(--at-neutral-900);
+    transform: translateY(-2px);
+  }
 
-.tool-rail__chip:hover .tool-rail__icon {
-  color: var(--tool-color);
+  .tool-rail__chip:hover .tool-rail__icon {
+    color: var(--tool-color);
+  }
 }
 
 .tool-rail__practice {
@@ -3111,7 +3125,6 @@ h4,
   transition: opacity 0.2s ease;
 }
 
-.tool-rail:hover .tool-rail__toggle,
 .tool-rail__toggle:focus-visible,
 .tool-rail.is-paused .tool-rail__toggle {
   opacity: 1;
