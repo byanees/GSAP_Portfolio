@@ -9,7 +9,7 @@ import AboutExperience from "@/shared/sections/dev/AboutExperience";
 import AboutHero from "@/shared/sections/dev/AboutHero";
 import AboutStack from "@/shared/sections/dev/AboutStack";
 import WorkWithMe from "@/shared/sections/dev/WorkWithMe";
-import TechTicker from "@/shared/sections/services-2/Section2";
+import AboutToolRail from "@/shared/sections/dev/AboutToolRail";
 
 export default function About3Page() {
   return (
@@ -26,7 +26,7 @@ export default function About3Page() {
         )}
       />
       <AboutHero />
-      <TechTicker />
+      <AboutToolRail />
       <AboutExperience />
       <AboutStack />
       <AboutCredentials />
