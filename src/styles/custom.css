@@ -1641,6 +1641,8 @@
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 56px 56px;
+  /* Notes waiting off to the side never widen the page */
+  overflow-x: clip;
 }
 
 .stack-panel__head {
@@ -1742,6 +1744,8 @@
   display: grid;
   margin-top: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
+  /* Sideways swipes step through the notes; vertical ones still scroll the page */
+  touch-action: pan-y;
 }
 
 .stack-note {
@@ -1752,9 +1756,14 @@
   padding-top: 26px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+  /* Notes sit in order: earlier ones to the left, later ones to the right */
+  transform: translate3d(40px, 0, 0);
+  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.35s;
 }
+
+.stack-note.is-before { transform: translate3d(-40px, 0, 0); }
+
+.stack-notes[data-motion="drag"] .stack-note { transition: none; }
 
 .stack-note.is-active {
   opacity: 1;

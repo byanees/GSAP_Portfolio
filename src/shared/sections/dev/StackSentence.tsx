@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState, type MouseEvent } from "react";
+import { Fragment, useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import { Link } from "react-router-dom";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import { ABOUT } from "@/data/pages/about";
@@ -40,6 +40,72 @@ function joiner(index: number, count: number) {
 export default function StackSentence() {
     const [active, setActive] = useState(0);
     const notesRef = useRef<HTMLDivElement>(null);
+
+    const drag = useRef<{ id: number; x: number; y: number; dx: number; lastX: number; lastT: number; v: number; on: boolean } | null>(null);
+    const dragged = useRef(false);
+
+    // On touch, swipe the open note sideways to step through the layers.
+    const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
+        if (e.pointerType === "mouse") return;
+        dragged.current = false;
+        const t = performance.now();
+        drag.current = { id: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, lastX: e.clientX, lastT: t, v: 0, on: false };
+    };
+
+    const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
+        const d = drag.current;
+        if (!d || d.id !== e.pointerId) return;
+        const el = e.currentTarget;
+        const note = el.children[active] as HTMLElement | undefined;
+        let dx = e.clientX - d.x;
+        const dy = e.clientY - d.y;
+        if (!d.on) {
+            if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+            // A mostly vertical gesture is a page scroll, not a swipe.
+            if (Math.abs(dy) > Math.abs(dx)) {
+                drag.current = null;
+                return;
+            }
+            d.on = true;
+            dragged.current = true;
+            el.setPointerCapture(e.pointerId);
+            el.dataset.motion = "drag";
+        }
+        const t = performance.now();
+        d.v = (e.clientX - d.lastX) / Math.max(t - d.lastT, 1);
+        d.lastX = e.clientX;
+        d.lastT = t;
+        d.dx = dx;
+        // Nothing past the first or last layer, so pull against a rubber band there.
+        if ((dx > 0 && active === 0) || (dx < 0 && active === LAYERS.length - 1)) dx *= 0.3;
+        if (note) {
+            note.style.transform = `translate3d(${dx}px, 0, 0)`;
+            note.style.opacity = String(1 - Math.min(Math.abs(dx) / el.offsetWidth, 0.6));
+        }
+    };
+
+    const onPointerUp = (e: PointerEvent<HTMLDivElement>) => {
+        const d = drag.current;
+        drag.current = null;
+        if (!d?.on) return;
+        const el = e.currentTarget;
+        const note = el.children[active] as HTMLElement | undefined;
+        delete el.dataset.motion;
+        note?.style.removeProperty("transform");
+        note?.style.removeProperty("opacity");
+        const threshold = Math.min(120, el.offsetWidth * 0.2);
+        const flick = Math.abs(d.v) > 0.5 && Math.abs(d.dx) > 30;
+        if ((d.dx < -threshold || (flick && d.v < 0)) && active < LAYERS.length - 1) setActive(active + 1);
+        else if ((d.dx > threshold || (flick && d.v > 0)) && active > 0) setActive(active - 1);
+    };
+
+    // A swipe that ends on a case study link shouldn't open it.
+    const onClickCapture = (e: MouseEvent<HTMLDivElement>) => {
+        if (!dragged.current) return;
+        dragged.current = false;
+        e.preventDefault();
+        e.stopPropagation();
+    };
 
     const select = (i: number) => (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
@@ -100,12 +166,21 @@ export default function StackSentence() {
                         <span className="stack-sentence__caret" aria-hidden />
                     </p>
 
-                    <div className="stack-notes" ref={notesRef} data-reveal>
+                    <div
+                        className="stack-notes"
+                        ref={notesRef}
+                        data-reveal
+                        onPointerDown={onPointerDown}
+                        onPointerMove={onPointerMove}
+                        onPointerUp={onPointerUp}
+                        onPointerCancel={onPointerUp}
+                        onClickCapture={onClickCapture}
+                    >
                         {LAYERS.map((layer, i) => (
                             <div
                                 key={layer.key}
                                 id={layer.noteId}
-                                className={`stack-note${i === active ? " is-active" : ""}`}
+                                className={`stack-note${i === active ? " is-active" : i < active ? " is-before" : ""}`}
                                 role="group"
                                 aria-labelledby={`${layer.noteId}-name`}
                                 inert={i !== active}
