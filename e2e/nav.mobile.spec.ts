@@ -31,8 +31,10 @@ test("the sheet's search row opens the palette full screen", async ({ page }) =>
   await page.locator(".site-nav__sheet-search").click();
   const panel = page.locator(".cmdk__panel");
   await expect(panel).toBeVisible();
-  const box = await panel.boundingBox();
-  expect(box?.width).toBeGreaterThanOrEqual(page.viewportSize()!.width - 1);
+  // The panel scales in from 0.98, so poll until the open transition settles.
+  await expect
+    .poll(async () => (await panel.boundingBox())?.width ?? 0)
+    .toBeGreaterThanOrEqual(page.viewportSize()!.width - 1);
   await page.getByRole("button", { name: "Close search" }).click();
   await expect(page.locator(".cmdk[data-open]")).toHaveCount(0);
 });
