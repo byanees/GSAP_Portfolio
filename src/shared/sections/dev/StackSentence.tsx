@@ -10,15 +10,19 @@ const pad = (n: number) => String(n).padStart(2, "0");
 /** Clearance for the fixed island nav. */
 const HEADER_ROOM = 96;
 
+/**
+ * "AWS" features "AWS EC2, S3 & Lambda" too, and ".NET 9 (ABP.io)" features
+ * both ".NET 9" and "ABP.io".
+ */
+const isFeatured = (featured: string[], item: string) =>
+    featured.some((f) => item === f || item.startsWith(`${f} `) || f.includes(item));
+
 const LAYERS = STACK_LAYERS.map((layer) => ({
     ...layer,
-    more: layer.items.length - layer.featured.length,
+    more: layer.items.filter((item) => !isFeatured(layer.featured, item)).length,
     used: CASE_STUDIES.filter((cs) => layer.usedIn.includes(cs.slug)),
     noteId: `stack-note-${layer.key}`,
 }));
-
-/** "AWS" features "AWS EC2, S3 & Lambda" too. */
-const isFeatured = (featured: string[], item: string) => featured.some((f) => item === f || item.startsWith(`${f} `));
 
 /** The words between featured tools: "A and B", "A, B and C". */
 function joiner(index: number, count: number) {

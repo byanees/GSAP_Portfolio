@@ -1,6 +1,6 @@
 import Eyebrow from "./Eyebrow";
 
-/** Title row shared by every version of the stack section. */
+/** Title row of the About page stack section. */
 export default function StackHead({ eyebrow, title, intro }: { eyebrow: string; title: string; intro: string }) {
     return (
         <div className="row g-4 align-items-end stack-panel__head">

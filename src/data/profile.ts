@@ -182,9 +182,9 @@ export const STACK_LAYERS = [
     name: "Services",
     role: "APIs and business rules, split into services.",
     lead: "back them with services on",
-    featured: [".NET 9", "ABP.io"],
+    featured: [".NET 9 (ABP.io)", "Node.js/NestJS"],
     after: ",",
-    items: [".NET 9", "ABP.io", "NestJS", "Node.js", "GraphQL", "REST", "WebSockets"],
+    items: [".NET 9", "ABP.io", "Node.js", "NestJS", "Express.js", "GraphQL", "REST", "WebSockets"],
     usedIn: ["request-to-pay", "bulk-push-notification-scheduler", "otapp-bus-ticketing"],
   },
   {
@@ -192,9 +192,9 @@ export const STACK_LAYERS = [
     name: "Data & messaging",
     role: "Where state lives and work gets queued.",
     lead: "keep state in",
-    featured: ["PostgreSQL", "Redis"],
+    featured: ["PostgreSQL", "SQL Server", "MongoDB", "Redis"],
     after: ",",
-    items: ["PostgreSQL", "Redis", "EF Core", "AWS SQS"],
+    items: ["PostgreSQL", "SQL Server", "MongoDB", "Redis", "EF Core", "AWS SQS"],
     usedIn: ["redis-connection-multiplexing"],
   },
   {
@@ -219,7 +219,7 @@ export const STACK_LAYERS = [
   },
 ];
 
-export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "QR / TLV encoding", "Multi-agent AI workflows"];
+export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "Multi-agent AI workflows"];
 
 /** Education and certifications, from the CV. */
 export const EDUCATION = {
