@@ -71,10 +71,10 @@ export function ContactHero() {
             <div className="container pb-70">
                 <div className="row align-items-end g-4">
                     <div className="col-xxl-6 col-lg-7">
-                        <h1 className="section-title fw-600 fz-ds-1 lh-1 reveal-text">
+                        <h1 className="section-title fw-500 fz-ds-1 lh-1 reveal-text">
                             <RevealText>{CONTACT.title}</RevealText>
                         </h1>
-                        <p className="mb-0 fz-font-lg fw-600 neutral-900">{withBreaks(CONTACT.lead)}</p>
+                        <p className="mb-0 fz-font-lg neutral-900">{withBreaks(CONTACT.lead)}</p>
                     </div>
                     <div className="col-lg-5 ms-auto">
                         <div className="d-flex flex-column align-items-start align-items-lg-end gap-3">

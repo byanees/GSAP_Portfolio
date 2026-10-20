@@ -4668,3 +4668,45 @@ h1, h2, h3, h4, h5, h6,
   outline: 2px solid var(--at-neutral-900);
   outline-offset: 3px;
 }
+
+/* ==========================================================================
+   UI/UX audit pass 2 - readability and spacing
+   ========================================================================== */
+
+/* Page titles sat on the lede with no gap (lh-1 plus a zero top margin). */
+h1.fz-ds-1.lh-1 + p {
+  margin-top: 20px;
+}
+
+/* The fixed bottom blur smeared the last line of whatever was being read,
+   and the footer copyright under the floating buttons. Keep a thin hint on
+   desktop; on touch screens the viewport is too short to give 80px away. */
+.px-blur-bottom {
+  height: 40px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+@media (max-width: 991.98px) {
+  .px-blur-bottom {
+    display: none;
+  }
+}
+
+/* Contact letter: the blanks read as plain text. A darker rule and a
+   placeholder that passes 4.5:1 make them look like fields. */
+.contact-letter .contact-letter__blank {
+  border-bottom-color: var(--at-neutral-500);
+}
+
+.contact-letter .contact-letter__blank::placeholder,
+.contact-letter .contact-letter__message::placeholder {
+  color: #767676;
+}
+
+/* Footer: back-to-top and the contact dock covered "Building since". */
+@media (min-width: 992px) {
+  .at-footer-copyright-wrap.text-lg-end {
+    padding-right: 80px;
+  }
+}
