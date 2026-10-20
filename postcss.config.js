@@ -22,7 +22,7 @@ const safelist = {
   ],
   deep: [
     /^at-/, /^odometer/, /^carouselTicker/, /^swiper/, /^offcanvas/,
-    /^terminal/, /^arch/, /^xp-/, /^reco-/, /^code-card/, /^web-card/,
+    /^terminal/, /^xp-/, /^reco-/, /^code-card/, /^web-card/,
     /^post-/, /^contact-/, /^engage-/, /^expertise-/, /^dev-/, /^stack-/,
     /^blog-cta/, /^case-/, /^site-logo/, /^skip-link/, /^ticker-/,
     /^stat-figure/, /^section-lead/, /^footer-email/, /^dg-/, /^cs-how/, /^pf-/, /^note-/, /^reel/,

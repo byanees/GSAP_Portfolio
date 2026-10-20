@@ -79,15 +79,17 @@ export const ABOUT = {
         prevLabel: "Newer role",
         nextLabel: "Older role",
     },
+    /** The stack as one sentence; each tool group opens a note with the rest of its layer. */
     stack: {
         eyebrow: "my stack",
-        title: "From the screen to the server, what I use at every layer",
-        intro: "Follow a request down through the systems I build. Hover or tap a layer to see where it shows up in my work.",
+        title: "The whole stack, in one sentence",
+        intro: "Pick a highlighted tool to see the rest of that layer, and where it shows up in my work.",
+        moreLabel: (n: number, layer: string) => `${n} more in ${layer}`,
+        toolsLabel: "Everything in this layer",
         usedInLabel: "Shows up in",
         /** For a layer no single case study is about. */
-        everywhereLabel: "Behind",
-        everywhere: "every project I ship",
-        principlesLabel: "Holding it together",
+        everywhere: "Every project I ship",
+        principlesLabel: "Held together by",
     },
     credentials: {
         title: "Education & credentials",

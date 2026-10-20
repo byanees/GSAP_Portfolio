@@ -161,12 +161,19 @@ export const EXPERTISE = [
   },
 ];
 
-/** The stack as layers a request passes through, top to bottom. From the CV's skills section. */
+/**
+ * The stack as layers a request passes through, top to bottom. From the CV's skills section.
+ * On the About page the layers read as one sentence: `lead`, then the `featured`
+ * tools, then `after`. The rest of `items` opens as that layer's note.
+ */
 export const STACK_LAYERS = [
   {
     key: "interface",
     name: "Interface",
     role: "What people click, scan, and export.",
+    lead: "I build interfaces in",
+    featured: ["Angular", "React"],
+    after: ",",
     items: ["Angular", "React", "Next.js", "TypeScript", "Micro-frontends", "Redux Toolkit", "Tailwind CSS"],
     usedIn: ["qualification-certificate-workflow", "backend-aggregation-layer"],
   },
@@ -174,20 +181,29 @@ export const STACK_LAYERS = [
     key: "services",
     name: "Services",
     role: "APIs and business rules, split into services.",
-    items: [".NET 9", ".NET Core", "ABP.io", ".NET Aspire", "Node.js", "REST", "WebSockets"],
+    lead: "back them with services on",
+    featured: [".NET 9", "ABP.io"],
+    after: ",",
+    items: [".NET 9", "ABP.io", ".NET Core", ".NET Aspire", "Node.js", "REST", "WebSockets"],
     usedIn: ["request-to-pay", "bulk-push-notification-scheduler", "otapp-bus-ticketing"],
   },
   {
     key: "data",
     name: "Data & messaging",
     role: "Where state lives and work gets queued.",
-    items: ["PostgreSQL", "EF Core", "Redis", "AWS SQS"],
+    lead: "keep state in",
+    featured: ["PostgreSQL", "Redis"],
+    after: ",",
+    items: ["PostgreSQL", "Redis", "EF Core", "AWS SQS"],
     usedIn: ["redis-connection-multiplexing"],
   },
   {
     key: "platform",
     name: "Platform",
     role: "Containers, gateways, and cloud underneath.",
+    lead: "run it on",
+    featured: ["Docker", "Kubernetes", "AWS"],
+    after: ",",
     items: ["Docker", "Kubernetes", "AWS EC2, S3 & Lambda", "Nginx", "WSO2"],
     usedIn: [] as string[],
   },
@@ -195,7 +211,10 @@ export const STACK_LAYERS = [
     key: "delivery",
     name: "Delivery",
     role: "Shipping changes and watching them run.",
-    items: ["Jenkins", "GitHub Actions", "ELK"],
+    lead: "and ship it through",
+    featured: ["GitHub Actions", "Jenkins"],
+    after: ".",
+    items: ["GitHub Actions", "Jenkins", "ELK"],
     usedIn: ["preprod-image-promotion"],
   },
 ];
