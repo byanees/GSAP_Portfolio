@@ -32,7 +32,7 @@ const safelist = {
   // Each file is purged on its own, so without this a token used nowhere in
   // theme.css (--at-neutral-200, for one) is dropped and every var() that
   // reads it falls back to nothing: borders and strokes silently vanish.
-  variables: [/^--at-/],
+  variables: [/^--at-/, /^--bs-gutter/],
 };
 
 export default {

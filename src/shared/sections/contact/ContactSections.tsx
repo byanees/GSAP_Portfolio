@@ -344,12 +344,12 @@ export function ContactForm() {
                                     aria-live="polite"
                                 >
                                     {sending
-                                        ? `[ ${CONTACT.status.sending} ]`
+                                        ? `[\u00a0${CONTACT.status.sending}\u00a0]`
                                         : send.status === "error"
-                                          ? `[ ${send.message} ]`
+                                          ? `[\u00a0${send.message}\u00a0]`
                                           : hasErrors
-                                            ? `[ ${CONTACT.status.invalid} ]`
-                                            : `[ ${CONTACT.status.idle} ]`}
+                                            ? `[\u00a0${CONTACT.status.invalid}\u00a0]`
+                                            : `[\u00a0${CONTACT.status.idle}\u00a0]`}
                                 </span>
                             </div>
                         </form>
