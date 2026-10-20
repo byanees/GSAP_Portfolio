@@ -308,6 +308,22 @@ export default function AboutExperience() {
                             tabIndex={0}
                             onKeyDown={onKeyDown}
                         >
+                            <div className="xp-deck__controls">
+                                <span className="xp-deck__count" aria-hidden>
+                                    {active + 1} / {COUNT}
+                                </span>
+                                <button type="button" className="xp-deck__btn" onClick={() => deal(-1)} aria-label={COPY.prevLabel}>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                        <path d="M10 3 5 8l5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </button>
+                                <button type="button" className="xp-deck__btn" onClick={() => deal(1)} aria-label={COPY.nextLabel}>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                        <path d="m6 3 5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+
                             <div className="xp-deck__stack" ref={stackRef}>
                                 {ROLES.map((role, i) => {
                                     const depth = (i - active + COUNT) % COUNT;
@@ -385,22 +401,6 @@ export default function AboutExperience() {
                                         </article>
                                     );
                                 })}
-                            </div>
-
-                            <div className="xp-deck__controls">
-                                <button type="button" className="xp-deck__btn" onClick={() => deal(-1)} aria-label={COPY.prevLabel}>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                                        <path d="M10 3 5 8l5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </button>
-                                <button type="button" className="xp-deck__btn" onClick={() => deal(1)} aria-label={COPY.nextLabel}>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                                        <path d="m6 3 5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </button>
-                                <span className="xp-deck__count" aria-hidden>
-                                    {active + 1} / {COUNT}
-                                </span>
                             </div>
 
                             <p className="visually-hidden" aria-live="polite">

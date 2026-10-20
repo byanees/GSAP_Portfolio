@@ -1070,7 +1070,7 @@
 .xp-deck__stack {
   --spread: 1;
   display: grid;
-  padding-bottom: 84px;
+  padding-bottom: 64px;
 }
 
 @media (hover: hover) {
@@ -1289,13 +1289,15 @@
   border-color: rgba(255, 255, 255, 0.18);
 }
 
-/* Controls under the deck */
+/* Controls above the deck, flush right */
 .xp-deck__controls {
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 12px;
+  margin-bottom: 20px;
 }
 
 .xp-deck__btn {
@@ -1320,7 +1322,7 @@
 }
 
 .xp-deck__count {
-  margin-left: 8px;
+  margin-right: 8px;
   font-size: 16px;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -1542,7 +1544,7 @@
 @media (max-width: 575.98px) {
   .xp-deck__stack {
     --spread: 0.6;
-    padding-bottom: 44px;
+    padding-bottom: 30px;
   }
 
   .xp-slide {
@@ -1617,6 +1619,10 @@
   .xp-deck__btn {
     width: 48px;
     height: 48px;
+  }
+
+  .xp-deck__controls {
+    margin-bottom: 14px;
   }
 }
 
