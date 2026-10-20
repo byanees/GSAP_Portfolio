@@ -99,7 +99,7 @@ const Footer2 = forwardRef<HTMLElement, object>(function Footer2(_, ref) {
                 <div className="d-flex flex-wrap align-items-end gap-4 gap-md-5 mb-3">
                   <div className="footer-2-hours text-white">
                     <span className="d-block fz-font-md opacity-50">{FOOTER.sinceLabel}</span>
-                    <h5 className="fw-400 common-white">{PROFILE.since}</h5>
+                    <p className="h5 fw-400 common-white">{PROFILE.since}</p>
                   </div>
                 </div>
               </div>
