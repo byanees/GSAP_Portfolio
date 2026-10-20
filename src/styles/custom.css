@@ -1327,6 +1327,174 @@
   color: var(--at-neutral-500);
 }
 
+/* Opens the details sheet; shown only where the card is cut down (phones) */
+.xp-slide__more {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--at-neutral-200);
+  border-radius: 50px;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.xp-slide__more:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.xp-slide.is-current .xp-slide__more {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* Details sheet: the whole role, rising from the bottom of the screen */
+.xp-sheet {
+  width: 100%;
+  max-width: 560px;
+  max-height: min(88dvh, 760px);
+  margin: auto auto 0;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--at-neutral-900);
+  background: var(--at-neutral-0);
+  border: 0;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -20px 60px -30px rgba(15, 15, 15, 0.45);
+}
+
+.xp-sheet[open] {
+  animation: xp-sheet-in 0.42s cubic-bezier(0.2, 0.85, 0.25, 1);
+}
+
+.xp-sheet::backdrop {
+  background: rgba(15, 15, 15, 0.55);
+}
+
+.xp-sheet[open]::backdrop {
+  animation: xp-fade-in 0.3s ease;
+}
+
+@keyframes xp-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes xp-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.xp-sheet__panel {
+  padding: 10px 20px calc(28px + env(safe-area-inset-bottom));
+}
+
+.xp-sheet__head {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 44px;
+  margin-bottom: 4px;
+}
+
+.xp-sheet__grip {
+  width: 40px;
+  height: 4px;
+  margin-top: 4px;
+  background: var(--at-neutral-200);
+  border-radius: 4px;
+}
+
+.xp-sheet__close {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--at-neutral-900);
+  background: var(--at-neutral-50);
+  border: 1px solid var(--at-neutral-100);
+  border-radius: 50%;
+}
+
+.xp-sheet__close:focus-visible {
+  outline: 2px solid var(--at-neutral-900);
+  outline-offset: 2px;
+}
+
+.xp-sheet .xp-slide__company {
+  font-size: clamp(30px, 8vw, 40px);
+}
+
+.xp-sheet__summary {
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--at-neutral-500);
+}
+
+.xp-sheet__group,
+.xp-sheet .xp-slide__stack {
+  margin-top: 28px;
+}
+
+.xp-sheet h3.xp-slide__stack-label {
+  margin: 0 0 10px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+/* Figures read as a ledger: value left, label beside it */
+.xp-sheet__stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--at-neutral-100);
+}
+
+.xp-sheet__stats li {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--at-neutral-100);
+}
+
+.xp-sheet__stats strong {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.xp-sheet__stats span {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--at-neutral-500);
+}
+
+.xp-sheet .xp-slide__stack li {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
 @media (max-width: 991.98px) {
   .xp-intro {
     position: static;
@@ -1368,60 +1536,48 @@
   }
 
   .xp-slide__summary {
-    margin: 14px 0 20px;
+    margin: 14px 0 22px;
     font-size: 16px;
     line-height: 1.6;
   }
 
-  /* Figures read as a ledger: value left, label beside it on one or two lines,
-     instead of two narrow columns where each label wraps four or five times. */
-  .xp-slide__stats {
-    grid-template-columns: auto 1fr;
-    gap: 0 16px;
-    padding-top: 4px;
+  /* On a phone the card is a summary: dates, company, role, and three lines of
+     the story. Figures and stack stay in the markup for search and open in the
+     details sheet. */
+  .xp-slide__summary {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
   }
 
-  .xp-slide__stats li {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: subgrid;
-    align-items: baseline;
-    padding: 9px 0;
+  .xp-slide .xp-slide__stats,
+  .xp-slide .xp-slide__stack {
+    display: none;
   }
 
-  .xp-slide__stats li + li {
-    border-top: 1px solid var(--at-neutral-200);
+  /* The deck is as tall as its longest card; pin the button to the bottom so it
+     sits in the same place on every card. */
+  .xp-slide {
+    display: flex;
   }
 
-  .xp-slide.is-current .xp-slide__stats li + li {
-    border-color: rgba(255, 255, 255, 0.12);
+  .xp-slide__inner {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .xp-slide__stats strong {
-    margin: 0;
-    font-size: 24px;
+  .xp-slide__inner > * {
+    align-self: stretch;
   }
 
-  .xp-slide__stats span {
-    font-size: 14px;
-  }
-
-  .xp-slide__stack {
-    margin-top: 18px;
-  }
-
-  .xp-slide__stack-label {
-    margin-bottom: 10px;
-    font-size: 13px;
-  }
-
-  .xp-slide__stack ul {
-    gap: 6px;
-  }
-
-  .xp-slide__stack li {
-    padding: 6px 12px;
-    font-size: 14px;
+  .xp-slide__more {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-top: auto;
   }
 
   .xp-deck__btn {
@@ -1435,6 +1591,11 @@
   .xp-slide__inner,
   .xp-index__row::after {
     transition: none;
+  }
+
+  .xp-sheet[open],
+  .xp-sheet[open]::backdrop {
+    animation: none;
   }
 }
 
