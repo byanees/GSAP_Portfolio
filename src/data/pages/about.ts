@@ -5,6 +5,7 @@
 import { AVAILABILITY } from "../availability";
 import { METRICS } from "../metrics";
 import { PROFILE } from "../profile";
+import type { ToolIconKey } from "@/shared/sections/dev/toolIcons";
 
 export type FaqItem = { question: string; answer: string };
 
@@ -45,24 +46,41 @@ export const ABOUT = {
         localTimeLabel: "Local time",
         currentlyLabel: "Currently",
     },
-    /** The scrolling strip under the hero. */
+    /** The two scrolling rails under the hero. `tools` are keys into
+     *  TOOL_ICONS (src/shared/sections/dev/toolIcons.ts), which holds each
+     *  tool's display name and brand mark. */
     ticker: {
         label: "Technologies I work with",
-        items: [
-            ".NET 9",
+        pauseLabel: "Pause",
+        playLabel: "Play",
+        tools: [
+            "dotnet",
+            "angular",
+            "react",
+            "typescript",
+            "nextjs",
+            "nodejs",
+            "nestjs",
+            "postgresql",
+            "sqlserver",
+            "redis",
+            "mongodb",
+            "rabbitmq",
+            "docker",
+            "kubernetes",
+            "aws",
+            "githubactions",
+            "nginx",
+        ] satisfies ToolIconKey[],
+        practices: [
             "ABP.io",
             "Microservices",
-            "Angular",
-            "React",
-            "TypeScript",
-            "PostgreSQL",
-            "Redis",
-            "Docker",
-            "Kubernetes",
-            "AWS",
+            "Micro-frontends",
             "Clean Architecture",
             "Domain-Driven Design",
             "EMV QR",
+            "REST & GraphQL",
+            "Multi-agent AI workflows",
         ],
     },
     /** Each role is a card in a deck, newest on top. */
