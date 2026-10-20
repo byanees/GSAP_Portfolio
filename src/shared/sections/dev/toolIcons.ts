@@ -1,7 +1,7 @@
 // Brand marks for the About page tool rail. Generated from simple-icons
 // (CC0) and devicon (MIT) and inlined, so nothing is fetched at runtime.
 // Each mark is one path filled with currentColor; `color` is the brand hex
-// shown on hover. The .NET wordmark is set into a tile, knocked out with
+// it is drawn in. The .NET wordmark is set into a tile, knocked out with
 // evenodd, so it reads as a mark next to its label rather than repeating it.
 
 export type ToolIcon = { label: string; viewBox: string; d: string; color: string; fillRule?: "evenodd" };

@@ -2976,8 +2976,7 @@ h4,
    About tool rail
    Two rails under the hero: brand-marked tool chips, and the practices behind
    them running the other way. Each track holds its list twice and slides by
-   one copy (-50%), transform only. Marks sit in ink and take their brand
-   colour on hover.
+   one copy (-50%), transform only. Marks are in their brand colours.
    ========================================================================== */
 
 .tool-rail {
@@ -3062,8 +3061,7 @@ h4,
   flex: none;
   width: 24px;
   height: 24px;
-  color: var(--at-neutral-900);
-  transition: color 0.3s ease;
+  color: var(--tool-color);
 }
 
 .tool-rail__name {
@@ -3078,10 +3076,6 @@ h4,
   .tool-rail__chip:hover {
     border-color: var(--at-neutral-900);
     transform: translateY(-2px);
-  }
-
-  .tool-rail__chip:hover .tool-rail__icon {
-    color: var(--tool-color);
   }
 }
 
@@ -3192,8 +3186,7 @@ h4,
     display: none;
   }
 
-  .tool-rail__chip,
-  .tool-rail__icon {
+  .tool-rail__chip {
     transition: none;
   }
 
