@@ -1348,29 +1348,85 @@
   }
 
   .xp-slide__inner {
-    padding: 28px 22px;
+    padding: 26px 20px 24px;
   }
 
   .xp-slide__meta {
-    flex-direction: column;
-    margin-bottom: 20px;
+    gap: 2px 16px;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+  .xp-slide__company {
+    margin-bottom: 6px;
+    font-size: 32px;
   }
 
   .xp-slide__role {
-    font-size: 17px;
+    font-size: 16px;
+    line-height: 1.4;
   }
 
   .xp-slide__summary {
+    margin: 14px 0 20px;
     font-size: 16px;
+    line-height: 1.6;
   }
 
+  /* Figures read as a ledger: value left, label beside it on one or two lines,
+     instead of two narrow columns where each label wraps four or five times. */
   .xp-slide__stats {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr;
+    gap: 0 16px;
+    padding-top: 4px;
   }
 
-  /* A third figure takes the whole row instead of sitting alone in half of it. */
-  .xp-slide__stats li:last-child:nth-child(odd) {
+  .xp-slide__stats li {
+    display: grid;
     grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    padding: 9px 0;
+  }
+
+  .xp-slide__stats li + li {
+    border-top: 1px solid var(--at-neutral-200);
+  }
+
+  .xp-slide.is-current .xp-slide__stats li + li {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .xp-slide__stats strong {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  .xp-slide__stats span {
+    font-size: 14px;
+  }
+
+  .xp-slide__stack {
+    margin-top: 18px;
+  }
+
+  .xp-slide__stack-label {
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .xp-slide__stack ul {
+    gap: 6px;
+  }
+
+  .xp-slide__stack li {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .xp-deck__btn {
+    width: 48px;
+    height: 48px;
   }
 }
 
