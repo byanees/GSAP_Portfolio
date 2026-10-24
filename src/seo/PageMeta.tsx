@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { absoluteUrl, OG_IMAGE, SITE_NAME } from "./siteConfig";
 
-/** Every route shares the one card, so it shares one description of it. */
+/** Describes the shared fallback card. Pages with a card of their own pass imageAlt. */
 const IMAGE_ALT = `${SITE_NAME}, full stack engineer`;
 
 type Props = {
@@ -11,6 +11,8 @@ type Props = {
   path?: string;
   /** Absolute or root-relative image for the share card. */
   image?: string;
+  /** Alt text for `image`. Defaults to the fallback card's description. */
+  imageAlt?: string;
   /** "website" for pages, "article" for posts and case studies. */
   ogType?: "website" | "article" | "profile";
   favicon?: string;
@@ -33,6 +35,7 @@ export default function PageMeta({
   description,
   path,
   image,
+  imageAlt = IMAGE_ALT,
   ogType = "website",
   favicon,
   noindex,
@@ -92,7 +95,7 @@ export default function PageMeta({
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={IMAGE_ALT} />
+      <meta property="og:image:alt" content={imageAlt} />
       <meta property="og:locale" content="en_US" />
       {ogType === "article" ? (
         <>
@@ -108,7 +111,7 @@ export default function PageMeta({
       <meta name="twitter:title" content={title} />
       {description ? <meta name="twitter:description" content={description} /> : null}
       <meta name="twitter:image" content={cardImage} />
-      <meta name="twitter:image:alt" content={IMAGE_ALT} />
+      <meta name="twitter:image:alt" content={imageAlt} />
 
       {graphs.map((g, i) => (
         <script

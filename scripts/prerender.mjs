@@ -5,6 +5,7 @@
 
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
+import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -121,7 +122,22 @@ const fingerprints = {};
 const inlineHashes = new Set();
 const INLINE_SCRIPT = /<script(?![^>]*\bsrc=)(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/g;
 
+/** Every page's share card must exist, or LinkedIn and chat apps show a blank
+ *  preview. A post or case study added without running
+ *  scripts/og-card/render.mjs stops the build here. */
+const OG_IMAGE_TAG = /<meta property="og:image" content="([^"]+)"/;
+
+function assertCardExists(file, html) {
+  const url = html.match(OG_IMAGE_TAG)?.[1];
+  if (!url) return;
+  const card = path.join(dist, new URL(url).pathname);
+  if (!existsSync(card)) {
+    throw new Error(`prerender: ${path.relative(dist, file)} points at a missing share card ${url} (run node scripts/og-card/render.mjs)`);
+  }
+}
+
 async function writePage(file, html) {
+  assertCardExists(file, html);
   for (const m of html.matchAll(INLINE_SCRIPT)) {
     inlineHashes.add(`'sha256-${createHash("sha256").update(m[1]).digest("base64")}'`);
   }
