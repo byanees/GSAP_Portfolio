@@ -4,7 +4,9 @@
 <meta charset="utf-8" />
 <title>OG card</title>
 <!--
-  Source for public/assets/imgs/og/og-card-v2.png (1200x630).
+  Source for public/assets/imgs/og/og-card-v2.png and the per-post and
+  per-case-study cards beside it (1200x630). render.mjs swaps in each
+  page's kicker, title, and tags.
   Render with: node scripts/og-card/render.mjs
 
   Safe zone: LinkedIn's mobile Featured card and several chat apps
@@ -111,7 +113,7 @@
   }
 
   .foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-  .tags { display: flex; gap: 8px; }
+  .tags { display: flex; gap: 8px; flex: 1; min-width: 0; overflow: hidden; }
   .tag {
     font-family: "DM Mono", monospace; font-size: 14px; color: #a3a3a3;
     padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px;

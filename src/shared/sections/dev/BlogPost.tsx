@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import PageMeta from "@/seo/PageMeta";
-import { TITLE_SUFFIX, pageTitle } from "@/seo/siteConfig";
+import { TITLE_SUFFIX, ogImageFor, pageTitle } from "@/seo/siteConfig";
 import { blogPostingSchema, breadcrumbSchema, graph } from "@/seo/schema";
 import { crumbFor } from "@/data/navigation";
 import { POST_PAGE as PAGE } from "@/data/pages/blog";
@@ -53,6 +53,8 @@ export default function BlogPost() {
                 title={pageTitle(post.title)}
                 description={post.metaDescription ?? post.excerpt}
                 path={`/blog/${post.slug}`}
+                image={ogImageFor("blog", post.slug)}
+                imageAlt={post.title}
                 ogType="article"
                 publishedTime={post.date}
                 modifiedTime={post.updated ?? post.date}

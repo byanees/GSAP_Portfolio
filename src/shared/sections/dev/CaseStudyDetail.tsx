@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import PageMeta from "@/seo/PageMeta";
-import { TITLE_SUFFIX, pageTitle } from "@/seo/siteConfig";
+import { TITLE_SUFFIX, ogImageFor, pageTitle } from "@/seo/siteConfig";
 import { breadcrumbSchema, caseStudySchema, graph } from "@/seo/schema";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import { postsForCaseStudy } from "@/data/related";
@@ -53,6 +53,8 @@ export default function CaseStudyDetail() {
                 section={cs.domain}
                 tags={cs.stack}
                 path={`/portfolio/${cs.slug}`}
+                image={ogImageFor("portfolio", cs.slug)}
+                imageAlt={cs.title}
                 ogType="article"
                 jsonLd={graph(
                     caseStudySchema(cs),

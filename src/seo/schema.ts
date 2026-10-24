@@ -1,7 +1,7 @@
 // JSON-LD builders. Everything here is derived from src/data, so the structured
 // data and the visible page always describe the same facts.
 
-import { SITE_NAME, SITE_URL, absoluteUrl, OG_IMAGE } from "./siteConfig";
+import { SITE_NAME, SITE_URL, absoluteUrl, OG_IMAGE, ogImageFor } from "./siteConfig";
 import { PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE, LANGUAGES, STACK_LAYERS } from "@/data/profile";
 import { crumbFor } from "@/data/navigation";
 import { BLOG } from "@/data/pages/blog";
@@ -125,7 +125,7 @@ export function blogPostingSchema(post: Post) {
     wordCount: wordCount(post.bodyHtml),
     timeRequired: `PT${parseInt(post.readTime, 10) || 5}M`,
     inLanguage: "en",
-    image: absoluteUrl(OG_IMAGE),
+    image: absoluteUrl(ogImageFor("blog", post.slug)),
     isPartOf: { "@id": BLOG_ID },
     author: { "@id": PERSON_ID },
     publisher: { "@id": PERSON_ID },
@@ -153,7 +153,7 @@ export function caseStudySchema(cs: CaseStudy) {
     genre: cs.domain,
     keywords: cs.stack.join(", "),
     temporalCoverage: temporalCoverage(cs.period),
-    image: absoluteUrl(OG_IMAGE),
+    image: absoluteUrl(ogImageFor("portfolio", cs.slug)),
     isPartOf: { "@id": PORTFOLIO_ID },
     author: { "@id": PERSON_ID },
     creator: { "@id": PERSON_ID },

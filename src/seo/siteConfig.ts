@@ -29,6 +29,14 @@ export const INDEXNOW_KEY = "e83d30d0e95ddf98f44152b439cd9f65";
  *  overwrite in place keeps showing the old one. */
 export const OG_IMAGE = "/assets/imgs/og/og-card-v2.png";
 
+/** A post or case study's own card, rendered from its title by
+ *  scripts/og-card/render.mjs. A shared link then shows what it is about, not
+ *  the same portrait for every page. The prerender fails the build if a card
+ *  is missing, so a new post cannot ship pointing at nothing. */
+export function ogImageFor(section: "blog" | "portfolio", slug: string) {
+  return `/assets/imgs/og/${section}/${slug}.png`;
+}
+
 /** Titles read "<page> — Muhammad Anees" everywhere. The home page is the one
  *  exception: it leads with the role, because that is the query it answers. */
 export const TITLE_SUFFIX = ` — ${PROFILE.name}`;
