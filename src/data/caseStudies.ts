@@ -155,6 +155,33 @@ export const CASE_STUDIES: CaseStudy[] = [
     stack: [".NET", "Microservices", "Third-party APIs"],
   },
   {
+    slug: "multi-agent-ai-development-workflow",
+    domain: "AI-assisted engineering",
+    title: "Multi-Agent AI Development Workflow",
+    company: "Systems Limited",
+    role: "Product Engineer",
+    period: "2026 – Present",
+    summary:
+      "How I ship .NET 9 and Angular features as an AI-native engineer, with Cursor, Claude, and Copilot: an orchestrator agent splits each task across backend and frontend agents, and code-review and security agents check the change before it reaches me.",
+    metaDescription:
+      "An AI-native workflow for .NET 9 and Angular: orchestrator, backend, frontend, code-review, and security agents in Cursor, with MCP servers for context.",
+    problem:
+      "The platform is a DDD microservices codebase with 10+ government and third-party integrations, shared across a 40-person delivery team. An assistant given a vague prompt writes code that compiles and ignores the domain's rules, and after go-live, production incidents come with an 8–10 hour SLA.",
+    built: [
+      "An orchestrator agent in Cursor that takes a task, breaks it into parts, and hands each one to a specialist: a backend agent for .NET 9 and ABP.io, a frontend agent for the Angular micro-frontends",
+      "Structured prompts for every task, with file-scoped context and explicit acceptance criteria, so each agent works on the files that matter and its output is checked against a stated definition of done",
+      "Code-review and security agents as their own steps in the flow, so the change is reviewed and security-checked before it comes back to me",
+      "Internal agent tooling and MCP servers for the team, so the agents can reach project context beyond the files open in the editor",
+      "Agents on root-cause analysis during L3 hypercare, tracing production incidents to their cause inside the SLA",
+      "A clear line on what the agents own: they draft, review, and investigate; design decisions and what ships stay with me",
+    ],
+    results: [
+      { value: "5", label: "agents: orchestrator, backend, frontend, code review, security" },
+      { value: "20+", label: "production incidents traced and fixed within an 8–10 hour SLA" },
+    ],
+    stack: ["Cursor", "Claude", "GitHub Copilot", "MCP", ".NET 9", "Angular"],
+  },
+  {
     slug: "qualification-certificate-workflow",
     domain: "Enterprise workflow",
     title: "Qualification Certificate Workflow",
@@ -168,7 +195,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     problem:
       "A QC application passes through three roles and can be sent back more than once, but has to end the same way every time: a decision on record, and an issued certificate the external system knows about.",
     built: [
-      "Multi-step investor application, covering license eligibility for the QC and selection of company representatives",
+      "Multi-step investor application, covering eligibility for the QC and selection of company representatives",
       "Company representatives can later add card details on the company's behalf through HyperPay, and view the company dashboard",
       "Admin review: the admin can send the application back for corrections, and the investor corrects and resubmits it",
       "Approval: the approver can reject, return the application to the reviewer, or approve it with a comment",
@@ -184,7 +211,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "backend-aggregation-layer",
     domain: "Platform & analytics",
-    title: "Visa by Package Dashboards: One API per Dashboard",
+    title: "Investor and Admin Dashboards: One API per Dashboard",
     company: "Systems Limited",
     role: "Product Engineer",
     period: "2026 – Present",

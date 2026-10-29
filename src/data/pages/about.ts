@@ -22,7 +22,7 @@ export const FAQ: FaqItem[] = [
     },
     {
         question: "What kind of projects have you worked on?",
-        answer: `Saudi tourism licensing and visa platforms with 10+ government integrations, telco agent apps serving ${METRICS.agents} agents across Tanzania, Request to Pay adopted by ${METRICS.merchants} merchants, EMV QR payments, and earlier client products like an AI assistant and a Dubai property platform.`,
+        answer: `Enterprise platforms with 10+ government and third-party integrations, telco agent apps serving ${METRICS.agents} agents across Tanzania, Request to Pay adopted by ${METRICS.merchants} merchants, EMV QR payments, and earlier client products like an AI assistant and a Dubai property platform.`,
     },
     {
         question: "Do you work with AI tools?",
