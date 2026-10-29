@@ -58,12 +58,12 @@ export const PROFILE = {
   /** Square, 800x800. The Person schema's image, which search engines show
    *  as the profile photo. */
   headshot: "/assets/imgs/me/headshot.jpg",
-  heroLead: `${METRICS.years} years as a full stack and backend engineer on fintech, telecom, and government platforms. Now a product engineer at Systems Limited, shipping Saudi tourism licensing and visa platforms on .NET 9, ABP.io, and Angular micro-frontends.`,
+  heroLead: `${METRICS.years} years as a full stack and backend engineer on fintech, telecom, and government platforms. Now a product engineer at Systems Limited, shipping enterprise platforms on .NET 9, ABP.io, and Angular micro-frontends.`,
   /** About page opening line. Deliberately different from heroLead, which the
    *  home hero already prints. */
   aboutLead:
     "I work on the parts of a product that have to stay up: payment rails, schedulers, and the services behind them. Three years in, across fintech, telecom, and government platforms.",
-  summary: `I've led the backend for telco agent apps serving ${METRICS.agents} agents across Tanzania, delivered Request to Pay to ${METRICS.merchants} merchants, and built a scheduler that pushes ${METRICS.notificationsPerRun} notifications per run. Today I build Saudi tourism licensing and visa platforms on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design across a microservices architecture, in an AI-native, multi-agent workflow with Cursor.`,
+  summary: `I've led the backend for telco agent apps serving ${METRICS.agents} agents across Tanzania, delivered Request to Pay to ${METRICS.merchants} merchants, and built a scheduler that pushes ${METRICS.notificationsPerRun} notifications per run. Today I build enterprise platforms on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design across a microservices architecture, in an AI-native, multi-agent workflow with Cursor.`,
 };
 
 type Highlight = { value: string; label: string };
@@ -90,7 +90,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     location: "Islamabad, PK",
     current: true,
     summary:
-      "Owning features end to end on Saudi tourism licensing and visa platforms, on .NET 9, ABP.io, and Angular micro-frontends in an AI-native, multi-agent Cursor workflow: government integrations, bilingual notifications, analytics dashboards, and L3 hypercare after go-live.",
+      "Owning features end to end on enterprise platforms, on .NET 9, ABP.io, and Angular micro-frontends in an AI-native, multi-agent Cursor workflow: government integrations, bilingual notifications, analytics dashboards, and L3 hypercare after go-live.",
     highlights: [
       { value: "10+", label: "government and third-party systems integrated" },
       { value: "20+", label: "production incidents fixed within an 8–10 hour SLA" },
@@ -223,7 +223,7 @@ export const STACK_LAYERS = [
     featured: ["GitHub Actions", "Jenkins"],
     after: ".",
     items: ["GitHub Actions", "Jenkins", "ELK"],
-    usedIn: ["preprod-image-promotion"],
+    usedIn: ["preprod-image-promotion", "multi-agent-ai-development-workflow"],
   },
 ];
 

@@ -220,11 +220,41 @@ export const DIAGRAMS: Record<string, Diagram> = {
             { from: "external", to: "notify", step: 5 },
         ],
         steps: [
-            "The investor applies in steps: license eligibility for the QC, then company representatives",
+            "The investor applies in steps: eligibility for the QC, then company representatives",
             "The admin reviews it and can send it back for corrections; the investor corrects and resubmits",
             "Once the review passes, the application goes to the approver",
             "The approver can reject it, or return it to the reviewer",
             "Or approve it with a comment: the external system is informed and 'QC issued' notifications go out",
+        ],
+    },
+
+    "multi-agent-ai-development-workflow": {
+        title: "One task, five agents, one engineer deciding",
+        zones: [{ x: 470, y: 80, w: 240, h: 420, label: "specialist agents" }],
+        nodes: [
+            { id: "task", x: 110, y: 290, w: 170, label: "Task", sub: "files + criteria", kind: "actor" },
+            { id: "orch", x: 340, y: 290, w: 180, label: "Orchestrator", sub: "splits the work", kind: "service", focus: true },
+            { id: "mcp", x: 340, y: 480, w: 180, h: 64, label: "MCP servers", sub: "team context", kind: "store" },
+            { id: "be", x: 590, y: 180, w: 190, label: "Backend agent", sub: ".NET 9 · ABP.io", kind: "service" },
+            { id: "fe", x: 590, y: 400, w: 190, label: "Frontend agent", sub: "Angular", kind: "service" },
+            { id: "review", x: 870, y: 180, w: 190, label: "Code review", sub: "agent", kind: "service" },
+            { id: "sec", x: 870, y: 400, w: 190, label: "Security", sub: "agent", kind: "service" },
+        ],
+        edges: [
+            { from: "task", to: "orch", step: 1, label: "prompt" },
+            { from: "orch", to: "mcp", step: 2, dashed: true, label: "context" },
+            { from: "orch", to: "be", step: 2, axis: "x" },
+            { from: "orch", to: "fe", step: 2, axis: "x" },
+            { from: "be", to: "review", step: 3, label: "change" },
+            { from: "fe", to: "review", step: 3 },
+            { from: "review", to: "sec", step: 4 },
+        ],
+        notes: [{ x: 870, y: 500, text: "→ back to me to ship", step: 4 }],
+        steps: [
+            "The task goes in as a structured prompt: the files in scope and explicit acceptance criteria",
+            "The orchestrator splits it across the backend and frontend agents, pulling project context from the team's MCP servers",
+            "The code-review agent checks each change against the acceptance criteria",
+            "The security agent checks it again, and the result comes back to me to decide what ships",
         ],
     },
 

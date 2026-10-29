@@ -32,7 +32,7 @@ export const POSTS: Post[] = [
     readTime: "6 min read",
     tags: [".NET", "ABP.io", "Caching"],
     bodyHtml: `
-<p>At Systems Limited I worked on the Visa by Package dashboards: four for investors and five for admins. None of their data is ours. It lives in another system, which exposes it through its own APIs. Our job was to put those numbers on screen quickly, and keep them honest.</p>
+<p>At Systems Limited I worked on a set of nine dashboards: four for investors and five for admins. None of their data is ours. It lives in another system, which exposes it through its own APIs. Our job was to put those numbers on screen quickly, and keep them honest.</p>
 
 <h2>Why not call their APIs from the frontend</h2>
 <p>The quickest version is to let each dashboard call the APIs it needs straight from the browser. It works in a demo, and it costs you in four ways:</p>
