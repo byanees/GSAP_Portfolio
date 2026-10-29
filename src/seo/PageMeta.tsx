@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { absoluteUrl, OG_IMAGE, SITE_NAME } from "./siteConfig";
 
 /** Describes the shared fallback card. Pages with a card of their own pass imageAlt. */
-const IMAGE_ALT = `${SITE_NAME}, full stack engineer`;
+const IMAGE_ALT = `${SITE_NAME}, product engineer`;
 
 type Props = {
   title: string;

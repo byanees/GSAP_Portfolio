@@ -4,7 +4,7 @@
 export const FOOTER = {
   /** The large footer. Each entry in a list is one line. */
   headline: ["Let's Build", "What Scales"],
-  tagline: ["Full stack engineering, fintech solutions,", "and scalable systems built with modern tools."],
+  tagline: ["Product and full stack engineering,", "fintech platforms, and backends that scale."],
   navTitle: "Navigation",
   /** Beside the phone number, in both footers. */
   whatsapp: "WhatsApp",

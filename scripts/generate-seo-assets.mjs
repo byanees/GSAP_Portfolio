@@ -220,6 +220,7 @@ const header = `# ${PROFILE.name}
 
 > ${current.role} at ${current.company}, ${PROFILE.location}. ${PROFILE.summary}
 
+- Role: ${PROFILE.role}; also hired as ${PROFILE.alsoKnownAs.join(", ")}
 - Site: [${new URL(SITE_URL).host}](${SITE_URL})
 - Email: [${PROFILE.email}](mailto:${PROFILE.email})
 - Phone: ${PROFILE.phone} ([WhatsApp](${PROFILE.whatsapp}))

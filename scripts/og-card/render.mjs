@@ -1,6 +1,6 @@
 // Renders scripts/og-card/og-card.html to the site's share cards:
 //
-//   public/assets/imgs/og/og-card-v2.png          the fallback, for every other page
+//   public/assets/imgs/og/og-card-v3.png          the fallback, for every other page
 //   public/assets/imgs/og/blog/<slug>.png         one per post
 //   public/assets/imgs/og/portfolio/<slug>.png    one per case study
 //
@@ -65,7 +65,7 @@ async function shoot(file) {
   console.log(`wrote ${path.relative(root, out)}`);
 }
 
-await shoot("og-card-v2.png");
+await shoot("og-card-v3.png");
 
 for (const card of cards) {
   await page.evaluate(({ kicker, title, tags }) => {
