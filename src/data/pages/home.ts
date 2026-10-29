@@ -32,7 +32,7 @@ export const HOME = {
     },
     whatIDo: {
         title: "Building scalable backends, modern frontends, and reliable fintech systems.",
-        lead: "Clean, testable systems built to scale, from the API contract to the dashboard.",
+        lead: "Full stack and AI-native: clean, testable systems built to scale, from the API contract to the dashboard.",
         tagsLabel: "Tools I use",
     },
     caseStudies: {

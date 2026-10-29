@@ -12,6 +12,10 @@ export type FaqItem = { question: string; answer: string };
  *  structured data. Plain text only: the same string goes into both. */
 export const FAQ: FaqItem[] = [
     {
+        question: "What is your current role?",
+        answer: `I'm a ${PROFILE.role} at Systems Limited. In practice that's full stack software engineering with product ownership: .NET 9 and ABP.io services on the backend, Angular micro-frontends on the front, and features carried from the API contract to the dashboard and through go-live.`,
+    },
+    {
         question: "What technologies do you specialize in?",
         answer: ".NET 9 and ABP.io on the backend, Angular and React on the frontend, and Docker, Kubernetes, and AWS for infrastructure, with most of my work in fintech, telecom, and government platforms.",
     },
@@ -21,7 +25,7 @@ export const FAQ: FaqItem[] = [
     },
     {
         question: "Do you work with AI tools?",
-        answer: "Yes, every day. I work in a multi-agent Cursor workflow, with orchestrator, backend, frontend, code-review, and security agents, and write structured prompts with file-scoped context and explicit acceptance criteria. I also use agents for root-cause analysis on production incidents.",
+        answer: "Yes, every day: I'm an AI-native engineer. I work in a multi-agent Cursor workflow, with orchestrator, backend, frontend, code-review, and security agents, and write structured prompts with file-scoped context and explicit acceptance criteria. I also use agents for root-cause analysis on production incidents.",
     },
     {
         question: "Are you available for new opportunities?",

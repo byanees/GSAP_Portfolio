@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { absoluteUrl, OG_IMAGE, SITE_NAME } from "./siteConfig";
 
 /** Every route shares the one card, so it shares one description of it. */
-const IMAGE_ALT = `${SITE_NAME}, full stack engineer`;
+const IMAGE_ALT = `${SITE_NAME}, product engineer`;
 
 type Props = {
   title: string;

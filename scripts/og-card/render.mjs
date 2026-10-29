@@ -1,4 +1,4 @@
-// Renders scripts/og-card/og-card.html to public/assets/imgs/og/og-card-v2.png.
+// Renders scripts/og-card/og-card.html to public/assets/imgs/og/og-card-v3.png.
 //
 //   node scripts/og-card/render.mjs
 //
@@ -10,7 +10,7 @@ import path from "node:path";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const src = pathToFileURL(path.join(here, "og-card.html")).href;
-const out = path.resolve(here, "../../public/assets/imgs/og/og-card-v2.png");
+const out = path.resolve(here, "../../public/assets/imgs/og/og-card-v3.png");
 
 const browser = await chromium.launch({
   executablePath: process.env.CHROME_PATH || undefined,

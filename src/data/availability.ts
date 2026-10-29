@@ -7,7 +7,7 @@
 
 import { PROFILE } from "./profile";
 
-const ROLES = "full stack & backend roles";
+const ROLES = "product, full stack & backend roles";
 
 export const AVAILABILITY = {
   /** Bolded inside the home CTA line. */
@@ -27,12 +27,12 @@ export const AVAILABILITY = {
   assistantAnswer:
     // "Yes: open to full-time full stack or backend roles, fully remote or with relocation (visa sponsorship needed), and to freelance or contract work through Upwork or directly.",
     // "Yes: open to full-time full stack or backend roles, fully remote or with relocation (visa sponsorship needed), and to freelance or contract work.",
-    "Yes: open to full-time full stack or backend roles, fully remote or with relocation (visa sponsorship needed).",
+    "Yes: open to full-time product engineer, full stack, or backend engineer roles, fully remote or with relocation (visa sponsorship needed).",
 
   /** The two "work with me" cards on the About page. */
   fullTime: {
     title: "Full-time roles",
-    description: "Full stack or backend roles where reliability matters: fintech, telecom, and enterprise platforms.",
+    description: "Product, full stack, or backend engineering roles where reliability matters: fintech, telecom, and enterprise platforms.",
     points: [
       `Based in ${PROFILE.location}, ${PROFILE.timezone}`,
       "Open to relocation or fully remote roles",
@@ -50,7 +50,7 @@ export const AVAILABILITY = {
   /** About page FAQ answers on availability. */
   faq: {
     roles:
-      "Yes. I'm open to full stack and backend roles, either on-site after relocation or fully remote. Relocation would need visa sponsorship.",
+      "Yes. I'm open to product engineer, full stack, and backend roles, either on-site after relocation or fully remote. Relocation would need visa sponsorship.",
     // freelance:
     //   // "Yes, for well-scoped backend or full stack work. You can hire me through Upwork or contract directly, and we agree on the scope before any code is written.",
     //   "Yes, for well-scoped backend or full stack work. You can contract me directly, and we agree on the scope before any code is written.",

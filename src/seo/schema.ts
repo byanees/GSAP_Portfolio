@@ -2,7 +2,7 @@
 // data and the visible page always describe the same facts.
 
 import { SITE_NAME, SITE_URL, absoluteUrl, OG_IMAGE } from "./siteConfig";
-import { PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE, LANGUAGES, STACK_LAYERS } from "@/data/profile";
+import { PROFILE, EXPERIENCE, EDUCATION, CERTIFICATIONS, EXPERTISE, LANGUAGES, STACK_LAYERS, STACK_PRINCIPLES } from "@/data/profile";
 import { crumbFor } from "@/data/navigation";
 import { BLOG } from "@/data/pages/blog";
 import type { FaqItem } from "@/data/pages/about";
@@ -19,7 +19,7 @@ const PORTFOLIO_ID = `${SITE_URL}/portfolio#collection`;
 function knowsAbout() {
   const fromExpertise = EXPERTISE.flatMap((e) => e.tags);
   const fromStack = STACK_LAYERS.flatMap((l) => l.items);
-  return Array.from(new Set([...fromExpertise, ...fromStack]));
+  return Array.from(new Set([...fromExpertise, ...fromStack, ...STACK_PRINCIPLES]));
 }
 
 export function personSchema() {
@@ -51,6 +51,7 @@ export function personSchema() {
     worksFor: {
       "@type": "Organization",
       name: current.company,
+      ...(current.companyUrl ? { url: current.companyUrl } : {}),
     },
     alumniOf: {
       "@type": "CollegeOrUniversity",
@@ -63,6 +64,7 @@ export function personSchema() {
     hasOccupation: {
       "@type": "Occupation",
       name: PROFILE.role,
+      alternateName: PROFILE.alsoKnownAs,
       occupationLocation: { "@type": "City", name: PROFILE.city },
       skills: knowsAbout().join(", "),
     },
