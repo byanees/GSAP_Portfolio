@@ -15,6 +15,7 @@
     { "source": "/portfolio/emv-qr-request-to-pay", "destination": "/portfolio/request-to-pay", "permanent": true },
     { "source": "/portfolio/telecom-agent-apps", "destination": "/portfolio", "permanent": true },
     { "source": "/portfolio/batch-payment-validation", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/multi-agent-ai-development-workflow", "destination": "/portfolio/supervised-agentic-delivery", "permanent": true },
     { "source": "/feed", "destination": "/rss.xml", "permanent": true },
     { "source": "/feed.xml", "destination": "/rss.xml", "permanent": true }
   ],

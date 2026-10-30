@@ -26,7 +26,7 @@ export const FAQ: FaqItem[] = [
     },
     {
         question: "Do you work with AI tools?",
-        answer: "Yes, every day: I'm an AI-native engineer. I work in a multi-agent Cursor workflow, with orchestrator, backend, frontend, code-review, and security agents, and write structured prompts with file-scoped context and explicit acceptance criteria. I also use agents for root-cause analysis on production incidents.",
+        answer: "Yes, every day: I'm an AI-native engineer. I run a supervised agentic setup in Cursor: the work item picks one of three mode agents (L3 support, feature delivery, or triage), each with its own playbook and tools over MCP. The agent investigates, fixes, tests, and opens PRs; merges, migrations, and database writes stay with me. It runs in Cursor today, and the same files work in Claude Code or any other agent.",
     },
     {
         question: "Are you available for new opportunities?",
@@ -84,7 +84,7 @@ export const ABOUT = {
             "Domain-Driven Design",
             "EMV QR",
             "REST & GraphQL",
-            "Multi-agent AI workflows",
+            "Agentic AI workflows",
         ],
     },
     /** Each role is a card in a deck, newest on top. */
