@@ -48,7 +48,7 @@ export default function CaseStudyDetail() {
     return (
         <>
             <PageMeta
-                title={pageTitle(cs.title)}
+                title={pageTitle(cs.seoTitle ?? cs.title)}
                 description={cs.metaDescription ?? cs.summary}
                 section={cs.domain}
                 tags={cs.stack}
@@ -72,10 +72,12 @@ export default function CaseStudyDetail() {
                     </Link>
                     <div className="row">
                         <div className="col-xl-9">
-                            <span className="code-card__meta d-block mb-20">
-                                {cs.company}, {cs.period}
-                            </span>
-                            <h1 className="fz-ds-1 fw-500 lh-1 mb-30">{cs.title}</h1>
+                            <h1 className="fz-ds-1 fw-500 lh-1 mb-30">
+                                <span className="code-card__meta d-block mb-20">
+                                    {cs.domain} · {cs.company}, {cs.period}
+                                </span>
+                                {cs.title}
+                            </h1>
                             <p className="fz-font-3xl fw-400 neutral-500 mb-0">{cs.summary}</p>
                         </div>
                     </div>

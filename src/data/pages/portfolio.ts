@@ -2,6 +2,7 @@
 // caseStudies.ts, projects.ts, and diagrams.ts.
 
 export const PORTFOLIO = {
+    kicker: "Fintech, telco & enterprise case studies",
     title: "What I've Built",
     lead: "A selection, not everything I have shipped. Case studies from fintech and enterprise platforms, and other projects, each picked because the outcome is measurable. Happy to walk through the rest.",
     count: (caseStudies: number, projects: number) => `${caseStudies} selected case studies, ${projects} projects`,

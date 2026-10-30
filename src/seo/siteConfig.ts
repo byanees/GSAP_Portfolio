@@ -67,16 +67,16 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   // every title the work answers to appears on a page that ranks for the name.
   "/": {
     title: `${PROFILE.name} — ${PROFILE.role}, Full Stack & Backend`,
-    description: `Product engineer at Systems Limited, ${PROFILE.city}. Full stack and backend software engineer shipping .NET 9 and Angular payment platforms, AI-native.`,
+    description: `Product engineer at Systems Limited, ${PROFILE.city}. Full stack and backend engineer in C#, ASP.NET Core, and Angular for fintech, telco, and enterprise.`,
   },
   "/about": {
     title: `About ${PROFILE.name} — ${PROFILE.role}`,
     description: `${PROFILE.name}: product engineer at Systems Limited and full stack software engineer, ${METRICS.years} years on fintech, telecom, and government backends.`,
   },
   "/portfolio": {
-    title: pageTitle("Case Studies in Payments & Backend"),
+    title: pageTitle("Fintech, Telco & Enterprise Case Studies"),
     description:
-      "Case studies from payments and distributed systems: Request to Pay over app and USSD, 800k-notification runs, Redis multiplexing, and build-once releases.",
+      "Fintech, telco, and enterprise case studies: agentic delivery with LLM agents, Request to Pay over USSD, 800k-notification runs, and Redis multiplexing.",
   },
   "/blog": {
     title: pageTitle("Notes on .NET, Redis & Payments"),

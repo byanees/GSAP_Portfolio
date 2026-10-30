@@ -72,6 +72,7 @@ export function ContactHero() {
                 <div className="row align-items-end g-4">
                     <div className="col-xxl-6 col-lg-7">
                         <h1 className="section-title fw-500 fz-ds-1 lh-1 reveal-text">
+                            <span className="h1-kicker">{CONTACT.kicker}</span>
                             <RevealText>{CONTACT.title}</RevealText>
                         </h1>
                         <p className="mb-0 fz-font-lg neutral-900">{withBreaks(CONTACT.lead)}</p>
