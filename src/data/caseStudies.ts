@@ -27,6 +27,37 @@ export type CaseStudy = {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    slug: "supervised-agentic-delivery",
+    domain: "Agentic AI",
+    title: "Supervised Agentic Delivery",
+    company: "Systems Limited",
+    role: "Product Engineer",
+    period: "2026 – Present",
+    featured: true,
+    summary:
+      "Three mode agents, picked by the work item. The agent does everything I can undo; merges, migrations, and database writes stay with me. Runs in Cursor, Claude Code, or any other agent.",
+    metaDescription:
+      "Supervised agentic delivery: 3 mode agents picked by the work item, 5 MCP tools, and human-owned merges. Built in Cursor, portable to Claude Code.",
+    problem:
+      "During hypercare, from September to October 2026, I worked on 40+ production incidents under an 8-hour SLA. Fast fixes only count if nothing else breaks. The Cursor setup I had, long specialist agents under an orchestrator, loaded a lot into every chat, and its guardrails held only as well as that day's prompt.",
+    built: [
+      "Three mode agents, picked by the Azure DevOps work item: a prod bug, hotfix, or test verification goes to L3 mode, a user story to feature mode, and a Teams message with no work item yet to triage mode",
+      "L3 mode reads the work item and every comment on it, reproduces the issue on a test host, writes the smallest fix it can, then checks what else the fix could touch (notifications, scheduled jobs, integrations, config) before opening a PR to the latest release branch",
+      "Feature mode runs a gap analysis before any code and opens its PR to develop. Triage mode finds the root cause and drafts a bug work item, writes no code unless I ask, and hands off to L3 once I confirm",
+      "Six skills as playbooks: bug fix, feature delivery, triage, GitFlow, PR and work item write-ups, and live library docs",
+      "Five tools over MCP: Codegraph first for the codebase, Context7 for library docs, Figma, Bytebase, and Azure DevOps",
+      "Rule files that load in every chat: the database is read-only by default, topic branches only, no merges, no migrations, a browser on four test hosts and nowhere else, and every work item comment stays a draft until I approve it",
+      "It replaced the orchestrator and its specialist agents, which are now archived",
+      "Nothing in it is tied to Cursor: the modes, skills, rules, and MCP tools are plain files in the repo, so the same setup runs in Claude Code or any agent that loads rules and calls tools over MCP",
+    ],
+    results: [
+      { value: "3", label: "mode agents, picked by the work item, in place of an orchestrator" },
+      { value: "5", label: "tools over MCP: Codegraph, Context7, Figma, Bytebase, Azure DevOps" },
+      { value: "0", label: "merges, migrations, or database writes left to the agent" },
+    ],
+    stack: ["Cursor", "MCP", "Azure DevOps", "Context7", ".NET 9", "Angular"],
+  },
+  {
     slug: "request-to-pay",
     domain: "Payments",
     title: "Request to Pay over App and USSD",
@@ -153,35 +184,6 @@ export const CASE_STUDIES: CaseStudy[] = [
       { value: "Emailed", label: "ticket details as soon as it is issued" },
     ],
     stack: [".NET", "Microservices", "Third-party APIs"],
-  },
-  {
-    slug: "supervised-agentic-delivery",
-    domain: "AI-assisted engineering",
-    title: "Supervised Agentic Delivery in Cursor",
-    company: "Systems Limited",
-    role: "Product Engineer",
-    period: "2026 – Present",
-    summary:
-      "A Cursor setup I rebuilt for production work on .NET 9 and Angular: the work item picks one of three mode agents, each with its own playbook. The agent does everything I can undo. Merges, migrations, database writes, and anything posted to the ticket stay with me.",
-    metaDescription:
-      "Supervised agentic delivery in Cursor: 3 mode agents routed by the Azure DevOps work item, 5 tools over MCP, and rules that keep irreversible steps human.",
-    problem:
-      "During hypercare, from September to October 2026, I worked on 40+ production incidents under an 8-hour SLA. Fast fixes only count if nothing else breaks. The Cursor setup I had, long specialist agents under an orchestrator, loaded a lot into every chat, and its guardrails held only as well as that day's prompt.",
-    built: [
-      "Three mode agents, picked by the Azure DevOps work item: a prod bug, hotfix, or test verification goes to L3 mode, a user story to feature mode, and a Teams message with no work item yet to triage mode",
-      "L3 mode reads the work item and every comment on it, reproduces the issue on a test host, writes the smallest fix it can, then checks what else the fix could touch (notifications, scheduled jobs, integrations, config) before opening a PR to the latest release branch",
-      "Feature mode runs a gap analysis before any code and opens its PR to develop. Triage mode finds the root cause and drafts a bug work item, writes no code unless I ask, and hands off to L3 once I confirm",
-      "Six skills as playbooks: bug fix, feature delivery, triage, GitFlow, PR and work item write-ups, and live library docs",
-      "Five tools over MCP: Codegraph first for the codebase, Context7 for library docs, Figma, Bytebase, and Azure DevOps",
-      "Rule files that load in every chat: the database is read-only by default, topic branches only, no merges, no migrations, a browser on four test hosts and nowhere else, and every work item comment stays a draft until I approve it",
-      "It replaced the orchestrator and its specialist agents, which are now archived",
-    ],
-    results: [
-      { value: "3", label: "mode agents, picked by the work item, in place of an orchestrator" },
-      { value: "5", label: "tools over MCP: Codegraph, Context7, Figma, Bytebase, Azure DevOps" },
-      { value: "0", label: "merges, migrations, or database writes left to the agent" },
-    ],
-    stack: ["Cursor", "MCP", "Azure DevOps", "Context7", ".NET 9", "Angular"],
   },
   {
     slug: "qualification-certificate-workflow",
