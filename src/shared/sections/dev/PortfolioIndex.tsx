@@ -84,7 +84,10 @@ export default function PortfolioIndex() {
                 <div className="container">
                     <div className="row g-4 align-items-end pb-60">
                         <div className="col-xxl-8 col-lg-7">
-                            <h1 className="fz-ds-1 fw-500 lh-1">{PORTFOLIO.title}</h1>
+                            <h1 className="fz-ds-1 fw-500 lh-1">
+                                <span className="h1-kicker">{PORTFOLIO.kicker}</span>
+                                {PORTFOLIO.title}
+                            </h1>
                             <p className="fz-font-lg neutral-900 mb-0">{PORTFOLIO.lead}</p>
                         </div>
                         <div className="col-xxl-3 col-lg-5 ms-lg-auto text-lg-end">

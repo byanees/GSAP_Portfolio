@@ -6,7 +6,7 @@ import { PROFILE } from "../profile";
 
 export const HOME = {
     hero: {
-        tagline: `${PROFILE.role}, based in ${PROFILE.city}`,
+        tagline: `${PROFILE.role} · full stack & backend · ${PROFILE.city}`,
         headline: "I build payment platforms and backend systems that hold up under real traffic.",
         /** Under each number: a link to the case study that backs it. */
         proofCue: "Read the case study",

@@ -19,6 +19,9 @@ export type CaseStudy = {
   summary: string;
   /** Search snippet, for when the summary runs past ~155 characters. */
   metaDescription?: string;
+  /** The <title> and share card headline, when the card title is too short to
+   *  say the stack and the domain a search would use. */
+  seoTitle?: string;
   problem: string;
   built: string[];
   results: Result[];
@@ -30,6 +33,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "supervised-agentic-delivery",
     domain: "Agentic AI",
     title: "Supervised Agentic Delivery",
+    seoTitle: "Supervised Agentic Delivery: LLM Agents on Production Code",
     company: "Systems Limited",
     role: "Product Engineer",
     period: "2026 – Present",
@@ -55,12 +59,13 @@ export const CASE_STUDIES: CaseStudy[] = [
       { value: "5", label: "tools over MCP: Codegraph, Context7, Figma, Bytebase, Azure DevOps" },
       { value: "0", label: "merges, migrations, or database writes left to the agent" },
     ],
-    stack: ["Cursor", "MCP", "Azure DevOps", "Context7", ".NET 9", "Angular"],
+    stack: ["Cursor", "MCP", "LLM agents", "Azure DevOps", "Context7", ".NET 9", "Angular"],
   },
   {
     slug: "request-to-pay",
     domain: "Payments",
     title: "Request to Pay over App and USSD",
+    seoTitle: "Request to Pay: Idempotent Payments over App and USSD",
     company: "DPL",
     role: "Software Engineer, led Request to Pay delivery",
     period: "2024 – 2026",
@@ -85,6 +90,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "bulk-push-notification-scheduler",
     domain: "Messaging at scale",
     title: "Bulk Push Notification Scheduler",
+    seoTitle: "Sending 800k Push Notifications per Run in .NET",
     company: "DPL",
     role: "Software Engineer",
     period: "2024 – 2026",
@@ -113,6 +119,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "redis-connection-multiplexing",
     domain: "Reliability",
     title: "Redis Connection Multiplexing",
+    seoTitle: "Redis Connection Multiplexing in .NET for a Telco App",
     company: "DPL",
     role: "Software Engineer, Mixx Tanzania app",
     period: "2024 – 2026",
@@ -140,6 +147,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "preprod-image-promotion",
     domain: "DevOps",
     title: "Build Once, Promote to Production",
+    seoTitle: "Build Once, Promote to Production: Docker & Jenkins CI/CD",
     company: "DPL",
     role: "Backend lead, telco agent apps",
     period: "2025 – 2026",
@@ -165,6 +173,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "otapp-bus-ticketing",
     domain: "Third-party integration",
     title: "Bus Ticketing Inside the Mixx Tanzania App",
+    seoTitle: "Bus Ticketing and Wallet Payments in the Mixx Tanzania App",
     company: "DPL",
     role: "Software Engineer",
     period: "2024 – 2026",
@@ -189,6 +198,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "qualification-certificate-workflow",
     domain: "Enterprise workflow",
     title: "Qualification Certificate Workflow",
+    seoTitle: "Enterprise Approval Workflow on .NET and Angular",
     company: "Systems Limited",
     role: "Product Engineer",
     period: "2026 – Present",
@@ -216,6 +226,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "backend-aggregation-layer",
     domain: "Platform & analytics",
     title: "Investor and Admin Dashboards: One API per Dashboard",
+    seoTitle: "One API per Dashboard: .NET Aggregation Layer with Caching",
     company: "Systems Limited",
     role: "Product Engineer",
     period: "2026 – Present",

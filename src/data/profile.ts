@@ -144,7 +144,7 @@ export const EXPERTISE = [
     title: "Backend Engineering",
     description:
       "REST APIs and microservices in C# on .NET 9 and ABP.io, shaped with domain-driven design and clean architecture, and integrations with government and third-party systems built on retries, timeouts, and idempotent writes.",
-    tags: [".NET 9", "ABP.io", "EF Core", "PostgreSQL", "Redis"],
+    tags: ["C#", "ASP.NET Core", ".NET 9", "ABP.io", "EF Core", "PostgreSQL", "Redis"],
   },
   {
     key: "fintech",
@@ -192,7 +192,7 @@ export const STACK_LAYERS = [
     lead: "back them with services on",
     featured: [".NET 9 (ABP.io)", "Node.js/NestJS"],
     after: ",",
-    items: [".NET 9", "ABP.io", "Node.js", "NestJS", "Express.js", "GraphQL", "REST", "WebSockets"],
+    items: ["C#", "ASP.NET Core", ".NET 9", "ABP.io", "Node.js", "NestJS", "Express.js", "GraphQL", "REST", "WebSockets"],
     usedIn: ["request-to-pay", "bulk-push-notification-scheduler", "otapp-bus-ticketing"],
   },
   {
@@ -227,7 +227,7 @@ export const STACK_LAYERS = [
   },
 ];
 
-export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "Agentic AI workflows"];
+export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "Agentic AI workflows", "LLM agents over MCP"];
 
 /** Education and certifications, from the CV. */
 export const EDUCATION = {

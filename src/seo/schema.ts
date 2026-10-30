@@ -147,7 +147,7 @@ export function caseStudySchema(cs: CaseStudy) {
     "@type": "CreativeWork",
     "@id": `${url}#work`,
     name: cs.title,
-    headline: cs.title,
+    headline: cs.seoTitle ?? cs.title,
     description: cs.summary,
     url,
     mainEntityOfPage: url,

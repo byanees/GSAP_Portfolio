@@ -11,6 +11,7 @@ const LINKEDIN_HANDLE = `in/${PROFILE.linkedin.replace(/\/+$/, "").split("/").po
 const REPLY_TIME = "I reply within 24 hours";
 
 export const CONTACT = {
+    kicker: "Hire a product engineer · full stack, backend & AI-native",
     title: "Contact",
     /** One entry per line. */
     lead: [

@@ -15,11 +15,15 @@ export default function HomeHero() {
                     <div className="container p-relative z-index-1">
                         <div className="row">
                             <div className="col-xl-10 col-lg-11">
-                                <p className="dev-hero__tagline d-inline-flex align-items-center gap-2 mb-30">
-                                    <span className="contact-status__dot" aria-hidden />
-                                    {HOME.hero.tagline}
-                                </p>
-                                <h1 className="dev-hero__headline fw-600 text-white mb-30">{HOME.hero.headline}</h1>
+                                {/* The tagline sits inside the h1, so the heading search
+                                    engines read names the role, not only the pitch. */}
+                                <h1 className="mb-30">
+                                    <span className="dev-hero__tagline d-inline-flex align-items-center gap-2 mb-30">
+                                        <span className="contact-status__dot" aria-hidden />
+                                        {HOME.hero.tagline}
+                                    </span>
+                                    <span className="dev-hero__headline d-block fw-600 text-white">{HOME.hero.headline}</span>
+                                </h1>
                                 <p className="dev-hero__lead mb-40">{PROFILE.heroLead}</p>
                                 <div className="hero-actions">
                                     <Link to="/portfolio" className="hero-btn hero-btn--primary">
