@@ -63,7 +63,7 @@ export const PROFILE = {
    *  home hero already prints. */
   aboutLead:
     "I work on the parts of a product that have to stay up: payment rails, schedulers, and the services behind them. Three years in, across fintech, telecom, and government platforms.",
-  summary: `I've led the backend for telco agent apps serving ${METRICS.agents} agents across Tanzania, delivered Request to Pay to ${METRICS.merchants} merchants, and built a scheduler that pushes ${METRICS.notificationsPerRun} notifications per run. Today I build enterprise platforms on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design across a microservices architecture, in an AI-native, multi-agent workflow with Cursor.`,
+  summary: `I've led the backend for telco agent apps serving ${METRICS.agents} agents across Tanzania, delivered Request to Pay to ${METRICS.merchants} merchants, and built a scheduler that pushes ${METRICS.notificationsPerRun} notifications per run. Today I build enterprise platforms on .NET 9, ABP.io, and Angular micro-frontends, using domain-driven design across a microservices architecture, in a supervised, agentic Cursor workflow where I own every irreversible step.`,
 };
 
 type Highlight = { value: string; label: string };
@@ -90,10 +90,10 @@ export const EXPERIENCE: ExperienceItem[] = [
     location: "Islamabad, PK",
     current: true,
     summary:
-      "Owning features end to end on enterprise platforms, on .NET 9, ABP.io, and Angular micro-frontends in an AI-native, multi-agent Cursor workflow: government integrations, bilingual notifications, analytics dashboards, and L3 hypercare after go-live.",
+      "Owning features end to end on enterprise platforms, on .NET 9, ABP.io, and Angular micro-frontends in a supervised, agentic Cursor workflow: government integrations, bilingual notifications, analytics dashboards, and L3 hypercare after go-live.",
     highlights: [
       { value: "10+", label: "government and third-party systems integrated" },
-      { value: "20+", label: "production incidents fixed within an 8–10 hour SLA" },
+      { value: "40+", label: "production incidents fixed under an 8-hour SLA" },
       { value: "9", label: "dashboards, each served by one cached API" },
     ],
     stack: [".NET 9", "ABP.io", "Angular 20", "DDD", "HyperPay", "Cursor"],
@@ -223,11 +223,11 @@ export const STACK_LAYERS = [
     featured: ["GitHub Actions", "Jenkins"],
     after: ".",
     items: ["GitHub Actions", "Jenkins", "ELK"],
-    usedIn: ["preprod-image-promotion", "multi-agent-ai-development-workflow"],
+    usedIn: ["preprod-image-promotion", "supervised-agentic-delivery"],
   },
 ];
 
-export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "Multi-agent AI workflows"];
+export const STACK_PRINCIPLES = ["Clean Architecture", "Domain-driven design", "Agentic AI workflows"];
 
 /** Education and certifications, from the CV. */
 export const EDUCATION = {
