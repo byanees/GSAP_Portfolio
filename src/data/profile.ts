@@ -22,12 +22,12 @@ export const PROFILE = {
   shortName: "Anees",
   /** The mark in the logo, the loader, the reel, and the post byline. */
   initials: "MA",
-  role: "Product Engineer",
+  role: "Full Stack Engineer",
   /** The other titles the same work is hired under. Published as the
    *  occupation's alternate names, in llms.txt, and in the page meta, so a
    *  search for any of them finds this one person. Only titles the experience
    *  below backs up. */
-  alsoKnownAs: ["Full Stack Engineer", "Software Engineer", "Backend Engineer", "AI-Native Software Engineer"],
+  alsoKnownAs: ["Product Engineer", "Software Engineer", "Backend Engineer", "AI-Native Software Engineer"],
   city: CITY,
   country: COUNTRY,
   /** ISO 3166 code, for the Person schema's address. */
@@ -58,7 +58,7 @@ export const PROFILE = {
   /** Square, 800x800. The Person schema's image, which search engines show
    *  as the profile photo. */
   headshot: "/assets/imgs/me/headshot.jpg",
-  heroLead: `${METRICS.years} years as a full stack and backend engineer on fintech, telecom, and government platforms. Now a product engineer at Systems Limited, shipping enterprise platforms on .NET 9, ABP.io, and Angular micro-frontends.`,
+  heroLead: `${METRICS.years} years on fintech, telecom, and government platforms, from backend services to the UI. Now a full stack engineer at Systems Limited, owning product features end to end on .NET 9, ABP.io, and Angular micro-frontends.`,
   /** About page opening line. Deliberately different from heroLead, which the
    *  home hero already prints. */
   aboutLead:
@@ -86,7 +86,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Jan 2026 – Present",
     company: "Systems Limited",
     companyUrl: "https://www.systemsltd.com",
-    role: "Product Engineer",
+    role: "Full Stack Engineer",
     location: "Islamabad, PK",
     current: true,
     summary:

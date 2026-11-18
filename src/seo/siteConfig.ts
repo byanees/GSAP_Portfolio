@@ -17,7 +17,7 @@ export const SITE_NAME = PROFILE.name;
 
 /** The installed-app card: the web manifest's name and description. */
 export const APP_NAME = `${PROFILE.name} — ${PROFILE.role}`;
-export const APP_DESCRIPTION = `Product engineer in ${PROFILE.city}: full stack and backend software engineering on .NET, ABP.io, and Angular.`;
+export const APP_DESCRIPTION = `Full stack engineer in ${PROFILE.city}: product and backend software engineering on .NET, ABP.io, and Angular.`;
 
 /** IndexNow key. Public by design: the protocol proves ownership by serving
  *  it at /<key>.txt, which the build writes. Rotating it means changing only
@@ -27,7 +27,7 @@ export const INDEXNOW_KEY = "e83d30d0e95ddf98f44152b439cd9f65";
 /** Fallback card for routes with no image of their own. Rename the file when
  *  the design changes: LinkedIn, WhatsApp, and X cache cards by URL, so an
  *  overwrite in place keeps showing the old one. */
-export const OG_IMAGE = "/assets/imgs/og/og-card-v3.png";
+export const OG_IMAGE = "/assets/imgs/og/og-card-v4.png";
 
 /** A post or case study's own card, rendered from its title by
  *  scripts/og-card/render.mjs. A shared link then shows what it is about, not
@@ -66,12 +66,12 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   // search second (PROFILE.alsoKnownAs); the descriptions name the rest, so
   // every title the work answers to appears on a page that ranks for the name.
   "/": {
-    title: `${PROFILE.name} — ${PROFILE.role}, Full Stack & Backend`,
-    description: `Product engineer at Systems Limited, ${PROFILE.city}. Full stack and backend engineer in C#, ASP.NET Core, and Angular for fintech, telco, and enterprise.`,
+    title: `${PROFILE.name} — ${PROFILE.role}, Product & Backend`,
+    description: `Full stack engineer at Systems Limited, ${PROFILE.city}. Product and backend engineer in C#, ASP.NET Core, and Angular for fintech, telco, and enterprise.`,
   },
   "/about": {
     title: `About ${PROFILE.name} — ${PROFILE.role}`,
-    description: `${PROFILE.name}: product engineer at Systems Limited and full stack software engineer, ${METRICS.years} years on fintech, telecom, and government backends.`,
+    description: `${PROFILE.name}: full stack and product engineer at Systems Limited, ${METRICS.years} years on fintech, telecom, and government backends.`,
   },
   "/portfolio": {
     title: pageTitle("Fintech, Telco & Enterprise Case Studies"),
@@ -85,6 +85,6 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   },
   "/contact": {
     title: `Contact ${PROFILE.name} — Hire a ${PROFILE.role}`,
-    description: `Hire ${PROFILE.name}, product engineer and full stack .NET and Angular software engineer in ${PROFILE.location}. ${AVAILABILITY.metaLine}`,
+    description: `Hire ${PROFILE.name}, full stack .NET and Angular engineer and product engineer in ${PROFILE.location}. ${AVAILABILITY.metaLine}`,
   },
 };
