@@ -14,7 +14,7 @@ export type FaqItem = { question: string; answer: string };
 export const FAQ: FaqItem[] = [
     {
         question: "What is your current role?",
-        answer: `I'm a ${PROFILE.role} at Systems Limited. In practice that's full stack software engineering with product ownership: .NET 9 and ABP.io services on the backend, Angular micro-frontends on the front, and features carried from the API contract to the dashboard and through go-live.`,
+        answer: `I'm a ${PROFILE.role} at Systems Limited. The work is product engineering as much as full stack: .NET 9 and ABP.io services on the backend, Angular micro-frontends on the front, and each feature owned from the API contract to the dashboard and through go-live.`,
     },
     {
         question: "What technologies do you specialize in?",
@@ -44,7 +44,7 @@ export const FAQ: FaqItem[] = [
 
 export const ABOUT = {
     hero: {
-        kicker: "Muhammad Anees · Product Engineer · Full stack & backend",
+        kicker: "Muhammad Anees · Full Stack Engineer · Product & backend",
         title: "About Me",
     },
     portrait: {
